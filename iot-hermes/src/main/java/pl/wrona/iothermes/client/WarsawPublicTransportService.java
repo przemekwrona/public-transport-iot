@@ -12,6 +12,7 @@ import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
 import pl.wrona.warsaw.transport.api.model.WarsawVehicles;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,6 +20,8 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 public class WarsawPublicTransportService {
+
+    private static final DateTimeFormatter WARSAW_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private final WarsawUmApiConfiguration warsawUmApiConfiguration;
     private final WarsawPublicTransportClient warsawPublicTransportClient;
@@ -50,7 +53,7 @@ public class WarsawPublicTransportService {
                 .lat(vehicle.getLat())
                 .lon(vehicle.getLon())
                 .brigade(vehicle.getBrigade())
-                .time(LocalDateTime.parse(vehicle.getTime()))
+                .time(LocalDateTime.parse(vehicle.getTime(), WARSAW_DATE_TIME_FORMATTER))
                 .build();
     }
 

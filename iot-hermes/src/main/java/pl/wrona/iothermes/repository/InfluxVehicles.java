@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import pl.wrona.iothermes.model.VehicleLocation;
 
-import java.time.Instant;
+import java.time.ZoneOffset;
 import java.util.List;
 
 @Slf4j
@@ -25,14 +25,15 @@ public class InfluxVehicles {
         WriteApiBlocking writeApi = influxDBClient.getWriteApiBlocking();
 
         vehicles.stream()
-                .map(vehicle -> Point.measurement("location")
-                        .addTag("citycode", vehicle.getCityCode().name())
-                        .addField("vehiclenumber", vehicle.getVehicleNumber())
-                        .addField("vehiclenumber", vehicle.getVehicleNumber())
-                        .addField("brigade", vehicle.getBrigade())
+                .map(vehicle -> Point.measurement("vehicle_location")
+                        .time(vehicle.getTime().toInstant(ZoneOffset.UTC), WritePrecision.MS)
+                        .addField("city_code", vehicle.getCityCode().name())
+                        .addField("vehicle_type", vehicle.getVehicleType().name())
+                        .addField("vehicle_number", vehicle.getVehicleNumber())
+                        .addField("line", vehicle.getLine())
                         .addField("latitude", vehicle.getLat())
                         .addField("longitude", vehicle.getLon())
-                        .time(Instant.now().toEpochMilli(), WritePrecision.MS))
+                        .addField("brigade", vehicle.getBrigade()))
                 .forEach(writeApi::writePoint);
     }
 
