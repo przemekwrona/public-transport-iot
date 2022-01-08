@@ -9,13 +9,12 @@ import pl.wrona.iothermes.service.WarsawService;
 @Slf4j
 @Component
 @AllArgsConstructor
-public class WarsawVehicleJob implements Runnable {
+public class WarsawVehicleJob {
 
     public static final int TEN_SECONDS = 10 * 1000;
 
     private final WarsawService warsawService;
 
-    @Override
     @Scheduled(fixedRate = TEN_SECONDS)
     public void run() {
         warsawService.getAndSaveVehicles();
