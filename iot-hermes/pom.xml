@@ -12,18 +12,59 @@
   <groupId>pl.wrona</groupId>
   <artifactId>iot-hermes</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
   <name>iot-hermes</name>
   <description>iot-hermes</description>
 
   <properties>
     <java.version>11</java.version>
+    <springfox.version>3.0.0</springfox.version>
+    <validation-api.version>2.0.1.Final</validation-api.version>
+    <swagger-annotations.version>1.6.2</swagger-annotations.version>
+    <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
+    <validation-api.version>2.0.1.Final</validation-api.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-json</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>logging-interceptor</artifactId>
+      <version>3.12.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.2</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>${validation-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>${swagger-annotations.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openapitools</groupId>
+      <artifactId>jackson-databind-nullable</artifactId>
+      <version>${jackson-databind-nullable.version}</version>
     </dependency>
 
     <dependency>
@@ -43,6 +84,7 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>2.6.2</version>
         <configuration>
           <excludes>
             <exclude>
@@ -51,6 +93,40 @@
             </exclude>
           </excludes>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.openapitools</groupId>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+        <version>5.3.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <inputSpec>${project.basedir}/../iot-api/warsaw-public-transport-api.yaml</inputSpec>
+              <!--              <generatorName>java</generatorName>-->
+              <generatorName>spring</generatorName>
+              <generateApiTests>false</generateApiTests>
+              <generateModelTests>false</generateModelTests>
+              <generateSupportingFiles>true</generateSupportingFiles>
+              <configOptions>
+                <sourceFolder>src/gen/java</sourceFolder>
+                <serializableModel>true</serializableModel>
+                <snapshotVersion>true</snapshotVersion>
+                <apiPackage>pl.wrona.warsaw.transport.api</apiPackage>
+                <modelPackage>pl.wrona.warsaw.transport.api.model</modelPackage>
+                <invokerPackage>pl.wrona.warsaw.transport.handler</invokerPackage>
+                <groupId>pl.wrona</groupId>
+                <artifactId>warsaw-public-transport-api</artifactId>
+                <artifactVersion>0.0.1</artifactVersion>
+                <interfaceOnly>true</interfaceOnly>
+                <skipDefaultInterface>true</skipDefaultInterface>
+              </configOptions>
+              <configHelp>false</configHelp>ś
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
