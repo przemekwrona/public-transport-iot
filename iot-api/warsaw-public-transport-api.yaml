@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Warsaw Public Transport API
+  description: Warsaw Public Transport API
+  version: 1.0.0
+servers:
+  - url: 'https://api.um.warszawa.pl'
+paths:
+  /api/action/dbstore_get:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarsawVehicles'
+components:
+  schemas:
+    WarsawVehicle:
+      type: object
+      properties:
+        Lines:
+          type: string
+        Lat:
+          type: number
+        Lon:
+          type: number
+        VehicleNumber:
+          type: string
+        Brigade:
+          type: string
+        Time:
+          type: string
+    WarsawVehicles:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarsawVehicle'
