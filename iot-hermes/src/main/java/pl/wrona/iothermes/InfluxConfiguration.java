@@ -1,8 +1,7 @@
 package pl.wrona.iothermes;
 
-import org.influxdb.InfluxDB;
-import org.influxdb.InfluxDBFactory;
-import org.springframework.boot.autoconfigure.influx.InfluxDbProperties;
+import com.influxdb.client.InfluxDBClient;
+import com.influxdb.client.InfluxDBClientFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 public class InfluxConfiguration {
 
     @Bean
-    public InfluxDB influxDB(final InfluxDbProperties influxDbProperties) {
-        return InfluxDBFactory.connect(influxDbProperties.getUrl(), influxDbProperties.getUser(), influxDbProperties.getPassword());
+    public InfluxDBClient influxDBClient(final InfluxProperties influxProperties) {
+        return InfluxDBClientFactory.create(influxProperties.getUrl(), influxProperties.getToken(), influxProperties.getOrg(), influxProperties.getBucket());
     }
 
 }
