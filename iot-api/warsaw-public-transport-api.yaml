@@ -6,8 +6,26 @@ info:
 servers:
   - url: 'https://api.um.warszawa.pl'
 paths:
-  /api/action/dbstore_get:
+  /api/action/busestrams_get:
     get:
+      summary: Returns list of Vehicles with theirs positions
+      operationId: getVehicles
+      parameters:
+        - name: resource_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: apikey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: OK
@@ -23,9 +41,9 @@ components:
         Lines:
           type: string
         Lat:
-          type: number
+          type: string
         Lon:
-          type: number
+          type: string
         VehicleNumber:
           type: string
         Brigade:
