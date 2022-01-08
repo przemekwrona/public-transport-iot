@@ -4,9 +4,13 @@ package pl.wrona.iothermes.service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pl.wrona.iothermes.WarsawUmApiConfiguration;
 import pl.wrona.iothermes.client.WarsawPublicTransportService;
+import pl.wrona.iothermes.model.VehicleLocation;
 import pl.wrona.iothermes.repository.InfluxVehicles;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Slf4j
@@ -19,10 +23,13 @@ public class WarsawService {
 
     public void getAndSaveVehicles() {
         log.info("Warsaw UM API GET Vehicles");
-        warsawPublicTransportService.getBuses();
-        warsawPublicTransportService.getTrams();
+        List<VehicleLocation> buses = warsawPublicTransportService.getBuses();
+        List<VehicleLocation> trams = warsawPublicTransportService.getTrams();
 
-        influxVehicles.updateVehicles();
+        List<VehicleLocation> vehicles = Stream.concat(buses.stream(), trams.stream())
+                .collect(Collectors.toList());
+
+        influxVehicles.updateVehicles(vehicles);
     }
 
 }

@@ -2,9 +2,11 @@ package pl.wrona.iothermes.repository;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.influxdb.InfluxDB;
-import org.influxdb.dto.Pong;
 import org.springframework.stereotype.Repository;
+import pl.wrona.iothermes.model.VehicleLocation;
+
+import java.time.Instant;
+import java.util.List;
 
 @Slf4j
 @Repository
@@ -13,8 +15,8 @@ public class InfluxVehicles {
 
     private final InfluxDB influxDB;
 
-    public void updateVehicles() {
-        Pong response = influxDB.ping();
+    public void updateVehicles(List<VehicleLocation> vehicles) {
+        log.info("Warsaw UM API GET Vehicles {} row to save", vehicles.size());
 
         log.info("Influx version: {}", response.getVersion());
 
