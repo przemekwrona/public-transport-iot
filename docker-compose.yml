@@ -17,3 +17,11 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=public-transport
       - DOCKER_INFLUXDB_INIT_BUCKET=vehicles-bucket
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=Y3oa11jMBJKnxTuXVNWXcpFZDryOb88F4re4LFMer3cucUixrBP0pl0W27ePhMG0hsKbHgkfVjs2VhLKJmh2ew==
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/vendor/plugins:/var/lib/grafana/plugins:ro
+    depends_on:
+      - influxdb
