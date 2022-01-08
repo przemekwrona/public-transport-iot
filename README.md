@@ -38,3 +38,18 @@ docker-compose up --build
 ```shell
 docker-compose down
 ```
+
+## Influx
+
+Run influx locally in docker container
+
+```shell
+docker run -p 8086:8086 \
+#      -v influxdb2:/var/lib/influxdb2 \
+      -e DOCKER_INFLUXDB_INIT_MODE=setup \
+      -e DOCKER_INFLUXDB_INIT_USERNAME=user \
+      -e DOCKER_INFLUXDB_INIT_PASSWORD=password \
+      -e DOCKER_INFLUXDB_INIT_ORG=igeolab \
+      -e DOCKER_INFLUXDB_INIT_BUCKET=igeolab-bucket \
+      influxdb:latest
+```
