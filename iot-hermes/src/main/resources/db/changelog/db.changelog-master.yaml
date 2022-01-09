@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-vehicle_location
+      author: pwrona
+      changes:
+        - createTable:
+            tableName: VEHICLE_LOCATION
+            columns:
+              - column:
+                  name: VEHICLE_ID
+                  type: int
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: CITY
+                  type: varchar2(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TIME
+                  type: timestamp(6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: LINE
+                  type: varchar2(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: VEHICLE_NUMBER
+                  type: varchar2(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: LNG
+                  type: varchar2(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: LAT
+                  type: varchar2(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: BRIGADE
+                  type: varchar2(20)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: create-sequence-vehicle-location
+      author: pwrona
+      changes:
+        - createSequence:
+            startValue: 1
+            minValue: 1
+            incrementBy: 1
+            sequenceName: SEQ_VEHICLE_LOCATION
