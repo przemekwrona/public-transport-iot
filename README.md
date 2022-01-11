@@ -1,5 +1,25 @@
 # public-transport-iot
 
+## Build app
+
+Build Public Transport Application via maven
+
+* Run docker to build postgres
+
+```shell script
+docker run --name public-transport-postgres \
+  -e POSTGRES_USER=user \
+  -e POSTGRES_PASSWORD=welcome1 \
+  -e POSTGRES_DB=public_transport_db \
+  -p 5432:5432 -d postgres
+```
+
+* Run maven script to download dependencies and build project
+
+```shell script
+mvn clean install
+```
+
 ## Docker
 
 ### Docker image

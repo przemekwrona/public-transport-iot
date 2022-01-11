@@ -17,7 +17,7 @@ services:
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=welcome1
-      - POSTGRES_DB=public_transpor_db
+      - POSTGRES_DB=public_transport_db
   influxdb:
     image: influxdb:latest
     container_name: influxdb
