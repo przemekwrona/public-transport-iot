@@ -38,7 +38,10 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./configuration/grafana/vendor/plugins:/var/lib/grafana/plugins:ro
+      - ./etc/grafana/vendor/plugins:/var/lib/grafana/plugins:ro
+      - ./etc/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./etc/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./etc/grafana/dashboards:/var/lib/grafana/dashboards:ro
     depends_on:
       - influxdb
       - postgres
