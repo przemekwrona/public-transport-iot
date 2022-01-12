@@ -9,7 +9,7 @@ services:
       - postgres
       - influxdb
   postgres:
-    image: 'postgres:13.1-alpine'
+    image: 'postgres'
     restart: always
     container_name: postgres
     ports:
@@ -38,6 +38,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./grafana/vendor/plugins:/var/lib/grafana/plugins:ro
+      - ./configuration/grafana/vendor/plugins:/var/lib/grafana/plugins:ro
     depends_on:
       - influxdb
+      - postgres
