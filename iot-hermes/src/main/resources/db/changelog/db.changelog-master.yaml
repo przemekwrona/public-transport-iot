@@ -7,13 +7,18 @@ databaseChangeLog:
             tableName: VEHICLE_LOCATION
             columns:
               - column:
-                  name: VEHICLE_ID
+                  name: VEHICLE_LOCATION_ID
                   type: int
                   constraints:
                     primaryKey: true
               - column:
-                  name: CITY
-                  type: varchar2(100)
+                  name: CITY_CODE
+                  type: varchar2(5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: VEHICLE_TYPE
+                  type: varchar2(5)
                   constraints:
                     nullable: false
               - column:
@@ -23,16 +28,16 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: LINE
-                  type: varchar2(200)
+                  type: varchar2(5)
                   constraints:
                     nullable: false
               - column:
                   name: VEHICLE_NUMBER
-                  type: varchar2(200)
+                  type: varchar2(10)
                   constraints:
                     nullable: false
               - column:
-                  name: LNG
+                  name: LON
                   type: varchar2(20)
                   constraints:
                     nullable: false
@@ -43,7 +48,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: BRIGADE
-                  type: varchar2(20)
+                  type: varchar2(5)
                   constraints:
                     nullable: false
   - changeSet:

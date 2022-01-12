@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import pl.wrona.iothermes.client.WarsawPublicTransportService;
 import pl.wrona.iothermes.model.VehicleLocation;
 import pl.wrona.iothermes.repository.InfluxVehicles;
+import pl.wrona.iothermes.repository.postgres.VehicleLocationService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,15 +20,17 @@ import java.util.stream.Stream;
 public class WarsawService {
 
     private final WarsawPublicTransportService warsawPublicTransportService;
+    private final VehicleLocationService vehicleLocationService;
     private final InfluxVehicles influxVehicles;
 
     public void getAndSaveVehicles() {
-        log.info("Warsaw UM API GET Vehicles");
         List<VehicleLocation> buses = warsawPublicTransportService.getBuses();
         List<VehicleLocation> trams = warsawPublicTransportService.getTrams();
 
         List<VehicleLocation> vehicles = Stream.concat(buses.stream(), trams.stream())
                 .collect(Collectors.toList());
+
+        vehicleLocationService.updateVehicles(vehicles);
 
         influxVehicles.updateVehicles(vehicles);
     }
