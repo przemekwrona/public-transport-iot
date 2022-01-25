@@ -4,10 +4,24 @@ services:
     build:
       context: ./iot-hermes
       dockerfile: Dockerfile
+    container_name: hermes
     depends_on:
+      - postgres
       - influxdb
+  postgres:
+    image: 'postgres'
+    restart: always
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=welcome1
+      - POSTGRES_DB=public_transport_db
   influxdb:
     image: influxdb:latest
+    container_name: influxdb
+    restart: always
     ports:
       - "8086:8086"
     environment:
@@ -17,3 +31,17 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=public-transport
       - DOCKER_INFLUXDB_INIT_BUCKET=vehicles-bucket
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=Y3oa11jMBJKnxTuXVNWXcpFZDryOb88F4re4LFMer3cucUixrBP0pl0W27ePhMG0hsKbHgkfVjs2VhLKJmh2ew==
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./etc/grafana/vendor/plugins:/var/lib/grafana/plugins:ro
+      - ./etc/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./etc/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./etc/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      - influxdb
+      - postgres

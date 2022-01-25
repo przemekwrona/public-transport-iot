@@ -31,8 +31,8 @@ public class InfluxVehicles {
                         .addField("vehicle_type", vehicle.getVehicleType().name())
                         .addField("vehicle_number", vehicle.getVehicleNumber())
                         .addField("line", vehicle.getLine())
-                        .addField("latitude", vehicle.getLat())
-                        .addField("longitude", vehicle.getLon())
+                        .addField("lat", vehicle.getLat())
+                        .addField("lon", vehicle.getLon())
                         .addField("brigade", vehicle.getBrigade()))
                 .forEach(writeApi::writePoint);
     }
