@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Warsaw Public Transport API
+  description: Warsaw Public Transport API
+  version: 1.0.0
+paths:
+  /locations:
+    get:
+      summary: Returns list of Vehicles with theirs positions
+      operationId: getLocations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Locations'
+components:
+  schemas:
+    Location:
+      type: object
+      properties:
+        key:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        name:
+          type: string
+    Locations:
+      type: array
+      items:
+        $ref: '#/components/schemas/Location'
+

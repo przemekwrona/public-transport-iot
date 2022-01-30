@@ -8,6 +8,13 @@ services:
     depends_on:
       - postgres
       - influxdb
+  demeter:
+    build:
+      context: ./iot-demeter
+      dockerfile: Dockerfile
+    container_name: demeter
+    depends_on:
+      - postgres
   postgres:
     image: 'postgres'
     restart: always
