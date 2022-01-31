@@ -6,13 +6,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import pl.wrona.iotapollo.client.WarsawApiService;
+import pl.wrona.iotapollo.client.WarsawStopService;
 
 @EnableFeignClients
-@SpringBootApplication
 @AllArgsConstructor
+@SpringBootApplication
 public class IotApolloApplication {
 
-    private WarsawApiService warsawApiService;
+    private WarsawStopService warsawStopService;
 
     public static void main(String[] args) {
         SpringApplication.run(IotApolloApplication.class, args);
@@ -20,7 +21,13 @@ public class IotApolloApplication {
 
     @Bean
     public void mmm() {
-        warsawApiService.dodo();
+        warsawStopService.getClosestStop(52.55f, 21.05f);
+        warsawStopService.getClosestStop(52.55f, 21.05f);
+        warsawStopService.getClosestStop(52.55f, 21.05f);
+        warsawStopService.getClosestStop(52.55f, 21.05f);
+        warsawStopService.getClosestStop(52.55f, 21.05f);
+        warsawStopService.getClosestStop(52.55f, 21.05f);
+//        warsawApiService.dodo();
     }
 
 }
