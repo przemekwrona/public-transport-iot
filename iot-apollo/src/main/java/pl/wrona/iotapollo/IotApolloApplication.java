@@ -6,9 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import pl.wrona.iotapollo.client.WarsawApiService;
-import pl.wrona.iotapollo.client.WarsawStop;
-
-import java.util.List;
 
 @EnableFeignClients
 @SpringBootApplication
@@ -23,7 +20,8 @@ public class IotApolloApplication {
 
     @Bean
     public void mmm() {
-//        warsawApiService.dodo();
+        warsawApiService.dodo();
     }
 
 }
+
