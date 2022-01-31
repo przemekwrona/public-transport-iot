@@ -21,6 +21,7 @@
     <swagger-annotations.version>1.6.2</swagger-annotations.version>
     <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
     <validation-api.version>2.0.1.Final</validation-api.version>
+    <spock.version>2.0-groovy-3.0</spock.version>
   </properties>
   <dependencies>
     <dependency>
@@ -74,6 +75,18 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-core</artifactId>
+      <version>${spock.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-spring</artifactId>
+      <version>${spock.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -120,6 +133,18 @@
               </configOptions>
               <configHelp>false</configHelp>ś
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.gmavenplus</groupId>
+        <artifactId>gmavenplus-plugin</artifactId>
+        <version>1.13.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compileTests</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
