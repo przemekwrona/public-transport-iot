@@ -33,6 +33,65 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WarsawVehicles'
+  /api/action/dbtimetable_get:
+    get:
+      summary: Return timetable for line on definied stop
+      operationId: getTimetable
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: busstopId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: busstopNr
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: line
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: apikey
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarsawTimetables'
+  /api/action/dbstore_get:
+    get:
+      summary: Return the list of stops in Warsaw
+      operationId: getStops
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: apikey
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarsawStops'
 components:
   schemas:
     WarsawVehicle:
@@ -57,3 +116,45 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WarsawVehicle'
+    WarsawTimetableValue:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    WarsawTimetable:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarsawTimetableValue'
+    WarsawTimetables:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarsawTimetable'
+    WarsawStopValue:
+      type: object
+      properties:
+        value:
+          type: string
+        key:
+          type: string
+    WarsawStop:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarsawStopValue'
+    WarsawStops:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/WarsawStop'
