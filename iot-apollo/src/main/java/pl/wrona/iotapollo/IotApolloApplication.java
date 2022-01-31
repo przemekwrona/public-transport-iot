@@ -23,8 +23,7 @@ public class IotApolloApplication {
 
     @Bean
     public void mmm() {
-        List<WarsawStop> stops = warsawApiService.getStops();
-        System.out.println();
+//        warsawApiService.dodo();
     }
 
 }

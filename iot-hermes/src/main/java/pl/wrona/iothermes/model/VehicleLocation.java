@@ -12,8 +12,8 @@ public class VehicleLocation {
     private CityCode cityCode;
     private VehicleType vehicleType;
     private String line;
-    private String lat;
-    private String lon;
+    private float lat;
+    private float lon;
     private String vehicleNumber;
     private String brigade;
     private Instant time;

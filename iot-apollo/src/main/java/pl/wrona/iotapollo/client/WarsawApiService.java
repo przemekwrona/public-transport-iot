@@ -20,6 +20,15 @@ public class WarsawApiService {
     private final WarsawUmApiConfiguration warsawUmApiConfiguration;
     private final WarsawApiClient warsawApiClient;
 
+    @Data
+    @Builder
+    private static class StopDistance {
+
+        private WarsawStop warsawStop;
+        private double distance;
+
+    }
+
     public List<WarsawStop> getStops() {
         return Optional.ofNullable(warsawApiClient
                         .getStops(warsawUmApiConfiguration.getStopsResourceId(), warsawUmApiConfiguration.getApikey()))
@@ -30,12 +39,12 @@ public class WarsawApiService {
                 .collect(Collectors.toList());
     }
 
-    @Data
-    @Builder
-    private class StopDistance {
-        private WarsawStop warsawStop;
-        private double distance;
-
+    public void dodo() {
+        warsawApiClient.getVehicles(warsawUmApiConfiguration.getResourceId(), warsawUmApiConfiguration.getApikey(), "1")
+                .getBody().getResult().stream()
+//                .map(vehicle-> getClosestStop(vehicle.getLon(), vehicle.getLat()))
+                .forEach(System.out::println);
+//                .collect(Collectors.toList());
     }
 
     public WarsawStop getClosestStop(float lon, float lat) {

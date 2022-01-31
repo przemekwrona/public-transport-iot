@@ -12,7 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
 @Builder
@@ -33,13 +33,13 @@ public class VehicleLocation {
 
     private String line;
 
-    private String lat;
+    private float lat;
 
-    private String lon;
+    private float lon;
 
     private String vehicleNumber;
 
     private String brigade;
 
-    private LocalDateTime time;
+    private Instant time;
 }

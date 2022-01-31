@@ -32,8 +32,8 @@ public class WarsawStop {
                 .slupek(findField(warsawStop, "slupek"))
                 .name(findField(warsawStop, "nazwa_zespolu"))
                 .streetId(findField(warsawStop, "id_ulicy"))
-                .lon(Long.parseLong(findField(warsawStop, "szer_geo")))
-                .lat(Long.parseLong(findField(warsawStop, "dlug_geo")))
+                .lat(Float.parseFloat(findField(warsawStop, "szer_geo")))
+                .lon(Float.parseFloat(findField(warsawStop, "dlug_geo")))
                 .direction(findField(warsawStop, "kierunek"))
                 .validateFromDate(findField(warsawStop, "obowiazuje_od"))
                 .build();

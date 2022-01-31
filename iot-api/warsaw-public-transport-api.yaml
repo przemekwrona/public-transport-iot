@@ -99,10 +99,12 @@ components:
       properties:
         Lines:
           type: string
-        Lat:
-          type: string
         Lon:
-          type: string
+          type: number
+          format: float
+        Lat:
+          type: number
+          format: float
         VehicleNumber:
           type: string
         Brigade:

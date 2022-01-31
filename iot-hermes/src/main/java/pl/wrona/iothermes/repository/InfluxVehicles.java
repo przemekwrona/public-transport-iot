@@ -26,7 +26,7 @@ public class InfluxVehicles {
 
         vehicles.stream()
                 .map(vehicle -> Point.measurement("vehicle_location")
-                        .time(vehicle.getTime().toInstant(ZoneOffset.UTC), WritePrecision.MS)
+                        .time(vehicle.getTime(), WritePrecision.MS)
                         .addField("city_code", vehicle.getCityCode().name())
                         .addField("vehicle_type", vehicle.getVehicleType().name())
                         .addField("vehicle_number", vehicle.getVehicleNumber())
