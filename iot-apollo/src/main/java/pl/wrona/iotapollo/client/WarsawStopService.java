@@ -3,12 +3,15 @@ package pl.wrona.iotapollo.client;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
 
 import java.util.Comparator;
 import java.util.List;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class WarsawStopService {
@@ -60,12 +63,16 @@ public class WarsawStopService {
                         .warsawStop(stop)
                         .distance(stop.distance(currentPosition))
                         .build())
-                .min(Comparator.comparingDouble(StopDistance::getDistance))
+                .sorted(Comparator.comparingDouble(StopDistance::getDistance))
+                .filter(stop -> getLinesOnStop(stop.getWarsawStop().getGroup(), stop.getWarsawStop().getSlupek()).hasLine(line))
+                .findFirst()
                 .map(StopDistance::getWarsawStop)
                 .orElse(null);
     }
 
+    @Cacheable(cacheNames = "linesOnStopInWarsawCache")
     public WarsawTimetable getLinesOnStop(String stopId, String stopNumber) {
+        log.info("Get Lines on stop {} {}", stopId, stopNumber);
         List<String> linesOnStop = warsawApiService.getLinesOnStop(stopId, stopNumber);
         return WarsawTimetable.builder()
                 .stopId(stopId)

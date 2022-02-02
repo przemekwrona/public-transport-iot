@@ -32,7 +32,6 @@ public class WarsawApiService {
                 .collect(Collectors.toList());
     }
 
-    @Cacheable(cacheNames = "linesOnStopInWarsawCache")
     public List<String> getLinesOnStop(String stopId, String stopNumber) {
         return Optional.ofNullable(warsawApiClient.getTimetable(warsawUmApiConfiguration.getApikey(),
                         warsawUmApiConfiguration.getLinesOnStopsResourceId(),
