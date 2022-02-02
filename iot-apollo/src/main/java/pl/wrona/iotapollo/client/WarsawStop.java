@@ -5,9 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import pl.wrona.warsaw.transport.api.model.WarsawStopValue;
 
-import java.util.List;
-import java.util.stream.Stream;
-
 @Data
 @Builder
 @AllArgsConstructor

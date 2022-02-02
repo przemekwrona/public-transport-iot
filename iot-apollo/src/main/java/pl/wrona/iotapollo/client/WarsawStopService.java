@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
 
 import java.util.Comparator;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -62,6 +63,15 @@ public class WarsawStopService {
                 .min(Comparator.comparingDouble(StopDistance::getDistance))
                 .map(StopDistance::getWarsawStop)
                 .orElse(null);
+    }
+
+    public WarsawTimetable getLinesOnStop(String stopId, String stopNumber) {
+        List<String> linesOnStop = warsawApiService.getLinesOnStop(stopId, stopNumber);
+        return WarsawTimetable.builder()
+                .stopId(stopId)
+                .stopNumber(stopNumber)
+                .lines(linesOnStop)
+                .build();
     }
 
 }
