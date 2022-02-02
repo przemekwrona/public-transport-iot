@@ -16,6 +16,11 @@ import java.util.concurrent.TimeUnit;
 @EnableCaching
 public class CacheConfiguration {
 
+    @Bean
+    public CacheManager cacheManager() {
+        return new ConcurrentMapCacheManager("books");
+    }
+
 //    @Override
 //    public CacheManager cacheManager() {
 //        return new ConcurrentMapCacheManager() {
@@ -28,9 +33,14 @@ public class CacheConfiguration {
 //        };
 //    }
 
-    @Bean
-    public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("warsawStops");
-    }
+//    @Bean
+//    public CacheManager cacheManager() {
+//        return new ConcurrentMapCacheManager("addresses");
+//    }
+
+//    @Bean
+//    public CacheManager cacheManager() {
+//        return new ConcurrentMapCacheManager("warsawStops");
+//    }
 
 }

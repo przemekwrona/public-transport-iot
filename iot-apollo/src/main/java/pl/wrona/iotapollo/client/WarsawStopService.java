@@ -38,7 +38,7 @@ public class WarsawStopService {
                 .lat(lat)
                 .build();
 
-        return warsawApiService.getStops("WAWA").stream()
+        return warsawApiService.getStops().stream()
                 .map(stop -> StopDistance.builder()
                         .warsawStop(stop)
                         .distance(stop.distance(currentPosition))
@@ -54,7 +54,7 @@ public class WarsawStopService {
                 .lat(lat)
                 .build();
 
-        return warsawApiService.getStops("WAWA").stream()
+        return warsawApiService.getStops().stream()
                 .map(stop -> StopDistance.builder()
                         .warsawStop(stop)
                         .distance(stop.distance(currentPosition))
