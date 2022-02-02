@@ -4,7 +4,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest
-class IotApolloApplicationTest extends Specification {
+class IotApolloApplicationSpec extends Specification {
 
   def contextLoads() {
     expect:

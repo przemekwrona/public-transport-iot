@@ -7,7 +7,7 @@ import pl.wrona.iotapollo.WarsawUmApiConfiguration
 import spock.lang.Specification
 
 @SpringBootTest
-class WarsawStopServiceTest extends Specification {
+class WarsawStopServiceSpec extends Specification {
 
   @Autowired
   WarsawUmApiConfiguration warsawUmApiConfiguration
@@ -16,7 +16,7 @@ class WarsawStopServiceTest extends Specification {
 
   def "should call Warsaw API 1 time"() {
     setup:
-    def warsawApiService = new WarsawApiService(warsawUmApiConfiguration, warsawApiClientMock)
+    def warsawApiService = new WarsawApiService(warsawUmApiConfiguration, warsawApiClientMock, null)
     def warsawStopService = new WarsawStopService(warsawApiService)
 
     and:
@@ -26,7 +26,7 @@ class WarsawStopServiceTest extends Specification {
     10.times { warsawStopService.getClosestStop(52.23, 21.02) }
 
     then:
-    2 * warsawApiClientMock.getStops(_ as String, _ as String)
+    1 * warsawApiClientMock.getStops(_ as String, _ as String)
   }
 
 

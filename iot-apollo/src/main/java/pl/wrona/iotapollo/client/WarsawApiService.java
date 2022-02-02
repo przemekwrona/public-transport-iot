@@ -18,18 +18,24 @@ public class WarsawApiService {
     private final WarsawUmApiConfiguration warsawUmApiConfiguration;
     private final WarsawApiClient warsawApiClient;
 
+    private List<WarsawStop> warsawStops;
+
 
     //    @Cacheable(cacheNames = "warsawStops", key = "#root.methodName")
 //    @Cacheable("warsawStops")
     @Cacheable
     public List<WarsawStop> getStops(String WAWA) {
-        return Optional.ofNullable(warsawApiClient
-                        .getStops(warsawUmApiConfiguration.getStopsResourceId(), warsawUmApiConfiguration.getApikey()))
-                .map(ResponseEntity::getBody)
-                .map(WarsawStops::getResult)
-                .orElse(List.of()).stream()
-                .map(WarsawStop::of)
-                .collect(Collectors.toList());
+        if (warsawStops == null) {
+            this.warsawStops = Optional.ofNullable(warsawApiClient
+                            .getStops(warsawUmApiConfiguration.getStopsResourceId(), warsawUmApiConfiguration.getApikey()))
+                    .map(ResponseEntity::getBody)
+                    .map(WarsawStops::getResult)
+                    .orElse(List.of()).stream()
+                    .map(WarsawStop::of)
+                    .collect(Collectors.toList());
+        }
+
+        return warsawStops;
     }
 
 }
