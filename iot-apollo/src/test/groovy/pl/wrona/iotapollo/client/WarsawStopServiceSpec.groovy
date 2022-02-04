@@ -1,16 +1,17 @@
 package pl.wrona.iotapollo.client
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.cache.CacheManager
 import org.springframework.cache.annotation.EnableCaching
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import pl.wrona.iotapollo.WarsawUmApiConfiguration
+import pl.wrona.iotapollo.client.warsaw.WarsawApiClient
+import pl.wrona.iotapollo.client.warsaw.WarsawApiService
+import pl.wrona.iotapollo.client.warsaw.WarsawStopService
 import spock.lang.Ignore
 import spock.lang.Specification
 import spock.mock.DetachedMockFactory

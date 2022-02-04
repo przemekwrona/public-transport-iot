@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.wrona.iothermes.model.postgres.VehicleLocation;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +34,11 @@ public class VehicleLocationService {
                 .brigade(vehicleLocation.getBrigade())
                 .time(vehicleLocation.getTime())
                 .build();
+    }
+
+    public void deleteVehicleLocationsByTimeBefore() {
+        LocalDateTime dayAgoDateTime = LocalDateTime.now().minusDays(1L);
+        vehiclesLocationRepository.deleteVehicleLocationsByTimeBefore(dayAgoDateTime.toInstant(ZoneOffset.UTC));
     }
 
 }

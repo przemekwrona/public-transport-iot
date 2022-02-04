@@ -4,7 +4,7 @@ package pl.wrona.iothermes.service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import pl.wrona.iothermes.client.WarsawPublicTransportService;
+import pl.wrona.iothermes.client.warsaw.WarsawPublicTransportService;
 import pl.wrona.iothermes.model.VehicleLocation;
 import pl.wrona.iothermes.repository.InfluxVehicles;
 import pl.wrona.iothermes.repository.postgres.VehicleLocationService;
