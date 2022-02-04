@@ -1,4 +1,4 @@
-package pl.wrona.iotapollo.client;
+package pl.wrona.iotapollo.client.warsaw;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

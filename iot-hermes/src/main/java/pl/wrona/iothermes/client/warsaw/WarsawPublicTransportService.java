@@ -1,4 +1,4 @@
-package pl.wrona.iothermes.client;
+package pl.wrona.iothermes.client.warsaw;
 
 
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package pl.wrona.iothermes.client;
+package pl.wrona.iothermes.client.warsaw;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import pl.wrona.warsaw.transport.api.ApiApi;
