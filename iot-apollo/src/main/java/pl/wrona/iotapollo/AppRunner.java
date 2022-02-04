@@ -3,12 +3,14 @@ package pl.wrona.iotapollo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import pl.wrona.iotapollo.client.WarsawApiService;
 import pl.wrona.iotapollo.client.WarsawStopService;
 
 @Slf4j
 @Component
+@Profile("!pi")
 @AllArgsConstructor
 public class AppRunner implements CommandLineRunner {
 
@@ -46,3 +48,4 @@ public class AppRunner implements CommandLineRunner {
     }
 
 }
+
