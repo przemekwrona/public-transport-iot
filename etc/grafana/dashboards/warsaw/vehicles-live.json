@@ -33,8 +33,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 24,
+        "h": 8,
+        "w": 12,
         "x": 0,
         "y": 0
       },
@@ -119,7 +119,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 7
+        "y": 8
       },
       "hiddenSeries": false,
       "id": 2,
@@ -153,7 +153,7 @@
           "group": [
             {
               "params": [
-                "20s",
+                "10s",
                 "0"
               ],
               "type": "time"
@@ -163,7 +163,7 @@
           "metricColumn": "lat",
           "queryType": "randomWalk",
           "rawQuery": true,
-          "rawSql": "SELECT\n        floor(extract(epoch from \"time\")/10)*10 AS \"time\",\n        count(*)\nFROM vehicle_location\nWHERE\n    \"time\" BETWEEN '2022-01-29T14:48:55.981Z' AND '2022-01-29T14:49:05.981Z'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"time\",10s,0),\n  count(vehicle_location_id) AS METRIC\nFROM vehicle_location\nWHERE\n  $__timeFilter(\"time\")\nGROUP BY 1\nORDER BY 1",
           "refId": "NUMBER OF VEHICLES",
           "select": [
             [

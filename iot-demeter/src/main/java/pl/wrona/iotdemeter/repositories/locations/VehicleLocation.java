@@ -1,10 +1,9 @@
-package pl.wrona.iothermes.model.postgres;
+package pl.wrona.iotdemeter.repositories.locations;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.wrona.iothermes.model.CityCode;
-import pl.wrona.iothermes.model.VehicleType;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,8 +11,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
+@Data
 @Entity
 @Builder
 @NoArgsConstructor
@@ -33,13 +33,13 @@ public class VehicleLocation {
 
     private String line;
 
-    private float lat;
+    private String lat;
 
-    private float lon;
+    private String lon;
 
     private String vehicleNumber;
 
     private String brigade;
 
-    private Instant time;
+    private LocalDateTime time;
 }

@@ -8,6 +8,15 @@ services:
     depends_on:
       - postgres
       - influxdb
+      - kafka
+  demeter:
+    build:
+      context: ./iot-demeter
+      dockerfile: Dockerfile
+    container_name: demeter
+    depends_on:
+      - postgres
+      - kafka
   postgres:
     image: 'postgres'
     restart: always
@@ -45,3 +54,11 @@ services:
     depends_on:
       - influxdb
       - postgres
+  zookeeper:
+    image: bitnami/zookeeper:latest
+    container_name: zookeeper
+  kafka:
+    image: bitnami/kafka:latest
+    container_name: kafka
+    depends_on:
+      - zookeeper

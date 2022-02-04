@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -10,12 +11,11 @@
   </parent>
 
   <groupId>pl.wrona</groupId>
-  <artifactId>iot-hermes</artifactId>
+  <artifactId>iot-demeter</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
 
-  <name>iot-hermes</name>
-  <description>iot-hermes</description>
+  <name>iot-demeter</name>
+  <description>iot-demeter</description>
 
   <properties>
     <java.version>11</java.version>
@@ -30,32 +30,24 @@
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-openfeign</artifactId>
-      <version>${spring-cloud.version}</version>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.liquibase</groupId>
-      <artifactId>liquibase-core</artifactId>
-      <version>4.7.0</version>
-    </dependency>
-    <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>42.3.1</version>
     </dependency>
+
     <dependency>
-      <groupId>com.influxdb</groupId>
-      <artifactId>influxdb-client-java</artifactId>
-      <version>4.0.0</version>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
     </dependency>
+
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>logging-interceptor</artifactId>
@@ -89,11 +81,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
@@ -103,12 +90,6 @@
       <artifactId>h2</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.awaitility</groupId>
-      <artifactId>awaitility</artifactId>
-      <version>3.1.2</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
@@ -116,7 +97,6 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>2.6.2</version>
         <configuration>
           <excludes>
             <exclude>
@@ -136,7 +116,8 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <inputSpec>${project.basedir}/../iot-api/warsaw-public-transport-api.yaml</inputSpec>
+              <inputSpec>${project.basedir}/../iot-api/iot-demeter-api.yaml</inputSpec>
+              <!--              <generatorName>java</generatorName>-->
               <generatorName>spring</generatorName>
               <generateApiTests>false</generateApiTests>
               <generateModelTests>false</generateModelTests>
@@ -145,11 +126,11 @@
                 <sourceFolder>src/gen/java</sourceFolder>
                 <serializableModel>true</serializableModel>
                 <snapshotVersion>true</snapshotVersion>
-                <apiPackage>pl.wrona.warsaw.transport.api</apiPackage>
-                <modelPackage>pl.wrona.warsaw.transport.api.model</modelPackage>
-                <invokerPackage>pl.wrona.warsaw.transport.handler</invokerPackage>
+                <apiPackage>pl.wrona.iot.demeter.api</apiPackage>
+                <modelPackage>pl.wrona.iot.demeter.api.model</modelPackage>
+                <invokerPackage>pl.wrona.iot.demeter.handler</invokerPackage>
                 <groupId>pl.wrona</groupId>
-                <artifactId>warsaw-public-transport-api</artifactId>
+                <artifactId>iot-demeter-api</artifactId>
                 <artifactVersion>0.0.1</artifactVersion>
                 <interfaceOnly>true</interfaceOnly>
                 <skipDefaultInterface>true</skipDefaultInterface>
@@ -159,7 +140,52 @@
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>11</source>
+          <target>11</target>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+  <repositories>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>spring-snapshots</id>
+      <name>Spring Snapshots</name>
+      <url>https://repo.spring.io/snapshot</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>spring-snapshots</id>
+      <name>Spring Snapshots</name>
+      <url>https://repo.spring.io/snapshot</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
 
 </project>

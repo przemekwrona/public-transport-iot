@@ -35,5 +35,7 @@
 
   <modules>
     <module>iot-hermes</module>
+    <module>iot-demeter</module>
+    <module>iot-apollo</module>
   </modules>
 </project>
