@@ -38,6 +38,11 @@ paths:
       summary: Return timetable for line on definied stop
       operationId: getTimetable
       parameters:
+        - name: apikey
+          in: query
+          required: true
+          schema:
+            type: string
         - name: id
           in: query
           required: true
@@ -53,16 +58,11 @@ paths:
           required: true
           schema:
             type: string
-        - name: line
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: apikey
-          in: query
-          required: true
-          schema:
-            type: string
+      #        - name: line
+      #          in: query
+      #          required: true
+      #          schema:
+      #            type: string
       responses:
         '200':
           description: OK
