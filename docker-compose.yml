@@ -4,6 +4,8 @@ services:
     build:
       context: ./iot-hermes
       dockerfile: Dockerfile
+      args:
+        - PROFILE=pi
     container_name: hermes
     depends_on:
       - postgres
@@ -13,10 +15,20 @@ services:
     build:
       context: ./iot-demeter
       dockerfile: Dockerfile
+      args:
+        - PROFILE=pi
     container_name: demeter
     depends_on:
-      - postgres
-      - kafka
+      - hermes
+  apollo:
+    build:
+      context: ./iot-apollo
+      dockerfile: Dockerfile
+      args:
+        - PROFILE=pi
+    container_name: apollo
+    depends_on:
+      - hermes
   postgres:
     image: 'postgres'
     restart: always
