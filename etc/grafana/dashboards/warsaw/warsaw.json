@@ -72,25 +72,21 @@
           },
           "format": "table",
           "group": [],
-          "hide": false,
           "metricColumn": "none",
-          "queryType": "randomWalk",
           "rawQuery": true,
-          "rawSql": "SELECT FIRST_VALUE(time) OVER (PARTITION BY city_code, vehicle_number) AS \"time\",\n       vehicle_number                                                  AS \"key\",\n       to_number(lat, '99.99999999')                                   AS \"latitude\",\n       to_number(lon, '99.99999999')                                   AS \"longitude\",\n       line                                                            AS \"name\",\n       CASE\n           WHEN vehicle_type = 'BUS' THEN 1\n           WHEN vehicle_type = 'TRAM' THEN 2\n           ELSE 0\n           END                                                         AS \"metric\"\nFROM vehicle_location\nWHERE\n  city_code = 'WAWA' AND\n  $__timeFilter(\"time\")\nORDER BY 1",
-          "refId": "GET Vehicles",
+          "rawSql": "SELECT FIRST_VALUE(time) OVER (PARTITION BY city_code, vehicle_number) AS \"time\",\n       vehicle_number                                                  AS \"key\",\n       to_number(lat, '99.99999999')                                   AS \"latitude\",\n       to_number(lon, '99.99999999')                                   AS \"longitude\",\n       line                                                            AS \"name\",\n       CASE\n           WHEN vehicle_type = 'BUS' THEN 1\n           WHEN vehicle_type = 'TRAM' THEN 2\n           ELSE 0\n           END                                                         AS \"metric\"\nFROM vehicle_location\nWHERE city_code = 'WAWA' AND $__timeFilter(time)\nORDER BY 1;\n\n",
+          "refId": "A",
           "select": [
             [
               {
                 "params": [
-                  "vehicle_location_id"
+                  "value"
                 ],
                 "type": "column"
               }
             ]
           ],
-          "table": "vehicle_location",
-          "timeColumn": "\"time\"",
-          "timeColumnType": "timestamp",
+          "timeColumn": "time",
           "where": [
             {
               "name": "$__timeFilter",
@@ -201,7 +197,7 @@
           "metricColumn": "city_code",
           "queryType": "randomWalk",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"time\",20s,0),\n  1 AS metric,\n  count(city_code)\nFROM vehicle_location\nWHERE\n  city_code = 'WAWA' AND\n  $__timeFilter(\"time\")\nGROUP BY 1,2\nORDER BY 1,2",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"time\",20s,0),\n  count(city_code)\nFROM vehicle_location\nWHERE\n  city_code = 'WAWA' AND\n  $__timeFilter(\"time\")\nGROUP BY 1\nORDER BY 1",
           "refId": "NUMBER OF VEHICLES",
           "select": [
             [
@@ -244,7 +240,7 @@
     "list": []
   },
   "time": {
-    "from": "now-30s",
+    "from": "now-60s",
     "to": "now-20s"
   },
   "timepicker": {
