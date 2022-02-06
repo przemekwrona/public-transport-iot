@@ -51,8 +51,8 @@
       "interval": "10s",
       "locationData": "table",
       "mapCenter": "custom",
-      "mapCenterLatitude": "52.231",
-      "mapCenterLongitude": "21.000",
+      "mapCenterLatitude": "59.325",
+      "mapCenterLongitude": "18.063",
       "maxDataPoints": 5000,
       "mouseWheelZoom": false,
       "pluginVersion": "7.5.4",
@@ -76,7 +76,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT DISTINCT ON (vehicle_number) vehicle_number, time, to_number(lat, '99.99999999') AS \"latitude\", to_number(lon, '99.99999999') AS \"longitude\", line AS \"name\",\r\nCASE WHEN vehicle_type = 'BUS' THEN 1 WHEN vehicle_type = 'TRAM' THEN 2 ELSE 0 END AS \"metric\"\r\nFROM vehicle_location WHERE city_code = 'WAWA' AND $__timeFilter(time) ORDER BY 1, 2 DESC;",
+          "rawSql": "SELECT DISTINCT ON (vehicle_number) vehicle_number, time, to_number(lat, '99.99999999') AS \"latitude\", to_number(lon, '99.99999999') AS \"longitude\", line AS \"name\",\r\nCASE WHEN vehicle_type = 'BUS' THEN 1 WHEN vehicle_type = 'TRAM' THEN 2 ELSE 0 END AS \"metric\"\r\nFROM vehicle_location WHERE city_code = 'STHLM' AND $__timeFilter(time) ORDER BY 1, 2 DESC;",
           "refId": "A",
           "select": [
             [
@@ -198,7 +198,7 @@
           ],
           "metricColumn": "vehicle_number_count",
           "rawQuery": true,
-          "rawSql": "SELECT to_timestamp(floor((extract('epoch' from time) / 60)) * 60) as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = 'WAWA' AND $__timeFilter(time) GROUP BY time_range ORDER BY time_range DESC;",
+          "rawSql": "SELECT to_timestamp(floor((extract('epoch' from time) / 60)) * 60) as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code='STHLM' AND $__timeFilter(time) GROUP BY time_range ORDER BY time_range DESC;",
           "refId": "Get number of vehicles",
           "select": [
             [
@@ -243,7 +243,7 @@
   "schemaVersion": 34,
   "style": "dark",
   "tags": [
-    "WAWA"
+    "STHLM"
   ],
   "templating": {
     "list": []
@@ -259,8 +259,8 @@
     ]
   },
   "timezone": "Europe/Warsaw",
-  "title": "Warsaw",
-  "uid": "zh3-dd-7k",
+  "title": "Stockholm",
+  "uid": "Ggc_vdank",
   "version": 1,
   "weekStart": ""
 }
