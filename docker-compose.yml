@@ -4,9 +4,9 @@ services:
     build:
       context: ./iot-hermes
       dockerfile: Dockerfile
-      args:
-        - PROFILE=pi
     container_name: hermes
+    environment:
+      - PROFILE=pi
     depends_on:
       - postgres
       - influxdb
@@ -15,18 +15,17 @@ services:
     build:
       context: ./iot-demeter
       dockerfile: Dockerfile
-      args:
-        - PROFILE=pi
     container_name: demeter
+    environment:
+      - PROFILE=pi
     depends_on:
       - hermes
   apollo:
     build:
       context: ./iot-apollo
-      dockerfile: Dockerfile
-      args:
-        - PROFILE=pi
     container_name: apollo
+    environment:
+      - PROFILE=pi
     depends_on:
       - hermes
   postgres:
