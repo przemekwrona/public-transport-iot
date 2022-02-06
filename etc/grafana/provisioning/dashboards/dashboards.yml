@@ -1,9 +1,9 @@
 apiVersion: 1
 
 providers:
-  - name: 'Warsaw Public Transport'
+  - name: 'Public Transport'
     orgId: 1
-    folder: 'Warsaw'
+    folder: 'Public Transport'
     type: file
     disableDeletion: true
     editable: false

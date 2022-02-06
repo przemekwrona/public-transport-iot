@@ -1,4 +1,4 @@
-package pl.wrona.iotapollo.client;
+package pl.wrona.iotapollo.client.warsaw;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import pl.wrona.warsaw.transport.api.ApiApi;

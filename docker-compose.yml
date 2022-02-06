@@ -5,6 +5,8 @@ services:
       context: ./iot-hermes
       dockerfile: Dockerfile
     container_name: hermes
+    environment:
+      - PROFILE=pi
     depends_on:
       - postgres
       - influxdb
@@ -14,9 +16,18 @@ services:
       context: ./iot-demeter
       dockerfile: Dockerfile
     container_name: demeter
+    environment:
+      - PROFILE=pi
     depends_on:
-      - postgres
-      - kafka
+      - hermes
+  apollo:
+    build:
+      context: ./iot-apollo
+    container_name: apollo
+    environment:
+      - PROFILE=pi
+    depends_on:
+      - hermes
   postgres:
     image: 'postgres'
     restart: always
