@@ -109,50 +109,84 @@
       "valueName": "total"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "postgres"
       },
       "description": "",
-      "fill": 1,
-      "fillGradient": 2,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
         "y": 13
       },
-      "hiddenSeries": false,
       "id": 2,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
       "options": {
-        "alertThreshold": true
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
       },
-      "percentage": false,
       "pluginVersion": "8.3.3",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "postgres"
+          },
           "format": "table",
           "group": [
             {
@@ -164,16 +198,16 @@
             }
           ],
           "hide": false,
-          "metricColumn": "lat",
+          "metricColumn": "city_code",
           "queryType": "randomWalk",
           "rawQuery": true,
-          "rawSql": "SELECT\n        floor(extract(epoch from \"time\")/10)*10 AS \"time\",\n        count(*)\nFROM vehicle_location\nWHERE\n    \"time\" BETWEEN '2022-01-29T14:48:55.981Z' AND '2022-01-29T14:49:05.981Z'\nGROUP BY 1\nORDER BY 1",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"time\",20s,0),\n  1 AS metric,\n  count(city_code)\nFROM vehicle_location\nWHERE\n  city_code = 'WAWA' AND\n  $__timeFilter(\"time\")\nGROUP BY 1,2\nORDER BY 1,2",
           "refId": "NUMBER OF VEHICLES",
           "select": [
             [
               {
                 "params": [
-                  "vehicle_location_id"
+                  "city_code"
                 ],
                 "type": "column"
               },
@@ -197,36 +231,9 @@
           ]
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "Number of vehicles",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
       "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "timeseries"
     }
   ],
   "refresh": "",
@@ -241,9 +248,18 @@
     "to": "now-20s"
   },
   "timepicker": {
-    "nowDelay": "20s"
+    "nowDelay": "20s",
+    "refresh_intervals": [
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
   },
-  "timezone": "browser",
+  "timezone": "Europe/Warsaw",
   "title": "Warsaw Public Transport",
   "version": 1,
   "weekStart": ""
