@@ -12,7 +12,8 @@ import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
 import pl.wrona.warsaw.transport.api.model.WarsawVehicles;
 
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -54,8 +55,9 @@ public class WarsawPublicTransportService {
                 .lat(vehicle.getLat())
                 .lon(vehicle.getLon())
                 .brigade(vehicle.getBrigade())
-                .time(LocalDateTime.parse(vehicle.getTime(), WARSAW_DATE_TIME_FORMATTER)
-                        .toInstant(ZoneOffset.of("Europe/Warsaw")))
+                .time(ZonedDateTime.of(
+                        LocalDateTime.parse(vehicle.getTime(), WARSAW_DATE_TIME_FORMATTER),
+                        ZoneId.of("Europe/Warsaw")).toInstant())
                 .build();
     }
 

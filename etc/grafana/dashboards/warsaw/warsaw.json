@@ -28,9 +28,9 @@
       "circleMaxSize": "2",
       "circleMinSize": "2",
       "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
+        "#1F60C4",
+        "#37872D",
+        "#C4162A"
       ],
       "datasource": {
         "type": "postgres"
@@ -67,13 +67,16 @@
       },
       "targets": [
         {
+          "datasource": {
+            "type": "postgres"
+          },
           "format": "table",
           "group": [],
           "hide": false,
           "metricColumn": "none",
           "queryType": "randomWalk",
           "rawQuery": true,
-          "rawSql": "SELECT \"time\"                        AS \"time\",\n       vehicle_number                AS \"key\",\n       to_number(lat, '99.99999999') AS \"latitude\",\n       to_number(lon, '99.99999999') AS \"longitude\",\n       line                          AS \"name\",\n       0                  AS \"metric\"\nFROM vehicle_location\nWHERE\n  city_code = 'WAWA' AND\n  $__timeFilter(\"time\")\nORDER BY 1",
+          "rawSql": "SELECT FIRST_VALUE(time) OVER (PARTITION BY city_code, vehicle_number) AS \"time\",\n       vehicle_number                                                  AS \"key\",\n       to_number(lat, '99.99999999')                                   AS \"latitude\",\n       to_number(lon, '99.99999999')                                   AS \"longitude\",\n       line                                                            AS \"name\",\n       CASE\n           WHEN vehicle_type = 'BUS' THEN 1\n           WHEN vehicle_type = 'TRAM' THEN 2\n           ELSE 0\n           END                                                         AS \"metric\"\nFROM vehicle_location\nWHERE\n  city_code = 'WAWA' AND\n  $__timeFilter(\"time\")\nORDER BY 1",
           "refId": "GET Vehicles",
           "select": [
             [
@@ -97,7 +100,7 @@
           ]
         }
       ],
-      "thresholds": "0,01",
+      "thresholds": "1,2",
       "title": "Vehicles Live",
       "transformations": [],
       "type": "grafana-worldmap-panel",
@@ -234,14 +237,14 @@
     "list": []
   },
   "time": {
-    "from": "now-10s",
-    "to": "now"
+    "from": "now-30s",
+    "to": "now-20s"
   },
   "timepicker": {
-    "nowDelay": "10s"
+    "nowDelay": "20s"
   },
   "timezone": "browser",
-  "title": "Warsaw Public Transport"
+  "title": "Warsaw Public Transport",
   "version": 1,
   "weekStart": ""
 }
