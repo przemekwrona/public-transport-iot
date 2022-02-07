@@ -277,6 +277,7 @@
         "y": 13
       },
       "id": 6,
+      "interval": "1m",
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -361,6 +362,7 @@
         "y": 13
       },
       "id": 7,
+      "interval": "1m",
       "options": {
         "orientation": "auto",
         "reduceOptions": {
