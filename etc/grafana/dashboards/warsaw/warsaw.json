@@ -76,7 +76,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT DISTINCT ON (vehicle_number) vehicle_number, time, to_number(lat, '99.99999999') AS \"latitude\", to_number(lon, '99.99999999') AS \"longitude\", line AS \"name\",\r\nCASE WHEN vehicle_type = 'BUS' THEN 1 WHEN vehicle_type = 'TRAM' THEN 2 ELSE 0 END AS \"metric\"\r\nFROM vehicle_location WHERE city_code = 'WAWA' AND $__timeFilter(time) ORDER BY 1, 2 DESC;",
+          "rawSql": "SELECT DISTINCT ON (vehicle_number) vehicle_number, time, to_number(lat, '99.99999999') AS \"latitude\", to_number(lon, '99.99999999') AS \"longitude\", line AS \"name\",\r\nCASE WHEN vehicle_type = 'BUS' THEN 1 WHEN vehicle_type = 'TRAM' THEN 2 ELSE 0 END AS \"metric\"\r\nFROM vehicle_location WHERE city_code = 'WAWA' AND time >= now() - interval '5 minutes' AND $__timeFilter(time) ORDER BY 1, 2 DESC;",
           "refId": "A",
           "select": [
             [
@@ -177,7 +177,8 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.3.3",
@@ -198,7 +199,7 @@
           ],
           "metricColumn": "vehicle_number_count",
           "rawQuery": true,
-          "rawSql": "SELECT to_timestamp(floor((extract('epoch' from time) / 60)) * 60) as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = 'WAWA' AND $__timeFilter(time) GROUP BY time_range ORDER BY time_range DESC;",
+          "rawSql": "SELECT to_timestamp(floor((extract('epoch' from time) / 600)) * 600) as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = 'WAWA' AND $__timeFilter(time) GROUP BY time_range ORDER BY time_range DESC;",
           "refId": "Get number of vehicles",
           "select": [
             [
@@ -240,7 +241,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 34,
+  "schemaVersion": 35,
   "style": "dark",
   "tags": [
     "WAWA"
@@ -249,11 +250,11 @@
     "list": []
   },
   "time": {
-    "from": "now-3h",
-    "to": "now-20s"
+    "from": "now-24h",
+    "to": "now-30s"
   },
   "timepicker": {
-    "nowDelay": "20s",
+    "nowDelay": "30s",
     "refresh_intervals": [
       "10s"
     ]
