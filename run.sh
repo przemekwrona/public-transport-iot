@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker-compose up --build
+git pull
+mvn clean install
+docker-compose up --build --force-recreate
