@@ -54,6 +54,7 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
+    restart: always
     ports:
       - "3000:3000"
     volumes:
@@ -64,6 +65,18 @@ services:
     depends_on:
       - influxdb
       - postgres
+      - prometheus
+  prometheus:
+    image: bitnami/prometheus:latest
+    container_name: prometheus
+    restart: always
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./etc/prometheus/rules:/etc/prometheus/rules:ro
+    depends_on:
+      - hermes
   zookeeper:
     image: bitnami/zookeeper:latest
     container_name: zookeeper
