@@ -60,3 +60,18 @@ databaseChangeLog:
             minValue: 1
             incrementBy: 1
             sequenceName: SEQ_VEHICLE_LOCATION
+  - changeSet:
+      id: add-index-vehicle-location
+      author: pwrona
+      changes:
+        - createIndex:
+            clustered: true
+            columns:
+              - column:
+                  name: city_code
+              - column:
+                  descending: true
+                  name: time
+            indexName: city_code_and_time_index
+            tableName: vehicle_location
+            unique: false
