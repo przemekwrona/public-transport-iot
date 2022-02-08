@@ -13,3 +13,33 @@ scrape_configs:
     static_configs:
       - targets:
           - prometheus:9090
+  - job_name: apollo
+    honor_timestamps: true
+    scrape_interval: 5s
+    scrape_timeout: 5s
+    metrics_path: /actuator/prometheus
+    scheme: http
+    follow_redirects: true
+    static_configs:
+      - targets:
+          - apollo:8181
+  - job_name: demeter
+    honor_timestamps: true
+    scrape_interval: 5s
+    scrape_timeout: 5s
+    metrics_path: /actuator/prometheus
+    scheme: http
+    follow_redirects: true
+    static_configs:
+      - targets:
+          - demeter:8282
+  - job_name: hermes
+    honor_timestamps: true
+    scrape_interval: 5s
+    scrape_timeout: 5s
+    metrics_path: /actuator/prometheus
+    scheme: http
+    follow_redirects: true
+    static_configs:
+      - targets:
+          - hermes:8080

@@ -5,25 +5,31 @@ services:
       context: ./iot-hermes
       dockerfile: Dockerfile
     container_name: hermes
+    ports:
+      - "8080:8080"
     environment:
       - PROFILE=pi
     depends_on:
       - postgres
       - influxdb
       - kafka
+  apollo:
+    build:
+      context: ./iot-apollo
+    container_name: apollo
+    ports:
+      - "8181:8080"
+    environment:
+      - PROFILE=pi
+    depends_on:
+      - hermes
   demeter:
     build:
       context: ./iot-demeter
       dockerfile: Dockerfile
     container_name: demeter
-    environment:
-      - PROFILE=pi
-    depends_on:
-      - hermes
-  apollo:
-    build:
-      context: ./iot-apollo
-    container_name: apollo
+    ports:
+      - "8282:8080"
     environment:
       - PROFILE=pi
     depends_on:
@@ -77,6 +83,8 @@ services:
       - ./etc/prometheus/rules:/etc/prometheus/rules:ro
     depends_on:
       - hermes
+      - apollo
+      - demeter
   zookeeper:
     image: bitnami/zookeeper:latest
     container_name: zookeeper
