@@ -1,6 +1,15 @@
 apiVersion: 1
 
 datasources:
+  - name: postgres
+    type: postgres
+    url: postgres:5432
+    database: public_transport_db
+    user: user
+    secureJsonData:
+      password: welcome1
+    jsonData:
+      sslmode: "disable"
   - name: influxdb
     type: influxdb
     access: proxy
@@ -12,3 +21,9 @@ datasources:
       organization: public-transport
       defaultBucket: vehicles-bucket
       tlsSkipVerify: true
+  - name: prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: false
+    editable: false
