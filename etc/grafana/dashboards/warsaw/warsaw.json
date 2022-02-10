@@ -21,7 +21,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1644251536143,
+  "iteration": 1644489920340,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -452,6 +452,48 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "hide": 2,
+        "name": "WAWA_LON",
+        "query": "52.231",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "WAWA_LAT",
+        "query": "21.000",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "STHML_LON",
+        "query": "59.325",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "STHML_LAT",
+        "query": "18.063",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "ROMA_LON",
+        "query": "41.894",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "ROMA_LAT",
+        "query": "12.480",
+        "skipUrlSync": false,
+        "type": "constant"
       }
     ]
   },
@@ -468,6 +510,6 @@
   "timezone": "Europe/Warsaw",
   "title": "Warsaw",
   "uid": "zh3-dd-7k",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }
