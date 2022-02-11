@@ -1,5 +1,6 @@
 package pl.wrona.iotapollo.client.warsaw;
 
+import io.micrometer.core.annotation.Timed;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ public class WarsawApiService {
     private final WarsawUmApiConfiguration warsawUmApiConfiguration;
     private final WarsawApiClient warsawApiClient;
 
+    @Timed(description = "Time spent serving orders")
     @Cacheable(cacheNames = "stopsInWarsawCache", key = "#root.methodName")
     public List<WarsawStop> getStops() {
         return Optional.ofNullable(warsawApiClient
@@ -32,6 +34,7 @@ public class WarsawApiService {
                 .collect(Collectors.toList());
     }
 
+    @Cacheable(cacheNames = "lineOnStopCache")
     public List<String> getLinesOnStop(String stopId, String stopNumber) {
         return Optional.ofNullable(warsawApiClient.getTimetable(warsawUmApiConfiguration.getApikey(),
                         warsawUmApiConfiguration.getLinesOnStopsResourceId(),

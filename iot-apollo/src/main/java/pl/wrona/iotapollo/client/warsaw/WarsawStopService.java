@@ -36,6 +36,10 @@ public class WarsawStopService {
 
     }
 
+    public List<WarsawStop> getStops() {
+        return warsawApiService.getStops();
+    }
+
     public WarsawStop getClosestStop(float lat, float lon) {
         WarsawStop currentPosition = WarsawStop.builder()
                 .lon(lon)

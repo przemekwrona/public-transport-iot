@@ -1,0 +1,1228 @@
+{
+  "result": [
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "01",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0101",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.225368",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.991867",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "pl.Starynkiewicza",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "02",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0101",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.224696",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.987462",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Spiska",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "03",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0101",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.225006",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.990644",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "pl.Starynkiewicza",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "04",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0801",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.224284",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.987951",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "05",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0101",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.225265",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.990511",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "pl.Starynkiewicza",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "06",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0101",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.225019",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.989793",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Ochota-Ratusz",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "07",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "1211",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.223681",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.991333",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Lindleya",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "08",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0101",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.225066",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.989743",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "rondo Daszyńskiego",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "10",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "null",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.226535",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.988138",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "null",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "11",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "2202",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.226313",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.987497",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "______________________________",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "13",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "2202",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.225562",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.988485",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Al.Jerozolimskie",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "14",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "2202",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.225987",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.988196",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "rondo Daszyńskiego",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4001",
+          "key": "zespol"
+        },
+        {
+          "value": "15",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "1910",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.224067",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.989348",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Koszykowa",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4002",
+          "key": "zespol"
+        },
+        {
+          "value": "01",
+          "key": "slupek"
+        },
+        {
+          "value": "Ochota-Ratusz",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0801",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.222508",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.986632",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4002",
+          "key": "zespol"
+        },
+        {
+          "value": "02",
+          "key": "slupek"
+        },
+        {
+          "value": "Ochota-Ratusz",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0801",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.222820",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.986844",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4002",
+          "key": "zespol"
+        },
+        {
+          "value": "51",
+          "key": "slupek"
+        },
+        {
+          "value": "Ochota-Ratusz",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "null",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.221657",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.986126",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "null",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "01",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0801",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.220396",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.984985",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "pl.Zawiszy",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "02",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0005",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.219183",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.983380",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Kopińska",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "04",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0005",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.219344",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.983531",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "______________________________",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "07",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0005",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.218578",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.983168",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Ochota-Ratusz",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "08",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0005",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.219008",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.983505",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Wawelska",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "09",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0005",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.218801",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.984664",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Raszyńska",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "10",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0005",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.218833",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.984610",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Raszyńska",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "11",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "null",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.218947",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.984629",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Ochota-Ratusz",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "12",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0005",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.218968",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.984560",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Ochota-Ratusz",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "13",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0005",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.218898",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.983553",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "14",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0005",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.218985",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.984490",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Ochota-Ratusz",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "15",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0005",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.218107",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.983776",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Wawelska",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4003",
+          "key": "zespol"
+        },
+        {
+          "value": "16",
+          "key": "slupek"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0801",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.217667",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.982605",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "______________________________",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4004",
+          "key": "zespol"
+        },
+        {
+          "value": "01",
+          "key": "slupek"
+        },
+        {
+          "value": "Och-Teatr",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0801",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.214723",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.979960",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Wawelska",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4004",
+          "key": "zespol"
+        },
+        {
+          "value": "02",
+          "key": "slupek"
+        },
+        {
+          "value": "Och-Teatr",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0801",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.215146",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.979874",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Bitwy Warszawskiej 1920 r.",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4004",
+          "key": "zespol"
+        },
+        {
+          "value": "03",
+          "key": "slupek"
+        },
+        {
+          "value": "Och-Teatr",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0801",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.214304",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.979401",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Wawelska",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4004",
+          "key": "zespol"
+        },
+        {
+          "value": "04",
+          "key": "slupek"
+        },
+        {
+          "value": "Och-Teatr",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0801",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.214603",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.979609",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Bitwy Warszawskiej 1920 r.",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4004",
+          "key": "zespol"
+        },
+        {
+          "value": "52",
+          "key": "slupek"
+        },
+        {
+          "value": "Och-Teatr",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "null",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.215577",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.980254",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "null",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-01 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    }
+  ]
+}
