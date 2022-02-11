@@ -15,15 +15,163 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 6,
   "links": [],
   "panels": [
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "mappings": [
+            {
+              "from": "",
+              "id": 1,
+              "text": "OFF",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "ON",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 0,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "7.5.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "up{job=\"hermes\"}",
+          "interval": "",
+          "legendFormat": "",
+          "queryType": "randomWalk",
+          "refId": "A"
+        }
+      ],
+      "title": "Hermes",
+      "type": "gauge"
+    },
+    {
+      "datasource": "prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-red",
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "from": "",
+              "id": 1,
+              "text": "OFF",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "ON",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 2,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "7.5.4",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "up{job=\"apollo\"}",
+          "interval": "",
+          "legendFormat": "",
+          "queryType": "randomWalk",
+          "refId": "A"
+        }
+      ],
+      "title": "Apollo",
+      "type": "gauge"
+    },
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {},
         "overrides": []
@@ -31,13 +179,14 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
-        "w": 12,
+        "h": 8,
+        "w": 10,
         "x": 0,
-        "y": 0
+        "y": 4
       },
       "hiddenSeries": false,
       "id": 2,
+      "interval": null,
       "legend": {
         "avg": false,
         "current": false,
@@ -64,15 +213,21 @@
       "steppedLine": false,
       "targets": [
         {
+          "exemplar": false,
+          "expr": "increase(warsaw_api_get_stops_seconds_count{job=\"apollo\"}[1h])",
+          "format": "table",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
           "queryType": "randomWalk",
-          "refId": "A"
+          "refId": "GET Stops"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Panel Title",
+      "title": "GET Stops",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -110,6 +265,7 @@
       }
     }
   ],
+  "refresh": "10s",
   "schemaVersion": 27,
   "style": "dark",
   "tags": [],
@@ -124,5 +280,5 @@
   "timezone": "",
   "title": "API",
   "uid": "nnA9-s-nz",
-  "version": 2
+  "version": 1
 }

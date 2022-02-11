@@ -22,7 +22,7 @@ public class WarsawApiService {
     private final WarsawUmApiConfiguration warsawUmApiConfiguration;
     private final WarsawApiClient warsawApiClient;
 
-    @Timed(description = "Time spent serving orders")
+    @Timed(value = "warsaw_api_get_stops")
     @Cacheable(cacheNames = "stopsInWarsawCache", key = "#root.methodName")
     public List<WarsawStop> getStops() {
         return Optional.ofNullable(warsawApiClient
