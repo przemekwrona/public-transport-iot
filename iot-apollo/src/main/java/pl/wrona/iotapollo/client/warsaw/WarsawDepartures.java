@@ -39,7 +39,16 @@ public class WarsawDepartures {
                 .filter(value -> value.getKey().equals(key))
                 .findFirst()
                 .map(WarsawTimetableValue::getValue)
-                .map(LocalTime::parse)
+                .map(time -> {
+                    String[] parts = time.split(":");
+                    int hour = Integer.parseInt(parts[0]);
+                    if (hour >= 24) {
+                        hour = hour - 24;
+                    }
+                    int minutes = Integer.parseInt(parts[1]);
+                    int seconds = Integer.parseInt(parts[2]);
+                    return LocalTime.of(hour, minutes, seconds);
+                })
                 .orElse(null);
     }
 

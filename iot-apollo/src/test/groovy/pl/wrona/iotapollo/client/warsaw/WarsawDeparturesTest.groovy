@@ -33,4 +33,21 @@ class WarsawDeparturesTest extends Specification {
     BRIGADE | DIRECTION  | ROUTE    | TIME       | MAPPED_TIME
     "4"     | "Gocławek" | "TP-GCW" | "06:35:00" | LocalTime.of(6, 35, 00)
   }
+
+  def "should map response to WarsawDeparture if time is grater than 23"() {
+    given:
+    WarsawTimetable warsawTimetable = new WarsawTimetable().values([
+            new WarsawTimetableValue().key("czas").value(TIME)
+    ])
+    when:
+    WarsawDepartures warsawDepartures = WarsawDepartures.of(warsawTimetable)
+
+    then:
+    warsawDepartures.getTime() == MAPPED_TIME
+
+    where:
+    TIME       || MAPPED_TIME
+    "25:35:00" || LocalTime.of(1, 35, 00)
+  }
+
 }
