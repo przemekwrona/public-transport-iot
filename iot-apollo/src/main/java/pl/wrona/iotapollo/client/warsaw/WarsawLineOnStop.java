@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
-public class WarsawTimetable {
+public class WarsawLineOnStop {
 
     private String stopId;
     private String stopNumber;

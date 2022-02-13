@@ -75,10 +75,10 @@ public class WarsawStopService {
     }
 
     @Cacheable(cacheNames = "linesOnStopInWarsawCache")
-    public WarsawTimetable getLinesOnStop(String stopId, String stopNumber) {
+    public WarsawLineOnStop getLinesOnStop(String stopId, String stopNumber) {
         log.info("Get Lines on stop {} {}", stopId, stopNumber);
         List<String> linesOnStop = warsawApiService.getLinesOnStop(stopId, stopNumber);
-        return WarsawTimetable.builder()
+        return WarsawLineOnStop.builder()
                 .stopId(stopId)
                 .stopNumber(stopNumber)
                 .lines(linesOnStop)
