@@ -52,4 +52,19 @@ public class WarsawApiService {
                 .collect(Collectors.toList());
     }
 
+    @Timed(value = "warsaw_api_timetables")
+    @Cacheable(cacheNames = "timetableCache")
+    public List<WarsawDepartures> getTimetable(String stopId, String stopNumber, String line) {
+        return Optional.ofNullable(warsawApiClient.getTimetable(warsawUmApiConfiguration.getApikey(),
+                        warsawUmApiConfiguration.getTimetablesResourceId(),
+                        stopId,
+                        stopNumber,
+                        line))
+                .map(ResponseEntity::getBody)
+                .map(WarsawTimetables::getResult)
+                .orElse(List.of()).stream()
+                .map(WarsawDepartures::of)
+                .collect(Collectors.toList());
+    }
+
 }
