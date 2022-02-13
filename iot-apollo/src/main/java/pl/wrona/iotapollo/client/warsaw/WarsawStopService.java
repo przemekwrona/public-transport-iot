@@ -77,7 +77,6 @@ public class WarsawStopService {
 
     @Cacheable(cacheNames = "linesOnStopInWarsawCache")
     public WarsawLineOnStop getLinesOnStop(String stopId, String stopNumber) {
-        log.info("Get Lines on stop {} {}", stopId, stopNumber);
         List<String> linesOnStop = warsawApiService.getLinesOnStop(stopId, stopNumber);
         return WarsawLineOnStop.builder()
                 .stopId(stopId)
