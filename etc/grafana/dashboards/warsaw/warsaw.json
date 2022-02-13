@@ -19,11 +19,10 @@
     ]
   },
   "editable": true,
-  "fiscalYearStartMonth": 0,
+  "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1644489920340,
+  "iteration": 1644745560457,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "circleMaxSize": "2",
@@ -33,12 +32,13 @@
         "#37872D",
         "#C4162A"
       ],
-      "datasource": {
-        "type": "postgres",
-        "uid": "PA942B37CCFAF5A81"
-      },
+      "datasource": "postgres",
       "decimals": 6,
       "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "gridPos": {
         "h": 13,
         "w": 24,
@@ -69,16 +69,13 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "postgres",
-            "uid": "PA942B37CCFAF5A81"
-          },
           "format": "table",
           "group": [],
+          "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
           "rawSql": "SELECT DISTINCT ON (vehicle_number) vehicle_number, time, to_number(lat, '99.99999999') AS \"latitude\", to_number(lon, '99.99999999') AS \"longitude\", line AS \"name\",\r\nCASE WHEN vehicle_type = 'BUS' THEN 1 WHEN vehicle_type = 'TRAM' THEN 2 ELSE 0 END AS \"metric\"\r\nFROM vehicle_location WHERE city_code = '${city_code}' AND time >= now() - interval '5 minutes' AND $__timeFilter(time) ORDER BY 1, 2 DESC;",
-          "refId": "A",
+          "refId": "Current Location",
           "select": [
             [
               {
@@ -100,6 +97,8 @@
         }
       ],
       "thresholds": "1,2",
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Vehicles Live",
       "transformations": [],
       "type": "grafana-worldmap-panel",
@@ -108,10 +107,7 @@
       "valueName": "total"
     },
     {
-      "datasource": {
-        "type": "postgres",
-        "uid": "PA942B37CCFAF5A81"
-      },
+      "datasource": "postgres",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -123,28 +119,21 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 20,
-            "gradientMode": "opacity",
+            "fillOpacity": 10,
+            "gradientMode": "none",
             "hideFrom": {
+              "graph": false,
               "legend": false,
-              "tooltip": false,
-              "viz": false
+              "tooltip": false
             },
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": true
           },
           "mappings": [],
           "thresholds": {
@@ -171,63 +160,43 @@
         "y": 13
       },
       "id": 2,
-      "interval": "1m",
+      "interval": "10s",
       "options": {
+        "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
+          "displayMode": "list",
           "placement": "bottom"
         },
         "tooltip": {
           "mode": "single",
           "sort": "none"
+        },
+        "tooltipOptions": {
+          "mode": "single"
         }
       },
-      "pluginVersion": "8.3.3",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
-          "datasource": {
-            "type": "postgres",
-            "uid": "PA942B37CCFAF5A81"
-          },
           "format": "table",
-          "group": [
-            {
-              "params": [
-                "\"time\""
-              ],
-              "type": "column"
-            }
-          ],
-          "metricColumn": "vehicle_number_count",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT to_timestamp(floor((extract('epoch' from time) / 600)) * 600) as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = '${city_code}' AND $__timeFilter(time) GROUP BY time_range ORDER BY time_range DESC;",
+          "rawSql": "SELECT time_range as time, metric FROM (SELECT to_timestamp(floor((extract('epoch' from time) / 600)) * 600) as time_range, COUNT(DISTINCT vehicle_number) as metric\nFROM vehicle_location WHERE $__timeFilter(time) GROUP BY time_range ORDER BY time_range DESC) AS number_of_vehicles;",
           "refId": "Get number of vehicles",
           "select": [
             [
               {
                 "params": [
-                  "vehicle_number"
+                  "value"
                 ],
                 "type": "column"
-              },
-              {
-                "params": [
-                  "count"
-                ],
-                "type": "aggregate"
-              },
-              {
-                "params": [
-                  "vehicle_number_count"
-                ],
-                "type": "alias"
               }
             ]
           ],
-          "table": "vehicle_location",
-          "timeColumn": "\"time\"",
-          "timeColumnType": "timestamp",
+          "timeColumn": "time",
           "where": [
             {
               "name": "$__timeFilter",
@@ -242,10 +211,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "postgres",
-        "uid": "PA942B37CCFAF5A81"
-      },
+      "datasource": "postgres",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -253,6 +219,7 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "min": 0,
           "noValue": "0",
           "thresholds": {
             "mode": "absolute",
@@ -266,7 +233,8 @@
                 "value": 1
               }
             ]
-          }
+          },
+          "unit": "short"
         },
         "overrides": []
       },
@@ -288,21 +256,19 @@
           "values": true
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "text": {}
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
-          "datasource": {
-            "type": "postgres",
-            "uid": "PA942B37CCFAF5A81"
-          },
           "format": "table",
           "group": [],
+          "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
           "rawSql": "SELECT now() as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = '${city_code}' AND vehicle_type = 'BUS' AND time >= now() - interval '5 minutes' GROUP BY time_range ORDER BY time_range DESC;",
-          "refId": "A",
+          "refId": "Buses",
           "select": [
             [
               {
@@ -327,10 +293,7 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "postgres",
-        "uid": "PA942B37CCFAF5A81"
-      },
+      "datasource": "postgres",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -338,6 +301,7 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "min": 0,
           "noValue": "0",
           "thresholds": {
             "mode": "absolute",
@@ -351,7 +315,8 @@
                 "value": 1
               }
             ]
-          }
+          },
+          "unit": "short"
         },
         "overrides": []
       },
@@ -367,27 +332,25 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
-          "values": true
+          "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showThresholdMarkers": true,
+        "text": {}
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "7.5.4",
       "targets": [
         {
-          "datasource": {
-            "type": "postgres",
-            "uid": "PA942B37CCFAF5A81"
-          },
           "format": "table",
           "group": [],
+          "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
           "rawSql": "SELECT now() as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = '${city_code}' AND vehicle_type = 'TRAM' AND time >= now() - interval '5 minutes' GROUP BY time_range ORDER BY time_range DESC;",
-          "refId": "A",
+          "refId": "Trams",
           "select": [
             [
               {
@@ -413,7 +376,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 35,
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [
     "WAWA"
@@ -421,11 +384,14 @@
   "templating": {
     "list": [
       {
+        "allValue": null,
         "current": {
           "selected": true,
           "text": "WAWA",
           "value": "WAWA"
         },
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "City Code",
@@ -454,42 +420,60 @@
         "type": "custom"
       },
       {
+        "description": null,
+        "error": null,
         "hide": 2,
+        "label": null,
         "name": "WAWA_LON",
         "query": "52.231",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
+        "description": null,
+        "error": null,
         "hide": 2,
+        "label": null,
         "name": "WAWA_LAT",
         "query": "21.000",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
+        "description": null,
+        "error": null,
         "hide": 2,
+        "label": null,
         "name": "STHML_LON",
         "query": "59.325",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
+        "description": null,
+        "error": null,
         "hide": 2,
+        "label": null,
         "name": "STHML_LAT",
         "query": "18.063",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
+        "description": null,
+        "error": null,
         "hide": 2,
+        "label": null,
         "name": "ROMA_LON",
         "query": "41.894",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
+        "description": null,
+        "error": null,
         "hide": 2,
+        "label": null,
         "name": "ROMA_LAT",
         "query": "12.480",
         "skipUrlSync": false,
@@ -509,7 +493,6 @@
   },
   "timezone": "Europe/Warsaw",
   "title": "Warsaw",
-  "uid": "zh3-dd-7k",
-  "version": 1,
-  "weekStart": ""
+  "uid": "qB6W6u-7z",
+  "version": 3
 }

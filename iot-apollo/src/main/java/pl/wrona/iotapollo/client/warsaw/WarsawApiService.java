@@ -22,7 +22,7 @@ public class WarsawApiService {
     private final WarsawUmApiConfiguration warsawUmApiConfiguration;
     private final WarsawApiClient warsawApiClient;
 
-    @Timed(description = "Time spent serving orders")
+    @Timed(value = "warsaw_api_get_stops")
     @Cacheable(cacheNames = "stopsInWarsawCache", key = "#root.methodName")
     public List<WarsawStop> getStops() {
         return Optional.ofNullable(warsawApiClient
@@ -34,12 +34,14 @@ public class WarsawApiService {
                 .collect(Collectors.toList());
     }
 
+    @Timed(value = "warsaw_api_lines_on_stop")
     @Cacheable(cacheNames = "lineOnStopCache")
     public List<String> getLinesOnStop(String stopId, String stopNumber) {
         return Optional.ofNullable(warsawApiClient.getTimetable(warsawUmApiConfiguration.getApikey(),
                         warsawUmApiConfiguration.getLinesOnStopsResourceId(),
                         stopId,
-                        stopNumber))
+                        stopNumber,
+                        ""))
                 .map(ResponseEntity::getBody)
                 .map(WarsawTimetables::getResult)
                 .orElse(List.of()).stream()
@@ -47,6 +49,21 @@ public class WarsawApiService {
                 .flatMap(Collection::stream)
                 .filter(value -> "linia".equals(value.getKey()))
                 .map(WarsawTimetableValue::getValue)
+                .collect(Collectors.toList());
+    }
+
+    @Timed(value = "warsaw_api_timetables")
+    @Cacheable(cacheNames = "timetableCache")
+    public List<WarsawDepartures> getTimetable(String stopId, String stopNumber, String line) {
+        return Optional.ofNullable(warsawApiClient.getTimetable(warsawUmApiConfiguration.getApikey(),
+                        warsawUmApiConfiguration.getTimetablesResourceId(),
+                        stopId,
+                        stopNumber,
+                        line))
+                .map(ResponseEntity::getBody)
+                .map(WarsawTimetables::getResult)
+                .orElse(List.of()).stream()
+                .map(WarsawDepartures::of)
                 .collect(Collectors.toList());
     }
 

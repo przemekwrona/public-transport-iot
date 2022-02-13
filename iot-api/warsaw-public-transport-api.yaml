@@ -35,7 +35,7 @@ paths:
                 $ref: '#/components/schemas/WarsawVehicles'
   /api/action/dbtimetable_get:
     get:
-      summary: Return timetable for line on definied stop
+      summary: Return timetable for line on definied stop or avilable lines on stop
       operationId: getTimetable
       parameters:
         - name: apikey
@@ -58,11 +58,11 @@ paths:
           required: true
           schema:
             type: string
-      #        - name: line
-      #          in: query
-      #          required: true
-      #          schema:
-      #            type: string
+        - name: line
+          in: query
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: OK

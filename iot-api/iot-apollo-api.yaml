@@ -1,0 +1,70 @@
+openapi: 3.0.0
+info:
+  title: Warsaw Public Transport API
+  description: Warsaw Public Transport API
+  version: 1.0.0
+paths:
+  /timetables:
+    get:
+      summary: Returns timetable for vehicle
+      operationId: getTimetable
+      parameters:
+        - name: time
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: lat
+          in: query
+          required: true
+          schema:
+            type: number
+            format: float
+        - name: lon
+          in: query
+          required: true
+          schema:
+            type: number
+            format: float
+        - name: line
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: brigade
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timetable'
+components:
+  schemas:
+    Timetable:
+      type: object
+      properties:
+        line:
+          type: string
+        brigade:
+          type: string
+        timetableDateTime:
+          type: string
+          format: date-time
+        arrivalDateTime:
+          type: string
+          format: date-time
+        direction:
+          type: string
+        route:
+          type: string
+    Timetables:
+      type: array
+      items:
+        $ref: '#/components/schemas/Timetable'
+
