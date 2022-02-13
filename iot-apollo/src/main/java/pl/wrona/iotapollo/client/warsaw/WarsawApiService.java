@@ -34,12 +34,14 @@ public class WarsawApiService {
                 .collect(Collectors.toList());
     }
 
+    @Timed(value = "warsaw_api_lines_on_stop")
     @Cacheable(cacheNames = "lineOnStopCache")
     public List<String> getLinesOnStop(String stopId, String stopNumber) {
         return Optional.ofNullable(warsawApiClient.getTimetable(warsawUmApiConfiguration.getApikey(),
                         warsawUmApiConfiguration.getLinesOnStopsResourceId(),
                         stopId,
-                        stopNumber))
+                        stopNumber,
+                        ""))
                 .map(ResponseEntity::getBody)
                 .map(WarsawTimetables::getResult)
                 .orElse(List.of()).stream()
