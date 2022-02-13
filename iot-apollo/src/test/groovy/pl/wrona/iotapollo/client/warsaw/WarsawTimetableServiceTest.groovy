@@ -39,7 +39,7 @@ class WarsawTimetableServiceTest extends Specification {
             .build()
 
     when: "get vehicle departure on stop in Warsaw"
-    WarsawDepartures warsawDeparture = warsawTimetableService.getTimetable(TIME, LAT, LON, LINE, BRIGADE)
+    WarsawStopDepartures warsawDeparture = warsawTimetableService.getTimetable(TIME, LAT, LON, LINE, BRIGADE)
 
     then:
     warsawDeparture != null

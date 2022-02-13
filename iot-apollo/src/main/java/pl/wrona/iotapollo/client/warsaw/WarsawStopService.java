@@ -69,6 +69,7 @@ public class WarsawStopService {
                         .build())
                 .sorted(Comparator.comparingDouble(StopDistance::getDistance))
                 .filter(stop -> getLinesOnStop(stop.getWarsawStop().getGroup(), stop.getWarsawStop().getSlupek()).hasLine(line))
+                .filter(stop -> !warsawApiService.getTimetable(stop.getWarsawStop().getGroup(), stop.getWarsawStop().getSlupek(), line).isEmpty())
                 .findFirst()
                 .map(StopDistance::getWarsawStop)
                 .orElse(null);

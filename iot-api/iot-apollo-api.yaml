@@ -53,15 +53,29 @@ components:
           type: string
         brigade:
           type: string
-        timetableDateTime:
+        timetableTime:
           type: string
           format: date-time
-        arrivalDateTime:
+        arrivalTime:
           type: string
           format: date-time
-        direction:
+        vehicleDirection:
           type: string
-        route:
+        vahicleRoute:
+          type: string
+        stopId:
+          type: string
+        stopNumber:
+          type: string
+        stopName:
+          type: string
+        stopLon:
+          type: number
+          format: float
+        stopLat:
+          type: number
+          format: float
+        stopDirection:
           type: string
     Timetables:
       type: array

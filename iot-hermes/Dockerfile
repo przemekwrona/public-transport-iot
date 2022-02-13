@@ -1,7 +1,12 @@
 FROM openjdk:11
+
 WORKDIR /apps/iot-hermes
+
 COPY target/*.jar iot-hermes.jar
 
-ENV PROFILE=''
+EXPOSE 8080
 
-ENTRYPOINT java -Dspring.profiles.active=${PROFILE} -jar iot-hermes.jar
+ENV PROFILE=''
+ENV APOLLO_SERVICE_PATH = ''
+
+ENTRYPOINT java -Dspring.profiles.active=${PROFILE} -Dapollo.api.url=${APOLLO_SERVICE_PATH} -jar iot-hermes.jar

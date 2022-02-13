@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import pl.wrona.iotapollo.client.warsaw.WarsawApiService;
 import pl.wrona.iotapollo.client.warsaw.WarsawStopService;
+import pl.wrona.iotapollo.client.warsaw.WarsawTimetableService;
+
+import java.time.LocalTime;
 
 @Slf4j
 @Component
@@ -15,6 +18,7 @@ import pl.wrona.iotapollo.client.warsaw.WarsawStopService;
 public class AppRunner implements CommandLineRunner {
 
     private WarsawStopService warsawStopService;
+    private WarsawTimetableService warsawTimetableService;
     private WarsawApiService warsawApiService;
 
     @Override
@@ -37,11 +41,12 @@ public class AppRunner implements CommandLineRunner {
 
 
         log.info("Do sthd");
-        warsawStopService.getLinesOnStop("4121", "03");
+        warsawTimetableService.getTimetable(LocalTime.of(20, 01), 52.269287f, 20.985723f, "512", "3");
+//        warsawStopService.getLinesOnStop("4121", "03");
         log.info("Do sthd");
-        warsawStopService.getLinesOnStop("4121", "03");
+//        warsawStopService.getLinesOnStop("4121", "03");
         log.info("Do sthd");
-        warsawStopService.getLinesOnStop("4121", "03");
+//        warsawStopService.getLinesOnStop("4121", "03");
 //        warsawStopService.getClosestStop(52.55f, 21.05f);
 //        warsawStopService.getClosestStop(52.55f, 21.05f);
 //        warsawStopService.getClosestStop(52.55f, 21.05f);

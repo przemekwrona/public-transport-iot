@@ -9,20 +9,20 @@ services:
       - "8080:8080"
     environment:
       - PROFILE=pi
+      - APOLLO_SERVICE_PATH=http://apollo:8181
     depends_on:
       - postgres
       - influxdb
+      - apollo
       - kafka
   apollo:
     build:
       context: ./iot-apollo
     container_name: apollo
     ports:
-      - "8181:8080"
+      - "8181:8181"
     environment:
       - PROFILE=pi
-    depends_on:
-      - hermes
   demeter:
     build:
       context: ./iot-demeter
@@ -32,8 +32,6 @@ services:
       - "8282:8080"
     environment:
       - PROFILE=pi
-    depends_on:
-      - hermes
   postgres:
     image: 'postgres'
     restart: always
@@ -73,7 +71,7 @@ services:
       - postgres
       - prometheus
   prometheus:
-    image: bitnami/prometheus:latest
+    image: ubuntu/prometheus:latest
     container_name: prometheus
     restart: always
     ports:
