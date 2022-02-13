@@ -163,7 +163,7 @@
                 <interfaceOnly>true</interfaceOnly>
                 <skipDefaultInterface>true</skipDefaultInterface>
               </configOptions>
-              <configHelp>false</configHelp>ś
+              <configHelp>false</configHelp>
             </configuration>
           </execution>
         </executions>

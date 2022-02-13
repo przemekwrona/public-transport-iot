@@ -4,10 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import pl.wrona.iot.apollo.api.model.Timetable;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,5 +52,18 @@ public class WarsawTimetableService {
                 .map(WarsawDepartureTimeRange::getWarsawDeparture)
                 .orElse(null);
     }
+
+    public ResponseEntity<Timetable> getTimetableResponse(OffsetDateTime time, float lat, float lon, String line, String brigade) {
+        WarsawDepartures warsawDeparture = getTimetable(time.toLocalTime(), lat, lon, line, brigade);
+
+        return ResponseEntity.ok(new Timetable()
+                .line(line)
+                .brigade(brigade)
+                .timetableDateTime(LocalDateTime.of(LocalDate.now(), warsawDeparture.getTime()).atOffset(ZoneOffset.UTC))
+                .arrivalDateTime(time)
+                .direction(warsawDeparture.getDirection())
+                .route(warsawDeparture.getRoute()));
+    }
+
 
 }
