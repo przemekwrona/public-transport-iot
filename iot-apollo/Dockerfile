@@ -1,6 +1,10 @@
 FROM openjdk:11
+
 WORKDIR /apps/iot-apollo
+
 COPY target/*.jar iot-apollo.jar
+
+EXPOSE 8181
 
 ENV PROFILE=''
 

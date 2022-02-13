@@ -74,6 +74,26 @@ class WarsawStopServiceSpec extends Specification {
     52.222 | 20.985 || "Ochota-Ratusz"
   }
 
+  def "should calculate distnce between stop and vehicle"() {
+    given:
+    WarsawStop warsawStop = WarsawStop.builder()
+            .lat(STOP_LAT)
+            .lon(STOP_LON)
+            .build()
+
+    WarsawStop vehicleStop = WarsawStop.builder()
+            .lat(VEHICLE_LAT)
+            .lon(VEHICLE_LON)
+            .build()
+
+    expect:
+    warsawStop.distance(vehicleStop) != DISTANCE
+
+    where:
+    VEHICLE_LAT | VEHICLE_LON | STOP_LAT  | STOP_LON  | DISTANCE
+    52.23465f   | 21.01522f   | 52.23069f | 21.01585f | 2.0
+  }
+
   @TestConfiguration
   @EnableCaching
   static class Config {
