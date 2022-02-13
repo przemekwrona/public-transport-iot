@@ -1,4 +1,4 @@
-package pl.wrona.iotapollo.client
+package pl.wrona.iotapollo.client.warsaw
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.TestConfiguration
@@ -10,10 +10,6 @@ import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
 import pl.wrona.iotapollo.JsonFileUtils
 import pl.wrona.iotapollo.WarsawUmApiConfiguration
-import pl.wrona.iotapollo.client.warsaw.WarsawApiClient
-import pl.wrona.iotapollo.client.warsaw.WarsawApiService
-import pl.wrona.iotapollo.client.warsaw.WarsawStop
-import pl.wrona.iotapollo.client.warsaw.WarsawStopService
 import pl.wrona.warsaw.transport.api.model.WarsawStops
 import spock.lang.Ignore
 import spock.lang.Specification
