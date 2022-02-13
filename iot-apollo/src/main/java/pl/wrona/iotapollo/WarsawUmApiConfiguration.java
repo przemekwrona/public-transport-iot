@@ -14,6 +14,7 @@ public class WarsawUmApiConfiguration {
     private String resourceId;
     private String stopsResourceId;
     private String linesOnStopsResourceId;
+    private String timetablesResourceId;
     private String apikey;
 
 }
