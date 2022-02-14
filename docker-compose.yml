@@ -21,15 +21,8 @@ services:
     container_name: apollo
     ports:
       - "8181:8181"
-    environment:
-      - PROFILE=pi
-  demeter:
-    build:
-      context: ./iot-demeter
-      dockerfile: Dockerfile
-    container_name: demeter
-    ports:
-      - "8282:8080"
+    volumes:
+      - ./iot-apollo/logs:/apps/iot-apollo/logs
     environment:
       - PROFILE=pi
   postgres:
