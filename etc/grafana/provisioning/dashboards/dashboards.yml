@@ -8,12 +8,4 @@ providers:
     disableDeletion: true
     editable: false
     options:
-      path: /var/lib/grafana/dashboards/warsaw
-  - name: 'Warsaw API'
-    orgId: 1
-    folder: 'Warsaw API'
-    type: file
-    disableDeletion: true
-    editable: false
-    options:
-      path: /var/lib/grafana/dashboards/api
+      path: /var/lib/grafana/dashboards/transport

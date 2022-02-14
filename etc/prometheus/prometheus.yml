@@ -22,7 +22,7 @@ scrape_configs:
     follow_redirects: true
     static_configs:
       - targets:
-          - host.docker.internal:8181
+          - apollo:8181
   - job_name: demeter
     honor_timestamps: true
     scrape_interval: 5s
@@ -32,7 +32,7 @@ scrape_configs:
     follow_redirects: true
     static_configs:
       - targets:
-          - host.docker.internal:8282
+          - demeter:8282
   - job_name: hermes
     honor_timestamps: true
     scrape_interval: 5s
@@ -42,4 +42,4 @@ scrape_configs:
     follow_redirects: true
     static_configs:
       - targets:
-          - host.docker.internal:8080
+          - hermes:8080

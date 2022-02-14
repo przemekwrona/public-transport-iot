@@ -2,6 +2,8 @@ FROM openjdk:11
 
 WORKDIR /apps/iot-apollo
 
+VOLUME /apps/iot-apollo/logs
+
 COPY target/*.jar iot-apollo.jar
 
 EXPOSE 8181
