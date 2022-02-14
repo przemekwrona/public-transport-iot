@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="saveToFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/iot-apollo.log</file>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>logs/iot-apollo-%d{dd-MM-yyyy}.log</fileNamePattern>
+      <maxHistory>10</maxHistory>
+      <totalSizeCap>1GB</totalSizeCap>
+    </rollingPolicy>
+  </appender>
+  <root level="info">
+    <appender-ref ref="saveToFile"/>
+  </root>
+</configuration>
