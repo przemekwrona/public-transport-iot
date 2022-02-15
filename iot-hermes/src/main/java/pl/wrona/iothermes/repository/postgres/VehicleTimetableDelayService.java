@@ -8,8 +8,10 @@ import pl.wrona.iothermes.model.VehicleLocation;
 import pl.wrona.iothermes.model.postgres.VehicleTimetableDelay;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,6 +37,8 @@ public class VehicleTimetableDelayService {
     }
 
     private VehicleTimetableDelay build(VehicleLocation vehicleLocation, Timetable timetable) {
+        Optional<Timetable> warsawTimetable = Optional.ofNullable(timetable);
+
         return VehicleTimetableDelay.builder()
                 .cityCode(vehicleLocation.getCityCode())
                 .vehicleType(vehicleLocation.getVehicleType())
@@ -44,6 +48,11 @@ public class VehicleTimetableDelayService {
                 .lat(vehicleLocation.getLat())
                 .brigade(vehicleLocation.getBrigade())
                 .time(vehicleLocation.getTime())
+                .isOnStop(warsawTimetable.isPresent())
+                .stopId(warsawTimetable.map(Timetable::getStopId).orElse(""))
+                .stopNumber(warsawTimetable.map(Timetable::getStopNumber).orElse(""))
+                .stopName(warsawTimetable.map(Timetable::getStopName).orElse(""))
+                .timetableDepartureDate(warsawTimetable.map(Timetable::getTimetableTime).map(OffsetDateTime::toInstant).orElse(null))
                 .build();
     }
 
