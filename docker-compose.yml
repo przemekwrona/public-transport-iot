@@ -31,7 +31,7 @@ services:
       dockerfile: Dockerfile
     container_name: demeter
     ports:
-      - "8282:8080"
+      - "8282:8282"
     environment:
       - PROFILE=pi
   postgres:

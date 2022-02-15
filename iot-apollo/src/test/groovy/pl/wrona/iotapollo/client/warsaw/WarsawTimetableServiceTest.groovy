@@ -30,16 +30,16 @@ class WarsawTimetableServiceTest extends Specification {
     warsawTimetableApiClient.getTimetable(_ as String, _ as String, STOP_ID, STOP_NUMBER, LINE) >> ResponseEntity.ok(warsawTimetables)
 
     and: "mocked closest stop for defined position"
-    warsawStopService.getClosestStop(LAT, LON, LINE) >> WarsawStop.builder()
-            .lat(LAT)
+    warsawStopService.getClosestStop(LON, LAT, LINE) >> WarsawStop.builder()
             .lon(LON)
+            .lat(LAT)
             .group(STOP_ID)
             .slupek(STOP_NUMBER)
             .name(STOP_NAME)
             .build()
 
     when: "get vehicle departure on stop in Warsaw"
-    WarsawStopDepartures warsawDeparture = warsawTimetableService.getTimetable(TIME, LAT, LON, LINE, BRIGADE)
+    WarsawStopDepartures warsawDeparture = warsawTimetableService.getTimetable(TIME, LON, LAT, LINE, BRIGADE)
 
     then:
     warsawDeparture != null
@@ -49,7 +49,7 @@ class WarsawTimetableServiceTest extends Specification {
     warsawDeparture.getTime() == MAPPED_TIME
 
     where:
-    TIME                 | LAT     | LON     | STOP_ID | STOP_NUMBER | STOP_NAME  | LINE | BRIGADE | DIRECTION    | ROUTE      | MAPPED_TIME
+    TIME                 | LON     | LAT     | STOP_ID | STOP_NUMBER | STOP_NAME  | LINE | BRIGADE | DIRECTION    | ROUTE      | MAPPED_TIME
     LocalTime.of(17, 23) | 52.143f | 21.002f | "4121"  | "03"        | "Wawelska" | "9"  | "6"     | "Wiatraczna" | "TX-WIA11" | LocalTime.of(17, 24)
     LocalTime.of(17, 24) | 52.143f | 21.002f | "4121"  | "03"        | "Wawelska" | "9"  | "6"     | "Wiatraczna" | "TX-WIA11" | LocalTime.of(17, 24)
     LocalTime.of(17, 25) | 52.143f | 21.002f | "4121"  | "03"        | "Wawelska" | "9"  | "6"     | "Wiatraczna" | "TX-WIA11" | LocalTime.of(17, 24)

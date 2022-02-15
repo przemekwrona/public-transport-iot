@@ -15,13 +15,13 @@ paths:
           schema:
             type: string
             format: date-time
-        - name: lat
+        - name: lon
           in: query
           required: true
           schema:
             type: number
             format: float
-        - name: lon
+        - name: lat
           in: query
           required: true
           schema:
@@ -53,7 +53,7 @@ components:
           type: string
         brigade:
           type: string
-        timetableTime:
+        timetableDepartureDate:
           type: string
           format: date-time
         arrivalTime:
@@ -77,6 +77,9 @@ components:
           format: float
         stopDirection:
           type: string
+        stopDistance:
+          description: Distace to closest stop in meters
+          type: number
     Timetables:
       type: array
       items:

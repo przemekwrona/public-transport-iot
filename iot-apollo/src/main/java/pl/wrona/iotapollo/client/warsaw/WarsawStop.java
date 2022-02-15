@@ -3,6 +3,7 @@ package pl.wrona.iotapollo.client.warsaw;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.apache.lucene.util.SloppyMath;
 import pl.wrona.warsaw.transport.api.model.WarsawStopValue;
 
 @Data
@@ -19,8 +20,12 @@ public class WarsawStop {
     private String direction;
     private String validateFromDate;
 
-    public double distance(WarsawStop warsawStop) {
-        return Math.sqrt(Math.pow(this.lon - warsawStop.getLon(), 2) + Math.pow(this.lat - warsawStop.getLat(), 2));
+    public long distance(WarsawStop warsawStop) {
+        return distance(warsawStop.getLon(), warsawStop.getLat());
+    }
+
+    public long distance(float lon, float lat) {
+        return (long) SloppyMath.haversinMeters(this.lat, this.lon, lat, lon);
     }
 
     public static WarsawStop of(pl.wrona.warsaw.transport.api.model.WarsawStop warsawStop) {

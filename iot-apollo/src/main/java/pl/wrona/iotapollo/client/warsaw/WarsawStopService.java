@@ -56,23 +56,29 @@ public class WarsawStopService {
                 .orElse(null);
     }
 
-    public WarsawStop getClosestStop(float lat, float lon, String line) {
+    public WarsawStop getClosestStop(float lon, float lat, String line) {
         WarsawStop currentPosition = WarsawStop.builder()
                 .lon(lon)
                 .lat(lat)
                 .build();
 
-        return warsawApiService.getStops().stream()
+        WarsawStop closestStopWithTimetable = warsawApiService.getStops().stream()
                 .map(stop -> StopDistance.builder()
                         .warsawStop(stop)
                         .distance(stop.distance(currentPosition))
                         .build())
                 .sorted(Comparator.comparingDouble(StopDistance::getDistance))
                 .filter(stop -> getLinesOnStop(stop.getWarsawStop().getGroup(), stop.getWarsawStop().getSlupek()).hasLine(line))
-                .filter(stop -> !warsawApiService.getTimetable(stop.getWarsawStop().getGroup(), stop.getWarsawStop().getSlupek(), line).isEmpty())
+                .filter(stop -> warsawApiService.getTimetable(stop.getWarsawStop().getGroup(), stop.getWarsawStop().getSlupek(), line).size() > 0)
                 .findFirst()
                 .map(StopDistance::getWarsawStop)
                 .orElse(null);
+
+        if (closestStopWithTimetable == null) {
+            log.error("For line {} on position {}, {} there is no available stop", line, lon, lat);
+        }
+
+        return closestStopWithTimetable;
     }
 
     @Cacheable(cacheNames = "linesOnStopInWarsawCache")
