@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import pl.wrona.iothermes.client.warsaw.WarsawPublicTransportService;
 import pl.wrona.iothermes.model.VehicleLocation;
 import pl.wrona.iothermes.repository.InfluxVehicles;
+import pl.wrona.iothermes.repository.postgres.VehicleTimetableDelayService;
 import pl.wrona.iothermes.repository.postgres.VehicleLocationService;
 
 import java.time.Instant;
@@ -37,9 +38,9 @@ public class WarsawService {
 
         log.info("Number of vehicles in response {}", vehicles.size());
 
-        vehicleLocationService.updateVehiclesWithDelay(vehicles);
+        vehicleDelayService.updateVehiclesWithDelay(vehicles);
 
-        influxVehicles.updateVehicles(vehicles);
+//        influxVehicles.updateVehicles(vehicles);
     }
 
 }

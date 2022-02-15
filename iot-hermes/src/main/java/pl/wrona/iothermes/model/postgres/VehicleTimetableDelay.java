@@ -51,6 +51,6 @@ public class VehicleTimetableDelay {
 
     private String stopName;
 
-    private Instant timetableDate;
+    private Instant timetableDepartureDate;
 
 }

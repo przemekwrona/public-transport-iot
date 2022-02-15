@@ -139,6 +139,9 @@ databaseChangeLog:
               - column:
                   name: STOP_NAME
                   type: varchar2(32)
+              - column:
+                  name: TIMETABLE_DEPARTURE_DATE
+                  type: timestamp(6)
   - changeSet:
       id: create-sequence-vehicle-timetable-delay
       author: pwrona
@@ -147,4 +150,4 @@ databaseChangeLog:
             startValue: 1
             minValue: 1
             incrementBy: 1
-            sequenceName: SEQ_VEHICLE_DELAY
+            sequenceName: SEQ_VEHICLE_TIMETABLE_DELAY

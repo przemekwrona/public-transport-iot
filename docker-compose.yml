@@ -25,6 +25,15 @@ services:
       - ./iot-apollo/logs:/apps/iot-apollo/logs
     environment:
       - PROFILE=pi
+  demeter:
+    build:
+      context: ./iot-demeter
+      dockerfile: Dockerfile
+    container_name: demeter
+    ports:
+      - "8282:8080"
+    environment:
+      - PROFILE=pi
   postgres:
     image: 'postgres'
     restart: always
