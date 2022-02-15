@@ -56,7 +56,7 @@ public class WarsawStopService {
                 .orElse(null);
     }
 
-    public WarsawStop getClosestStop(float lat, float lon, String line) {
+    public WarsawStop getClosestStop(float lon, float lat, String line) {
         WarsawStop currentPosition = WarsawStop.builder()
                 .lon(lon)
                 .lat(lat)
