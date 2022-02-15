@@ -52,7 +52,7 @@ public class VehicleTimetableDelayService {
                 .stopId(warsawTimetable.map(Timetable::getStopId).orElse(""))
                 .stopNumber(warsawTimetable.map(Timetable::getStopNumber).orElse(""))
                 .stopName(warsawTimetable.map(Timetable::getStopName).orElse(""))
-                .timetableDepartureDate(warsawTimetable.map(Timetable::getTimetableTime).map(OffsetDateTime::toInstant).orElse(null))
+                .timetableDepartureDate(warsawTimetable.map(Timetable::getTimetableDepartureDate).map(OffsetDateTime::toInstant).orElse(null))
                 .build();
     }
 

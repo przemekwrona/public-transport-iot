@@ -53,7 +53,7 @@ components:
           type: string
         brigade:
           type: string
-        timetableTime:
+        timetableDepartureDate:
           type: string
           format: date-time
         arrivalTime:
