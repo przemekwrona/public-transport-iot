@@ -38,7 +38,7 @@ class WarsawStopServiceSpec extends Specification {
   @Ignore
   def "should call Warsaw API 1 time"() {
     setup:
-    warsawApiClient.getStops(_ as String, _ as String) >> ResponseEntity.ok(new pl.wrona.warsaw.transport.api.model.WarsawStops()
+    warsawApiClient.getStops(_ as String, _ as String) >> ResponseEntity.ok(new WarsawStops()
             .result([new pl.wrona.warsaw.transport.api.model.WarsawStop().values([])]))
 
     when:
@@ -74,7 +74,7 @@ class WarsawStopServiceSpec extends Specification {
     52.222 | 20.985 || "Ochota-Ratusz"
   }
 
-  def "should calculate distnce between stop and vehicle"() {
+  def "should calculate distance between stop and vehicle"() {
     given:
     WarsawStop warsawStop = WarsawStop.builder()
             .lat(STOP_LAT)
@@ -87,11 +87,11 @@ class WarsawStopServiceSpec extends Specification {
             .build()
 
     expect:
-    warsawStop.distance(vehicleStop) != DISTANCE
+    warsawStop.distance(vehicleStop) == DISTANCE
 
     where:
     VEHICLE_LAT | VEHICLE_LON | STOP_LAT  | STOP_LON  | DISTANCE
-    52.23465f   | 21.01522f   | 52.23069f | 21.01585f | 2.0
+    52.23465f   | 21.01522f   | 52.23069f | 21.01585f | 442
   }
 
   @TestConfiguration

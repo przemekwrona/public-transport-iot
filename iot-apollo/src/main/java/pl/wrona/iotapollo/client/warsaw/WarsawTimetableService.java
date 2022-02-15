@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.wrona.iot.apollo.api.model.Timetable;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -50,6 +51,7 @@ public class WarsawTimetableService {
                         .stopName(closestStop.getName())
                         .stopLon(closestStop.getLon())
                         .stopLat(closestStop.getLat())
+                        .stopDistance(closestStop.distance(lon, lat))
                         .stopDirection(closestStop.getDirection())
                         .build())
                 .collect(Collectors.toList());
@@ -75,9 +77,6 @@ public class WarsawTimetableService {
     public ResponseEntity<Timetable> getTimetableResponse(OffsetDateTime time, float lon, float lat, String line, String brigade) {
         WarsawStopDepartures warsawDeparture = getTimetable(time.toLocalTime(), lon, lat, line, brigade);
 
-//        if (warsawDeparture == null) {
-        log.info("Warsaw departure. Time {}, lon {}, lat {}, line {}, brigade {}. {}", time, lon, lat, line, brigade, warsawDeparture);
-//        }
         return ResponseEntity.ok(new Timetable()
                 .line(line)
                 .brigade(brigade)
@@ -90,6 +89,7 @@ public class WarsawTimetableService {
                 .timetableDepartureDate(LocalDateTime.of(LocalDate.now(), warsawDeparture.getTime()).atOffset(ZoneOffset.UTC))
                 .stopLat(warsawDeparture.getStopLat())
                 .stopLon(warsawDeparture.getStopLon())
+                .stopDistance(BigDecimal.valueOf(warsawDeparture.getStopDistance()))
                 .stopDirection(warsawDeparture.getStopDirection()));
     }
 

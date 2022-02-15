@@ -97,6 +97,11 @@
       <artifactId>guava</artifactId>
       <version>31.0.1-jre</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-spatial</artifactId>
+      <version>8.4.1</version>
+    </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>

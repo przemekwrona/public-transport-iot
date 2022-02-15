@@ -20,6 +20,7 @@ public class WarsawStopDepartures {
     private String stopName;
     private float stopLon;
     private float stopLat;
+    private long stopDistance;
     private String stopDirection;
 
 }
