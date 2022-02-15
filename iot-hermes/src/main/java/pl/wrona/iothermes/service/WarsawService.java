@@ -22,6 +22,7 @@ public class WarsawService {
 
     private final WarsawPublicTransportService warsawPublicTransportService;
     private final VehicleLocationService vehicleLocationService;
+    private final VehicleTimetableDelayService vehicleDelayService;
     private final InfluxVehicles influxVehicles;
 
     public void getAndSaveVehicles() {
@@ -38,7 +39,7 @@ public class WarsawService {
 
         vehicleLocationService.updateVehiclesWithDelay(vehicles);
 
-//        influxVehicles.updateVehicles(vehicles);
+        influxVehicles.updateVehicles(vehicles);
     }
 
 }

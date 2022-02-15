@@ -9,5 +9,5 @@ import java.time.Instant;
 @Repository
 public interface VehiclesLocationRepository extends JpaRepository<VehicleLocation, Long> {
 
-    long deleteVehicleLocationsByTimeBefore(Instant instant);
+    void deleteVehicleLocationsByTimeBefore(Instant instant);
 }

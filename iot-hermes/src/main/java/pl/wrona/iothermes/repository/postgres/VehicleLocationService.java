@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 public class VehicleLocationService {
 
     private final VehiclesLocationRepository vehiclesLocationRepository;
-    private final ApolloTimetableService apolloTimetableService;
 
     public void updateVehicles(List<pl.wrona.iothermes.model.VehicleLocation> vehicles) {
         List<VehicleLocation> vehicleLocations = vehicles.stream()
@@ -23,12 +22,6 @@ public class VehicleLocationService {
                 .collect(Collectors.toList());
 
         vehiclesLocationRepository.saveAll(vehicleLocations);
-    }
-
-    public void updateVehiclesWithDelay(List<pl.wrona.iothermes.model.VehicleLocation> vehicles) {
-        vehicles.forEach(vehicle -> {
-            apolloTimetableService.getTimetable(vehicle.getTime(), vehicle.getLat(), vehicle.getLon(), vehicle.getLine(), vehicle.getBrigade());
-        });
     }
 
     private VehicleLocation build(pl.wrona.iothermes.model.VehicleLocation vehicleLocation) {
