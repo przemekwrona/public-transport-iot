@@ -17,6 +17,7 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -112,7 +113,9 @@ public class WarsawTimetableService {
                 .stopId(warsawDeparture.getStopId())
                 .stopNumber(warsawDeparture.getStopNumber())
                 .stopName(warsawDeparture.getStopName())
-                .timetableDepartureDate(LocalDateTime.of(LocalDate.now(), warsawDeparture.getTimetableDeparture()).atOffset(ZoneOffset.UTC))
+                .timetableDepartureDate(Optional.ofNullable(warsawDeparture.getTimetableDeparture())
+                        .map(timetableDate -> LocalDateTime.of(LocalDate.now(), warsawDeparture.getTimetableDeparture()).atOffset(ZoneOffset.UTC))
+                        .orElse(null))
                 .stopLat(warsawDeparture.getStopLat())
                 .stopLon(warsawDeparture.getStopLon())
                 .stopDistance(BigDecimal.valueOf(warsawDeparture.getStopDistance()))

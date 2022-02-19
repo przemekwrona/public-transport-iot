@@ -3,54 +3,24 @@ package pl.wrona.iotapollo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-import pl.wrona.iotapollo.client.warsaw.WarsawApiService;
 import pl.wrona.iotapollo.client.warsaw.WarsawStopService;
 import pl.wrona.iotapollo.client.warsaw.WarsawTimetableService;
 
-import java.time.LocalTime;
-
 @Slf4j
 @Component
-@Profile("!pi")
 @AllArgsConstructor
 public class AppRunner implements CommandLineRunner {
 
-    private WarsawStopService warsawStopService;
-    private WarsawTimetableService warsawTimetableService;
-    private WarsawApiService warsawApiService;
+    private final WarsawStopService warsawStopService;
+    private final WarsawTimetableService timetableService;
 
     @Override
     public void run(String... args) throws Exception {
+        warsawStopService.getStops()
+                .forEach(stop -> warsawStopService.getLinesOnStop(stop.getGroup(), stop.getSlupek()));
 
-//        log.info("{}", warsawStopService.getClosestStop(52.24f, 21.00f, "9"));
-//        log.info("{}", warsawStopService.getClosestStop(52.24f, 21.00f, "9"));
-//        log.info("{}", warsawStopService.getClosestStop(52.24f, 21.02f, "9"));
-//        log.info("{}", warsawStopService.getClosestStop(52.24f, 21.04f, "9"));
-//        log.info("{}", warsawStopService.getClosestStop(52.24f, 21.08f, "9"));
-
-//        log.info("Get Closest Stops");
-//        warsawStopService.getClosestStop(52.02f, 21.00f);
-//        log.info("Get Closest Stops");
-//        warsawStopService.getClosestStop(32.23f, 23.43f);
-//        log.info("Get Closest Stops");
-//        warsawStopService.getClosestStop(32.23f, 23.43f);
-//        log.info("Get Closest Stops");
-//        warsawStopService.getClosestStop(32.23f, 23.43f);
-
-
-        log.info("Do sthd");
-//        warsawTimetableService.getTimetable(LocalTime.of(20, 01), 52.269287f, 20.985723f, "512", "3");
-//        warsawStopService.getLinesOnStop("4121", "03");
-        log.info("Do sthd");
-//        warsawStopService.getLinesOnStop("4121", "03");
-        log.info("Do sthd");
-//        warsawStopService.getLinesOnStop("4121", "03");
-//        warsawStopService.getClosestStop(52.55f, 21.05f);
-//        warsawStopService.getClosestStop(52.55f, 21.05f);
-//        warsawStopService.getClosestStop(52.55f, 21.05f);
+        log.info("Stop and metadata has been loaded");
     }
 
 }
-
