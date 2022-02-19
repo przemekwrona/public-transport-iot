@@ -17,10 +17,6 @@ public class AppRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        warsawStopService.getStops()
-                .forEach(stop -> warsawStopService.getLinesOnStop(stop.getGroup(), stop.getSlupek()));
-
-        log.info("Stop and metadata has been loaded");
     }
 
 }
