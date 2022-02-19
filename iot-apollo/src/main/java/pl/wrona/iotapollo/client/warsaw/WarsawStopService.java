@@ -35,6 +35,10 @@ public class WarsawStopService {
         private WarsawStop warsawStop;
         private double distance;
 
+        public boolean isLowerOrEqual250m() {
+            return distance <= 250;
+        }
+
         public boolean isLowerOrEqual35m() {
             return distance <= 35;
         }
@@ -63,12 +67,13 @@ public class WarsawStopService {
 
     public List<WarsawStop> getStopsInAreaOf35m(float lat, float lon, String line) {
         return warsawApiService.getStops().stream()
-                .filter(stop -> hasLineOnStop(stop.getGroup(), stop.getSlupek(), line))
-                .filter(stop -> hasTimetableOnStop(stop.getGroup(), stop.getSlupek(), line))
                 .map(stop -> StopDistance.builder()
                         .warsawStop(stop)
                         .distance(stop.distance(lat, lon))
                         .build())
+                .filter(StopDistance::isLowerOrEqual250m)
+                .filter(stop -> hasLineOnStop(stop.getWarsawStop().getGroup(), stop.getWarsawStop().getSlupek(), line))
+                .filter(stop -> hasTimetableOnStop(stop.getWarsawStop().getGroup(), stop.getWarsawStop().getSlupek(), line))
                 .sorted(Comparator.comparingDouble(StopDistance::getDistance))
                 .filter(StopDistance::isLowerOrEqual35m)
                 .map(StopDistance::getWarsawStop)
