@@ -131,6 +131,9 @@ databaseChangeLog:
                   name: IS_ON_STOP
                   type: boolean
               - column:
+                  name: HAS_TIMETABLE
+                  type: boolean
+              - column:
                   name: STOP_ID
                   type: varchar2(8)
               - column:

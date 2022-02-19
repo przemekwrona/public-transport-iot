@@ -34,6 +34,8 @@ services:
       - "8282:8282"
     environment:
       - PROFILE=pi
+    depends_on:
+      - postgres
   postgres:
     image: 'postgres'
     restart: always
@@ -85,12 +87,12 @@ services:
       - hermes
       - apollo
       - demeter
-  promtail:
-    image: grafana/promtail
+    #  promtail:
+    #    image: grafana/promtail
     #    ports:
     #      - "3100:3100"
-    depends_on:
-      - loki
+    #    depends_on:
+    #      - loki
     #  logstash:
     #    image: logstash:8.0.0
     #    container_name: logstash
@@ -105,10 +107,10 @@ services:
     #      - java.io.tmpdir=${ES_TMPDIR}
     #    depends_on:
     #      - loki
-  loki:
-    image: grafana/loki:2.4.2
-    ports:
-      - "3100:3100"
+  #  loki:
+  #    image: grafana/loki:2.4.2
+  #    ports:
+  #      - "3100:3100"
   #    command: -config.file=./etc/loki/config.yaml
   #    networks:
   #  elasticsearch:
