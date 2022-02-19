@@ -1223,6 +1223,186 @@
           "key": "obowiazuje_od"
         }
       ]
+    },
+    {
+      "values": [
+        {
+          "value": "4121",
+          "key": "zespol"
+        },
+        {
+          "value": "01",
+          "key": "slupek"
+        },
+        {
+          "value": "Wawelska",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0801",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.216846",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.981885",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-17 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4121",
+          "key": "zespol"
+        },
+        {
+          "value": "03",
+          "key": "slupek"
+        },
+        {
+          "value": "Wawelska",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0801",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.215872",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.980787",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "pl.Narutowicza",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-17 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4121",
+          "key": "zespol"
+        },
+        {
+          "value": "04",
+          "key": "slupek"
+        },
+        {
+          "value": "Wawelska",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0801",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.216757",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.981497",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Och-Teatr",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-17 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4121",
+          "key": "zespol"
+        },
+        {
+          "value": "05",
+          "key": "slupek"
+        },
+        {
+          "value": "Wawelska",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "2523",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.215960",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.982821",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Pomnik Lotnika",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-17 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "4121",
+          "key": "zespol"
+        },
+        {
+          "value": "06",
+          "key": "slupek"
+        },
+        {
+          "value": "Wawelska",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "1231",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.216872",
+          "key": "szer_geo"
+        },
+        {
+          "value": "20.979869",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Hala Kopińska",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-17 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
     }
   ]
 }

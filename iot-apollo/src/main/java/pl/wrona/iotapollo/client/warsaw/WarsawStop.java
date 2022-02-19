@@ -15,16 +15,16 @@ public class WarsawStop {
     private String slupek;
     private String name;
     private String streetId;
-    private float lon;
     private float lat;
+    private float lon;
     private String direction;
     private String validateFromDate;
 
     public long distance(WarsawStop warsawStop) {
-        return distance(warsawStop.getLon(), warsawStop.getLat());
+        return distance(warsawStop.getLat(), warsawStop.getLon());
     }
 
-    public long distance(float lon, float lat) {
+    public long distance(float lat, float lon) {
         return (long) SloppyMath.haversinMeters(this.lat, this.lon, lat, lon);
     }
 

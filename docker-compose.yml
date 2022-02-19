@@ -34,6 +34,8 @@ services:
       - "8282:8282"
     environment:
       - PROFILE=pi
+    depends_on:
+      - postgres
   postgres:
     image: 'postgres'
     restart: always
@@ -85,6 +87,48 @@ services:
       - hermes
       - apollo
       - demeter
+    #  promtail:
+    #    image: grafana/promtail
+    #    ports:
+    #      - "3100:3100"
+    #    depends_on:
+    #      - loki
+    #  logstash:
+    #    image: logstash:8.0.0
+    #    container_name: logstash
+    #    ports:
+    #      - "9200:9200"
+    #    volumes:
+    #      - ./:/tmp/elasticsearch
+    #      - ./etc/logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    #      - ./etc/logstash/conf/logstash.conf:/usr/share/logstash/conf/logstash.conf
+    #      - ./etc/logstash/pipeline:/usr/share/logstash/pipeline:ro
+    #    environment:
+    #      - java.io.tmpdir=${ES_TMPDIR}
+    #    depends_on:
+    #      - loki
+  #  loki:
+  #    image: grafana/loki:2.4.2
+  #    ports:
+  #      - "3100:3100"
+  #    command: -config.file=./etc/loki/config.yaml
+  #    networks:
+  #  elasticsearch:
+  #    image: elasticsearch:8.0.0
+  #    container_name: elasticsearch
+  #    ports:
+  #      - "9200:9200"
+  #      - "9300:9300"
+  #    environment:
+  #      ES_JAVA_OPTS: -Xmx256m -Xms256m
+  #      ELASTIC_PASSWORD: 'changeme'
+  #      discovery.type: single-node
+  #    volumes:
+  #      - ./etc/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+  #      - elasticsearch:/usr/share/elasticsearch/data:z
+  #volumes:
+  #  elasticsearch:
+
   zookeeper:
     image: bitnami/zookeeper:latest
     container_name: zookeeper

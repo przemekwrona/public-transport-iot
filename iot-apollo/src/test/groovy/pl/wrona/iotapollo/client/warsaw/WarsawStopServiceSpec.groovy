@@ -44,7 +44,7 @@ class WarsawStopServiceSpec extends Specification {
     when:
     10.times {
 
-      warsawStopService.getClosestStop(52.23, 21.02)
+      warsawStopService.getStopsInAreaOf35m(52.23, 21.02)
     }
 
     then:
@@ -57,11 +57,11 @@ class WarsawStopServiceSpec extends Specification {
     warsawUmApiConfiguration.getApikey() >> "api_key"
     warsawUmApiConfiguration.getStopsResourceId() >> "stops_resource_id"
 
-    WarsawStops warsawStops = JsonFileUtils.readJson("/warsaw/stops-mini.json", WarsawStops.class)
+    WarsawStops warsawStops = JsonFileUtils.readJson("/warsaw/stops-narutowicza.json", WarsawStops.class)
     warsawApiClient.getStops(_ as String, _ as String) >> ResponseEntity.ok(warsawStops)
 
     when:
-    WarsawStop warsawStop = warsawStopService.getClosestStop(LAT, LON)
+    WarsawStop warsawStop = warsawStopService.getStopsInAreaOf35m(LAT, LON)
 
     then:
     warsawStop != null

@@ -1,8 +1,12 @@
 package pl.wrona.iothermes.model.postgres;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.wrona.iothermes.model.CityCode;
 import pl.wrona.iothermes.model.VehicleType;
 
@@ -14,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import java.time.Instant;
 
+@Data
 @Entity
 @Builder
 @NoArgsConstructor
@@ -45,6 +50,10 @@ public class VehicleTimetableDelay {
 
     private boolean isOnStop;
 
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private boolean hasTimetable;
+
     private String stopId;
 
     private String stopNumber;
@@ -52,5 +61,13 @@ public class VehicleTimetableDelay {
     private String stopName;
 
     private Instant timetableDepartureDate;
+
+    public boolean hasTimetable() {
+        return this.hasTimetable;
+    }
+
+    public void setHasTimetable(boolean hasTimetable) {
+        this.hasTimetable = hasTimetable;
+    }
 
 }

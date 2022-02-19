@@ -1,0 +1,220 @@
+{
+  "result": [
+    {
+      "values": [
+        {
+          "value": "7033",
+          "key": "zespol"
+        },
+        {
+          "value": "01",
+          "key": "slupek"
+        },
+        {
+          "value": "Krucza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0101",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.231027",
+          "key": "szer_geo"
+        },
+        {
+          "value": "21.017979",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Nowy Świat",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-17 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "7033",
+          "key": "zespol"
+        },
+        {
+          "value": "02",
+          "key": "slupek"
+        },
+        {
+          "value": "Krucza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0101",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.231327",
+          "key": "szer_geo"
+        },
+        {
+          "value": "21.018133",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Krucza",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-17 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "7033",
+          "key": "zespol"
+        },
+        {
+          "value": "03",
+          "key": "slupek"
+        },
+        {
+          "value": "Krucza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "1242",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.230247",
+          "key": "szer_geo"
+        },
+        {
+          "value": "21.016538",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Wspólna",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-17 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "7033",
+          "key": "zespol"
+        },
+        {
+          "value": "04",
+          "key": "slupek"
+        },
+        {
+          "value": "Krucza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "1242",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.229220",
+          "key": "szer_geo"
+        },
+        {
+          "value": "21.017262",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Al.Jerozolimskie",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-17 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "7033",
+          "key": "zespol"
+        },
+        {
+          "value": "05",
+          "key": "slupek"
+        },
+        {
+          "value": "Krucza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0101",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.230690",
+          "key": "szer_geo"
+        },
+        {
+          "value": "21.015851",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Muzeum Narodowe",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-17 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    },
+    {
+      "values": [
+        {
+          "value": "7033",
+          "key": "zespol"
+        },
+        {
+          "value": "06",
+          "key": "slupek"
+        },
+        {
+          "value": "Krucza",
+          "key": "nazwa_zespolu"
+        },
+        {
+          "value": "0101",
+          "key": "id_ulicy"
+        },
+        {
+          "value": "52.230957",
+          "key": "szer_geo"
+        },
+        {
+          "value": "21.016979",
+          "key": "dlug_geo"
+        },
+        {
+          "value": "Centrum",
+          "key": "kierunek"
+        },
+        {
+          "value": "2021-10-17 00:00:00.0",
+          "key": "obowiazuje_od"
+        }
+      ]
+    }
+  ]
+}
