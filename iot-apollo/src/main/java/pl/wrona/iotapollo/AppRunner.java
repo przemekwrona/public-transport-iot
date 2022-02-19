@@ -41,7 +41,7 @@ public class AppRunner implements CommandLineRunner {
 
 
         log.info("Do sthd");
-        warsawTimetableService.getTimetable(LocalTime.of(20, 01), 52.269287f, 20.985723f, "512", "3");
+//        warsawTimetableService.getTimetable(LocalTime.of(20, 01), 52.269287f, 20.985723f, "512", "3");
 //        warsawStopService.getLinesOnStop("4121", "03");
         log.info("Do sthd");
 //        warsawStopService.getLinesOnStop("4121", "03");

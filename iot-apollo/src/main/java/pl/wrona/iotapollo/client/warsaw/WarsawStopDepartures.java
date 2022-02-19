@@ -13,7 +13,8 @@ public class WarsawStopDepartures {
     private String brigade;
     private String direction;
     private String route;
-    private LocalTime time;
+
+    private LocalTime timetableDeparture;
 
     private String stopId;
     private String stopNumber;

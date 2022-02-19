@@ -10,6 +10,7 @@ import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -34,13 +35,17 @@ public class WarsawStopService {
         private WarsawStop warsawStop;
         private double distance;
 
+        public boolean isLowerOrEqual35m() {
+            return distance <= 35;
+        }
+
     }
 
     public List<WarsawStop> getStops() {
         return warsawApiService.getStops();
     }
 
-    public WarsawStop getClosestStop(float lat, float lon) {
+    public WarsawStop getStopsInAreaOf35m(float lat, float lon) {
         WarsawStop currentPosition = WarsawStop.builder()
                 .lon(lon)
                 .lat(lat)
@@ -56,29 +61,18 @@ public class WarsawStopService {
                 .orElse(null);
     }
 
-    public WarsawStop getClosestStop(float lon, float lat, String line) {
-        WarsawStop currentPosition = WarsawStop.builder()
-                .lon(lon)
-                .lat(lat)
-                .build();
-
-        WarsawStop closestStopWithTimetable = warsawApiService.getStops().stream()
+    public List<WarsawStop> getStopsInAreaOf35m(float lat, float lon, String line) {
+        return warsawApiService.getStops().stream()
+                .filter(stop -> hasLineOnStop(stop.getGroup(), stop.getSlupek(), line))
+                .filter(stop -> hasTimetableOnStop(stop.getGroup(), stop.getSlupek(), line))
                 .map(stop -> StopDistance.builder()
                         .warsawStop(stop)
-                        .distance(stop.distance(currentPosition))
+                        .distance(stop.distance(lat, lon))
                         .build())
                 .sorted(Comparator.comparingDouble(StopDistance::getDistance))
-                .filter(stop -> getLinesOnStop(stop.getWarsawStop().getGroup(), stop.getWarsawStop().getSlupek()).hasLine(line))
-                .filter(stop -> warsawApiService.getTimetable(stop.getWarsawStop().getGroup(), stop.getWarsawStop().getSlupek(), line).size() > 0)
-                .findFirst()
+                .filter(StopDistance::isLowerOrEqual35m)
                 .map(StopDistance::getWarsawStop)
-                .orElse(null);
-
-        if (closestStopWithTimetable == null) {
-            log.error("For line {} on position {}, {} there is no available stop", line, lon, lat);
-        }
-
-        return closestStopWithTimetable;
+                .collect(Collectors.toList());
     }
 
     @Cacheable(cacheNames = "linesOnStopInWarsawCache")
@@ -89,6 +83,14 @@ public class WarsawStopService {
                 .stopNumber(stopNumber)
                 .lines(linesOnStop)
                 .build();
+    }
+
+    public boolean hasLineOnStop(String stopId, String stopNumber, String line) {
+        return getLinesOnStop(stopId, stopNumber).hasLine(line);
+    }
+
+    public boolean hasTimetableOnStop(String stopId, String stopNumber, String line) {
+        return !warsawApiService.getTimetable(stopId, stopNumber, line).isEmpty();
     }
 
 }
