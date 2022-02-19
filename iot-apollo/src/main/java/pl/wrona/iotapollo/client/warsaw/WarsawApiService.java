@@ -11,6 +11,7 @@ import pl.wrona.warsaw.transport.api.model.WarsawTimetableValue;
 import pl.wrona.warsaw.transport.api.model.WarsawTimetables;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,7 +30,7 @@ public class WarsawApiService {
                         .getStops(warsawUmApiConfiguration.getStopsResourceId(), warsawUmApiConfiguration.getApikey()))
                 .map(ResponseEntity::getBody)
                 .map(WarsawStops::getResult)
-                .orElse(List.of()).stream()
+                .orElse(new LinkedList<>()).stream()
                 .map(WarsawStop::of)
                 .collect(Collectors.toList());
     }
@@ -44,7 +45,7 @@ public class WarsawApiService {
                         ""))
                 .map(ResponseEntity::getBody)
                 .map(WarsawTimetables::getResult)
-                .orElse(List.of()).stream()
+                .orElse(new LinkedList<>()).stream()
                 .map(pl.wrona.warsaw.transport.api.model.WarsawTimetable::getValues)
                 .flatMap(Collection::stream)
                 .filter(value -> "linia".equals(value.getKey()))
@@ -62,7 +63,7 @@ public class WarsawApiService {
                         line))
                 .map(ResponseEntity::getBody)
                 .map(WarsawTimetables::getResult)
-                .orElse(List.of()).stream()
+                .orElse(new LinkedList<>()).stream()
                 .map(WarsawDepartures::of)
                 .collect(Collectors.toList());
     }
