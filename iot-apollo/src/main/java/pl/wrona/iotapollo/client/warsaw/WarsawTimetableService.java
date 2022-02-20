@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
+import java.time.ZoneId;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class WarsawTimetableService {
+
+    public final ZoneId WARSAW_ZONE_ID = ZoneId.of("Europe/Warsaw");
 
     private final WarsawApiService warsawApiService;
     private final WarsawStopService warsawStopService;
@@ -59,7 +61,8 @@ public class WarsawTimetableService {
                         .map(timetable -> WarsawStopDepartures.builder()
                                 .line(line)
                                 .brigade(brigade)
-                                .brigade(timetable.getBrigade())
+                                .isOnStop(true)
+                                .hasTimetable(true)
                                 .direction(timetable.getDirection())
                                 .route(timetable.getRoute())
                                 .timetableDeparture(timetable.getTime())
@@ -94,6 +97,8 @@ public class WarsawTimetableService {
                 .orElse(WarsawStopDepartures.builder()
                         .line(line)
                         .brigade(brigade)
+                        .isOnStop(false)
+                        .hasTimetable(false)
                         .stopId("")
                         .stopNumber("")
                         .stopName("")
@@ -110,11 +115,14 @@ public class WarsawTimetableService {
                 .arrivalTime(time)
                 .vehicleDirection(warsawDeparture.getDirection())
                 .vahicleRoute(warsawDeparture.getRoute())
+                .isOnStop(warsawDeparture.isOnStop())
+                .hasTimetable(warsawDeparture.isHasTimetable())
                 .stopId(warsawDeparture.getStopId())
                 .stopNumber(warsawDeparture.getStopNumber())
                 .stopName(warsawDeparture.getStopName())
                 .timetableDepartureDate(Optional.ofNullable(warsawDeparture.getTimetableDeparture())
-                        .map(timetableDate -> LocalDateTime.of(LocalDate.now(), warsawDeparture.getTimetableDeparture()).atOffset(ZoneOffset.UTC))
+                        .map(timetableDate -> LocalDateTime.of(LocalDate.now(), warsawDeparture.getTimetableDeparture())
+                                .atOffset(WARSAW_ZONE_ID.getRules().getOffset(time.toInstant())))
                         .orElse(null))
                 .stopLat(warsawDeparture.getStopLat())
                 .stopLon(warsawDeparture.getStopLon())
