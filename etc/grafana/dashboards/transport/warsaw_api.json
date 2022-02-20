@@ -52,9 +52,13 @@
             {
               "options": {
                 "0": {
+                  "color": "dark-red",
+                  "index": 1,
                   "text": "OFF"
                 },
                 "1": {
+                  "color": "dark-green",
+                  "index": 0,
                   "text": "ON"
                 }
               },
@@ -62,6 +66,7 @@
             }
           ],
           "min": 0,
+          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -128,9 +133,13 @@
             {
               "options": {
                 "0": {
+                  "color": "dark-red",
+                  "index": 1,
                   "text": "OFF"
                 },
                 "1": {
+                  "color": "dark-green",
+                  "index": 0,
                   "text": "ON"
                 }
               },
