@@ -29,7 +29,7 @@ public class WarsawPublicTransportService {
     private final WarsawPublicTransportClient warsawPublicTransportClient;
 
     public List<VehicleLocation> getBuses() {
-        return Optional.ofNullable(warsawPublicTransportClient.getVehicles(warsawUmApiConfiguration.getResourceId(), warsawUmApiConfiguration.getApikey(), "1"))
+        return Optional.ofNullable(warsawPublicTransportClient.getVehicles(warsawUmApiConfiguration.getApikey(), warsawUmApiConfiguration.getResourceId(), "1"))
                 .map(ResponseEntity::getBody)
                 .map(WarsawVehicles::getResult)
                 .orElse(List.of())
@@ -38,7 +38,7 @@ public class WarsawPublicTransportService {
     }
 
     public List<VehicleLocation> getTrams() {
-        return Optional.ofNullable(warsawPublicTransportClient.getVehicles(warsawUmApiConfiguration.getResourceId(), warsawUmApiConfiguration.getApikey(), "2"))
+        return Optional.ofNullable(warsawPublicTransportClient.getVehicles(warsawUmApiConfiguration.getApikey(), warsawUmApiConfiguration.getResourceId(), "2"))
                 .map(ResponseEntity::getBody)
                 .map(WarsawVehicles::getResult)
                 .orElse(List.of())

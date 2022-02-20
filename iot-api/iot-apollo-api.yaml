@@ -63,6 +63,10 @@ components:
           type: string
         vahicleRoute:
           type: string
+        is_on_stop:
+          type: boolean
+        has_timetable:
+          type: boolean
         stopId:
           type: string
         stopNumber:

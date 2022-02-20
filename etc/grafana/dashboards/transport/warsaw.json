@@ -19,213 +19,54 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1644745560457,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "circleMaxSize": "2",
-      "circleMinSize": "2",
-      "colors": [
-        "#1F60C4",
-        "#37872D",
-        "#C4162A"
-      ],
-      "datasource": "postgres",
-      "decimals": 6,
-      "esMetric": "Count",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
+      "collapsed": false,
       "gridPos": {
-        "h": 13,
+        "h": 1,
         "w": 24,
         "x": 0,
         "y": 0
       },
-      "hideEmpty": false,
-      "hideZero": false,
-      "id": 4,
-      "initialZoom": "13",
-      "interval": "10s",
-      "locationData": "table",
-      "mapCenter": "custom",
-      "mapCenterLatitude": "52.231",
-      "mapCenterLongitude": "21.000",
-      "maxDataPoints": 5000,
-      "mouseWheelZoom": false,
-      "pluginVersion": "7.5.4",
-      "showLegend": false,
-      "stickyLabels": false,
-      "tableQueryOptions": {
-        "geohashField": "geohash",
-        "labelField": "name",
-        "latitudeField": "latitude",
-        "longitudeField": "longitude",
-        "metricField": "metric",
-        "queryType": "coordinates"
-      },
-      "targets": [
-        {
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT DISTINCT ON (vehicle_number) vehicle_number, time, to_number(lat, '99.99999999') AS \"latitude\", to_number(lon, '99.99999999') AS \"longitude\", line AS \"name\",\r\nCASE WHEN vehicle_type = 'BUS' THEN 1 WHEN vehicle_type = 'TRAM' THEN 2 ELSE 0 END AS \"metric\"\r\nFROM vehicle_location WHERE city_code = '${city_code}' AND time >= now() - interval '5 minutes' AND $__timeFilter(time) ORDER BY 1, 2 DESC;",
-          "refId": "Current Location",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "thresholds": "1,2",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Vehicles Live",
-      "transformations": [],
-      "type": "grafana-worldmap-panel",
-      "unitPlural": "",
-      "unitSingle": "",
-      "valueName": "total"
+      "id": 13,
+      "panels": [],
+      "title": "System availability",
+      "type": "row"
     },
     {
-      "datasource": "postgres",
-      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "continuous-RdYlGr"
           },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "graph": false,
-              "legend": false,
-              "tooltip": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
+          "decimals": 0,
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "text": "OFF"
+                },
+                "1": {
+                  "text": "ON"
+                }
               },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 13
-      },
-      "id": 2,
-      "interval": "10s",
-      "options": {
-        "graph": {},
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        },
-        "tooltipOptions": {
-          "mode": "single"
-        }
-      },
-      "pluginVersion": "7.5.4",
-      "targets": [
-        {
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT time_range as time, metric FROM (SELECT to_timestamp(floor((extract('epoch' from time) / 600)) * 600) as time_range, COUNT(DISTINCT vehicle_number) as metric\nFROM vehicle_location WHERE $__timeFilter(time) GROUP BY time_range ORDER BY time_range DESC) AS number_of_vehicles;",
-          "refId": "Get number of vehicles",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
+              "type": "value"
             }
-          ]
-        }
-      ],
-      "title": "Number of vehicles",
-      "transparent": true,
-      "type": "timeseries"
-    },
-    {
-      "datasource": "postgres",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
+          ],
           "min": 0,
-          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "text",
+                "color": "dark-red",
                 "value": null
               },
               {
@@ -233,101 +74,17 @@
                 "value": 1
               }
             ]
-          },
-          "unit": "short"
+          }
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
-        "w": 3,
-        "x": 12,
-        "y": 13
+        "h": 4,
+        "w": 2,
+        "x": 0,
+        "y": 1
       },
-      "id": 6,
-      "interval": "1m",
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": true
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "7.5.4",
-      "targets": [
-        {
-          "format": "table",
-          "group": [],
-          "hide": false,
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT now() as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = '${city_code}' AND vehicle_type = 'BUS' AND time >= now() - interval '5 minutes' GROUP BY time_range ORDER BY time_range DESC;",
-          "refId": "Buses",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "title": "Buses",
-      "type": "gauge"
-    },
-    {
-      "datasource": "postgres",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "min": 0,
-          "noValue": "0",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "text",
-                "value": null
-              },
-              {
-                "color": "dark-red",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 3,
-        "x": 15,
-        "y": 13
-      },
-      "id": 7,
-      "interval": "1m",
+      "id": 5,
       "options": {
         "orientation": "auto",
         "reduceOptions": {
@@ -341,16 +98,570 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "7.5.4",
+      "pluginVersion": "8.4.0-beta1",
       "targets": [
         {
+          "exemplar": true,
+          "expr": "up{job=\"hermes\"}",
+          "interval": "",
+          "legendFormat": "",
+          "queryType": "randomWalk",
+          "refId": "A"
+        }
+      ],
+      "title": "Hermes",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-red",
+            "mode": "continuous-RdYlGr"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "text": "OFF"
+                },
+                "1": {
+                  "text": "ON"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 2,
+        "y": 1
+      },
+      "id": 4,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.4.0-beta1",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "up{job=\"apollo\"}",
+          "interval": "",
+          "legendFormat": "",
+          "queryType": "randomWalk",
+          "refId": "A"
+        }
+      ],
+      "title": "Apollo",
+      "transparent": true,
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 1
+      },
+      "id": 16,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.0-beta1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "exemplar": true,
+          "expr": "http_server_requests_seconds_count{job=\"apollo\", uri=\"/timetables\", status=\"200\"}",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "HTTP 2xx /timetable",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-red",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 1
+      },
+      "id": 15,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "8.4.0-beta1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "exemplar": true,
+          "expr": "http_server_requests_seconds_count{job=\"apollo\", uri=\"/timetables\", status=\"500\"}",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "HTTP 5xx /timetable",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 9,
+      "panels": [],
+      "title": "Number of queries to Warsaw API",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 6
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.0-beta1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": false,
+          "expr": "warsaw_api_get_stops_seconds_count{job=\"apollo\"}",
+          "format": "table",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "queryType": "randomWalk",
+          "refId": "GET Stops"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "GET Stops",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:126",
+          "decimals": 0,
+          "format": "short",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:127",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "description": "",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 6
+      },
+      "hiddenSeries": false,
+      "id": 11,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.0-beta1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "warsaw_api_timetables_seconds_count{job=\"apollo\"}",
+          "format": "table",
+          "interval": "",
+          "legendFormat": "",
+          "queryType": "randomWalk",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "GET Timetables",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:318",
+          "decimals": 0,
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:319",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 6
+      },
+      "hiddenSeries": false,
+      "id": 7,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.0-beta1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "warsaw_api_lines_on_stop_seconds_count{job=\"apollo\"}",
+          "format": "table",
+          "interval": "",
+          "legendFormat": "",
+          "queryType": "randomWalk",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "GET Vehicles on stop",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:183",
+          "decimals": 0,
+          "format": "short",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:184",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "circleMaxSize": "2",
+      "circleMinSize": 2,
+      "colors": [
+        "#37872D",
+        "#C4162A"
+      ],
+      "datasource": {
+        "type": "postgres",
+        "uid": "PA942B37CCFAF5A81"
+      },
+      "decimals": 0,
+      "esMetric": "Count",
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 14
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 18,
+      "initialZoom": "13",
+      "locationData": "table",
+      "mapCenter": "custom",
+      "mapCenterLatitude": "52.231",
+      "mapCenterLongitude": "21.000",
+      "maxDataPoints": 1,
+      "mouseWheelZoom": true,
+      "showLegend": true,
+      "stickyLabels": true,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "line",
+        "latitudeField": "lat",
+        "longitudeField": "lon",
+        "metricField": "differences_in_seconds",
+        "queryType": "coordinates"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PA942B37CCFAF5A81"
+          },
           "format": "table",
           "group": [],
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT now() as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = '${city_code}' AND vehicle_type = 'TRAM' AND time >= now() - interval '5 minutes' GROUP BY time_range ORDER BY time_range DESC;",
-          "refId": "Trams",
+          "rawSql": "SELECT line, lat, lon, $__timeFilter(time),\n       round(abs(extract(epoch from time - timetable_departure_date) / 60)) differences_in_seconds\nFROM vehicle_timetable_delay\nWHERE stop_id != '' and $__timeFilter(time);\n",
+          "refId": "A",
           "select": [
             [
               {
@@ -371,128 +682,56 @@
           ]
         }
       ],
-      "title": "Trams",
-      "type": "gauge"
+      "thresholds": "30",
+      "title": "Delays on stop",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "valueName": "current"
+    },
+    {
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 14
+      },
+      "id": 20,
+      "options": {
+        "alertInstanceLabelFilter": "",
+        "alertName": "",
+        "dashboardAlerts": false,
+        "maxItems": 20,
+        "showInstances": false,
+        "sortOrder": 1,
+        "stateFilter": {
+          "error": true,
+          "firing": true,
+          "inactive": false,
+          "noData": false,
+          "normal": false,
+          "pending": true
+        }
+      },
+      "title": "Panel Title",
+      "type": "alertlist"
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 27,
+  "schemaVersion": 35,
   "style": "dark",
-  "tags": [
-    "WAWA"
-  ],
+  "tags": [],
   "templating": {
-    "list": [
-      {
-        "allValue": null,
-        "current": {
-          "selected": true,
-          "text": "WAWA",
-          "value": "WAWA"
-        },
-        "description": null,
-        "error": null,
-        "hide": 0,
-        "includeAll": false,
-        "label": "City Code",
-        "multi": false,
-        "name": "city_code",
-        "options": [
-          {
-            "selected": true,
-            "text": "WAWA",
-            "value": "WAWA"
-          },
-          {
-            "selected": false,
-            "text": "STHLM",
-            "value": "STHLM"
-          },
-          {
-            "selected": false,
-            "text": "ROMA",
-            "value": "ROMA"
-          }
-        ],
-        "query": "WAWA,STHLM,ROMA",
-        "queryValue": "",
-        "skipUrlSync": false,
-        "type": "custom"
-      },
-      {
-        "description": null,
-        "error": null,
-        "hide": 2,
-        "label": null,
-        "name": "WAWA_LON",
-        "query": "52.231",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": null,
-        "error": null,
-        "hide": 2,
-        "label": null,
-        "name": "WAWA_LAT",
-        "query": "21.000",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": null,
-        "error": null,
-        "hide": 2,
-        "label": null,
-        "name": "STHML_LON",
-        "query": "59.325",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": null,
-        "error": null,
-        "hide": 2,
-        "label": null,
-        "name": "STHML_LAT",
-        "query": "18.063",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": null,
-        "error": null,
-        "hide": 2,
-        "label": null,
-        "name": "ROMA_LON",
-        "query": "41.894",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": null,
-        "error": null,
-        "hide": 2,
-        "label": null,
-        "name": "ROMA_LAT",
-        "query": "12.480",
-        "skipUrlSync": false,
-        "type": "constant"
-      }
-    ]
+    "list": []
   },
   "time": {
-    "from": "now-24h",
-    "to": "now-30s"
+    "from": "now-6h",
+    "to": "now"
   },
-  "timepicker": {
-    "nowDelay": "30s",
-    "refresh_intervals": [
-      "10s"
-    ]
-  },
-  "timezone": "Europe/Warsaw",
-  "title": "Warsaw",
-  "uid": "qB6W6u-7z",
-  "version": 3
+  "timepicker": {},
+  "timezone": "",
+  "title": "API",
+  "uid": "nnA9-s-nz",
+  "version": 1,
+  "weekStart": ""
 }

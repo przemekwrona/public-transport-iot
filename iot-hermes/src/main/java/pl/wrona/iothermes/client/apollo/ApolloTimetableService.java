@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class ApolloTimetableService {
-    private final ZoneId WARSAW_ZONE_ID = ZoneId.of("Europe/Warsaw");
+    public final ZoneId WARSAW_ZONE_ID = ZoneId.of("Europe/Warsaw");
 
     private final ApolloTimetableClient apolloTimetableClient;
 
