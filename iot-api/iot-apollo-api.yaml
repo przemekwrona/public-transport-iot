@@ -15,13 +15,13 @@ paths:
           schema:
             type: string
             format: date-time
-        - name: lon
+        - name: lat
           in: query
           required: true
           schema:
             type: number
             format: float
-        - name: lat
+        - name: lon
           in: query
           required: true
           schema:
