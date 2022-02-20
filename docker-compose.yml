@@ -5,6 +5,7 @@ services:
       context: ./iot-hermes
       dockerfile: Dockerfile
     container_name: hermes
+    restart: always
     ports:
       - "8080:8080"
     environment:
@@ -19,6 +20,7 @@ services:
     build:
       context: ./iot-apollo
     container_name: apollo
+    restart: always
     ports:
       - "8181:8181"
     volumes:
@@ -30,6 +32,7 @@ services:
       context: ./iot-demeter
       dockerfile: Dockerfile
     container_name: demeter
+    restart: always
     ports:
       - "8282:8282"
     environment:
