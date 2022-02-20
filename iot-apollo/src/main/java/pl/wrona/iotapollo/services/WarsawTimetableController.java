@@ -16,7 +16,7 @@ public class WarsawTimetableController implements TimetablesApi {
     private final WarsawTimetableService warsawTimetableService;
 
     @Override
-    public ResponseEntity<Timetable> getTimetable(OffsetDateTime time, Float lon, Float lat, String line, String brigade) {
+    public ResponseEntity<Timetable> getTimetable(OffsetDateTime time, Float lat, Float lon, String line, String brigade) {
         return warsawTimetableService.getTimetableResponse(time, lat, lon, line, brigade);
     }
 

@@ -27,7 +27,7 @@ public class WarsawApiService {
     @Cacheable(cacheNames = "stopsInWarsawCache", key = "#root.methodName")
     public List<WarsawStop> getStops() {
         return Optional.ofNullable(warsawApiClient
-                        .getStops(warsawUmApiConfiguration.getStopsResourceId(), warsawUmApiConfiguration.getApikey()))
+                        .getStops(warsawUmApiConfiguration.getApikey(), warsawUmApiConfiguration.getStopsResourceId()))
                 .map(ResponseEntity::getBody)
                 .map(WarsawStops::getResult)
                 .orElse(new LinkedList<>()).stream()

@@ -75,12 +75,12 @@ paths:
       summary: Return the list of stops in Warsaw
       operationId: getStops
       parameters:
-        - name: id
+        - name: apikey
           in: query
           required: true
           schema:
             type: string
-        - name: apikey
+        - name: id
           in: query
           required: true
           schema:
