@@ -19,10 +19,11 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1644745560457,
+  "iteration": 1645362167622,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "circleMaxSize": "2",
@@ -32,13 +33,12 @@
         "#37872D",
         "#C4162A"
       ],
-      "datasource": "postgres",
+      "datasource": {
+        "type": "postgres",
+        "uid": "PA942B37CCFAF5A81"
+      },
       "decimals": 6,
       "esMetric": "Count",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 13,
         "w": 24,
@@ -97,8 +97,6 @@
         }
       ],
       "thresholds": "1,2",
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Vehicles Live",
       "transformations": [],
       "type": "grafana-worldmap-panel",
@@ -107,7 +105,10 @@
       "valueName": "total"
     },
     {
-      "datasource": "postgres",
+      "datasource": {
+        "type": "postgres",
+        "uid": "PA942B37CCFAF5A81"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -124,7 +125,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
@@ -133,7 +135,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -154,7 +163,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 11,
         "w": 12,
         "x": 0,
         "y": 13
@@ -171,9 +180,6 @@
         "tooltip": {
           "mode": "single",
           "sort": "none"
-        },
-        "tooltipOptions": {
-          "mode": "single"
         }
       },
       "pluginVersion": "7.5.4",
@@ -211,7 +217,10 @@
       "type": "timeseries"
     },
     {
-      "datasource": "postgres",
+      "datasource": {
+        "type": "postgres",
+        "uid": "PA942B37CCFAF5A81"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -259,7 +268,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "7.5.4",
+      "pluginVersion": "8.4.0-beta1",
       "targets": [
         {
           "format": "table",
@@ -293,7 +302,10 @@
       "type": "gauge"
     },
     {
-      "datasource": "postgres",
+      "datasource": {
+        "type": "postgres",
+        "uid": "PA942B37CCFAF5A81"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -341,7 +353,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "7.5.4",
+      "pluginVersion": "8.4.0-beta1",
       "targets": [
         {
           "format": "table",
@@ -376,7 +388,7 @@
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 27,
+  "schemaVersion": 35,
   "style": "dark",
   "tags": [
     "WAWA"
@@ -384,14 +396,11 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
         "current": {
           "selected": true,
           "text": "WAWA",
           "value": "WAWA"
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "City Code",
@@ -418,66 +427,6 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
-      },
-      {
-        "description": null,
-        "error": null,
-        "hide": 2,
-        "label": null,
-        "name": "WAWA_LON",
-        "query": "52.231",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": null,
-        "error": null,
-        "hide": 2,
-        "label": null,
-        "name": "WAWA_LAT",
-        "query": "21.000",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": null,
-        "error": null,
-        "hide": 2,
-        "label": null,
-        "name": "STHML_LON",
-        "query": "59.325",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": null,
-        "error": null,
-        "hide": 2,
-        "label": null,
-        "name": "STHML_LAT",
-        "query": "18.063",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": null,
-        "error": null,
-        "hide": 2,
-        "label": null,
-        "name": "ROMA_LON",
-        "query": "41.894",
-        "skipUrlSync": false,
-        "type": "constant"
-      },
-      {
-        "description": null,
-        "error": null,
-        "hide": 2,
-        "label": null,
-        "name": "ROMA_LAT",
-        "query": "12.480",
-        "skipUrlSync": false,
-        "type": "constant"
       }
     ]
   },
@@ -494,5 +443,6 @@
   "timezone": "Europe/Warsaw",
   "title": "Warsaw",
   "uid": "qB6W6u-7z",
-  "version": 3
+  "version": 1,
+  "weekStart": ""
 }
