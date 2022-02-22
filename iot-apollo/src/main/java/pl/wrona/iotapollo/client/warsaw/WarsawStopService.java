@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import pl.wrona.iotapollo.services.WarsawStopDirectionService;
 import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
 
 import java.util.Comparator;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class WarsawStopService {
 
     private final WarsawApiService warsawApiService;
+    private final WarsawStopDirectionService warsawStopDirectionService;
 
     @Data
     @Builder
@@ -67,6 +69,7 @@ public class WarsawStopService {
 
     public List<WarsawStop> getStopsInAreaOf35m(float lat, float lon, String line) {
         return warsawApiService.getStops().stream()
+                .peek(stop -> warsawStopDirectionService.addDirection(line, stop.getDirection()))
                 .map(stop -> StopDistance.builder()
                         .warsawStop(stop)
                         .distance(stop.distance(lat, lon))

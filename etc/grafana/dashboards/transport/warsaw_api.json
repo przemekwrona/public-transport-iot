@@ -462,12 +462,12 @@
       "id": 7,
       "legend": {
         "avg": false,
-        "current": false,
-        "max": false,
+        "current": true,
+        "max": true,
         "min": false,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -486,8 +486,12 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
-          "expr": "warsaw_api_lines_on_stop_seconds_count{job=\"apollo\"}",
+          "expr": "increase(warsaw_api_lines_on_stop_seconds_count{job=\"apollo\"}[1m])",
           "format": "table",
           "interval": "",
           "legendFormat": "",
@@ -624,112 +628,6 @@
       }
     },
     {
-      "circleMaxSize": "2",
-      "circleMinSize": 2,
-      "colors": [
-        "#E0B400",
-        "#37872D"
-      ],
-      "datasource": {
-        "type": "postgres",
-        "uid": "PA942B37CCFAF5A81"
-      },
-      "decimals": 0,
-      "esMetric": "Count",
-      "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 0,
-        "y": 14
-      },
-      "hideEmpty": false,
-      "hideZero": false,
-      "id": 18,
-      "initialZoom": "13",
-      "locationData": "table",
-      "mapCenter": "custom",
-      "mapCenterLatitude": "52.231",
-      "mapCenterLongitude": "21.000",
-      "maxDataPoints": 1,
-      "mouseWheelZoom": false,
-      "pluginVersion": "8.4.0-beta1",
-      "showLegend": true,
-      "stickyLabels": false,
-      "tableQueryOptions": {
-        "geohashField": "geohash",
-        "labelField": "line",
-        "latitudeField": "lat",
-        "longitudeField": "lon",
-        "metricField": "differences_in_seconds",
-        "queryType": "coordinates"
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "PA942B37CCFAF5A81"
-          },
-          "format": "table",
-          "group": [],
-          "metricColumn": "none",
-          "rawQuery": true,
-          "rawSql": "SELECT line, lat, lon,\n       round(extract(epoch from timetable_departure_date - time) / 60) AS \"differences_in_seconds\",\n       $__time(time)\nFROM vehicle_timetable_delay\nWHERE is_on_stop = true AND abs(round(extract(epoch from time - timetable_departure_date) / 60)) >= 10;\n",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "timeColumn": "time",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "thresholds": "5",
-      "title": "Panel Title",
-      "type": "grafana-worldmap-panel",
-      "unitPlural": "",
-      "unitSingle": "",
-      "valueName": "current"
-    },
-    {
-      "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 12,
-        "y": 14
-      },
-      "id": 20,
-      "options": {
-        "alertInstanceLabelFilter": "",
-        "alertName": "",
-        "dashboardAlerts": false,
-        "maxItems": 20,
-        "showInstances": false,
-        "sortOrder": 1,
-        "stateFilter": {
-          "error": true,
-          "firing": true,
-          "inactive": false,
-          "noData": false,
-          "normal": false,
-          "pending": true
-        }
-      },
-      "title": "Panel Title",
-      "type": "alertlist"
-    },
-    {
       "datasource": {
         "type": "prometheus",
         "uid": "P1809F7CD0C75ACF3"
@@ -789,10 +687,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 8,
         "w": 8,
         "x": 8,
-        "y": 25
+        "y": 14
       },
       "id": 22,
       "options": {
@@ -898,10 +796,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 8,
         "w": 8,
         "x": 16,
-        "y": 25
+        "y": 14
       },
       "id": 23,
       "options": {
@@ -944,6 +842,125 @@
       ],
       "title": "Panel Title",
       "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "id": 29,
+      "panels": [],
+      "title": "Row title",
+      "type": "row"
+    },
+    {
+      "circleMaxSize": "2",
+      "circleMinSize": 2,
+      "colors": [
+        "#E0B400",
+        "#37872D"
+      ],
+      "datasource": {
+        "type": "postgres",
+        "uid": "PA942B37CCFAF5A81"
+      },
+      "decimals": 0,
+      "esMetric": "Count",
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 23
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 18,
+      "initialZoom": "13",
+      "locationData": "table",
+      "mapCenter": "custom",
+      "mapCenterLatitude": "52.231",
+      "mapCenterLongitude": "21.000",
+      "maxDataPoints": 1,
+      "mouseWheelZoom": false,
+      "pluginVersion": "8.4.0-beta1",
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "line",
+        "latitudeField": "lat",
+        "longitudeField": "lon",
+        "metricField": "differences_in_seconds",
+        "queryType": "coordinates"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PA942B37CCFAF5A81"
+          },
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT line, lat, lon,\n       round(extract(epoch from timetable_departure_date - time) / 60) AS \"differences_in_seconds\",\n       $__time(time)\nFROM vehicle_timetable_delay\nWHERE is_on_stop = true AND abs(round(extract(epoch from time - timetable_departure_date) / 60)) >= 10;\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": "5",
+      "title": "Panel Title",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "valueName": "current"
+    },
+    {
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 23
+      },
+      "id": 20,
+      "options": {
+        "alertInstanceLabelFilter": "",
+        "alertName": "",
+        "dashboardAlerts": false,
+        "maxItems": 20,
+        "showInstances": false,
+        "sortOrder": 1,
+        "stateFilter": {
+          "error": true,
+          "firing": true,
+          "inactive": false,
+          "noData": false,
+          "normal": false,
+          "pending": true
+        }
+      },
+      "title": "Panel Title",
+      "type": "alertlist"
     }
   ],
   "refresh": "10s",
@@ -961,6 +978,6 @@
   "timezone": "",
   "title": "API",
   "uid": "nnA9-s-nz",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }

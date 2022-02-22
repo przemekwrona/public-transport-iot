@@ -11,7 +11,6 @@ public class WarsawStopDepartures {
 
     private String line;
     private String brigade;
-    private String direction;
     private String route;
 
     private boolean isOnStop;
@@ -25,6 +24,6 @@ public class WarsawStopDepartures {
     private float stopLon;
     private float stopLat;
     private long stopDistance;
-    private String stopDirection;
+    private String vehicleDirection;
 
 }
