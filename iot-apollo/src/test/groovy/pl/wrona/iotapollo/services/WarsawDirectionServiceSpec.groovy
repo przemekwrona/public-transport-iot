@@ -4,7 +4,7 @@ import spock.lang.Specification
 
 class WarsawDirectionServiceSpec extends Specification {
 
-    def directionService = new WarsawStopDirectionService()
+    def directionService = new WarsawFinalStopService()
 
     def "should add direction"() {
         when:

@@ -1,4 +1,4 @@
-package pl.wrona.iotapollo.services;
+package pl.wrona.iotapollo.controllers;
 
 import io.micrometer.core.annotation.Timed;
 import lombok.AllArgsConstructor;

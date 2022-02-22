@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import pl.wrona.iotapollo.services.WarsawStopDirectionService;
+import pl.wrona.iotapollo.services.WarsawFinalStopService;
 import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
 
 import java.util.Comparator;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class WarsawStopService {
 
     private final WarsawApiService warsawApiService;
-    private final WarsawStopDirectionService warsawStopDirectionService;
+    private final WarsawFinalStopService warsawStopDirectionService;
 
     @Data
     @Builder
