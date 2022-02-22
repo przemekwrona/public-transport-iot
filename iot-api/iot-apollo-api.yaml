@@ -54,7 +54,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FinalStop'
+                $ref: '#/components/schemas/FinalStops'
 components:
   schemas:
     Timetable:
@@ -104,4 +104,8 @@ components:
           type: string
         stopName:
           type: string
+    FinalStops:
+      type: array
+      items:
+        $ref: '#/components/schemas/FinalStop'
 

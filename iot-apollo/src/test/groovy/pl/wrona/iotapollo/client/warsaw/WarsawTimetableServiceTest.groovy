@@ -2,7 +2,7 @@ package pl.wrona.iotapollo.client.warsaw
 
 
 import pl.wrona.iotapollo.WarsawUmApiConfiguration
-import pl.wrona.iotapollo.services.WarsawStopDirectionService
+import pl.wrona.iotapollo.services.WarsawFinalStopService
 import pl.wrona.warsaw.transport.api.model.WarsawTimetables
 import spock.lang.Specification
 
@@ -24,7 +24,7 @@ class WarsawTimetableServiceTest extends Specification {
 
   def warsawApiService = new WarsawApiService(warsawUmApiConfiguration, warsawApiClient)
 
-  def warsawStopDirectionService = new WarsawStopDirectionService()
+  def warsawStopDirectionService = new WarsawFinalStopService()
 
   def warsawStopService = new WarsawStopService(warsawApiService, warsawStopDirectionService)
 

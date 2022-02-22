@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.wrona.iot.apollo.api.model.Timetable;
-import pl.wrona.iotapollo.services.WarsawStopDirectionService;
+import pl.wrona.iotapollo.services.WarsawFinalStopService;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -30,7 +30,7 @@ public class WarsawTimetableService {
 
     private final WarsawApiService warsawApiService;
     private final WarsawStopService warsawStopService;
-    private WarsawStopDirectionService warsawStopDirectionService;
+    private WarsawFinalStopService warsawStopDirectionService;
 
     @Data
     @Builder
