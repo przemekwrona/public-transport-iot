@@ -200,6 +200,110 @@
       "type": "gauge"
     },
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 31,
+      "panels": [],
+      "title": "Apollo",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P1809F7CD0C75ACF3"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 6
+      },
+      "id": 33,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
+          "exemplar": true,
+          "expr": "rate(iot_apollo_api_get_timetables_seconds_sum{job=\"apollo\"}[1m])/rate(iot_apollo_api_get_timetables_seconds_count{job=\"apollo\"}[1m])",
+          "format": "table",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Timetable Response Time",
+      "type": "timeseries"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "P1809F7CD0C75ACF3"
@@ -232,7 +336,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 1
+        "y": 6
       },
       "id": 16,
       "options": {
@@ -302,7 +406,7 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 1
+        "y": 6
       },
       "id": 15,
       "options": {
@@ -345,7 +449,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 5
+        "y": 14
       },
       "id": 9,
       "panels": [],
@@ -367,7 +471,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 6
+        "y": 15
       },
       "hiddenSeries": false,
       "id": 2,
@@ -456,7 +560,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 6
+        "y": 15
       },
       "hiddenSeries": false,
       "id": 7,
@@ -549,7 +653,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 6
+        "y": 15
       },
       "hiddenSeries": false,
       "id": 11,
@@ -690,7 +794,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 14
+        "y": 23
       },
       "id": 22,
       "options": {
@@ -718,22 +822,9 @@
           "intervalFactor": 1,
           "legendFormat": "",
           "refId": "Lines on stop"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
-          "exemplar": true,
-          "expr": "warsaw_api_lines_on_stop_seconds_max{}",
-          "format": "table",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
         }
       ],
-      "title": "Panel Title",
+      "title": "GET Vehicles on stop AVG Time",
       "type": "timeseries"
     },
     {
@@ -799,7 +890,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 14
+        "y": 23
       },
       "id": 23,
       "options": {
@@ -826,21 +917,9 @@
           "interval": "",
           "legendFormat": "",
           "refId": "Timetables"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P1809F7CD0C75ACF3"
-          },
-          "exemplar": true,
-          "expr": "warsaw_api_timetables_seconds_max{}",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
         }
       ],
-      "title": "Panel Title",
+      "title": "GET Timetable AVG Time",
       "type": "timeseries"
     },
     {
@@ -849,7 +928,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 31
       },
       "id": 29,
       "panels": [],
@@ -873,7 +952,7 @@
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 23
+        "y": 32
       },
       "hideEmpty": false,
       "hideZero": false,
@@ -940,7 +1019,7 @@
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 23
+        "y": 32
       },
       "id": 20,
       "options": {
@@ -963,7 +1042,7 @@
       "type": "alertlist"
     }
   ],
-  "refresh": "10s",
+  "refresh": false,
   "schemaVersion": 35,
   "style": "dark",
   "tags": [],
@@ -971,13 +1050,13 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
-    "to": "now"
+    "from": "2022-02-22T12:23:43.140Z",
+    "to": "2022-02-22T20:13:27.751Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "API",
   "uid": "nnA9-s-nz",
-  "version": 4,
+  "version": 1,
   "weekStart": ""
 }
