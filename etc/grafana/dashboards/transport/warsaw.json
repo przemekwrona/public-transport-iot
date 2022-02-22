@@ -21,7 +21,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1645546992866,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -412,7 +411,7 @@
       "type": "gauge"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -423,6 +422,85 @@
       "panels": [],
       "title": "Delays",
       "type": "row"
+    },
+    {
+      "circleMaxSize": "2",
+      "circleMinSize": 2,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": {
+        "type": "postgres",
+        "uid": "PA942B37CCFAF5A81"
+      },
+      "decimals": 0,
+      "esMetric": "Count",
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 27
+      },
+      "hideEmpty": false,
+      "hideZero": false,
+      "id": 13,
+      "initialZoom": "13",
+      "locationData": "table",
+      "mapCenter": "custom",
+      "mapCenterLatitude": "52.231",
+      "mapCenterLongitude": "21.000",
+      "maxDataPoints": 1,
+      "mouseWheelZoom": false,
+      "showLegend": true,
+      "stickyLabels": false,
+      "tableQueryOptions": {
+        "geohashField": "geohash",
+        "labelField": "line",
+        "latitudeField": "lat",
+        "longitudeField": "lon",
+        "metricField": "differences_in_seconds",
+        "queryType": "coordinates"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PA942B37CCFAF5A81"
+          },
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT line, lat, lon,\n       round(extract(epoch from timetable_departure_date - time) / 60) AS \"differences_in_seconds\",\n       $__time(time)\nFROM vehicle_timetable_delay\nWHERE is_on_stop = true AND abs(round(extract(epoch from time - timetable_departure_date) / 60)) >= 10;\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": "0,10",
+      "title": "Panel Title",
+      "type": "grafana-worldmap-panel",
+      "unitPlural": "",
+      "unitSingle": "",
+      "valueName": "current"
     }
   ],
   "refresh": "10s",
@@ -447,6 +525,6 @@
   "timezone": "Europe/Warsaw",
   "title": "Warsaw",
   "uid": "qB6W6u-7z",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
