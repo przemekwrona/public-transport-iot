@@ -21,10 +21,23 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "iteration": 1645362167622,
+  "iteration": 1645546992866,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "panels": [],
+      "title": "General Information",
+      "type": "row"
+    },
     {
       "circleMaxSize": "2",
       "circleMinSize": "2",
@@ -43,7 +56,7 @@
         "h": 13,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 1
       },
       "hideEmpty": false,
       "hideZero": false,
@@ -69,12 +82,16 @@
       },
       "targets": [
         {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PA942B37CCFAF5A81"
+          },
           "format": "table",
           "group": [],
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT DISTINCT ON (vehicle_number) vehicle_number, time, to_number(lat, '99.99999999') AS \"latitude\", to_number(lon, '99.99999999') AS \"longitude\", line AS \"name\",\r\nCASE WHEN vehicle_type = 'BUS' THEN 1 WHEN vehicle_type = 'TRAM' THEN 2 ELSE 0 END AS \"metric\"\r\nFROM vehicle_location WHERE city_code = '${city_code}' AND time >= now() - interval '5 minutes' AND $__timeFilter(time) ORDER BY 1, 2 DESC;",
+          "rawSql": "SELECT DISTINCT ON (vehicle_number) vehicle_number, time, to_number(lat, '99.99999999') AS \"latitude\", to_number(lon, '99.99999999') AS \"longitude\", line AS \"name\",\r\nCASE WHEN vehicle_type = 'BUS' THEN 1 WHEN vehicle_type = 'TRAM' THEN 2 ELSE 0 END AS \"metric\"\r\nFROM vehicle_location WHERE city_code = 'WAWA' AND time >= now() - interval '5 minutes' AND $__timeFilter(time) ORDER BY 1, 2 DESC;",
           "refId": "Current Location",
           "select": [
             [
@@ -163,10 +180,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 11,
+        "h": 12,
         "w": 12,
         "x": 0,
-        "y": 13
+        "y": 14
       },
       "id": 2,
       "interval": "10s",
@@ -251,7 +268,7 @@
         "h": 5,
         "w": 3,
         "x": 12,
-        "y": 13
+        "y": 14
       },
       "id": 6,
       "interval": "1m",
@@ -271,12 +288,16 @@
       "pluginVersion": "8.4.0-beta1",
       "targets": [
         {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PA942B37CCFAF5A81"
+          },
           "format": "table",
           "group": [],
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT now() as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = '${city_code}' AND vehicle_type = 'BUS' AND time >= now() - interval '5 minutes' GROUP BY time_range ORDER BY time_range DESC;",
+          "rawSql": "SELECT now() as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = 'WAWA' AND vehicle_type = 'BUS' AND time >= now() - interval '5 minutes' GROUP BY time_range ORDER BY time_range DESC;",
           "refId": "Buses",
           "select": [
             [
@@ -336,7 +357,7 @@
         "h": 5,
         "w": 3,
         "x": 15,
-        "y": 13
+        "y": 14
       },
       "id": 7,
       "interval": "1m",
@@ -356,12 +377,16 @@
       "pluginVersion": "8.4.0-beta1",
       "targets": [
         {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PA942B37CCFAF5A81"
+          },
           "format": "table",
           "group": [],
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT now() as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = '${city_code}' AND vehicle_type = 'TRAM' AND time >= now() - interval '5 minutes' GROUP BY time_range ORDER BY time_range DESC;",
+          "rawSql": "SELECT now() as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = 'WAWA' AND vehicle_type = 'TRAM' AND time >= now() - interval '5 minutes' GROUP BY time_range ORDER BY time_range DESC;",
           "refId": "Trams",
           "select": [
             [
@@ -385,6 +410,19 @@
       ],
       "title": "Trams",
       "type": "gauge"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "id": 11,
+      "panels": [],
+      "title": "Delays",
+      "type": "row"
     }
   ],
   "refresh": "10s",
@@ -394,41 +432,7 @@
     "WAWA"
   ],
   "templating": {
-    "list": [
-      {
-        "current": {
-          "selected": true,
-          "text": "WAWA",
-          "value": "WAWA"
-        },
-        "hide": 0,
-        "includeAll": false,
-        "label": "City Code",
-        "multi": false,
-        "name": "city_code",
-        "options": [
-          {
-            "selected": true,
-            "text": "WAWA",
-            "value": "WAWA"
-          },
-          {
-            "selected": false,
-            "text": "STHLM",
-            "value": "STHLM"
-          },
-          {
-            "selected": false,
-            "text": "ROMA",
-            "value": "ROMA"
-          }
-        ],
-        "query": "WAWA,STHLM,ROMA",
-        "queryValue": "",
-        "skipUrlSync": false,
-        "type": "custom"
-      }
-    ]
+    "list": []
   },
   "time": {
     "from": "now-24h",
