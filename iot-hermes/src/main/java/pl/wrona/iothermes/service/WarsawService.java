@@ -40,7 +40,7 @@ public class WarsawService {
 
         vehicleDelayService.updateVehiclesWithDelay(vehicles);
 
-//        influxVehicles.updateVehicles(vehicles);
+        influxVehicles.updateVehicles(vehicles);
     }
 
 }
