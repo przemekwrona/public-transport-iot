@@ -66,7 +66,7 @@ public class WarsawTimetableService {
                                 .isOnStop(true)
                                 .hasTimetable(true)
                                 .route(timetable.getRoute())
-                                .timetableDeparture(if warsawStopDirectionService.isDirection(line, t) ? warsawStopService.timetable.getTime())
+                                .timetableDeparture(timetable.getTime())
                                 .stopId(stop.getWarsawStop().getGroup())
                                 .stopNumber(stop.getWarsawStop().getSlupek())
                                 .stopName(stop.getWarsawStop().getName())

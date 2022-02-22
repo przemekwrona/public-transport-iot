@@ -44,6 +44,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Timetable'
+  /stops/final-stops:
+    get:
+      summary: Return final stops for Warsaw
+      operationId: getFinalStops
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinalStop'
 components:
   schemas:
     Timetable:
@@ -86,4 +97,11 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Timetable'
+    FinalStop:
+      type: object
+      properties:
+        line:
+          type: string
+        stopName:
+          type: string
 

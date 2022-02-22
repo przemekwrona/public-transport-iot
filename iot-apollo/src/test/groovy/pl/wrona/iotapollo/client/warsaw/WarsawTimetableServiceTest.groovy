@@ -28,7 +28,7 @@ class WarsawTimetableServiceTest extends Specification {
 
   def warsawStopService = new WarsawStopService(warsawApiService, warsawStopDirectionService)
 
-  def warsawTimetableService = new WarsawTimetableService(warsawApiService, warsawStopService)
+  def warsawTimetableService = new WarsawTimetableService(warsawApiService, warsawStopService, warsawStopDirectionService)
 
   def setup() {
     warsawUmApiConfiguration.getApikey() >> API_KEY
