@@ -2,6 +2,7 @@ package pl.wrona.iotapollo.client.warsaw
 
 
 import pl.wrona.iotapollo.WarsawUmApiConfiguration
+import pl.wrona.iotapollo.services.WarsawStopDirectionService
 import pl.wrona.warsaw.transport.api.model.WarsawTimetables
 import spock.lang.Specification
 
@@ -23,7 +24,9 @@ class WarsawTimetableServiceTest extends Specification {
 
   def warsawApiService = new WarsawApiService(warsawUmApiConfiguration, warsawApiClient)
 
-  def warsawStopService = new WarsawStopService(warsawApiService)
+  def warsawStopDirectionService = new WarsawStopDirectionService()
+
+  def warsawStopService = new WarsawStopService(warsawApiService, warsawStopDirectionService)
 
   def warsawTimetableService = new WarsawTimetableService(warsawApiService, warsawStopService)
 
@@ -105,9 +108,11 @@ class WarsawTimetableServiceTest extends Specification {
     then:
     warsawDeparture != null
     warsawDeparture.getBrigade() == BRIGADE
-    warsawDeparture.getDirection() == DIRECTION
+    warsawDeparture.getVehicleDirection() == DIRECTION
     warsawDeparture.getRoute() == ROUTE
     warsawDeparture.getTimetableDeparture() == MAPPED_TIME
+
+//    warsawStopDirectionService.isDirection(LINE, DIRECTION)
 
     where:
     TIME                 | LAT      | LON      | STOP_ID | STOP_NUMBER | STOP_NAME  | LINE | BRIGADE | DIRECTION    | ROUTE      | MAPPED_TIME

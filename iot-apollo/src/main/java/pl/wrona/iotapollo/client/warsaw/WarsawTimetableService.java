@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.wrona.iot.apollo.api.model.Timetable;
+import pl.wrona.iotapollo.services.WarsawStopDirectionService;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -29,6 +30,7 @@ public class WarsawTimetableService {
 
     private final WarsawApiService warsawApiService;
     private final WarsawStopService warsawStopService;
+    private WarsawStopDirectionService warsawStopDirectionService;
 
     @Data
     @Builder
@@ -63,16 +65,15 @@ public class WarsawTimetableService {
                                 .brigade(brigade)
                                 .isOnStop(true)
                                 .hasTimetable(true)
-                                .direction(timetable.getDirection())
                                 .route(timetable.getRoute())
-                                .timetableDeparture(timetable.getTime())
+                                .timetableDeparture(if warsawStopDirectionService.isDirection(line, t) ? warsawStopService.timetable.getTime())
                                 .stopId(stop.getWarsawStop().getGroup())
                                 .stopNumber(stop.getWarsawStop().getSlupek())
                                 .stopName(stop.getWarsawStop().getName())
                                 .stopLat(stop.getWarsawStop().getLat())
                                 .stopLon(stop.getWarsawStop().getLon())
                                 .stopDistance(stop.getWarsawStop().distance(lat, lon))
-                                .stopDirection(stop.getWarsawStop().getDirection())
+                                .vehicleDirection(timetable.getDirection())
                                 .build()))
 
                 .collect(Collectors.toList());
@@ -113,8 +114,8 @@ public class WarsawTimetableService {
                 .line(line)
                 .brigade(brigade)
                 .arrivalTime(time)
-                .vehicleDirection(warsawDeparture.getDirection())
                 .vahicleRoute(warsawDeparture.getRoute())
+                .vehicleDirection(warsawDeparture.getVehicleDirection())
                 .isOnStop(warsawDeparture.isOnStop())
                 .hasTimetable(warsawDeparture.isHasTimetable())
                 .stopId(warsawDeparture.getStopId())
@@ -126,8 +127,7 @@ public class WarsawTimetableService {
                         .orElse(null))
                 .stopLat(warsawDeparture.getStopLat())
                 .stopLon(warsawDeparture.getStopLon())
-                .stopDistance(BigDecimal.valueOf(warsawDeparture.getStopDistance()))
-                .stopDirection(warsawDeparture.getStopDirection()));
+                .stopDistance(BigDecimal.valueOf(warsawDeparture.getStopDistance())));
     }
 
 

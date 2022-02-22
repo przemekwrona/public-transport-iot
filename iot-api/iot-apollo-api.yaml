@@ -79,8 +79,6 @@ components:
         stopLat:
           type: number
           format: float
-        stopDirection:
-          type: string
         stopDistance:
           description: Distace to closest stop in meters
           type: number
