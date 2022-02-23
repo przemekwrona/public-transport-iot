@@ -26,10 +26,10 @@ public class InfluxVehicles {
 
         vehicles.stream()
                 .map(vehicle -> Point.measurement("vehicle_location")
-                        .time(vehicle.getTime(), WritePrecision.MS)
-                        .addField("city_code", vehicle.getCityCode().name())
+                        .time(vehicle.getTime(), WritePrecision.S)
+                        .addTag("city_code", vehicle.getCityCode().name())
+                        .addTag("vehicle_number", vehicle.getVehicleNumber())
                         .addField("vehicle_type", vehicle.getVehicleType().name())
-                        .addField("vehicle_number", vehicle.getVehicleNumber())
                         .addField("line", vehicle.getLine())
                         .addField("lat", vehicle.getLat())
                         .addField("lon", vehicle.getLon())
