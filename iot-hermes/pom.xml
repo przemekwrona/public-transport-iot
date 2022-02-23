@@ -3,35 +3,42 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.2</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <groupId>pl.wrona</groupId>
+    <artifactId>public-transport-iot</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>pl.wrona</groupId>
   <artifactId>iot-hermes</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
 
   <name>iot-hermes</name>
   <description>iot-hermes</description>
 
   <properties>
     <java.version>11</java.version>
-    <spring-cloud.version>3.1.0</spring-cloud.version>
     <springfox.version>3.0.0</springfox.version>
     <validation-api.version>2.0.1.Final</validation-api.version>
     <swagger-annotations.version>1.6.2</swagger-annotations.version>
     <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
     <validation-api.version>2.0.1.Final</validation-api.version>
-    <spock.version>2.0-groovy-3.0</spock.version>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -45,7 +52,6 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-openfeign</artifactId>
-      <version>${spring-cloud.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -111,14 +117,10 @@
     <dependency>
       <groupId>org.spockframework</groupId>
       <artifactId>spock-core</artifactId>
-      <version>${spock.version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.spockframework</groupId>
       <artifactId>spock-spring</artifactId>
-      <version>${spock.version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.h2database</groupId>

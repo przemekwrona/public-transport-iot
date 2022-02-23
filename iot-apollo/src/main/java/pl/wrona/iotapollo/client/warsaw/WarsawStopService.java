@@ -69,7 +69,6 @@ public class WarsawStopService {
 
     public List<WarsawStop> getStopsInAreaOf35m(float lat, float lon, String line) {
         return warsawApiService.getStops().stream()
-                .peek(stop -> warsawStopDirectionService.addDirection(line, stop.getDirection()))
                 .map(stop -> StopDistance.builder()
                         .warsawStop(stop)
                         .distance(stop.distance(lat, lon))

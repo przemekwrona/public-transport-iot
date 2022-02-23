@@ -52,7 +52,7 @@ services:
   influxdb:
     image: influxdb:latest
     container_name: influxdb
-    restart: always
+    restart: unless-stopped
     ports:
       - "8086:8086"
     environment:
@@ -62,6 +62,7 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=public-transport
       - DOCKER_INFLUXDB_INIT_BUCKET=vehicles-bucket
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=Y3oa11jMBJKnxTuXVNWXcpFZDryOb88F4re4LFMer3cucUixrBP0pl0W27ePhMG0hsKbHgkfVjs2VhLKJmh2ew==
+      - DOCKER_INFLUXDB_INIT_RETENTION=1w
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
