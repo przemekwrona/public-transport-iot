@@ -60,6 +60,7 @@ public class WarsawTimetableService {
                         .build())
                 .flatMap(stop -> stop.getDepartures().stream()
                         .filter(timetable -> timetable.getBrigade().equals(brigade))
+                        .peek(timetable -> warsawStopDirectionService.addDirection(line, timetable.getDirection()))
                         .map(timetable -> WarsawStopDepartures.builder()
                                 .line(line)
                                 .brigade(brigade)
