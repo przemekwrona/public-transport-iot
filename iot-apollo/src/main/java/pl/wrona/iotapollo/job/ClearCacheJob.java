@@ -1,5 +1,6 @@
 package pl.wrona.iotapollo.job;
 
+import io.micrometer.core.annotation.Timed;
 import lombok.AllArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,7 @@ public class ClearCacheJob {
 
 
     @Scheduled(cron = "0 0 4 * * ?")
+    @Timed(value = "iot_apollo_clear_caches_and_load_stops_and_timetables")
     public void clearAllCachesAndLoadStopsAndTimetables() {
         cacheService.clearCache();
 
