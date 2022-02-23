@@ -76,7 +76,6 @@ public class WarsawTimetableService {
                                 .stopDistance(stop.getWarsawStop().distance(lat, lon))
                                 .vehicleDirection(timetable.getDirection())
                                 .build()))
-
                 .collect(Collectors.toList());
     }
 
