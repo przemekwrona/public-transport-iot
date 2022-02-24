@@ -31,7 +31,7 @@ public class WarsawService {
         List<VehicleLocation> trams = warsawPublicTransportService.getTrams();
 
         List<VehicleLocation> vehicles = Stream.concat(buses.stream(), trams.stream())
-                .filter(vehicle -> vehicle.getTime().isAfter(Instant.now().minusSeconds(20)))
+//                .filter(vehicle -> vehicle.getTime().isAfter(Instant.now().minusSeconds(20)))
                 .collect(Collectors.toList());
 
         vehicleLocationService.updateVehicles(vehicles);
