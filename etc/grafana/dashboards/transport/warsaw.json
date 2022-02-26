@@ -244,6 +244,7 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "max": 1,
           "min": 0,
           "noValue": "0",
           "thresholds": {
@@ -333,6 +334,7 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "max": 1,
           "min": 0,
           "noValue": "0",
           "thresholds": {

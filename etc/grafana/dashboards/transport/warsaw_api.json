@@ -148,6 +148,7 @@
           ],
           "max": 1,
           "min": 0,
+          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
