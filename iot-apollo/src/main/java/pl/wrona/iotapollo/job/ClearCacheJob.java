@@ -17,7 +17,7 @@ public class ClearCacheJob {
     private final WarsawApiService warsawApiService;
 
 
-    @Scheduled(cron = "0 0 4 * * ?")
+    @Scheduled(cron = "0 0 3 * * ?")
     @Timed(value = "iot_apollo_clear_caches_and_load_stops_and_timetables")
     public void clearAllCachesAndLoadStopsAndTimetables() {
         cacheService.clearCache();
