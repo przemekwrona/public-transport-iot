@@ -3,6 +3,7 @@ package pl.wrona.iotapollo.client.warsaw;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
@@ -16,7 +17,7 @@ public class WarsawStopDepartures {
     private boolean isOnStop;
     private boolean hasTimetable;
 
-    private LocalTime timetableDeparture;
+    private LocalDateTime timetableDeparture;
 
     private String stopId;
     private String stopNumber;

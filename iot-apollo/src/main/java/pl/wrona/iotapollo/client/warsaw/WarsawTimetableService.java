@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import pl.wrona.iot.apollo.api.model.EdgeTimetable;
+import pl.wrona.iot.apollo.api.model.EdgeTimetables;
 import pl.wrona.iot.apollo.api.model.Timetable;
 import pl.wrona.iotapollo.services.WarsawFinalStopService;
 
@@ -16,10 +18,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Slf4j
 @Service
@@ -122,7 +127,7 @@ public class WarsawTimetableService {
                 .stopNumber(warsawDeparture.getStopNumber())
                 .stopName(warsawDeparture.getStopName())
                 .timetableDepartureDate(Optional.ofNullable(warsawDeparture.getTimetableDeparture())
-                        .map(timetableDate -> LocalDateTime.of(LocalDate.now(), warsawDeparture.getTimetableDeparture())
+                        .map(timetableDate -> warsawDeparture.getTimetableDeparture()
                                 .atOffset(WARSAW_ZONE_ID.getRules().getOffset(time.toInstant())))
                         .orElse(null))
                 .stopLat(warsawDeparture.getStopLat())
@@ -130,5 +135,39 @@ public class WarsawTimetableService {
                 .stopDistance(BigDecimal.valueOf(warsawDeparture.getStopDistance())));
     }
 
+    public ResponseEntity<EdgeTimetables> getEdgeTimetables() {
+        return ResponseEntity.ok(new EdgeTimetables()
+                .mornigDeparture(buildEdgeTimetables(getMorningEdgeTimetable()))
+                .eveningDeparture(buildEdgeTimetables(getEveningEdgeTimetable())));
+    }
+
+    public EdgeTimetable buildEdgeTimetables(WarsawDepartures warsawDepartures) {
+        return new EdgeTimetable()
+                .line(warsawDepartures.getLine())
+                .departureDate(warsawDepartures.getTime().atOffset(WARSAW_ZONE_ID.getRules().getOffset(warsawDepartures.getTime())));
+    }
+
+    public WarsawDepartures getMorningEdgeTimetable() {
+        return warsawStopService.getStops().stream()
+                .map(warsawStop -> warsawStopService.getLinesOnStop(warsawStop.getGroup(), warsawStop.getSlupek()).getLines().stream()
+                        .map(line -> warsawApiService.getTimetable(warsawStop.getGroup(), warsawStop.getSlupek(), line))
+                        .flatMap(Collection::stream)
+                        .collect(Collectors.toList()))
+                .flatMap(Collection::stream)
+                .min(Comparator.comparing(WarsawDepartures::getTime))
+                .orElse(null);
+    }
+
+
+    public WarsawDepartures getEveningEdgeTimetable() {
+        return warsawStopService.getStops().stream()
+                .map(warsawStop -> warsawStopService.getLinesOnStop(warsawStop.getGroup(), warsawStop.getSlupek()).getLines().stream()
+                        .map(line -> warsawApiService.getTimetable(warsawStop.getGroup(), warsawStop.getSlupek(), line))
+                        .flatMap(Collection::stream)
+                        .collect(Collectors.toList()))
+                .flatMap(Collection::stream)
+                .max(Comparator.comparing(WarsawDepartures::getTime))
+                .orElse(null);
+    }
 
 }

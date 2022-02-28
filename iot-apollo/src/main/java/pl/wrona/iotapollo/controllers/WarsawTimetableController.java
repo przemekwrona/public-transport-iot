@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import pl.wrona.iot.apollo.api.TimetablesApi;
+import pl.wrona.iot.apollo.api.model.EdgeTimetable;
+import pl.wrona.iot.apollo.api.model.EdgeTimetables;
 import pl.wrona.iot.apollo.api.model.Timetable;
 import pl.wrona.iotapollo.client.warsaw.WarsawTimetableService;
 
@@ -15,6 +17,11 @@ import java.time.OffsetDateTime;
 public class WarsawTimetableController implements TimetablesApi {
 
     private final WarsawTimetableService warsawTimetableService;
+
+    @Override
+    public ResponseEntity<EdgeTimetables> getEdgeDepartures() {
+        return warsawTimetableService.getEdgeTimetables();
+    }
 
     @Override
     @Timed(value = "iot_apollo_api_get_timetables")
