@@ -64,7 +64,7 @@ public class WarsawApiService {
                 .map(ResponseEntity::getBody)
                 .map(WarsawTimetables::getResult)
                 .orElse(new LinkedList<>()).stream()
-                .map(WarsawDepartures::of)
+                .map(timetable -> WarsawDepartures.of(timetable, line))
                 .collect(Collectors.toList());
     }
 

@@ -44,6 +44,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Timetable'
+  /timetables/edge-departures:
+    get:
+      summary: Return edge departures during the day
+      operationId: getEdgeDepartures
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EdgeTimetables'
   /stops/final-stops:
     get:
       summary: Return final stops for Warsaw
@@ -97,6 +108,21 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Timetable'
+    EdgeTimetable:
+      type: object
+      properties:
+        line:
+          type: string
+        departureDate:
+          type: string
+          format: date-time
+    EdgeTimetables:
+      type: object
+      properties:
+        mornigDeparture:
+          $ref: '#/components/schemas/EdgeTimetable'
+        eveningDeparture:
+          $ref: '#/components/schemas/EdgeTimetable'
     FinalStop:
       type: object
       properties:

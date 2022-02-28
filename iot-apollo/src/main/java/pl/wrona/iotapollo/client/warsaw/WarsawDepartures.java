@@ -6,6 +6,8 @@ import lombok.Data;
 import pl.wrona.warsaw.transport.api.model.WarsawTimetable;
 import pl.wrona.warsaw.transport.api.model.WarsawTimetableValue;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -13,14 +15,16 @@ import java.util.List;
 @Builder
 public class WarsawDepartures {
 
+    private String line;
     private String brigade;
     private String direction;
     private String route;
-    private LocalTime time;
+    private LocalDateTime time;
 
 
-    public static WarsawDepartures of(WarsawTimetable warsawTimetable) {
+    public static WarsawDepartures of(WarsawTimetable warsawTimetable, String line) {
         return WarsawDepartures.builder()
+                .line(line)
                 .brigade(getValue(warsawTimetable.getValues(), "brygada"))
                 .direction(getValue(warsawTimetable.getValues(), "kierunek"))
                 .route(getValue(warsawTimetable.getValues(), "trasa"))
@@ -34,7 +38,7 @@ public class WarsawDepartures {
                 .map(WarsawTimetableValue::getValue).orElse("");
     }
 
-    private static LocalTime getTime(List<WarsawTimetableValue> values, String key) {
+    private static LocalDateTime getTime(List<WarsawTimetableValue> values, String key) {
         return values.stream()
                 .filter(value -> value.getKey().equals(key))
                 .findFirst()
@@ -42,12 +46,14 @@ public class WarsawDepartures {
                 .map(time -> {
                     String[] parts = time.split(":");
                     int hour = Integer.parseInt(parts[0]);
-                    if (hour >= 24) {
-                        hour = hour - 24;
-                    }
                     int minutes = Integer.parseInt(parts[1]);
                     int seconds = Integer.parseInt(parts[2]);
-                    return LocalTime.of(hour, minutes, seconds);
+
+                    if (hour >= 24) {
+                        return LocalDateTime.of(LocalDate.now().plusDays(1L), LocalTime.of(hour - 24, minutes, seconds));
+                    }
+
+                    return LocalDateTime.of(LocalDate.now(), LocalTime.of(hour, minutes, seconds));
                 })
                 .orElse(null);
     }
