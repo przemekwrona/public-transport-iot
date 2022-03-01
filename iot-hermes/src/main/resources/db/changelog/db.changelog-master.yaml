@@ -75,17 +75,17 @@ databaseChangeLog:
             indexName: city_code_and_time_index
             tableName: VEHICLE_LOCATION
             unique: false
-        - createIndex:
-            clustered: false
-            columns:
-              - column:
-                  name: VEHICLE_NUMBER
-              - column:
-                  name: TIME
-                  descending: true
-            indexName: vehicle_number_and_time_index
-            tableName: VEHICLE_LOCATION
-            unique: true
+#        - createIndex:
+#            clustered: false
+#            columns:
+#              - column:
+#                  name: VEHICLE_NUMBER
+#              - column:
+#                  name: TIME
+#                  descending: true
+#            indexName: vehicle_number_and_time_index
+#            tableName: VEHICLE_LOCATION
+#            unique: true
   - changeSet:
       id: create-table-vehicle-timetable-delay
       author: pwrona
