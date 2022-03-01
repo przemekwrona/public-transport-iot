@@ -12,9 +12,9 @@ services:
       - PROFILE=pi
       - APOLLO_SERVICE_PATH=http://apollo:8181
     depends_on:
+      - apollo
       - postgres
       - influxdb
-      - apollo
       - kafka
   apollo:
     build:
