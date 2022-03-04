@@ -91,6 +91,11 @@ services:
       - hermes
       - apollo
       - demeter
+      - node_exporter
+  node_exporter:
+    image: bitnami/node-exporter:latest
+    container_name: node_exporter
+    restart: unless-stopped
     #  promtail:
     #    image: grafana/promtail
     #    ports:
@@ -133,11 +138,11 @@ services:
   #volumes:
   #  elasticsearch:
 
-  zookeeper:
-    image: bitnami/zookeeper:latest
-    container_name: zookeeper
-  kafka:
-    image: bitnami/kafka:latest
-    container_name: kafka
-    depends_on:
-      - zookeeper
+#  zookeeper:
+#    image: bitnami/zookeeper:latest
+#    container_name: zookeeper
+#  kafka:
+#    image: bitnami/kafka:latest
+#    container_name: kafka
+#    depends_on:
+#      - zookeeper
