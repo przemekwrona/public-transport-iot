@@ -15,6 +15,7 @@ public class WarsawStopDepartures {
     private String route;
 
     private boolean isOnStop;
+    private boolean isOnFirstStop;
     private boolean hasTimetable;
 
     private LocalDateTime timetableDeparture;

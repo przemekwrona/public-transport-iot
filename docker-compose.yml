@@ -15,7 +15,6 @@ services:
       - apollo
       - postgres
       - influxdb
-      - kafka
   apollo:
     build:
       context: ./iot-apollo

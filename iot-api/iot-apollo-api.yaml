@@ -75,10 +75,10 @@ components:
           type: string
         brigade:
           type: string
-        timetableDepartureDate:
+        arrivalTime:
           type: string
           format: date-time
-        arrivalTime:
+        timetableDepartureDate:
           type: string
           format: date-time
         vehicleDirection:
@@ -86,6 +86,8 @@ components:
         vahicleRoute:
           type: string
         is_on_stop:
+          type: boolean
+        is_on_first_stop:
           type: boolean
         has_timetable:
           type: boolean
