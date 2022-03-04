@@ -9,3 +9,11 @@ providers:
     editable: false
     options:
       path: /var/lib/grafana/dashboards/transport
+  - name: 'Node'
+    orgId: 1
+    folder: 'Node'
+    type: file
+    disableDeletion: true
+    editable: false
+    options:
+      path: /var/lib/grafana/dashboards/node
