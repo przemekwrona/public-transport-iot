@@ -1,0 +1,11 @@
+### GET Stops
+GET 192.168.0.20:8181/stops
+Accept: application/json
+
+### GET Final stops
+GET 192.168.0.20:8181/stops/final-stops
+Accept: application/json
+
+### GET Final stops
+GET 192.168.0.20:8181/timetables/edge-departures
+Accept: application/json
