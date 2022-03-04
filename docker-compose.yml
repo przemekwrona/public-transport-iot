@@ -93,7 +93,7 @@ services:
       - demeter
       - node_exporter
   node_exporter:
-    image: bitnami/node-exporter:latest
+    image: bitnami/node-snapshot:latest
     container_name: node_exporter
     restart: unless-stopped
     #  promtail:
