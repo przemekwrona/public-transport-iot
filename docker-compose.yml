@@ -12,9 +12,9 @@ services:
       - PROFILE=pi
       - APOLLO_SERVICE_PATH=http://apollo:8181
     depends_on:
-      - apollo
       - postgres
       - influxdb
+      - apollo
   apollo:
     build:
       context: ./iot-apollo
@@ -61,7 +61,7 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=public-transport
       - DOCKER_INFLUXDB_INIT_BUCKET=vehicles-bucket
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=Y3oa11jMBJKnxTuXVNWXcpFZDryOb88F4re4LFMer3cucUixrBP0pl0W27ePhMG0hsKbHgkfVjs2VhLKJmh2ew==
-      - DOCKER_INFLUXDB_INIT_RETENTION=3d
+      - DOCKER_INFLUXDB_INIT_RETENTION=3h
   grafana:
     image: grafana/grafana:latest
     container_name: grafana

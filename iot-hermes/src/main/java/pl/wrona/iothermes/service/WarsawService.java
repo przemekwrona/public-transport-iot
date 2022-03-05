@@ -35,7 +35,7 @@ public class WarsawService {
 
         vehicleLocationService.updateVehicles(vehicles);
 
-        log.info("Number of vehicles in response {}", vehicles.size());
+//        log.info("Number of vehicles in response {}", vehicles.size());
 
         vehicleDelayService.updateVehiclesWithDelay(vehicles);
 
