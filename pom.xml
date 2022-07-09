@@ -75,6 +75,6 @@
   <modules>
     <module>iot-hermes</module>
     <module>iot-demeter</module>
-    <module>iot-apollo</module>
+    <module>iot-timetable</module>
   </modules>
 </project>

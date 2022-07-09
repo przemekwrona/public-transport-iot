@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -26,6 +29,10 @@
   "panels": [
     {
       "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -34,51 +41,80 @@
       },
       "id": 9,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "General Information",
       "type": "row"
     },
     {
-      "circleMaxSize": "2",
-      "circleMinSize": "2",
-      "colors": [
-        "#1F60C4",
-        "#37872D",
-        "#C4162A"
-      ],
       "datasource": {
         "type": "postgres",
         "uid": "PA942B37CCFAF5A81"
       },
-      "decimals": 6,
-      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 13,
         "w": 24,
         "x": 0,
         "y": 1
       },
-      "hideEmpty": false,
-      "hideZero": false,
       "id": 4,
-      "initialZoom": "13",
       "interval": "10s",
-      "locationData": "table",
-      "mapCenter": "custom",
-      "mapCenterLatitude": "52.231",
-      "mapCenterLongitude": "21.000",
       "maxDataPoints": 5000,
-      "mouseWheelZoom": false,
-      "pluginVersion": "7.5.4",
-      "showLegend": false,
-      "stickyLabels": false,
-      "tableQueryOptions": {
-        "geohashField": "geohash",
-        "labelField": "name",
-        "latitudeField": "latitude",
-        "longitudeField": "longitude",
-        "metricField": "metric",
-        "queryType": "coordinates"
+      "options": {
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "id": "coords",
+          "lat": 52.23,
+          "lon": 21,
+          "zoom": 13
+        }
       },
+      "pluginVersion": "9.0.2",
       "targets": [
         {
           "datasource": {
@@ -112,13 +148,9 @@
           ]
         }
       ],
-      "thresholds": "1,2",
       "title": "Vehicles Live",
       "transformations": [],
-      "type": "grafana-worldmap-panel",
-      "unitPlural": "",
-      "unitSingle": "",
-      "valueName": "total"
+      "type": "geomap"
     },
     {
       "datasource": {
@@ -201,6 +233,10 @@
       "pluginVersion": "7.5.4",
       "targets": [
         {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PA942B37CCFAF5A81"
+          },
           "format": "table",
           "group": [],
           "hide": false,
@@ -284,7 +320,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "9.0.2",
       "targets": [
         {
           "datasource": {
@@ -373,7 +409,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "9.0.2",
       "targets": [
         {
           "datasource": {
@@ -412,6 +448,10 @@
     },
     {
       "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -420,49 +460,79 @@
       },
       "id": 11,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Delays",
       "type": "row"
     },
     {
-      "circleMaxSize": "2",
-      "circleMinSize": 2,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
       "datasource": {
         "type": "postgres",
         "uid": "PA942B37CCFAF5A81"
       },
-      "decimals": 0,
-      "esMetric": "Count",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 13,
         "w": 24,
         "x": 0,
         "y": 27
       },
-      "hideEmpty": false,
-      "hideZero": false,
       "id": 13,
-      "initialZoom": "13",
-      "locationData": "table",
-      "mapCenter": "custom",
-      "mapCenterLatitude": "52.231",
-      "mapCenterLongitude": "21.000",
       "maxDataPoints": 1,
-      "mouseWheelZoom": false,
-      "showLegend": true,
-      "stickyLabels": false,
-      "tableQueryOptions": {
-        "geohashField": "geohash",
-        "labelField": "line",
-        "latitudeField": "lat",
-        "longitudeField": "lon",
-        "metricField": "differences_in_seconds",
-        "queryType": "coordinates"
+      "options": {
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "id": "zero",
+          "lat": 0,
+          "lon": 0,
+          "zoom": 1
+        }
       },
+      "pluginVersion": "9.0.2",
       "targets": [
         {
           "datasource": {
@@ -495,16 +565,12 @@
           ]
         }
       ],
-      "thresholds": "0,10",
       "title": "Panel Title",
-      "type": "grafana-worldmap-panel",
-      "unitPlural": "",
-      "unitSingle": "",
-      "valueName": "current"
+      "type": "geomap"
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 35,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
     "WAWA"
