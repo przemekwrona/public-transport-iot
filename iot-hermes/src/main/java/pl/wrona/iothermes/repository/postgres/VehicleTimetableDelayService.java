@@ -22,7 +22,7 @@ public class VehicleTimetableDelayService {
     private final ApolloTimetableService apolloTimetableService;
 
     public void updateVehiclesWithDelay(List<VehicleLocation> vehicles) {
-        List<VehicleTimetableDelay> vehicleDelays = vehicles.stream()
+        List<VehicleTimetableDelay> vehicleDelays = vehicles.stream().parallel()
                 .map(vehicle -> {
                     Timetable timetable = apolloTimetableService.getTimetable(vehicle.getTime(),
                             vehicle.getLat(),

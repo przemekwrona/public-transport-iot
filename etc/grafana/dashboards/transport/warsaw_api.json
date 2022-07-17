@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -26,6 +29,10 @@
   "panels": [
     {
       "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -34,6 +41,15 @@
       },
       "id": 13,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "System availability",
       "type": "row"
     },
@@ -84,8 +100,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 2,
+        "h": 5,
+        "w": 3,
         "x": 0,
         "y": 1
       },
@@ -103,9 +119,13 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "9.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
           "expr": "up{job=\"hermes\"}",
           "interval": "",
@@ -165,9 +185,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 2,
-        "x": 2,
+        "h": 5,
+        "w": 3,
+        "x": 3,
         "y": 1
       },
       "id": 4,
@@ -184,31 +204,48 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "9.0.3",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P1809F7CD0C75ACF3"
+          },
           "exemplar": true,
-          "expr": "up{job=\"apollo\"}",
+          "expr": "up{job=\"iot-timetable\"}",
           "interval": "",
           "legendFormat": "",
           "queryType": "randomWalk",
           "refId": "A"
         }
       ],
-      "title": "Apollo",
+      "title": "Timetable",
       "transparent": true,
       "type": "gauge"
     },
     {
       "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 5
+        "y": 6
       },
       "id": 31,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Apollo",
       "type": "row"
     },
@@ -271,7 +308,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 6
+        "y": 7
       },
       "id": 33,
       "options": {
@@ -336,7 +373,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 6
+        "y": 7
       },
       "id": 16,
       "options": {
@@ -353,7 +390,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "9.0.3",
       "targets": [
         {
           "datasource": {
@@ -361,7 +398,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "http_server_requests_seconds_count{job=\"apollo\", uri=\"/timetables\", status=\"200\"}",
+          "expr": "http_server_requests_seconds_count{job=\"iot-timetable\", uri=\"/timetables\", status=\"200\"}",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -406,7 +443,7 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 6
+        "y": 7
       },
       "id": 15,
       "options": {
@@ -423,7 +460,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "9.0.3",
       "targets": [
         {
           "datasource": {
@@ -431,7 +468,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "http_server_requests_seconds_count{job=\"apollo\", uri=\"/timetables\", status=\"500\"}",
+          "expr": "http_server_requests_seconds_count{job=\"iot-timetable\", uri=\"/timetables\", status=\"500\"}",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -445,14 +482,27 @@
     },
     {
       "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 15
       },
       "id": 9,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Number of queries to Warsaw API",
       "type": "row"
     },
@@ -471,7 +521,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 15
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 2,
@@ -492,7 +542,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "9.0.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -507,7 +557,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "increase(warsaw_api_get_stops_seconds_count{job=\"apollo\"}[1m])",
+          "expr": "increase(warsaw_api_get_stops_seconds_count{job=\"iot-timetable\"}[1m])",
           "format": "table",
           "hide": false,
           "instant": false,
@@ -568,7 +618,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 15
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 7,
@@ -588,7 +638,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "9.0.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -603,7 +653,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "increase(warsaw_api_lines_on_stop_seconds_count{job=\"apollo\"}[1m])",
+          "expr": "increase(warsaw_api_lines_on_stop_seconds_count{job=\"iot-timetable\"}[1m])",
           "format": "table",
           "interval": "",
           "legendFormat": "",
@@ -661,7 +711,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 15
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 11,
@@ -681,7 +731,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.4.0-beta1",
+      "pluginVersion": "9.0.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -696,7 +746,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "increase(warsaw_api_timetables_seconds_count{job=\"apollo\"}[1m])",
+          "expr": "increase(warsaw_api_timetables_seconds_count{job=\"iot-timetable\"}[1m])",
           "format": "table",
           "interval": "",
           "legendFormat": "",
@@ -802,7 +852,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 23
+        "y": 24
       },
       "id": 22,
       "options": {
@@ -898,7 +948,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 23
+        "y": 24
       },
       "id": 23,
       "options": {
@@ -932,14 +982,27 @@
     },
     {
       "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 31
+        "y": 32
       },
       "id": 29,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Row title",
       "type": "row"
     },
@@ -960,7 +1023,7 @@
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 32
+        "y": 33
       },
       "hideEmpty": false,
       "hideZero": false,
@@ -1023,35 +1086,49 @@
       "valueName": "current"
     },
     {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 32
+        "y": 33
       },
       "id": 20,
       "options": {
         "alertInstanceLabelFilter": "",
         "alertName": "",
         "dashboardAlerts": false,
+        "groupBy": [],
+        "groupMode": "default",
         "maxItems": 20,
         "showInstances": false,
         "sortOrder": 1,
         "stateFilter": {
           "error": true,
           "firing": true,
-          "inactive": false,
           "noData": false,
           "normal": false,
           "pending": true
         }
       },
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Panel Title",
       "type": "alertlist"
     }
   ],
   "refresh": false,
-  "schemaVersion": 35,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [],
   "templating": {

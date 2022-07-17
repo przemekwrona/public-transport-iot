@@ -7,6 +7,6 @@ COPY target/*.jar iot-hermes.jar
 EXPOSE 8080
 
 ENV PROFILE=''
-ENV APOLLO_SERVICE_PATH = ''
+ENV IOT_TIMETABLE_SERVICE_PATH = ''
 
-ENTRYPOINT java -Dspring.profiles.active=${PROFILE} -Dapollo.api.url=${APOLLO_SERVICE_PATH} -jar iot-hermes.jar
+ENTRYPOINT java -Dspring.profiles.active=${PROFILE} -Dapollo.api.url=${IOT_TIMETABLE_SERVICE_PATH} -jar iot-hermes.jar
