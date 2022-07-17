@@ -1,5 +1,6 @@
 package pl.wrona.iot.timetable.client.warsaw;
 
+import io.micrometer.core.annotation.Timed;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -109,6 +110,7 @@ public class WarsawTimetableService {
                         .build());
     }
 
+    @Timed(value = "iot_apollo_api_get_timetables")
     public ResponseEntity<Timetable> getTimetableResponse(OffsetDateTime time, float lat, float lon, String line, String brigade) {
         WarsawStopDepartures warsawDeparture = getDeparture(time.toLocalTime(), lat, lon, line, brigade);
 

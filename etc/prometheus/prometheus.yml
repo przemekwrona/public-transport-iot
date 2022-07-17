@@ -13,7 +13,7 @@ scrape_configs:
     static_configs:
       - targets:
           - prometheus:9090
-  - job_name: apollo
+  - job_name: iot-timetable
     honor_timestamps: true
     scrape_interval: 5s
     scrape_timeout: 5s
@@ -22,7 +22,7 @@ scrape_configs:
     follow_redirects: true
     static_configs:
       - targets:
-          - apollo:8181
+          - iot-timetable:8181
   - job_name: demeter
     honor_timestamps: true
     scrape_interval: 5s

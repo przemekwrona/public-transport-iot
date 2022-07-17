@@ -10,20 +10,20 @@ services:
       - "8080:8080"
     environment:
       - PROFILE=pi
-      - APOLLO_SERVICE_PATH=http://apollo:8181
+      - IOT_TIMETABLE_SERVICE_PATH=http://iot-timetable:8181
     depends_on:
       - postgres
       - influxdb
-      - apollo
-  apollo:
+      - iot-timetable
+  iot-timetable:
     build:
-      context: ./iot-apollo
-    container_name: apollo
+      context: ./iot-timetable
+    container_name: iot-timetable
     restart: always
     ports:
       - "8181:8181"
     volumes:
-      - ./iot-apollo/logs:/apps/iot-apollo/logs
+      - ./iot-timetable/logs:/apps/iot-timetable/logs
     environment:
       - PROFILE=pi
   demeter:
@@ -88,7 +88,7 @@ services:
       - ./etc/prometheus/rules:/etc/prometheus/rules:ro
     depends_on:
       - hermes
-      - apollo
+      - iot-timetable
       - demeter
       - node_exporter
   node_exporter:

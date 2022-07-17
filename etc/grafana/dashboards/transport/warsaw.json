@@ -70,17 +70,43 @@
               "viz": false
             }
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "1": {
+                  "index": 0,
+                  "text": "BUS"
+                },
+                "2": {
+                  "index": 1,
+                  "text": "TRAM"
+                },
+                "3": {
+                  "index": 2,
+                  "text": "NIGHT"
+                }
+              },
+              "type": "value"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "text",
                 "value": null
               },
               {
-                "color": "red",
-                "value": 80
+                "color": "dark-green",
+                "value": 1
+              },
+              {
+                "color": "dark-red",
+                "value": 2
+              },
+              {
+                "color": "dark-blue",
+                "value": 3
               }
             ]
           }
@@ -97,6 +123,11 @@
       "interval": "10s",
       "maxDataPoints": 5000,
       "options": {
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "type": "default"
+        },
         "controls": {
           "mouseWheelZoom": true,
           "showAttribution": true,
@@ -104,6 +135,48 @@
           "showScale": false,
           "showZoom": true
         },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "field": "metric",
+                  "fixed": "dark-green"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "location": {
+              "mode": "auto"
+            },
+            "name": "Lines",
+            "tooltip": true,
+            "type": "markers"
+          }
+        ],
         "tooltip": {
           "mode": "details"
         },
@@ -114,7 +187,7 @@
           "zoom": 13
         }
       },
-      "pluginVersion": "9.0.2",
+      "pluginVersion": "9.0.3",
       "targets": [
         {
           "datasource": {
@@ -126,7 +199,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT DISTINCT ON (vehicle_number) vehicle_number, time, to_number(lat, '99.99999999') AS \"latitude\", to_number(lon, '99.99999999') AS \"longitude\", line AS \"name\",\r\nCASE WHEN vehicle_type = 'BUS' THEN 1 WHEN vehicle_type = 'TRAM' THEN 2 ELSE 0 END AS \"metric\"\r\nFROM vehicle_location WHERE city_code = 'WAWA' AND time >= now() - interval '5 minutes' AND $__timeFilter(time) ORDER BY 1, 2 DESC;",
+          "rawSql": "SELECT DISTINCT ON (vehicle_number) vehicle_number, time, to_number(lat, '99.99999999') AS \"latitude\", to_number(lon, '99.99999999') AS \"longitude\", line AS \"name\",\r\nCASE WHEN vehicle_type = 'BUS' AND line NOT LIKE 'N%' THEN 1 WHEN vehicle_type = 'TRAM' THEN 2 WHEN vehicle_type = 'BUS' AND line LIKE 'N%' THEN 3 ELSE 0 END AS \"metric\"\r\nFROM vehicle_location WHERE city_code = 'WAWA' AND time >= now() - interval '5 minutes' AND $__timeFilter(time) ORDER BY 1, 2 DESC;",
           "refId": "Current Location",
           "select": [
             [
@@ -317,10 +390,10 @@
           "values": true
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true,
+        "showThresholdMarkers": false,
         "text": {}
       },
-      "pluginVersion": "9.0.2",
+      "pluginVersion": "9.0.3",
       "targets": [
         {
           "datasource": {
@@ -332,7 +405,7 @@
           "hide": false,
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT now() as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = 'WAWA' AND vehicle_type = 'BUS' AND time >= now() - interval '5 minutes' GROUP BY time_range ORDER BY time_range DESC;",
+          "rawSql": "SELECT now() as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = 'WAWA' AND vehicle_type = 'BUS' AND line NOT LIKE 'N%' AND time >= now() - interval '5 minutes' GROUP BY time_range ORDER BY time_range DESC;",
           "refId": "Buses",
           "select": [
             [
@@ -406,10 +479,10 @@
           "values": false
         },
         "showThresholdLabels": false,
-        "showThresholdMarkers": true,
+        "showThresholdMarkers": false,
         "text": {}
       },
-      "pluginVersion": "9.0.2",
+      "pluginVersion": "9.0.3",
       "targets": [
         {
           "datasource": {
@@ -444,6 +517,95 @@
         }
       ],
       "title": "Trams",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "PA942B37CCFAF5A81"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              },
+              {
+                "color": "dark-blue",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 18,
+        "y": 14
+      },
+      "id": 14,
+      "interval": "1m",
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": false,
+        "text": {}
+      },
+      "pluginVersion": "9.0.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PA942B37CCFAF5A81"
+          },
+          "format": "table",
+          "group": [],
+          "hide": false,
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT now() as time_range, COUNT(DISTINCT vehicle_number) as metric \r\nFROM vehicle_location WHERE city_code = 'WAWA' AND vehicle_type = 'BUS' AND line LIKE 'N%' AND time >= now() - interval '5 minutes' GROUP BY time_range ORDER BY time_range DESC;",
+          "refId": "Trams",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Night",
       "type": "gauge"
     },
     {
@@ -532,7 +694,7 @@
           "zoom": 1
         }
       },
-      "pluginVersion": "9.0.2",
+      "pluginVersion": "9.0.3",
       "targets": [
         {
           "datasource": {

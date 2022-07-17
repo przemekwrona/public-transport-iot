@@ -10,7 +10,6 @@ import pl.wrona.iothermes.repository.InfluxVehicles;
 import pl.wrona.iothermes.repository.postgres.VehicleTimetableDelayService;
 import pl.wrona.iothermes.repository.postgres.VehicleLocationService;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -33,13 +32,15 @@ public class WarsawService {
         List<VehicleLocation> vehicles = Stream.concat(buses.stream(), trams.stream())
                 .collect(Collectors.toList());
 
-        vehicleLocationService.updateVehicles(vehicles);
 
 //        log.info("Number of vehicles in response {}", vehicles.size());
 
+        Thread thread = new Thread(() -> vehicleLocationService.updateVehicles(vehicles));
+        thread.start();
+
         vehicleDelayService.updateVehiclesWithDelay(vehicles);
 
-        influxVehicles.updateVehicles(vehicles);
+//        influxVehicles.updateVehicles(vehicles);
     }
 
 }
