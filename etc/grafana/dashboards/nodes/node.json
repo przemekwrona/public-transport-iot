@@ -28,7 +28,7 @@
       },
       "id": 4,
       "panels": [],
-      "title": "Node",
+      "title": "Nodes",
       "type": "row"
     },
     {
@@ -164,7 +164,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Node",
+  "title": "Nodes",
   "uid": "SmFGphYnz",
   "version": 1
 }
