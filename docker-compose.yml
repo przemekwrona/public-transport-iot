@@ -26,18 +26,18 @@ services:
       - ./iot-timetable/logs:/apps/iot-timetable/logs
     environment:
       - PROFILE=pi
-  demeter:
-    build:
-      context: ./iot-demeter
-      dockerfile: Dockerfile
-    container_name: demeter
-    restart: always
-    ports:
-      - "8282:8282"
-    environment:
-      - PROFILE=pi
     depends_on:
-      - postgres
+      - iot_timetable_db
+  iot_timetable_db:
+    image: 'timescale/timescaledb:latest-pg14'
+    restart: always
+    container_name: iot_timetable_db
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=welcome1
+      - POSTGRES_DB=timetable_db
   postgres:
     image: 'postgres'
     restart: always

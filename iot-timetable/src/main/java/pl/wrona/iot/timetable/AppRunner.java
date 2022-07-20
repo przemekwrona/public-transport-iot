@@ -13,7 +13,6 @@ import pl.wrona.iot.timetable.client.warsaw.WarsawTimetableService;
 public class AppRunner implements CommandLineRunner {
 
     private final WarsawStopService warsawStopService;
-    private final WarsawTimetableService timetableService;
 
     @Override
     public void run(String... args) throws Exception {
