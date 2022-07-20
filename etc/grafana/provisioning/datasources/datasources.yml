@@ -11,14 +11,14 @@ datasources:
     jsonData:
       sslmode: "disable"
   - name: iot_timetable_db
-      type: iot_timetable_db
-      url: iot_timetable_db:5432
-      database: timetable_db
-      user: user
-      secureJsonData:
-        password: welcome1
-      jsonData:
-        sslmode: "disable"
+    type: iot_timetable_db
+    url: iot_timetable_db:5432
+    database: timetable_db
+    user: user
+    secureJsonData:
+      password: welcome1
+    jsonData:
+      sslmode: "disable"
   - name: influxdb
     type: influxdb
     access: proxy
