@@ -89,7 +89,6 @@ services:
     depends_on:
       - hermes
       - iot-timetable
-      - demeter
       - node_exporter
   node_exporter:
     image: prom/node-exporter:latest
