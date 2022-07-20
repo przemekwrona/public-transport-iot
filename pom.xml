@@ -14,6 +14,8 @@
   <properties>
     <spring-boot.version>2.6.2</spring-boot.version>
     <spring-cloud.version>3.0.1</spring-cloud.version>
+    <liquibase.version>4.7.0</liquibase.version>
+    <postgres-driver.version>42.3.1</postgres-driver.version>
     <validation-api.version>2.0.1.Final</validation-api.version>
     <swagger-annotations.version>1.6.2</swagger-annotations.version>
     <springfox.version>2.9.2</springfox.version>
@@ -31,6 +33,16 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-openfeign</artifactId>
         <version>${spring-cloud.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-core</artifactId>
+        <version>${liquibase.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>${postgres-driver.version}</version>
       </dependency>
       <dependency>
         <groupId>javax.validation</groupId>

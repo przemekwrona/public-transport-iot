@@ -1,0 +1,62 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-timetables
+      author: pwrona
+      changes:
+        - createTable:
+            tableName: TIMETABLES
+            columns:
+              - column:
+                  name: LINE
+                  type: varchar2(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: BRIGADE
+                  type: varchar2(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: STOP_ID
+                  type: varchar2(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: STOP_NUMBER
+                  type: varchar2(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: STOP_NAME
+                  type: varchar2(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: LON
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: LAT
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: TIMETABLE_DEPARTURE_DATE
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ARRIVAL_DATE
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: DEPARTURE_DATE
+                  type: timestamp
+                  constraints:
+                    nullable: true
+        - addPrimaryKey:
+            columnNames: LINE, BRIGADE, TIMETABLE_DEPARTURE_DATE
+            constraintName: pk_timetables
+            tableName: timetables

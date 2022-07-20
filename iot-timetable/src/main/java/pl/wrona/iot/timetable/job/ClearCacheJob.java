@@ -24,7 +24,8 @@ public class ClearCacheJob {
 
         warsawStopService.getStops()
                 .forEach(warsawStop -> warsawStopService.getLinesOnStop(warsawStop.getGroup(), warsawStop.getSlupek()).getLines()
-                        .forEach(line -> warsawApiService.getTimetable(warsawStop.getGroup(), warsawStop.getSlupek(), line)));
+                        .forEach(line -> warsawStopService.saveTimetable(warsawStop.getGroup(), warsawStop.getSlupek(),
+                                warsawApiService.getTimetable(warsawStop.getGroup(), warsawStop.getSlupek(), line))));
     }
 
 }

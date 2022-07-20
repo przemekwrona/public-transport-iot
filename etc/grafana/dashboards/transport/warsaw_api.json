@@ -329,7 +329,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "rate(iot_apollo_api_get_timetables_seconds_sum{job=\"apollo\"}[1m])/rate(iot_apollo_api_get_timetables_seconds_count{job=\"apollo\"}[1m])",
+          "expr": "rate(iot_apollo_api_get_timetables_seconds_sum{job=\"iot-timetable\"}[1m])/rate(iot_apollo_api_get_timetables_seconds_count{job=\"iot-timetable\"}[1m])",
           "format": "table",
           "instant": false,
           "interval": "",

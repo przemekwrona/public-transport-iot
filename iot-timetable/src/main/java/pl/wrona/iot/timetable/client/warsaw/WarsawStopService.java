@@ -6,9 +6,13 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import pl.wrona.iot.timetable.entity.TimetableRepository;
+import pl.wrona.iot.timetable.entity.Timetables;
 import pl.wrona.iot.timetable.services.WarsawFinalStopService;
 import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
 
+import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +24,7 @@ public class WarsawStopService {
 
     private final WarsawApiService warsawApiService;
     private final WarsawFinalStopService warsawStopDirectionService;
+    private final TimetableRepository timetableRepository;
 
     @Data
     @Builder
@@ -82,6 +87,14 @@ public class WarsawStopService {
                 .collect(Collectors.toList());
     }
 
+    @Cacheable(cacheNames = "stopInWarsawCache")
+    public WarsawStop getWarsawStop(String stopId, String stopNumber) {
+        return getStops().stream()
+                .filter(stop -> stop.getGroup().equals(stopId))
+                .filter(stop -> stop.getSlupek().equals(stopNumber))
+                .findFirst().orElse(null);
+    }
+
     @Cacheable(cacheNames = "linesOnStopInWarsawCache")
     public WarsawLineOnStop getLinesOnStop(String stopId, String stopNumber) {
         List<String> linesOnStop = warsawApiService.getLinesOnStop(stopId, stopNumber);
@@ -97,7 +110,35 @@ public class WarsawStopService {
     }
 
     public boolean hasTimetableOnStop(String stopId, String stopNumber, String line) {
-        return !warsawApiService.getTimetable(stopId, stopNumber, line).isEmpty();
+        List<WarsawDepartures> timetables = warsawApiService.getTimetable(stopId, stopNumber, line);
+        saveTimetable(stopId, stopNumber, timetables);
+        return !timetables.isEmpty();
+    }
+
+    @Transactional
+    public void saveTimetable(String stopId, String stopNumber, List<WarsawDepartures> timetables) {
+        WarsawStop warsawStop = getWarsawStop(stopId, stopNumber);
+
+        timetableRepository.saveAll(timetables.stream()
+                .map(timetable -> Timetables.builder()
+                        .stopId(warsawStop.getGroup())
+                        .stopNumber(warsawStop.getSlupek())
+                        .stopName(warsawStop.getName())
+                        .lon(warsawStop.getLon())
+                        .lat(warsawStop.getLat())
+                        .line(timetable.getLine())
+                        .brigade(timetable.getBrigade())
+                        .timetableDepartureDate(timetable.getTime())
+                        .build())
+                .collect(Collectors.toList()));
+    }
+
+    public Timetables lastVisitedStop(String line, String brigade) {
+        return timetableRepository.findTopByLineAndBrigadeAndDepartureDateIsNotNull(line, brigade);
+    }
+
+    public List<Timetables> findTimetables(String line, String brigade, LocalDateTime localDateTime) {
+        return timetableRepository.findTop10ByLineAndBrigadeAndTimetableDepartureDateGreaterThan(line, brigade, localDateTime.toLocalDate().atStartOfDay());
     }
 
 }
