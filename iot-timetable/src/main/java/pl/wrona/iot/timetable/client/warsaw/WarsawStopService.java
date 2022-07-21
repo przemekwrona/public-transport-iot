@@ -110,9 +110,7 @@ public class WarsawStopService {
     }
 
     public boolean hasTimetableOnStop(String stopId, String stopNumber, String line) {
-        List<WarsawDepartures> timetables = warsawApiService.getTimetable(stopId, stopNumber, line);
-        saveTimetable(stopId, stopNumber, timetables);
-        return !timetables.isEmpty();
+        return !warsawApiService.getTimetable(stopId, stopNumber, line).isEmpty();
     }
 
     @Transactional
