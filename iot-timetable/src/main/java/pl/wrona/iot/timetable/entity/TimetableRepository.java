@@ -9,7 +9,9 @@ public interface TimetableRepository extends JpaRepository<Timetables, Timetable
 
     Timetables findTopByLineAndBrigadeAndDepartureDateIsNotNull(String line, String brigade);
 
-    List<Timetables> findTop10ByLineAndBrigadeAndTimetableDepartureDateGreaterThan(String line, String brigade, LocalDateTime date);
+    List<Timetables> findByLineAndBrigadeAndStopIdAndStopNumberAndTimetableDepartureDateBetween(String line, String brigade, String stopId, String stopNumber, LocalDateTime startDate, LocalDateTime endDate);
+
+    List<Timetables> findByLineAndBrigadeAndTimetableDepartureDateBetween(String line, String brigade, LocalDateTime startDate, LocalDateTime endDate);
 
 
 }

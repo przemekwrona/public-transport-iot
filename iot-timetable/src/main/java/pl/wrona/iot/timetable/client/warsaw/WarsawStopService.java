@@ -137,8 +137,12 @@ public class WarsawStopService {
         return timetableRepository.findTopByLineAndBrigadeAndDepartureDateIsNotNull(line, brigade);
     }
 
+    public List<Timetables> findTimetables(String line, String brigade, String stopId, String stopNumber, LocalDateTime localDateTime) {
+        return timetableRepository.findByLineAndBrigadeAndStopIdAndStopNumberAndTimetableDepartureDateBetween(line, brigade, stopId, stopNumber, localDateTime.toLocalDate().atStartOfDay(), localDateTime.toLocalDate().plusDays(1L).atStartOfDay());
+    }
+
     public List<Timetables> findTimetables(String line, String brigade, LocalDateTime localDateTime) {
-        return timetableRepository.findTop10ByLineAndBrigadeAndTimetableDepartureDateGreaterThan(line, brigade, localDateTime.toLocalDate().atStartOfDay());
+        return timetableRepository.findByLineAndBrigadeAndTimetableDepartureDateBetween(line, brigade, localDateTime.toLocalDate().atStartOfDay(), localDateTime.toLocalDate().plusDays(1L).atStartOfDay());
     }
 
 }
