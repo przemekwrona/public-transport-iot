@@ -114,7 +114,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 13,
+        "h": 12,
         "w": 24,
         "x": 0,
         "y": 1
@@ -284,10 +284,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
+        "h": 10,
         "w": 12,
         "x": 0,
-        "y": 14
+        "y": 13
       },
       "id": 2,
       "interval": "10s",
@@ -376,7 +376,7 @@
         "h": 5,
         "w": 3,
         "x": 12,
-        "y": 14
+        "y": 13
       },
       "id": 6,
       "interval": "1m",
@@ -465,7 +465,7 @@
         "h": 5,
         "w": 3,
         "x": 15,
-        "y": 14
+        "y": 13
       },
       "id": 7,
       "interval": "1m",
@@ -554,7 +554,7 @@
         "h": 5,
         "w": 3,
         "x": 18,
-        "y": 14
+        "y": 13
       },
       "id": 14,
       "interval": "1m",
@@ -609,6 +609,92 @@
       "type": "gauge"
     },
     {
+      "datasource": {
+        "type": "postgres",
+        "uid": "P2870D8E7042BE220"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              },
+              {
+                "color": "text",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 12,
+        "y": 18
+      },
+      "id": 16,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.0.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "P2870D8E7042BE220"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT DATE_TRUNC('day', timetable_departure_date) AS \"time\", count(*) number_of_departures\nFROM timetables\n-- WHERE $__timeFilter(timetable_departure_date)\nGROUP BY DATE_TRUNC('day', timetable_departure_date)\nORDER BY 1",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "lon"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "timetables",
+          "timeColumn": "timetable_departure_date",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Departures",
+      "type": "stat"
+    },
+    {
       "collapsed": false,
       "datasource": {
         "type": "datasource",
@@ -618,7 +704,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 23
       },
       "id": 11,
       "panels": [],
@@ -672,7 +758,7 @@
         "h": 13,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 24
       },
       "id": 13,
       "maxDataPoints": 1,

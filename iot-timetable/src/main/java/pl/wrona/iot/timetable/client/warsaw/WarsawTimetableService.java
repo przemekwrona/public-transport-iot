@@ -46,25 +46,17 @@ public class WarsawTimetableService {
 
     }
 
-    @Data
-    @Builder
-    private static class WarsawStopWithTimetable {
-        private WarsawStop warsawStop;
-        private List<WarsawDepartures> departures;
-
-    }
-
-    public List<WarsawStopDepartures> getDepartures(LocalDateTime date, float lat, float lon, String line, String brigade) {
+    public WarsawStopDepartures getDeparture(LocalDateTime date, float lat, float lon, String line, String brigade) {
         List<WarsawStop> stopsInAreaOf35m = warsawStopService.getStopsInAreaOf35m(lat, lon, line);
 
         if (stopsInAreaOf35m.isEmpty()) {
-            return List.of();
+            return WarsawStopDepartures.builder().build();
         }
 
         Timetables lastVisitedStop = warsawStopService.lastVisitedStop(line, brigade);
 
         Optional<Timetables> timetables = stopsInAreaOf35m.stream()
-                .map(stop -> warsawStopService.findTimetables(line, brigade, date))
+                .map(stop -> warsawStopService.findTimetables(line, brigade, stop.getGroup(), stop.getSlupek(), date))
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList()).stream()
                 .map(departure -> WarsawDepartureTimeRange.builder()
@@ -85,7 +77,7 @@ public class WarsawTimetableService {
             timetableRepository.save(timetable);
         });
 
-        return List.of(timetables.map(timetable -> WarsawStopDepartures.builder()
+        return timetables.map(timetable -> WarsawStopDepartures.builder()
                         .line(line)
                         .brigade(brigade)
                         .isOnStop(true)
@@ -98,51 +90,36 @@ public class WarsawTimetableService {
                         .stopName(timetable.getStopName())
                         .stopLat(timetable.getLat())
                         .stopLon(timetable.getLon())
-//                        .stopDistance()
+                        .stopDistance(0)
 //                        .vehicleDirection(timetable.getDirection())
                         .build())
-                .orElse(WarsawStopDepartures.builder().build()));
-    }
-
-    public WarsawStopDepartures getDeparture(LocalDateTime time, float lat, float lon, String line, String brigade) {
-        return getDepartures(time, lat, lon, line, brigade).stream()
-                .limit(1)
-                .findFirst()
-                .orElse(WarsawStopDepartures.builder()
-                        .line(line)
-                        .brigade(brigade)
-                        .isOnStop(false)
-                        .hasTimetable(false)
-                        .stopId("")
-                        .stopNumber("")
-                        .stopName("")
-                        .stopDistance(0L)
-                        .build());
+                .orElse(WarsawStopDepartures.builder().build());
     }
 
     @Timed(value = "iot_apollo_api_get_timetables")
     public ResponseEntity<Timetable> getTimetableResponse(OffsetDateTime time, float lat, float lon, String line, String brigade) {
-        WarsawStopDepartures warsawDeparture = getDeparture(time.toLocalDateTime(), lat, lon, line, brigade);
-
-        return ResponseEntity.ok(new Timetable()
-                .line(line)
-                .brigade(brigade)
-                .arrivalTime(time)
-                .vahicleRoute(warsawDeparture.getRoute())
-                .vehicleDirection(warsawDeparture.getVehicleDirection())
-                .isOnStop(warsawDeparture.isOnStop())
-                .isOnFirstStop(warsawDeparture.isOnFirstStop())
-                .hasTimetable(warsawDeparture.isHasTimetable())
-                .stopId(warsawDeparture.getStopId())
-                .stopNumber(warsawDeparture.getStopNumber())
-                .stopName(warsawDeparture.getStopName())
-                .timetableDepartureDate(Optional.ofNullable(warsawDeparture.getTimetableDeparture())
-                        .map(timetableDate -> warsawDeparture.getTimetableDeparture()
-                                .atOffset(WARSAW_ZONE_ID.getRules().getOffset(time.toInstant())))
-                        .orElse(null))
-                .stopLat(warsawDeparture.getStopLat())
-                .stopLon(warsawDeparture.getStopLon())
-                .stopDistance(BigDecimal.valueOf(warsawDeparture.getStopDistance())));
+        return Optional.of(getDeparture(time.toLocalDateTime(), lat, lon, line, brigade))
+                .map(warsawDeparture -> new Timetable()
+                        .line(line)
+                        .brigade(brigade)
+                        .arrivalTime(time)
+                        .vahicleRoute(warsawDeparture.getRoute())
+                        .vehicleDirection(warsawDeparture.getVehicleDirection())
+                        .isOnStop(warsawDeparture.isOnStop())
+                        .isOnFirstStop(warsawDeparture.isOnFirstStop())
+                        .hasTimetable(warsawDeparture.isHasTimetable())
+                        .stopId(warsawDeparture.getStopId())
+                        .stopNumber(warsawDeparture.getStopNumber())
+                        .stopName(warsawDeparture.getStopName())
+                        .timetableDepartureDate(Optional.ofNullable(warsawDeparture.getTimetableDeparture())
+                                .map(timetableDate -> warsawDeparture.getTimetableDeparture()
+                                        .atOffset(WARSAW_ZONE_ID.getRules().getOffset(time.toInstant())))
+                                .orElse(null))
+                        .stopLat(warsawDeparture.getStopLat())
+                        .stopLon(warsawDeparture.getStopLon())
+                        .stopDistance(BigDecimal.valueOf(warsawDeparture.getStopDistance())))
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.of(Optional.empty()));
     }
 
     public ResponseEntity<EdgeTimetables> getEdgeTimetables() {
