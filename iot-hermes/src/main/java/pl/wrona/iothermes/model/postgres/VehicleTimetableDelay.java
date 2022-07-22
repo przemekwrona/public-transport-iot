@@ -10,12 +10,7 @@ import lombok.Setter;
 import pl.wrona.iothermes.model.CityCode;
 import pl.wrona.iothermes.model.VehicleType;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.time.Instant;
 
 @Data
@@ -23,12 +18,8 @@ import java.time.Instant;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@IdClass(VehicleTimetableDelayId.class)
 public class VehicleTimetableDelay {
-
-    @Id
-    @GeneratedValue(generator = "seq_vehicle_timetable_delay")
-    @SequenceGenerator(name = "seq_vehicle_timetable_delay", sequenceName = "seq_vehicle_timetable_delay", allocationSize = 1)
-    private Long vehicleLocationId;
 
     @Enumerated(EnumType.STRING)
     private CityCode cityCode;
@@ -36,6 +27,7 @@ public class VehicleTimetableDelay {
     @Enumerated(EnumType.STRING)
     private VehicleType vehicleType;
 
+    @Id
     private String line;
 
     private float lat;
@@ -44,8 +36,10 @@ public class VehicleTimetableDelay {
 
     private String vehicleNumber;
 
+    @Id
     private String brigade;
 
+    @Id
     private Instant time;
 
     private boolean isOnStop;
