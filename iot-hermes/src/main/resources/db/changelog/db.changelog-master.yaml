@@ -7,11 +7,6 @@ databaseChangeLog:
             tableName: VEHICLE_LOCATION
             columns:
               - column:
-                  name: VEHICLE_LOCATION_ID
-                  type: int
-                  constraints:
-                    primaryKey: true
-              - column:
                   name: CITY_CODE
                   type: varchar2(5)
                   constraints:
@@ -51,41 +46,10 @@ databaseChangeLog:
                   type: varchar2(5)
                   constraints:
                     nullable: false
-  - changeSet:
-      id: create-sequence-vehicle-location
-      author: pwrona
-      changes:
-        - createSequence:
-            startValue: 1
-            minValue: 1
-            incrementBy: 1
-            sequenceName: SEQ_VEHICLE_LOCATION
-  - changeSet:
-      id: add-index-vehicle-location
-      author: pwrona
-      changes:
-        - createIndex:
-            clustered: true
-            columns:
-              - column:
-                  name: CITY_CODE
-              - column:
-                  name: TIME
-                  descending: true
-            indexName: city_code_and_time_index
+        - addPrimaryKey:
+            columnNames: LINE, BRIGADE, TIME
+            constraintName: pk_vehicle_location
             tableName: VEHICLE_LOCATION
-            unique: false
-#        - createIndex:
-#            clustered: false
-#            columns:
-#              - column:
-#                  name: VEHICLE_NUMBER
-#              - column:
-#                  name: TIME
-#                  descending: true
-#            indexName: vehicle_number_and_time_index
-#            tableName: VEHICLE_LOCATION
-#            unique: true
   - changeSet:
       id: create-table-vehicle-timetable-delay
       author: pwrona
@@ -93,11 +57,6 @@ databaseChangeLog:
         - createTable:
             tableName: VEHICLE_TIMETABLE_DELAY
             columns:
-              - column:
-                  name: VEHICLE_LOCATION_ID
-                  type: int
-                  constraints:
-                    primaryKey: true
               - column:
                   name: CITY_CODE
                   type: varchar2(5)
@@ -156,12 +115,7 @@ databaseChangeLog:
               - column:
                   name: TIMETABLE_DEPARTURE_DATE
                   type: timestamp(6)
-  - changeSet:
-      id: create-sequence-vehicle-timetable-delay
-      author: pwrona
-      changes:
-        - createSequence:
-            startValue: 1
-            minValue: 1
-            incrementBy: 1
-            sequenceName: SEQ_VEHICLE_TIMETABLE_DELAY
+        - addPrimaryKey:
+            columnNames: LINE, BRIGADE, TIME
+            constraintName: pk_vehicle_timetable_delay
+            tableName: VEHICLE_TIMETABLE_DELAY

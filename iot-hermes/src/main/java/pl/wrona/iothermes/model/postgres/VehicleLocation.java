@@ -6,24 +6,15 @@ import lombok.NoArgsConstructor;
 import pl.wrona.iothermes.model.CityCode;
 import pl.wrona.iothermes.model.VehicleType;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@IdClass(VehicleLocationId.class)
 public class VehicleLocation {
-
-    @Id
-    @GeneratedValue(generator = "seq_vehicle_location")
-    @SequenceGenerator(name = "seq_vehicle_location", sequenceName = "seq_vehicle_location", allocationSize = 1)
-    private Long vehicleLocationId;
 
     @Enumerated(EnumType.STRING)
     private CityCode cityCode;
@@ -31,6 +22,7 @@ public class VehicleLocation {
     @Enumerated(EnumType.STRING)
     private VehicleType vehicleType;
 
+    @Id
     private String line;
 
     private float lat;
@@ -39,7 +31,9 @@ public class VehicleLocation {
 
     private String vehicleNumber;
 
+    @Id
     private String brigade;
 
+    @Id
     private Instant time;
 }
