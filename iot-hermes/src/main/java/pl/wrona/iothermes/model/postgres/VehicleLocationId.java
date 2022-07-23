@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -15,5 +16,5 @@ public class VehicleLocationId implements Serializable {
 
     private String line;
     private String brigade;
-    private Instant time;
+    private LocalDateTime time;
 }

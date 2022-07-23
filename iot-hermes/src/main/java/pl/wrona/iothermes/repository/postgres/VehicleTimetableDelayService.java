@@ -7,9 +7,9 @@ import pl.wrona.iothermes.client.apollo.ApolloTimetableService;
 import pl.wrona.iothermes.model.VehicleLocation;
 import pl.wrona.iothermes.model.postgres.VehicleTimetableDelay;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,9 +57,10 @@ public class VehicleTimetableDelayService {
                 .build();
     }
 
+    @Transactional
     public void deleteVehicleLocationsByTimeBefore() {
         LocalDateTime dayAgoDateTime = LocalDateTime.now().minusDays(1L);
-        vehicleDelayRepository.deleteVehicleLocationsByTimeBefore(dayAgoDateTime.toInstant(ZoneOffset.UTC));
+        vehicleDelayRepository.deleteVehicleTimetableDelaysByTimeBefore(dayAgoDateTime);
     }
 
 }

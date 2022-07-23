@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 import pl.wrona.iot.timetable.client.warsaw.WarsawApiService;
 import pl.wrona.iot.timetable.client.warsaw.WarsawStopService;
 import pl.wrona.iot.timetable.cache.CacheService;
+import pl.wrona.iot.timetable.client.warsaw.WarsawTimetableService;
+
+import java.time.LocalDate;
 
 @Component
 @AllArgsConstructor
@@ -15,6 +18,8 @@ public class ClearCacheJob {
     private final CacheService cacheService;
     private final WarsawStopService warsawStopService;
     private final WarsawApiService warsawApiService;
+
+    private final WarsawTimetableService warsawTimetableService;
 
 
     @Scheduled(cron = "0 0 3 * * ?")
@@ -25,10 +30,13 @@ public class ClearCacheJob {
     }
 
     public void loadTimetables() {
-        warsawStopService.getStops()
-                .forEach(warsawStop -> warsawStopService.getLinesOnStop(warsawStop.getGroup(), warsawStop.getSlupek()).getLines()
-                        .forEach(line -> warsawStopService.saveTimetable(warsawStop.getGroup(), warsawStop.getSlupek(),
-                                warsawApiService.getTimetable(warsawStop.getGroup(), warsawStop.getSlupek(), line))));
+        if (!warsawTimetableService.hasTimetable(LocalDate.now())) {
+            warsawStopService.getStops()
+                    .forEach(warsawStop -> warsawStopService.getLinesOnStop(warsawStop.getGroup(), warsawStop.getSlupek()).getLines()
+                            .forEach(line -> warsawStopService.saveTimetable(warsawStop.getGroup(), warsawStop.getSlupek(),
+                                    warsawApiService.getTimetable(warsawStop.getGroup(), warsawStop.getSlupek(), line))));
+        }
     }
+
 
 }

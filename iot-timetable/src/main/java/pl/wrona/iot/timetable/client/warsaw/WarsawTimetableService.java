@@ -114,8 +114,7 @@ public class WarsawTimetableService {
                         .stopNumber(warsawDeparture.getStopNumber())
                         .stopName(warsawDeparture.getStopName())
                         .timetableDepartureDate(Optional.ofNullable(warsawDeparture.getTimetableDeparture())
-                                .map(timetableDate -> warsawDeparture.getTimetableDeparture()
-                                        .atOffset(WARSAW_ZONE_ID.getRules().getOffset(time.toInstant())))
+                                .map(timetableDate -> timetableDate.atOffset(WARSAW_ZONE_ID.getRules().getOffset(timetableDate)))
                                 .orElse(null))
                         .stopLat(warsawDeparture.getStopLat())
                         .stopLon(warsawDeparture.getStopLon())
@@ -157,6 +156,11 @@ public class WarsawTimetableService {
                 .flatMap(Collection::stream)
                 .max(Comparator.comparing(WarsawDepartures::getTime))
                 .orElse(null);
+    }
+
+    public boolean hasTimetable(LocalDate localDate) {
+        int numberOfTimetables = timetableRepository.countTimetablesByTimetableDepartureDateBetweenAndLineNotLike(LocalDateTime.of(localDate, LocalTime.of(3, 0)), LocalDateTime.of(localDate, LocalTime.MAX), "N%");
+        return numberOfTimetables > 0;
     }
 
 }
