@@ -30,6 +30,7 @@ public class Timetables {
     private String stopId;
     private String stopNumber;
     private String stopName;
+    private String direction;
 
     private float lon;
     private float lat;
