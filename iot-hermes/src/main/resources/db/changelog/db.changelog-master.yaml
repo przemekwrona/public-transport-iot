@@ -83,12 +83,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: LON
+                  name: LAT
                   type: varchar2(20)
                   constraints:
                     nullable: false
               - column:
-                  name: LAT
+                  name: LON
                   type: varchar2(20)
                   constraints:
                     nullable: false

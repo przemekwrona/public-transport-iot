@@ -32,13 +32,18 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: LAT
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
                   name: LON
                   type: float
                   constraints:
                     nullable: false
               - column:
-                  name: LAT
-                  type: float
+                  name: DIRECTION
+                  type: varchar2(50)
                   constraints:
                     nullable: false
               - column:

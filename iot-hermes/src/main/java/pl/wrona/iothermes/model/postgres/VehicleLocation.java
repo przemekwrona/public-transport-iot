@@ -8,6 +8,7 @@ import pl.wrona.iothermes.model.VehicleType;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -35,5 +36,5 @@ public class VehicleLocation {
     private String brigade;
 
     @Id
-    private Instant time;
+    private LocalDateTime time;
 }
