@@ -126,6 +126,7 @@ public class WarsawStopService {
                         .lat(warsawStop.getLat())
                         .line(timetable.getLine())
                         .brigade(timetable.getBrigade())
+                        .direction(timetable.getDirection())
                         .timetableDepartureDate(timetable.getTime())
                         .build())
                 .collect(Collectors.toList()));
