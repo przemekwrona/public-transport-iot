@@ -30,12 +30,10 @@ public class ClearCacheJob {
     }
 
     public void loadTimetables() {
-        if (!warsawTimetableService.hasTimetable(LocalDate.now())) {
-            warsawStopService.getStops()
-                    .forEach(warsawStop -> warsawStopService.getLinesOnStop(warsawStop.getGroup(), warsawStop.getSlupek()).getLines()
-                            .forEach(line -> warsawStopService.saveTimetable(warsawStop.getGroup(), warsawStop.getSlupek(),
-                                    warsawApiService.getTimetable(warsawStop.getGroup(), warsawStop.getSlupek(), line))));
-        }
+        warsawStopService.getStops()
+                .forEach(warsawStop -> warsawStopService.getLinesOnStop(warsawStop.getGroup(), warsawStop.getSlupek()).getLines()
+                        .forEach(line -> warsawStopService.saveTimetable(warsawStop.getGroup(), warsawStop.getSlupek(),
+                                warsawApiService.getTimetable(warsawStop.getGroup(), warsawStop.getSlupek(), line))));
     }
 
 
