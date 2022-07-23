@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.lucene.util.SloppyMath;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.wrona.iot.apollo.api.model.EdgeTimetable;
@@ -92,6 +93,7 @@ public class WarsawTimetableService {
                         .stopLon(timetable.getLon())
                         .stopDistance(0)
 //                        .vehicleDirection(timetable.getDirection())
+                        .stopDistance((long) SloppyMath.haversinMeters(timetable.getLat(), timetable.getLon(), lat, lon))
                         .build())
                 .orElse(WarsawStopDepartures.builder().build());
     }
