@@ -12,6 +12,7 @@ import pl.wrona.iothermes.model.VehicleType;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -40,7 +41,7 @@ public class VehicleTimetableDelay {
     private String brigade;
 
     @Id
-    private Instant time;
+    private LocalDateTime time;
 
     private boolean isOnStop;
 
@@ -54,7 +55,7 @@ public class VehicleTimetableDelay {
 
     private String stopName;
 
-    private Instant timetableDepartureDate;
+    private LocalDateTime timetableDepartureDate;
 
     public boolean hasTimetable() {
         return this.hasTimetable;

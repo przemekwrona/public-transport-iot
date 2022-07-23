@@ -55,9 +55,7 @@ public class WarsawPublicTransportService {
                 .lat(vehicle.getLat())
                 .lon(vehicle.getLon())
                 .brigade(vehicle.getBrigade())
-                .time(ZonedDateTime.of(
-                        LocalDateTime.parse(vehicle.getTime(), WARSAW_DATE_TIME_FORMATTER),
-                        ZoneId.of("Europe/Warsaw")).toInstant())
+                .time(LocalDateTime.parse(vehicle.getTime(), WARSAW_DATE_TIME_FORMATTER))
                 .build();
     }
 

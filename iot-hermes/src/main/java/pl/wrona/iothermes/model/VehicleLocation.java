@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -16,6 +17,6 @@ public class VehicleLocation {
     private float lon;
     private String vehicleNumber;
     private String brigade;
-    private Instant time;
+    private LocalDateTime time;
 
 }

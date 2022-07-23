@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.wrona.iot.apollo.api.model.Timetable;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Optional;
 
@@ -16,7 +16,7 @@ public class ApolloTimetableService {
 
     private final ApolloTimetableClient apolloTimetableClient;
 
-    public Timetable getTimetable(Instant time, float lat, float lon, String line, String brigade) {
+    public Timetable getTimetable(LocalDateTime time, float lat, float lon, String line, String brigade) {
         return Optional.ofNullable(apolloTimetableClient.getTimetable(time.atOffset(WARSAW_ZONE_ID.getRules().getOffset(time)), lat, lon, line, brigade))
                 .map(ResponseEntity::getBody)
                 .orElse(null);
