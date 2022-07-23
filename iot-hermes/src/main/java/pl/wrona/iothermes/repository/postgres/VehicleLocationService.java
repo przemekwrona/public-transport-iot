@@ -2,11 +2,10 @@ package pl.wrona.iothermes.repository.postgres;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.wrona.iothermes.client.apollo.ApolloTimetableService;
 import pl.wrona.iothermes.model.postgres.VehicleLocation;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,9 +36,10 @@ public class VehicleLocationService {
                 .build();
     }
 
+    @Transactional
     public void deleteVehicleLocationsByTimeBefore() {
         LocalDateTime dayAgoDateTime = LocalDateTime.now().minusDays(1L);
-        vehiclesLocationRepository.deleteVehicleLocationsByTimeBefore(dayAgoDateTime.toInstant(ZoneOffset.UTC));
+        vehiclesLocationRepository.deleteVehicleLocationByTimeBefore(dayAgoDateTime);
     }
 
 }

@@ -7,7 +7,6 @@ import pl.wrona.iothermes.model.CityCode;
 import pl.wrona.iothermes.model.VehicleType;
 
 import javax.persistence.*;
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
