@@ -21,7 +21,10 @@ public class ClearCacheJob {
     @Timed(value = "iot_apollo_clear_caches_and_load_stops_and_timetables")
     public void clearAllCachesAndLoadStopsAndTimetables() {
         cacheService.clearCache();
+        loadTimetables();
+    }
 
+    public void loadTimetables() {
         warsawStopService.getStops()
                 .forEach(warsawStop -> warsawStopService.getLinesOnStop(warsawStop.getGroup(), warsawStop.getSlupek()).getLines()
                         .forEach(line -> warsawStopService.saveTimetable(warsawStop.getGroup(), warsawStop.getSlupek(),
