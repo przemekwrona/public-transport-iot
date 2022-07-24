@@ -17,6 +17,7 @@ import pl.wrona.iot.timetable.services.WarsawFinalStopService;
 
 import java.math.BigDecimal;
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,6 +29,7 @@ import static java.util.Objects.isNull;
 public class WarsawTimetableService {
 
     public final ZoneId WARSAW_ZONE_ID = ZoneId.of("Europe/Warsaw");
+    public final long MINUTES_5 = 5;
 
     private final WarsawApiService warsawApiService;
     private final WarsawStopService warsawStopService;
@@ -45,6 +47,10 @@ public class WarsawTimetableService {
             return durationBetweenDepartureAndTimetable <= 60 * 60;
         }
 
+        boolean isLowerOrEqual5m() {
+            return durationBetweenDepartureAndTimetable <= 5 * 60;
+        }
+
     }
 
     public WarsawStopDepartures getDeparture(LocalDateTime date, float lat, float lon, String line, String brigade) {
@@ -54,9 +60,7 @@ public class WarsawTimetableService {
             return WarsawStopDepartures.builder().build();
         }
 
-        Timetables lastVisitedStop = warsawStopService.lastVisitedStop(line, brigade);
-
-        Optional<Timetables> timetables = stopsInAreaOf35m.stream()
+        Timetables timetables = stopsInAreaOf35m.stream()
                 .map(stop -> warsawStopService.findTimetables(line, brigade, stop.getGroup(), stop.getSlupek(), date))
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList()).stream()
@@ -66,36 +70,44 @@ public class WarsawTimetableService {
                         .build())
                 .filter(WarsawDepartureTimeRange::isLowerOrEqual1h)
                 .min(Comparator.comparing(WarsawDepartureTimeRange::getDurationBetweenDepartureAndTimetable))
-                .map(WarsawDepartureTimeRange::getWarsawDeparture);
+                .map(WarsawDepartureTimeRange::getWarsawDeparture)
+                .orElse(null);
 
-        timetables.ifPresent(timetable -> {
-            if (isNull(timetable.getDepartureDate())) {
-                timetable.setArrivalDate(date);
-                timetable.setDepartureDate(date);
+        if (Objects.isNull(timetables)) {
+            return WarsawStopDepartures.builder().build();
+        }
+
+        long delay = ChronoUnit.MINUTES.between(timetables.getDepartureDate(), date);
+
+        if (Math.abs(delay) <= MINUTES_5) {
+            if (isNull(timetables.getDepartureDate())) {
+                timetables.setArrivalDate(date);
+                timetables.setDepartureDate(date);
             } else {
-                timetable.setDepartureDate(date);
+                timetables.setDepartureDate(date);
             }
-            timetableRepository.save(timetable);
-        });
+            timetableRepository.save(timetables);
 
-        return timetables.map(timetable -> WarsawStopDepartures.builder()
-                        .line(line)
-                        .brigade(brigade)
-                        .isOnStop(true)
+            return WarsawStopDepartures.builder()
+                    .line(line)
+                    .brigade(brigade)
+                    .isOnStop(true)
 //                        .isOnFirstStop(warsawStopDirectionService.isDirection(line, stop.getWarsawStop().getName()))
-                        .hasTimetable(true)
+                    .hasTimetable(true)
 //                    .route(timetable.getRoute())
-                        .timetableDeparture(timetable.getTimetableDepartureDate())
-                        .stopId(timetable.getStopId())
-                        .stopNumber(timetable.getStopNumber())
-                        .stopName(timetable.getStopName())
-                        .stopLat(timetable.getLat())
-                        .stopLon(timetable.getLon())
-                        .stopDistance(0)
-//                        .vehicleDirection(timetable.getDirection())
-                        .stopDistance((long) SloppyMath.haversinMeters(timetable.getLat(), timetable.getLon(), lat, lon))
-                        .build())
-                .orElse(WarsawStopDepartures.builder().build());
+                    .timetableDeparture(timetables.getTimetableDepartureDate())
+                    .stopId(timetables.getStopId())
+                    .stopNumber(timetables.getStopNumber())
+                    .stopName(timetables.getStopName())
+                    .stopLat(timetables.getLat())
+                    .stopLon(timetables.getLon())
+                    .stopDistance(0)
+                    .vehicleDirection(timetables.getDirection())
+                    .stopDistance((long) SloppyMath.haversinMeters(timetables.getLat(), timetables.getLon(), lat, lon))
+                    .build();
+        }
+
+        return WarsawStopDepartures.builder().build();
     }
 
     @Timed(value = "iot_apollo_api_get_timetables")

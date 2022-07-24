@@ -14,4 +14,5 @@ public interface TimetableRepository extends JpaRepository<Timetables, Timetable
     List<Timetables> findByLineAndBrigadeAndTimetableDepartureDateBetween(String line, String brigade, LocalDateTime startDate, LocalDateTime endDate);
 
     int countTimetablesByTimetableDepartureDateBetweenAndLineNotLike(LocalDateTime startDate, LocalDateTime endDate, String line);
+
 }
