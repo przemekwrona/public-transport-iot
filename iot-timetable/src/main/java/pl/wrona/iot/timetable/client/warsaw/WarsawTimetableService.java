@@ -77,7 +77,7 @@ public class WarsawTimetableService {
             return WarsawStopDepartures.builder().build();
         }
 
-        long delay = ChronoUnit.MINUTES.between(timetables.getDepartureDate(), date);
+        long delay = ChronoUnit.MINUTES.between(timetables.getTimetableDepartureDate(), date);
 
         if (Math.abs(delay) <= MINUTES_5) {
             if (isNull(timetables.getDepartureDate())) {
