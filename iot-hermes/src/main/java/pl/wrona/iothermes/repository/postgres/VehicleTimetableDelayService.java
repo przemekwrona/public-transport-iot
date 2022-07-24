@@ -9,7 +9,8 @@ import pl.wrona.iothermes.model.postgres.VehicleTimetableDelay;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,6 +18,8 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class VehicleTimetableDelayService {
+
+    private final ZoneId WARSAW_ZONE = ZoneId.of("Europe/Warsaw");
 
     private final VehicleTimetableDelayRepository vehicleDelayRepository;
     private final ApolloTimetableService apolloTimetableService;
@@ -53,7 +56,11 @@ public class VehicleTimetableDelayService {
                 .stopId(warsawTimetable.map(Timetable::getStopId).orElse(""))
                 .stopNumber(warsawTimetable.map(Timetable::getStopNumber).orElse(""))
                 .stopName(warsawTimetable.map(Timetable::getStopName).orElse(""))
-                .timetableDepartureDate(warsawTimetable.map(Timetable::getTimetableDepartureDate).map(OffsetDateTime::toLocalDateTime).orElse(null))
+                .timetableDepartureDate(warsawTimetable
+                        .map(Timetable::getTimetableDepartureDate)
+                        .map(offset -> offset.atZoneSameInstant(WARSAW_ZONE))
+                        .map(ZonedDateTime::toLocalDateTime)
+                        .orElse(null))
                 .build();
     }
 
