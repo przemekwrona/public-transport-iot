@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface TimetableRepository extends JpaRepository<Timetables, TimetablesId> {
 
-    Timetables findTopByLineAndBrigadeAndDepartureDateIsNotNull(String line, String brigade);
+    Timetables findTopByLineAndBrigadeAndDepartureDateIsBeforeOrderByTimetableDepartureDateDesc(String line, String brigade, LocalDateTime date);
+
+    List<Timetables> findTop20ByLineAndBrigadeAndTimetableDepartureDateGreaterThanOrderByTimetableDepartureDate(String line, String brigade, LocalDateTime date);
 
     List<Timetables> findByLineAndBrigadeAndStopIdAndStopNumberAndTimetableDepartureDateBetween(String line, String brigade, String stopId, String stopNumber, LocalDateTime startDate, LocalDateTime endDate);
 

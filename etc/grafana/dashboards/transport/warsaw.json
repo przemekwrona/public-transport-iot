@@ -733,6 +733,7 @@
             }
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -801,7 +802,7 @@
           ]
         }
       ],
-      "title": "Panel Title",
+      "title": "Percentage of covered timetables",
       "type": "timeseries"
     },
     {

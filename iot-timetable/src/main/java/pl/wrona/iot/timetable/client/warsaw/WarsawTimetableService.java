@@ -20,6 +20,7 @@ import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.Objects.isNull;
 
@@ -30,6 +31,7 @@ public class WarsawTimetableService {
 
     public final ZoneId WARSAW_ZONE_ID = ZoneId.of("Europe/Warsaw");
     public final long MINUTES_5 = 5;
+    public final long MINUTES_30 = 30;
 
     private final WarsawApiService warsawApiService;
     private final WarsawStopService warsawStopService;
@@ -51,6 +53,17 @@ public class WarsawTimetableService {
             return durationBetweenDepartureAndTimetable <= 5 * 60;
         }
 
+    }
+
+    @Data
+    @Builder
+    private static class WarsawDepartureStop {
+        private long stopDistanceInMeters;
+        private Timetables timetables;
+
+        public boolean isLowerOrEqual35m() {
+            return stopDistanceInMeters <= 35;
+        }
     }
 
     public WarsawStopDepartures getDeparture(LocalDateTime date, float lat, float lon, String line, String brigade) {
@@ -88,26 +101,56 @@ public class WarsawTimetableService {
             }
             timetableRepository.save(timetables);
 
-            return WarsawStopDepartures.builder()
-                    .line(line)
-                    .brigade(brigade)
-                    .isOnStop(true)
-//                        .isOnFirstStop(warsawStopDirectionService.isDirection(line, stop.getWarsawStop().getName()))
-                    .hasTimetable(true)
-//                    .route(timetable.getRoute())
-                    .timetableDeparture(timetables.getTimetableDepartureDate())
-                    .stopId(timetables.getStopId())
-                    .stopNumber(timetables.getStopNumber())
-                    .stopName(timetables.getStopName())
-                    .stopLat(timetables.getLat())
-                    .stopLon(timetables.getLon())
-                    .stopDistance(0)
-                    .vehicleDirection(timetables.getDirection())
-                    .stopDistance((long) SloppyMath.haversinMeters(timetables.getLat(), timetables.getLon(), lat, lon))
-                    .build();
+            return getWarsawStopDepartures(lat, lon, timetables);
+        }
+
+        Timetables previousVisitedStop = warsawStopService.previousVisitedStop(line, brigade, date);
+        List<Timetables> nextStops = Stream.concat(Stream.of(previousVisitedStop), warsawStopService.
+                        nextStops(line, brigade, previousVisitedStop.getTimetableDepartureDate()).stream())
+                .filter(timetable -> timetable.getDirection().equals(previousVisitedStop.getDirection()))
+                .collect(Collectors.toList());
+
+        if (Math.abs(delay) <= MINUTES_30) {
+            timetables = nextStops.stream()
+                    .map(timetable -> WarsawDepartureStop.builder()
+                            .timetables(timetable)
+                            .stopDistanceInMeters((long) SloppyMath.haversinMeters(timetable.getLat(), timetable.getLon(), lat, lon))
+                            .build())
+                    .filter(WarsawDepartureStop::isLowerOrEqual35m)
+                    .min(Comparator.comparing(WarsawDepartureStop::getStopDistanceInMeters))
+                    .map(WarsawDepartureStop::getTimetables)
+                    .orElseThrow();
+
+            if (isNull(timetables.getDepartureDate())) {
+                timetables.setArrivalDate(date);
+                timetables.setDepartureDate(date);
+            } else {
+                timetables.setDepartureDate(date);
+            }
+            timetableRepository.save(timetables);
+
+            return getWarsawStopDepartures(lat, lon, timetables);
         }
 
         return WarsawStopDepartures.builder().build();
+    }
+
+    private WarsawStopDepartures getWarsawStopDepartures(float lat, float lon, Timetables timetables) {
+        return WarsawStopDepartures.builder()
+                .line(timetables.getLine())
+                .brigade(timetables.getBrigade())
+                .isOnStop(true)
+//                        .isOnFirstStop(warsawStopDirectionService.isDirection(line, stop.getWarsawStop().getName()))
+                .hasTimetable(true)
+                .timetableDeparture(timetables.getTimetableDepartureDate())
+                .stopId(timetables.getStopId())
+                .stopNumber(timetables.getStopNumber())
+                .stopName(timetables.getStopName())
+                .stopLat(timetables.getLat())
+                .stopLon(timetables.getLon())
+                .vehicleDirection(timetables.getDirection())
+                .stopDistance((long) SloppyMath.haversinMeters(timetables.getLat(), timetables.getLon(), lat, lon))
+                .build();
     }
 
     @Timed(value = "iot_apollo_api_get_timetables")
