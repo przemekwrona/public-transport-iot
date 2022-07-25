@@ -16,7 +16,7 @@ public class AppRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        warsawStopService.getStops();
+//        warsawStopService.getStops();
     }
 
 }
