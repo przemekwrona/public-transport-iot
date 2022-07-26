@@ -86,7 +86,7 @@ public class WarsawTimetableService {
                 .map(WarsawDepartureTimeRange::getWarsawDeparture)
                 .orElse(null);
 
-        if (Objects.isNull(timetables)) {
+        if (isNull(timetables)) {
             return WarsawStopDepartures.builder().build();
         }
 
@@ -105,6 +105,11 @@ public class WarsawTimetableService {
         }
 
         Timetables previousVisitedStop = warsawStopService.previousVisitedStop(line, brigade, date);
+
+        if (isNull(previousVisitedStop)) {
+            return WarsawStopDepartures.builder().build();
+        }
+
         List<Timetables> nextStops = Stream.concat(Stream.of(previousVisitedStop), warsawStopService.
                         nextStops(line, brigade, previousVisitedStop.getTimetableDepartureDate()).stream())
                 .filter(timetable -> timetable.getDirection().equals(previousVisitedStop.getDirection()))
