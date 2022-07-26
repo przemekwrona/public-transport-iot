@@ -110,12 +110,12 @@ public class WarsawTimetableService {
             return WarsawStopDepartures.builder().build();
         }
 
-        List<Timetables> nextStops = Stream.concat(Stream.of(previousVisitedStop), warsawStopService.
-                        nextStops(line, brigade, previousVisitedStop.getTimetableDepartureDate()).stream())
-                .filter(timetable -> timetable.getDirection().equals(previousVisitedStop.getDirection()))
-                .collect(Collectors.toList());
-
         if (Math.abs(delay) <= MINUTES_30) {
+            List<Timetables> nextStops = Stream.concat(Stream.of(previousVisitedStop), warsawStopService.
+                            nextStops(line, brigade, previousVisitedStop.getTimetableDepartureDate()).stream())
+                    .filter(timetable -> timetable.getDirection().equals(previousVisitedStop.getDirection()))
+                    .collect(Collectors.toList());
+
             timetables = nextStops.stream()
                     .map(timetable -> WarsawDepartureStop.builder()
                             .timetables(timetable)
@@ -124,7 +124,11 @@ public class WarsawTimetableService {
                     .filter(WarsawDepartureStop::isLowerOrEqual35m)
                     .min(Comparator.comparing(WarsawDepartureStop::getStopDistanceInMeters))
                     .map(WarsawDepartureStop::getTimetables)
-                    .orElseThrow();
+                    .orElse(null);
+
+            if (isNull(timetables)) {
+                return WarsawStopDepartures.builder().build();
+            }
 
             if (isNull(timetables.getDepartureDate())) {
                 timetables.setArrivalDate(date);
