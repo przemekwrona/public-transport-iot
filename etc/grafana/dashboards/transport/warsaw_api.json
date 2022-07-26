@@ -468,7 +468,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "http_server_requests_seconds_count{job=\"iot-timetable\", uri=\"/timetables\", status=\"500\"}",
+          "expr": "sum(http_server_requests_seconds_count{job=\"iot-timetable\", uri=\"/timetables\", status=\"500\"})",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -543,7 +543,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "http_server_requests_seconds_count{job=\"iot-timetable\", uri=\"/timetables\", status=\"200\"} / http_server_requests_seconds_count{job=\"iot-timetable\", uri=\"/timetables\"}",
+          "expr": "sum(http_server_requests_seconds_count{job=\"iot-timetable\", uri=\"/timetables\", status=\"200\"}) / sum(http_server_requests_seconds_count{job=\"iot-timetable\", uri=\"/timetables\"})",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -618,7 +618,7 @@
             "uid": "P1809F7CD0C75ACF3"
           },
           "exemplar": true,
-          "expr": "http_server_requests_seconds_count{job=\"iot-timetable\", uri=\"/timetables\", status=\"500\"} / http_server_requests_seconds_count{job=\"iot-timetable\", uri=\"/timetables\"}",
+          "expr": "sum(http_server_requests_seconds_count{job=\"iot-timetable\", uri=\"/timetables\", status=\"500\"}) / sum(http_server_requests_seconds_count{job=\"iot-timetable\", uri=\"/timetables\"})",
           "format": "time_series",
           "instant": false,
           "interval": "",
