@@ -46,8 +46,8 @@ public class WarsawStopService {
             return distance <= 250;
         }
 
-        public boolean isLowerOrEqual35m() {
-            return distance <= 35;
+        public boolean isLowerOrEqual60m() {
+            return distance <= 60;
         }
 
     }
@@ -78,11 +78,10 @@ public class WarsawStopService {
                         .warsawStop(stop)
                         .distance(stop.distance(lat, lon))
                         .build())
-                .filter(StopDistance::isLowerOrEqual250m)
+                .filter(StopDistance::isLowerOrEqual60m)
                 .filter(stop -> hasLineOnStop(stop.getWarsawStop().getGroup(), stop.getWarsawStop().getSlupek(), line))
                 .filter(stop -> hasTimetableOnStop(stop.getWarsawStop().getGroup(), stop.getWarsawStop().getSlupek(), line))
                 .sorted(Comparator.comparingDouble(StopDistance::getDistance))
-                .filter(StopDistance::isLowerOrEqual35m)
                 .map(StopDistance::getWarsawStop)
                 .collect(Collectors.toList());
     }
