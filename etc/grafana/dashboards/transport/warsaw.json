@@ -667,7 +667,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT date_trunc('hour', timetable_departure_date) as \"time\",\n       100.0 * sum(CASE WHEN arrival_date IS NOT NULL then 1 else 0 END) / count(*) as \"percentage\"\nFROM timetables\nWHERE $__timeFilter(timetable_departure_date)\nGROUP BY date_trunc('hour', timetable_departure_date);",
+          "rawSql": "SELECT date_trunc('hour', timetable_departure_date) as \"time\",\n       100.0 * sum(CASE WHEN arrival_date IS NOT NULL then 1 else 0 END) / count(*) as \"percentage\"\nFROM timetables\nWHERE line NOT IN ('WKD', 'S1', 'S2', 'S3', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9') AND $__timeFilter(timetable_departure_date)\nGROUP BY date_trunc('hour', timetable_departure_date);",
           "refId": "A",
           "select": [
             [
@@ -972,7 +972,7 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-12h",
     "to": "now-30s"
   },
   "timepicker": {
@@ -984,6 +984,6 @@
   "timezone": "Europe/Warsaw",
   "title": "Warsaw",
   "uid": "qB6W6u-7z",
-  "version": 3,
+  "version": 2,
   "weekStart": ""
 }

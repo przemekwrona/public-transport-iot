@@ -61,8 +61,8 @@ public class WarsawTimetableService {
         private long stopDistanceInMeters;
         private Timetables timetables;
 
-        public boolean isLowerOrEqual35m() {
-            return stopDistanceInMeters <= 35;
+        public boolean isLowerOrEqual60m() {
+            return stopDistanceInMeters <= 60;
         }
     }
 
@@ -81,7 +81,7 @@ public class WarsawTimetableService {
                         .durationBetweenDepartureAndTimetable(Math.abs(Duration.between(date, departure.getTimetableDepartureDate()).getSeconds()))
                         .warsawDeparture(departure)
                         .build())
-                .filter(WarsawDepartureTimeRange::isLowerOrEqual1h)
+                .filter(WarsawDepartureTimeRange::isLowerOrEqual5m)
                 .min(Comparator.comparing(WarsawDepartureTimeRange::getDurationBetweenDepartureAndTimetable))
                 .map(WarsawDepartureTimeRange::getWarsawDeparture)
                 .orElse(null);
@@ -111,34 +111,31 @@ public class WarsawTimetableService {
         }
 
         if (Math.abs(delay) <= MINUTES_30) {
-            List<Timetables> nextStops = Stream.concat(Stream.of(previousVisitedStop), warsawStopService.
+            Optional<Timetables> timetablesOnWay = Stream.concat(Stream.of(previousVisitedStop), warsawStopService.
                             nextStops(line, brigade, previousVisitedStop.getTimetableDepartureDate()).stream())
                     .filter(timetable -> timetable.getDirection().equals(previousVisitedStop.getDirection()))
-                    .collect(Collectors.toList());
-
-            timetables = nextStops.stream()
                     .map(timetable -> WarsawDepartureStop.builder()
                             .timetables(timetable)
                             .stopDistanceInMeters((long) SloppyMath.haversinMeters(timetable.getLat(), timetable.getLon(), lat, lon))
                             .build())
-                    .filter(WarsawDepartureStop::isLowerOrEqual35m)
+                    .filter(WarsawDepartureStop::isLowerOrEqual60m)
                     .min(Comparator.comparing(WarsawDepartureStop::getStopDistanceInMeters))
-                    .map(WarsawDepartureStop::getTimetables)
-                    .orElse(null);
+                    .map(WarsawDepartureStop::getTimetables);
 
-            if (isNull(timetables)) {
-                return WarsawStopDepartures.builder().build();
-            }
+            timetablesOnWay.ifPresent(timetable -> {
+                if (isNull(timetable.getDepartureDate())) {
+                    timetable.setArrivalDate(date);
+                    timetable.setDepartureDate(date);
+                } else {
+                    timetable.setDepartureDate(date);
+                }
 
-            if (isNull(timetables.getDepartureDate())) {
-                timetables.setArrivalDate(date);
-                timetables.setDepartureDate(date);
-            } else {
-                timetables.setDepartureDate(date);
-            }
-            timetableRepository.save(timetables);
+                timetableRepository.save(timetables);
+            });
 
-            return getWarsawStopDepartures(lat, lon, timetables);
+            return timetablesOnWay
+                    .map(timetable -> getWarsawStopDepartures(lat, lon, timetable))
+                    .orElse(WarsawStopDepartures.builder().build());
         }
 
         return WarsawStopDepartures.builder().build();
