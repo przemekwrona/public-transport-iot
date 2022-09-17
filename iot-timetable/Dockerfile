@@ -4,7 +4,7 @@ WORKDIR /apps/iot-timetable
 
 VOLUME /apps/iot-timetable/logs
 
-COPY ./iot-timetable/target/*.jar iot-timetable.jar
+COPY ./target/*.jar iot-timetable.jar
 
 EXPOSE 8181
 
