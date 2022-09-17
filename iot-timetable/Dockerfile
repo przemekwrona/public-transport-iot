@@ -1,14 +1,14 @@
 FROM openjdk:11
 
-WORKDIR /apps/iot-apollo
+WORKDIR /apps/iot-timetable
 
-VOLUME /apps/iot-apollo/logs
+VOLUME /apps/iot-timetable/logs
 
-COPY target/*.jar iot-apollo.jar
+COPY iot-timetable/target/*.jar iot-timetable.jar
 
 EXPOSE 8181
 
 ENV PROFILE=''
 
-RUN echo "Build apollo with profile ${PROFILE}"
-ENTRYPOINT java -Dspring.profiles.active=${PROFILE} -jar iot-apollo.jar
+RUN echo "Build timetables with profile ${PROFILE}"
+ENTRYPOINT java -Dspring.profiles.active=${PROFILE} -jar iot-timetable.jar
