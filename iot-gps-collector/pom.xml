@@ -15,7 +15,6 @@
     <description>iot-gps-collector</description>
 
     <properties>
-        <java.version>11</java.version>
         <spring-cloud.version>3.1.0</spring-cloud.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
         <swagger-annotations.version>1.6.2</swagger-annotations.version>
