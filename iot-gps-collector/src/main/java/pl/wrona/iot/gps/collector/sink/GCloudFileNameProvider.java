@@ -13,6 +13,7 @@ public class GCloudFileNameProvider {
     private final GCloudProperties gCloudProperties;
 
     public String vehiclesLive(LocalDate date) {
-        return String.format("gs://%s/%s.parquet", gCloudProperties.getBucketName(), date);
+        String fileName = String.format("%s_%s.parquet", gCloudProperties.getBucketName(), date);
+        return String.format("gs://%s/%s", gCloudProperties.getBucketName(), fileName);
     }
 }
