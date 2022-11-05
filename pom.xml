@@ -86,7 +86,7 @@
 
   <modules>
     <module>iot-hermes</module>
-    <module>iot-demeter</module>
     <module>iot-timetable</module>
+    <module>iot-gps-collector</module>
   </modules>
 </project>

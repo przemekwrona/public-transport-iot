@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>pl.wrona</groupId>
+        <artifactId>public-transport-iot</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>iot-gps-collector</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>iot-gps-collector</name>
+    <description>iot-gps-collector</description>
+
+    <properties>
+        <java.version>11</java.version>
+        <spring-cloud.version>3.1.0</spring-cloud.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
+        <swagger-annotations.version>1.6.2</swagger-annotations.version>
+        <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
+        <parquet-avro.version>1.12.3</parquet-avro.version>
+        <apache-hadoop.version>3.3.4</apache-hadoop.version>
+        <google-cloud-storage.version>2.11.3</google-cloud-storage.version>
+        <google-cloud-connector.version>hadoop3-2.2.7</google-cloud-connector.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>${spring-cloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${validation-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger-annotations.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>${jackson-databind-nullable.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.parquet</groupId>
+            <artifactId>parquet-avro</artifactId>
+            <version>${parquet-avro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>${apache-hadoop.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-storage</artifactId>
+            <version>${google-cloud-storage.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud.bigdataoss</groupId>
+            <artifactId>gcs-connector</artifactId>
+            <version>${google-cloud-connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <mainClass>pl.wrona.iot.gps.collector.IotGpsCollectorApplication</mainClass>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>5.3.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/../iot-api/warsaw-public-transport-api.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelTests>false</generateModelTests>
+                            <generateSupportingFiles>true</generateSupportingFiles>
+                            <configOptions>
+                                <sourceFolder>src/gen/java</sourceFolder>
+                                <serializableModel>true</serializableModel>
+                                <snapshotVersion>true</snapshotVersion>
+                                <apiPackage>pl.wrona.warsaw.transport.api</apiPackage>
+                                <modelPackage>pl.wrona.warsaw.transport.api.model</modelPackage>
+                                <invokerPackage>pl.wrona.warsaw.transport.handler</invokerPackage>
+                                <groupId>pl.wrona</groupId>
+                                <artifactId>warsaw-public-transport-api</artifactId>
+                                <artifactVersion>0.0.1</artifactVersion>
+                                <interfaceOnly>true</interfaceOnly>
+                                <skipDefaultInterface>true</skipDefaultInterface>
+                            </configOptions>
+                            <configHelp>false</configHelp>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
