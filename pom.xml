@@ -85,8 +85,8 @@
   </dependencyManagement>
 
   <modules>
+    <module>iot-gps-collector</module>
     <module>iot-hermes</module>
     <module>iot-timetable</module>
-    <module>iot-gps-collector</module>
   </modules>
 </project>
