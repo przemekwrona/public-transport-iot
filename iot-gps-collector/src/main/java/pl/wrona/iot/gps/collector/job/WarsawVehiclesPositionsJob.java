@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+
 @Component
 @RequiredArgsConstructor
 public class WarsawVehiclesPositionsJob implements Runnable {
@@ -28,7 +31,6 @@ public class WarsawVehiclesPositionsJob implements Runnable {
 
     private GCloudSink cloudSink;
     private LocalDate lastSavedDate;
-    private int iterations = 10;
 
     @Override
     public void run() {
@@ -45,19 +47,21 @@ public class WarsawVehiclesPositionsJob implements Runnable {
                     .max(Comparator.naturalOrder())
                     .orElse(LocalDate.now());
 
-            this.lastSavedDate = date;
+            if (isNull(cloudSink)) {
+                this.cloudSink = new GCloudSink(schemaService.getVehicleLiveSchema(),
+                        new Path(gCloudFileNameProvider.vehiclesLive(date)),
+                        gCloudProperties);
+            }
 
-            this.cloudSink = new GCloudSink(schemaService.getVehicleLiveSchema(),
-                    new Path(gCloudFileNameProvider.vehiclesLive(date)),
-                    gCloudProperties);
+            if (nonNull(lastSavedDate) && date.isAfter(lastSavedDate)) {
+                this.cloudSink.close();
+                this.cloudSink = new GCloudSink(schemaService.getVehicleLiveSchema(),
+                        new Path(gCloudFileNameProvider.vehiclesLive(date)),
+                        gCloudProperties);
+            }
 
             Stream.concat(buses.stream(), trams.stream()).forEach(cloudSink::save);
-
-            this.iterations--;
-
-            if (this.iterations <= 0) {
-                this.cloudSink.close();
-            }
+            this.lastSavedDate = date;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
