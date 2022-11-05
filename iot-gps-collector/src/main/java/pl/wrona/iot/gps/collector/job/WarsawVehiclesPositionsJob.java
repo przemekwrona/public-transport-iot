@@ -29,7 +29,7 @@ public class WarsawVehiclesPositionsJob implements Runnable {
     private final GCloudProperties gCloudProperties;
     private final GCloudFileNameProvider gCloudFileNameProvider;
 
-    private GCloudSink cloudSink;
+    private GCloudSink gCloudSink;
     private LocalDate lastSavedDate;
 
     @Override
@@ -38,8 +38,9 @@ public class WarsawVehiclesPositionsJob implements Runnable {
         try {
             List<Vehicle> buses = warsawPublicTransportService.getBuses();
             List<Vehicle> trams = warsawPublicTransportService.getTrams();
+            Stream<Vehicle> vehicles = Stream.concat(buses.stream(), trams.stream());
 
-            LocalDate date = Stream.concat(buses.stream(), trams.stream())
+            LocalDate date = vehicles
                     .map(Vehicle::getTime)
                     .map(LocalDateTime::toLocalDate)
                     .collect(Collectors.toSet())
@@ -47,20 +48,20 @@ public class WarsawVehiclesPositionsJob implements Runnable {
                     .max(Comparator.naturalOrder())
                     .orElse(LocalDate.now());
 
-            if (isNull(cloudSink)) {
-                this.cloudSink = new GCloudSink(schemaService.getVehicleLiveSchema(),
+            if (isNull(gCloudSink)) {
+                this.gCloudSink = new GCloudSink(schemaService.getVehicleLiveSchema(),
                         new Path(gCloudFileNameProvider.vehiclesLive(date)),
                         gCloudProperties);
             }
 
             if (nonNull(lastSavedDate) && date.isAfter(lastSavedDate)) {
-                this.cloudSink.close();
-                this.cloudSink = new GCloudSink(schemaService.getVehicleLiveSchema(),
+                this.gCloudSink.close();
+                this.gCloudSink = new GCloudSink(schemaService.getVehicleLiveSchema(),
                         new Path(gCloudFileNameProvider.vehiclesLive(date)),
                         gCloudProperties);
             }
 
-            Stream.concat(buses.stream(), trams.stream()).forEach(cloudSink::save);
+            vehicles.forEach(gCloudSink::save);
             this.lastSavedDate = date;
         } catch (Exception e) {
             throw new RuntimeException(e);
