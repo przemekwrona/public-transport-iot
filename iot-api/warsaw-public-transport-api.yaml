@@ -8,6 +8,8 @@ servers:
 paths:
   /api/action/busestrams_get:
     get:
+      tags:
+        - vehicles
       summary: Returns list of Vehicles with theirs positions
       operationId: getVehicles
       parameters:
@@ -35,6 +37,8 @@ paths:
                 $ref: '#/components/schemas/WarsawVehicles'
   /api/action/dbtimetable_get:
     get:
+      tags:
+        - timetables
       summary: Return timetable for line on definied stop or avilable lines on stop
       operationId: getTimetable
       parameters:
@@ -72,6 +76,8 @@ paths:
                 $ref: '#/components/schemas/WarsawTimetables'
   /api/action/dbstore_get:
     get:
+      tags:
+        - stops
       summary: Return the list of stops in Warsaw
       operationId: getStops
       parameters:

@@ -1,0 +1,42 @@
+{
+  "type": "record",
+  "name": "co_mobility",
+  "namespace": "vehicles_live",
+  "fields": [
+    {
+      "name": "line",
+      "type": "string"
+    },
+    {
+      "name": "vehicle_type",
+      "type": "string",
+      "symbols": [
+        "BUS",
+        "TRAM",
+        "TRAIN",
+        "METRO",
+        "OTHER"
+      ]
+    },
+    {
+      "name": "vehicle_number",
+      "type": "string"
+    },
+    {
+      "name": "brigade",
+      "type": "string"
+    },
+    {
+      "name": "time",
+      "type": "string"
+    },
+    {
+      "name": "lat",
+      "type": "float"
+    },
+    {
+      "name": "lon",
+      "type": "float"
+    }
+  ]
+}
