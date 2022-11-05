@@ -5,12 +5,12 @@ import org.apache.avro.generic.GenericData;
 import org.apache.hadoop.fs.Path;
 import org.apache.parquet.hadoop.util.HadoopOutputFile;
 import pl.wrona.iot.gps.collector.config.GCloudProperties;
-import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
+import pl.wrona.iot.gps.collector.model.Vehicle;
 
 import java.io.IOException;
 
 
-public class GCloudSink implements Sink<WarsawVehicle> {
+public class GCloudSink implements Sink<Vehicle> {
 
     private final ParquetSink<GenericData.Record> parquetSink;
     private final WarsawVehicleGenericRecordFactory warsawVehicleGenericRecordFactory;
@@ -25,7 +25,7 @@ public class GCloudSink implements Sink<WarsawVehicle> {
     }
 
     @Override
-    public void save(WarsawVehicle element) {
+    public void save(Vehicle element) {
         parquetSink.save(warsawVehicleGenericRecordFactory.apply(element));
     }
 

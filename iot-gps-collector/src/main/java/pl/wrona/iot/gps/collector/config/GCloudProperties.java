@@ -17,7 +17,7 @@ import java.util.List;
 public class GCloudProperties {
 
     private String projectId;
-    private String projectName;
+    private String bucketName;
     private String privateKeyId;
     private String privateKey;
     private String accountId;
