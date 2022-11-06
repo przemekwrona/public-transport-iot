@@ -32,4 +32,4 @@ jobs:
           justlogin: true
       - run: |
           heroku container:login
-#          git push heroku main
+          git push heroku main
