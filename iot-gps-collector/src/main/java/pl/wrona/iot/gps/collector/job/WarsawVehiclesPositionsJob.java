@@ -1,6 +1,7 @@
 package pl.wrona.iot.gps.collector.job;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.hadoop.fs.Path;
 import org.springframework.stereotype.Component;
 import pl.wrona.iot.gps.collector.client.WarsawPublicTransportService;
@@ -20,6 +21,7 @@ import java.util.stream.Stream;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class WarsawVehiclesPositionsJob implements Runnable {
@@ -34,6 +36,8 @@ public class WarsawVehiclesPositionsJob implements Runnable {
 
     @Override
     public void run() {
+
+        log.info("Run job");
 
         try {
             List<Vehicle> buses = warsawPublicTransportService.getBuses();
