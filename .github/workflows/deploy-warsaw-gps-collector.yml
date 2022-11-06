@@ -34,3 +34,4 @@ jobs:
       - name: Deploy to Heroku
         run: |
           heroku warsaw-gps-collector:login
+          git push heroku main
