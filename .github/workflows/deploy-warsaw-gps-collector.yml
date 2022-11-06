@@ -30,7 +30,7 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           heroku_app_name: "warsaw-gps-collector"
           appdir: "iot-gps-collector"
-          procfile: "web: java $JAVA_OPTS -Dserver.port=8080 -jar target/iot-gps-collector-0.0.1-SNAPSHOT.jar"
+#          procfile: "web: java $JAVA_OPTS -Dserver.port=8080 -jar target/iot-gps-collector-0.0.1-SNAPSHOT.jar"
 #          justlogin: true
 #      - run: |
 #          heroku container:login

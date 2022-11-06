@@ -38,9 +38,8 @@ public class WarsawVehiclesPositionsJob implements Runnable {
         try {
             List<Vehicle> buses = warsawPublicTransportService.getBuses();
             List<Vehicle> trams = warsawPublicTransportService.getTrams();
-            Stream<Vehicle> vehicles = Stream.concat(buses.stream(), trams.stream());
 
-            LocalDate date = vehicles
+            LocalDate date = Stream.concat(buses.stream(), trams.stream())
                     .map(Vehicle::getTime)
                     .map(LocalDateTime::toLocalDate)
                     .collect(Collectors.toSet())
@@ -61,7 +60,7 @@ public class WarsawVehiclesPositionsJob implements Runnable {
                         gCloudProperties);
             }
 
-            vehicles.forEach(gCloudSink::save);
+            Stream.concat(buses.stream(), trams.stream()).forEach(gCloudSink::save);
 //            this.lastSavedDate = date;
 
             gCloudSink.close();
