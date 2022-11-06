@@ -29,7 +29,9 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           heroku_app_name: "warsaw-gps-collector"
-          justlogin: true
-      - run: |
-          heroku container:login
-          git push heroku main
+          appdir: "iot-gps-collector"
+          procfile: "web: java $JAVA_OPTS -Dserver.port=8080 -jar target/iot-gps-collector-0.0.1-SNAPSHOT.jar"
+#          justlogin: true
+#      - run: |
+#          heroku container:login
+#          git push heroku main
