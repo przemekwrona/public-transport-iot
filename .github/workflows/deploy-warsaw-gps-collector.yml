@@ -30,5 +30,6 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           heroku_app_name: "warsaw-gps-collector"
           justlogin: true
-        run: |
+      - run: |
           heroku container:login
+#          git push heroku main
