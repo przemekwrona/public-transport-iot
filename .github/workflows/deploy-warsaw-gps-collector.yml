@@ -27,5 +27,7 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           heroku_app_name: "warsaw-gps-collector"
           justlogin: true
-      - run: |
-          heroku container:login
+
+      - name: Deploy to Heroku
+        run: |
+          heroku warsaw-gps-collector:login
