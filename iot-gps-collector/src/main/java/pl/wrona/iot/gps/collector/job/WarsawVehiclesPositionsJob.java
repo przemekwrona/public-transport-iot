@@ -62,7 +62,10 @@ public class WarsawVehiclesPositionsJob implements Runnable {
             }
 
             vehicles.forEach(gCloudSink::save);
-            this.lastSavedDate = date;
+//            this.lastSavedDate = date;
+
+            gCloudSink.close();
+            gCloudSink = null;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
