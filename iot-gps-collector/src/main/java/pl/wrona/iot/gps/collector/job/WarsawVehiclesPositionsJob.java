@@ -37,8 +37,6 @@ public class WarsawVehiclesPositionsJob implements Runnable {
     @Override
     public void run() {
 
-        log.info("Run job");
-
         try {
             List<Vehicle> buses = warsawPublicTransportService.getBuses();
             List<Vehicle> trams = warsawPublicTransportService.getTrams();
