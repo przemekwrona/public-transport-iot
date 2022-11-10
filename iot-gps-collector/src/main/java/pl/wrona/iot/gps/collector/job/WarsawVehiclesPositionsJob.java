@@ -10,6 +10,7 @@ import pl.wrona.iot.gps.collector.model.Vehicle;
 import pl.wrona.iot.gps.collector.parquet.SchemaService;
 import pl.wrona.iot.gps.collector.sink.GCloudFileNameProvider;
 import pl.wrona.iot.gps.collector.sink.GCloudSink;
+import pl.wrona.iot.gps.collector.sink.WarsawVehicleGenericRecordMapper;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -37,8 +38,6 @@ public class WarsawVehiclesPositionsJob implements Runnable {
     @Override
     public void run() {
 
-        log.info("Run job");
-
         try {
             List<Vehicle> buses = warsawPublicTransportService.getBuses();
             List<Vehicle> trams = warsawPublicTransportService.getTrams();
@@ -52,14 +51,14 @@ public class WarsawVehiclesPositionsJob implements Runnable {
                     .orElse(LocalDate.now());
 
             if (isNull(gCloudSink)) {
-                this.gCloudSink = new GCloudSink(schemaService.getVehicleLiveSchema(),
+                this.gCloudSink = new GCloudSink(new WarsawVehicleGenericRecordMapper(schemaService.getVehicleLiveSchema()),
                         new Path(gCloudFileNameProvider.vehiclesLive(date)),
                         gCloudProperties);
             }
 
             if (nonNull(lastSavedDate) && date.isAfter(lastSavedDate)) {
                 this.gCloudSink.close();
-                this.gCloudSink = new GCloudSink(schemaService.getVehicleLiveSchema(),
+                this.gCloudSink = new GCloudSink(new WarsawVehicleGenericRecordMapper(schemaService.getVehicleLiveSchema()),
                         new Path(gCloudFileNameProvider.vehiclesLive(date)),
                         gCloudProperties);
             }

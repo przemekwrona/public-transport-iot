@@ -3,8 +3,9 @@ FROM openjdk:11
 WORKDIR /apps/iot-gps-collector
 
 COPY target/*.jar iot-gps-collector.jar
+COPY target/classes/vehicleLive.avsc vehicleLive.avsc
+COPY application.properties application.properties
 
-ENV CONFIG_PATH = ''
-ENV PROFILE='prod'
+ENV PROFILE=''
 
-ENTRYPOINT java -Dspring.config.location='${CONFIG_PATH}' -Dspring.active.profile='${PROFILE}' -jar iot-gps-collector.jar
+ENTRYPOINT java -Dspring.config.location='application.properties' -Dspring.active.profile='${PROFILE}' -jar iot-gps-collector.jar

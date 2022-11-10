@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 public class WarsawPublicTransportService {
 
     private static final DateTimeFormatter WARSAW_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
     private final WarsawUmApiConfiguration warsawUmApiConfiguration;
     private final WarsawPublicTransportClient warsawPublicTransportClient;
     public List<Vehicle> getBuses() {
@@ -52,7 +51,6 @@ public class WarsawPublicTransportService {
 
     private Vehicle vehicle(WarsawVehicle vehicle, VehicleType vehicleType) {
         return Vehicle.builder()
-//                .cityCode(CityCode.WAWA)
                 .vehicleType(vehicleType)
                 .vehicleNumber(vehicle.getVehicleNumber())
                 .line(vehicle.getLines())

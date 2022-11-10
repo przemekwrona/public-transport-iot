@@ -24,4 +24,14 @@ public class SchemaService {
         }
         return Schema.create(Schema.Type.RECORD);
     }
+
+    public Schema getTimetableSchema() {
+        try {
+            Schema.Parser parser = new Schema.Parser();
+            return parser.parse(schemaProperties.getSchemaContent());
+        } catch (IOException ex) {
+            log.error(String.format("File %s not found", schemaProperties.getSchemaName()), ex);
+        }
+        return Schema.create(Schema.Type.RECORD);
+    }
 }

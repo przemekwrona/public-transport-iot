@@ -23,7 +23,7 @@ public class SchemaProperties {
     private String schemaName;
 
     public File getSchemaFile() throws FileNotFoundException {
-        return ResourceUtils.getFile(String.format("classpath:%s", schemaName));
+        return ResourceUtils.getFile(schemaName);
     }
 
     public String getSchemaContent() throws IOException {

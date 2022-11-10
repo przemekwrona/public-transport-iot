@@ -1,0 +1,31 @@
+{
+  "type": "record",
+  "name": "pl.edu.pw.mini.co.mobility",
+  "namespace": "timetable",
+  "fields": [
+    {
+      "name": "stop_id",
+      "type": "string"
+    },
+    {
+      "name": "stop_number",
+      "type": "string"
+    },
+    {
+      "name": "line",
+      "type": "string"
+    },
+    {
+      "name": "brigade",
+      "type": "string"
+    },
+    {
+      "name": "direction",
+      "type": "string"
+    },
+    {
+      "name": "time",
+      "type": "string"
+    }
+  ]
+}
