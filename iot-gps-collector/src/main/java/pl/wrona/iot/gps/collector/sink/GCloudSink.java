@@ -5,28 +5,27 @@ import org.apache.avro.generic.GenericData;
 import org.apache.hadoop.fs.Path;
 import org.apache.parquet.hadoop.util.HadoopOutputFile;
 import pl.wrona.iot.gps.collector.config.GCloudProperties;
-import pl.wrona.iot.gps.collector.model.Vehicle;
 
 import java.io.IOException;
 
 
-public class GCloudSink implements Sink<Vehicle> {
+public class GCloudSink<T> implements Sink<T> {
 
     private final ParquetSink<GenericData.Record> parquetSink;
-    private final WarsawVehicleGenericRecordFactory warsawVehicleGenericRecordFactory;
+    private final GenericRecordMapper<T> genericRecordMapper;
 
-    public GCloudSink(Schema schema, Path path, GCloudProperties gCloudProperties) throws Exception {
+    public GCloudSink(GenericRecordMapper<T> mapper, Path path, GCloudProperties gCloudProperties) throws Exception {
         try {
-            this.parquetSink = new ParquetSink<>(schema, HadoopOutputFile.fromPath(path, gCloudProperties.getHadoopConfiguration()));
+            this.parquetSink = new ParquetSink<>(mapper.getSchema(), HadoopOutputFile.fromPath(path, gCloudProperties.getHadoopConfiguration()));
         } catch (IOException e) {
             throw new Exception("Can not create sink", e);
         }
-        this.warsawVehicleGenericRecordFactory = new WarsawVehicleGenericRecordFactory(schema);
+        this.genericRecordMapper = mapper;
     }
 
     @Override
-    public void save(Vehicle element) {
-        parquetSink.save(warsawVehicleGenericRecordFactory.apply(element));
+    public void save(T element) {
+        parquetSink.save(genericRecordMapper.apply(element));
     }
 
     @Override

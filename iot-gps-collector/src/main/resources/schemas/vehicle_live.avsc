@@ -1,7 +1,7 @@
 {
   "type": "record",
-  "name": "co_mobility",
-  "namespace": "vehicles_live",
+  "name": "pl.edu.pw.mini.co.mobility",
+  "namespace": "vehiclesLive",
   "fields": [
     {
       "name": "line",

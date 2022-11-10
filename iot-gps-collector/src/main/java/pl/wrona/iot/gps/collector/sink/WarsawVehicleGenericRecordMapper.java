@@ -1,14 +1,14 @@
 package pl.wrona.iot.gps.collector.sink;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData;
 import pl.wrona.iot.gps.collector.model.Vehicle;
 
-import java.util.function.Function;
-
 @AllArgsConstructor
-public class WarsawVehicleGenericRecordFactory implements Function<Vehicle, GenericData.Record> {
+public class WarsawVehicleGenericRecordMapper implements GenericRecordMapper<Vehicle> {
+    @Getter
     private final Schema schema;
 
     @Override
