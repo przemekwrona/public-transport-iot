@@ -12,7 +12,8 @@ import pl.wrona.iot.gps.collector.sink.GCloudFileNameProvider;
 import pl.wrona.iot.gps.collector.sink.GCloudSink;
 import pl.wrona.iot.gps.collector.sink.WarsawVehicleGenericRecordMapper;
 
-import java.time.LocalDate;
+import java.io.Closeable;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
@@ -25,15 +26,15 @@ import static java.util.Objects.nonNull;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class WarsawVehiclesPositionsJob implements Runnable {
+public class WarsawVehiclesPositionsJob implements Runnable, Closeable {
 
     private final WarsawPublicTransportService warsawPublicTransportService;
     private final SchemaService schemaService;
     private final GCloudProperties gCloudProperties;
     private final GCloudFileNameProvider gCloudFileNameProvider;
 
-    private GCloudSink gCloudSink;
-    private LocalDate lastSavedDate;
+    private GCloudSink<Vehicle> gCloudSink;
+    private LocalDateTime lastSavedDateTime;
 
     @Override
     public void run() {
@@ -42,34 +43,41 @@ public class WarsawVehiclesPositionsJob implements Runnable {
             List<Vehicle> buses = warsawPublicTransportService.getBuses();
             List<Vehicle> trams = warsawPublicTransportService.getTrams();
 
-            LocalDate date = Stream.concat(buses.stream(), trams.stream())
+            LocalDateTime date = Stream.concat(buses.stream(), trams.stream())
                     .map(Vehicle::getTime)
-                    .map(LocalDateTime::toLocalDate)
                     .collect(Collectors.toSet())
                     .stream()
                     .max(Comparator.naturalOrder())
-                    .orElse(LocalDate.now());
+                    .orElse(LocalDateTime.now())
+                    .withMinute(0)
+                    .withSecond(0);
 
             if (isNull(gCloudSink)) {
-                this.gCloudSink = new GCloudSink(new WarsawVehicleGenericRecordMapper(schemaService.getVehicleLiveSchema()),
+                this.gCloudSink = new GCloudSink<>(new WarsawVehicleGenericRecordMapper(schemaService.getVehicleLiveSchema()),
                         new Path(gCloudFileNameProvider.vehiclesLive(date)),
                         gCloudProperties);
             }
 
-            if (nonNull(lastSavedDate) && date.isAfter(lastSavedDate)) {
+            if (nonNull(lastSavedDateTime) && date.isAfter(lastSavedDateTime)) {
                 this.gCloudSink.close();
-                this.gCloudSink = new GCloudSink(new WarsawVehicleGenericRecordMapper(schemaService.getVehicleLiveSchema()),
+                this.gCloudSink = null;
+
+                this.gCloudSink = new GCloudSink<>(
+                        new WarsawVehicleGenericRecordMapper(schemaService.getVehicleLiveSchema()),
                         new Path(gCloudFileNameProvider.vehiclesLive(date)),
                         gCloudProperties);
             }
 
             Stream.concat(buses.stream(), trams.stream()).forEach(gCloudSink::save);
-//            this.lastSavedDate = date;
-
-            gCloudSink.close();
-            gCloudSink = null;
+            this.lastSavedDateTime = date;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void close() throws IOException {
+        gCloudSink.close();
+        gCloudSink = null;
     }
 }
