@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import pl.wrona.iot.gps.collector.client.WarsawPublicTransportService;
 import pl.wrona.iot.gps.collector.config.GCloudProperties;
 import pl.wrona.iot.gps.collector.model.Vehicle;
-import pl.wrona.iot.gps.collector.parquet.SchemaService;
 import pl.wrona.iot.gps.collector.sink.GCloudFileNameProvider;
 import pl.wrona.iot.gps.collector.sink.GCloudSink;
 import pl.wrona.iot.gps.collector.sink.WarsawVehicleGenericRecordMapper;
@@ -29,7 +28,6 @@ import static java.util.Objects.nonNull;
 public class WarsawVehiclesPositionsJob implements Runnable, Closeable {
 
     private final WarsawPublicTransportService warsawPublicTransportService;
-    private final SchemaService schemaService;
     private final GCloudProperties gCloudProperties;
     private final GCloudFileNameProvider gCloudFileNameProvider;
 
@@ -48,12 +46,11 @@ public class WarsawVehiclesPositionsJob implements Runnable, Closeable {
                     .collect(Collectors.toSet())
                     .stream()
                     .max(Comparator.naturalOrder())
-                    .orElse(LocalDateTime.now())
-                    .withMinute(0)
-                    .withSecond(0);
+                    .map(maxLocalDate -> gCloudProperties.warsawVehicleLiveBucket().windowLocalDate(maxLocalDate))
+                    .orElse(LocalDateTime.now());
 
             if (isNull(gCloudSink)) {
-                this.gCloudSink = new GCloudSink<>(new WarsawVehicleGenericRecordMapper(schemaService.getVehicleLiveSchema()),
+                this.gCloudSink = new GCloudSink<>(new WarsawVehicleGenericRecordMapper(gCloudProperties.warsawVehicleLiveBucket().getSchema()),
                         new Path(gCloudFileNameProvider.vehiclesLive(date)),
                         gCloudProperties);
             }
@@ -63,7 +60,7 @@ public class WarsawVehiclesPositionsJob implements Runnable, Closeable {
                 this.gCloudSink = null;
 
                 this.gCloudSink = new GCloudSink<>(
-                        new WarsawVehicleGenericRecordMapper(schemaService.getVehicleLiveSchema()),
+                        new WarsawVehicleGenericRecordMapper(gCloudProperties.warsawVehicleLiveBucket().getSchema()),
                         new Path(gCloudFileNameProvider.vehiclesLive(date)),
                         gCloudProperties);
             }

@@ -1,6 +1,5 @@
 package pl.wrona.iot.gps.collector.sink;
 
-import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData;
 import org.apache.hadoop.fs.Path;
 import org.apache.parquet.hadoop.util.HadoopOutputFile;

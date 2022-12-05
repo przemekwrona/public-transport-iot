@@ -1,6 +1,6 @@
 package pl.wrona.iot.gps.collector.job
 
-import com.google.common.io.Files
+
 import org.apache.avro.Schema
 import org.apache.commons.io.IOUtils
 import org.apache.hadoop.conf.Configuration
@@ -9,7 +9,7 @@ import pl.wrona.iot.gps.collector.client.WarsawPublicTransportService
 import pl.wrona.iot.gps.collector.config.GCloudProperties
 import pl.wrona.iot.gps.collector.model.Vehicle
 import pl.wrona.iot.gps.collector.model.VehicleType
-import pl.wrona.iot.gps.collector.parquet.SchemaService
+
 import pl.wrona.iot.gps.collector.sink.GCloudFileNameProvider
 import spock.lang.Shared
 import spock.lang.Specification
@@ -51,14 +51,14 @@ class WarsawVehiclesPositionsJobTest extends Specification {
         warsawPublicTransportService.getTrams() >> List.of()
 
         and:
+        gCloudProperties.getBucketName() >> "vehicles_live"
+        gCloudProperties.getHadoopConfiguration() >> new Configuration()
+
+        and:
         try (FileInputStream fileInputStream = new FileInputStream(ResourceUtils.getFile("classpath:schemas/vehicle_live.avsc"))) {
             String schema = IOUtils.toString(fileInputStream, StandardCharsets.UTF_8)
             schemaService.getVehicleLiveSchema() >> new Schema.Parser().parse(schema)
         }
-
-        and:
-        gCloudProperties.getBucketName() >> "vehicles_live"
-        gCloudProperties.getHadoopConfiguration() >> new Configuration()
 
         String twoOClockPath = tempDir14oClock.toAbsolutePath().toString() + "/vehicles_live_14.parquet"
         gCloudFileNameProvider.vehiclesLive(LocalDateTime.of(fifthOfJanuary, LocalTime.of(14, 0))) >> twoOClockPath
