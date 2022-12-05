@@ -17,11 +17,13 @@ import java.util.List;
 public class GCloudProperties {
 
     private String projectId;
-    private String bucketName;
+
     private String privateKeyId;
     private String privateKey;
     private String accountId;
     private String accountEmail;
+
+    private List<BucketProperties> bucket;
 
     public org.apache.hadoop.conf.Configuration getHadoopConfiguration() {
         org.apache.hadoop.conf.Configuration conf = new org.apache.hadoop.conf.Configuration();
@@ -39,5 +41,20 @@ public class GCloudProperties {
 
     public GoogleCredentials getCredentials() throws IOException {
         return ServiceAccountCredentials.fromPkcs8(accountId, accountEmail, privateKey, privateKeyId, List.of());
+    }
+
+    public BucketProperties findBucketByName(String bucketName) {
+        return this.bucket.stream()
+                .filter(b -> b.getBucketName().equals(bucketName))
+                .findFirst()
+                .orElseThrow();
+    }
+
+    public BucketProperties warsawVehicleLiveBucket() {
+        return findBucketByName("warsaw_vehicles_live");
+    }
+
+    public BucketProperties warsawTimetableBucket() {
+        return findBucketByName("warsaw_timetables");
     }
 }
