@@ -1,5 +1,6 @@
 package pl.wrona.iot.gps.collector.job;
 
+import feign.codec.DecodeException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hadoop.fs.Path;
@@ -67,7 +68,11 @@ public class WarsawVehiclesPositionsJob implements Runnable, Closeable {
 
             Stream.concat(buses.stream(), trams.stream()).forEach(gCloudSink::save);
             this.lastSavedDateTime = date;
-        } catch (Exception e) {
+        }
+        catch (DecodeException ignore) {
+            log.error("Can not map results", ignore);
+        }
+        catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
