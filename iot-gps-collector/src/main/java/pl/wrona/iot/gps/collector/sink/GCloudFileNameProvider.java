@@ -29,7 +29,7 @@ public class GCloudFileNameProvider {
     }
 
     public String vehiclesTimetables(LocalDate date) {
-        String fileName = String.format("%s_%s.parquet", gCloudProperties.warsawTimetableBucket().getBucketName(), date.format(DATE_TIME_FORMATTER));
+        String fileName = String.format("%s_%s.parquet", gCloudProperties.warsawTimetableBucket().getBucketName(), date.format(DATE_FORMATTER));
         return String.format("gs://%s/%s/%s", gCloudProperties.warsawTimetableBucket().getBucketName(), date.format(DATE_FORMATTER), fileName);
     }
 }
