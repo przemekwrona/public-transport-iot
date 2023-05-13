@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.avro.Schema;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ResourceUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class BucketProperties {
     private int windowSizeInHours;
 
     public String getSchemaContent() throws IOException {
-        try (FileInputStream fileInputStream = new FileInputStream(schemaPath)) {
+        try (FileInputStream fileInputStream = new FileInputStream(ResourceUtils.getFile(schemaPath))) {
             return IOUtils.toString(fileInputStream, StandardCharsets.UTF_8);
         }
     }
