@@ -2,6 +2,12 @@ name: Build and Deploy to GKE
 
 on:
   workflow_dispatch:
+    inputs:
+      artifact:
+        type: choice
+        description: Artifact id
+        options:
+          - iot-gps-collector
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
@@ -32,23 +38,23 @@ jobs:
           cache: 'maven'
 
       - name: Build with maven
-        run: mvn clean install resources:resources -DWARSAW_API_KEY=${{ secrets.GCLOUD_PRIVATE_KEY }} -DGCLOUD_PROJECT_ID=${{ secrets.GCLOUD_PROJECT_ID }} -DGCLOUD_PRIVATE_KEY_ID=${{ secrets.GCLOUD_PRIVATE_KEY_ID }} -DGCLOUD_PRIVATE_KEY=${{ secrets.GCLOUD_PRIVATE_KEY }} -DGCLOUD_ACCOUNT_ID=${{ secrets.GCLOUD_ACCOUNT_ID }} -DGCLOUD_ACCOUNT_EMAIL=${{ secrets.GCLOUD_ACCOUNT_EMAIL }}
+        run: cd ${{ inputs.artifact }} && mvn clean install resources:resources -DWARSAW_API_KEY=${{ secrets.GCLOUD_PRIVATE_KEY }} -DGCLOUD_PROJECT_ID=${{ secrets.GCLOUD_PROJECT_ID }} -DGCLOUD_PRIVATE_KEY_ID=${{ secrets.GCLOUD_PRIVATE_KEY_ID }} -DGCLOUD_PRIVATE_KEY=${{ secrets.GCLOUD_PRIVATE_KEY }} -DGCLOUD_ACCOUNT_ID=${{ secrets.GCLOUD_ACCOUNT_ID }} -DGCLOUD_ACCOUNT_EMAIL=${{ secrets.GCLOUD_ACCOUNT_EMAIL }}
 
       - name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: '${{ secrets.GCLOUD_PRIVATE_KEY }}'
 
-#      mvn package appengine:deploy -Dapp.deploy.projectId=co-mobility -Dapp.deploy.version=v1
+      #      mvn package appengine:deploy -Dapp.deploy.projectId=co-mobility -Dapp.deploy.version=v1
 
       #          workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-#          service_account: '${{ secrets.GCP_CREDENTIALS }}'
+      #          service_account: '${{ secrets.GCP_CREDENTIALS }}'
 
-#      - id: 'auth'
-#        name: 'Authenticate to Google Cloud'
-#        uses: 'google-github-actions/auth@v0'
-#        with:
-#          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+      #      - id: 'auth'
+      #        name: 'Authenticate to Google Cloud'
+      #        uses: 'google-github-actions/auth@v0'
+      #        with:
+      #          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
 
       # Alternative option - authentication via credentials json
       # - id: 'auth'
