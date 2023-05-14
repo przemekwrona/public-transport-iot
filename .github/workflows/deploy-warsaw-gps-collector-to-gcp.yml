@@ -46,7 +46,7 @@ jobs:
           credentials_json: '${{ secrets.GCLOUD_CREDENTIALS }}'
 
       - name: 'Deploy ${{ inputs.artifact }}'
-        run: cd ${{ inputs.artifact }} && mvn package appengine:deploy -Dapp.deploy.projectId='${{ secrets.GCLOUD_PROJECT_ID }}'  -Dapp.deploy.version=202305
+        run: cd ${{ inputs.artifact }} && mvn package appengine:deploy -Dapp.deploy.projectId='${{ secrets.GCLOUD_PROJECT_ID }}' -Dapp.deploy.version='202305'
 
       #      mvn package appengine:deploy -Dapp.deploy.projectId=co-mobility -Dapp.deploy.version=v1
 
