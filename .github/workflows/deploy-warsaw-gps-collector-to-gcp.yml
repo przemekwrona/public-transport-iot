@@ -45,7 +45,9 @@ jobs:
         with:
           credentials_json: '${{ secrets.GCLOUD_PRIVATE_KEY }}'
 
-#          workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+#      mvn package appengine:deploy -Dapp.deploy.projectId=co-mobility -Dapp.deploy.version=v1
+
+      #          workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
 #          service_account: '${{ secrets.GCP_CREDENTIALS }}'
 
 #      - id: 'auth'
