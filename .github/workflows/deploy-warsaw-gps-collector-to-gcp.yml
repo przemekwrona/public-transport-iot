@@ -45,6 +45,9 @@ jobs:
         with:
           credentials_json: '${{ secrets.GCLOUD_CREDENTIALS }}'
 
+      - name: 'Deploy ${{ inputs.artifact }}'
+        run: mvn package appengine:deploy -Dapp.deploy.projectId='${{ secrets.GCLOUD_PROJECT_ID }}'
+
       #      mvn package appengine:deploy -Dapp.deploy.projectId=co-mobility -Dapp.deploy.version=v1
 
       #          workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
