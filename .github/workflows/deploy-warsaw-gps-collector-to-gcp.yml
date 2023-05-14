@@ -38,8 +38,8 @@ jobs:
           cache: 'maven'
 
       - name: Build with maven
-        run: cd ${{ inputs.artifact }} && mvn clean package && mvn resources:resources -DWARSAW_API_KEY=${{ secrets.WARSAW_API_KEY }} -DGCLOUD_PROJECT_ID=${{ secrets.GCLOUD_PROJECT_ID }}
-#          -DGCLOUD_PRIVATE_KEY_ID=${{ secrets.GCLOUD_PRIVATE_KEY_ID }} -DGCLOUD_PRIVATE_KEY=${{ secrets.GCLOUD_PRIVATE_KEY }} -DGCLOUD_ACCOUNT_ID=${{ secrets.GCLOUD_ACCOUNT_ID }} -DGCLOUD_ACCOUNT_EMAIL=${{ secrets.GCLOUD_ACCOUNT_EMAIL }}
+        run: cd ${{ inputs.artifact }} && mvn clean package && mvn resources:resources -DWARSAW_API_KEY=${{ secrets.WARSAW_API_KEY }} -DGCLOUD_PROJECT_ID=${{ secrets.GCLOUD_PROJECT_ID }} -DGCLOUD_PRIVATE_KEY_ID=${{ secrets.GCLOUD_PRIVATE_KEY_ID }}
+#        -DGCLOUD_PRIVATE_KEY=${{ secrets.GCLOUD_PRIVATE_KEY }} -DGCLOUD_ACCOUNT_ID=${{ secrets.GCLOUD_ACCOUNT_ID }} -DGCLOUD_ACCOUNT_EMAIL=${{ secrets.GCLOUD_ACCOUNT_EMAIL }}
 
       - name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1'
