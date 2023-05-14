@@ -43,7 +43,7 @@ jobs:
       - name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1'
         with:
-          credentials_json: '${{ secrets.GCLOUD_PRIVATE_KEY }}'
+          credentials_json: '${{ secrets.GCLOUD_CREDENTIALS }}'
 
       #      mvn package appengine:deploy -Dapp.deploy.projectId=co-mobility -Dapp.deploy.version=v1
 
