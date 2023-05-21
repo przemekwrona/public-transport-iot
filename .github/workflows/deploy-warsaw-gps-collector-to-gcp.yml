@@ -37,7 +37,8 @@ jobs:
           credentials_json: '${{ secrets.GCLOUD_CREDENTIALS }}'
 
       - name: 'Deploy ${{ inputs.artifact }}'
-        run: cd ${{ inputs.artifact }} && \
+        run: |
+          cd ${{ inputs.artifact }} && \
           mvn clean package resources:resources \
           -DWARSAW_API_KEY='${{ secrets.WARSAW_API_KEY }}' \
           -DGCLOUD_PROJECT_ID='${{ secrets.GCLOUD_PROJECT_ID }}' \
