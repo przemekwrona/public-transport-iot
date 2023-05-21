@@ -1,4 +1,4 @@
-name: Build ${{ inputs.artifact }} and Deploy to GKE
+name: Build and Deploy to GKE
 
 on:
   workflow_dispatch:
