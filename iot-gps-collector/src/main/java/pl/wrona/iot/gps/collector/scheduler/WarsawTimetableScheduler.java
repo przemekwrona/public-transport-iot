@@ -16,7 +16,7 @@ public class WarsawTimetableScheduler implements Runnable {
     private final WarsawTimetablesJob warsawTimetablesJob;
 
     @Async
-    @Scheduled(cron = "0 0 6 * * ?")
+    @Scheduled(cron = "0 0 4 * * ?")
     @Override
     public void run() {
         warsawTimetablesJob.run();
