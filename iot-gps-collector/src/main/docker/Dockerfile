@@ -3,7 +3,7 @@ FROM openjdk:11
 WORKDIR /apps/iot-gps-collector
 
 COPY target/*.jar iot-gps-collector.jar
-COPY target/classes/vehicleLive.avsc vehicleLive.avsc
+COPY target/classes/schemas/** schemas/**
 COPY application.properties application.properties
 
 ENV PROFILE=''
