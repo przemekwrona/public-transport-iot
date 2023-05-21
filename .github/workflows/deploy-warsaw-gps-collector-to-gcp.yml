@@ -44,4 +44,4 @@ jobs:
           -DGCLOUD_PRIVATE_KEY_ID='${{ secrets.GCLOUD_PRIVATE_KEY_ID }}' \
           -DGCLOUD_PRIVATE_KEY='${{ secrets.GCLOUD_PRIVATE_KEY }}' \
           -DGCLOUD_ACCOUNT_ID='${{ secrets.GCLOUD_ACCOUNT_ID }}' \
-          -DGCLOUD_ACCOUNT_EMAIL='${{ secrets.GCLOUD_ACCOUNT_EMAIL }}' && mvn appengine:deploy
+          -DGCLOUD_ACCOUNT_EMAIL='${{ secrets.GCLOUD_ACCOUNT_EMAIL }}' appengine:deploy
