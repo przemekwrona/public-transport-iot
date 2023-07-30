@@ -26,7 +26,7 @@ jobs:
           cd ${{ inputs.artifact }} 
           mvn clean verify
           mkdir staging
-          cp target/*.jar staging
+          cp  ${{ inputs.artifact }}/target/*.jar staging
 
       - uses: actions/upload-artifact@v3
         with:
