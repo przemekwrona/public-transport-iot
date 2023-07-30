@@ -12,7 +12,7 @@ on:
 
 jobs:
   setup-build-publish-deploy:
-    name: Deploy GPS collector
+    name: Build artifact ${{ inputs.artifact }}
     runs-on: ubuntu-latest
     environment: production
 
