@@ -1,4 +1,4 @@
-package pl.wrona.iot.timetable;
+package pl.wrona.iot.timetable.properties;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "warsaw.um.api")
-public class WarsawUmApiConfiguration {
+public class WarsawUmApiProperties {
 
     private String resourceId;
     private String stopsResourceId;

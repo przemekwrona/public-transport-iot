@@ -30,13 +30,3 @@ jobs:
 
       - name: Build with maven
         run: cd ${{ inputs.artifact }} && mvn clean verify
-
-      - name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v1'
-        with:
-          credentials_json: '${{ secrets.GCLOUD_CREDENTIALS }}'
-
-      - name: 'Deploy ${{ inputs.artifact }}'
-        run: |
-          cd ${{ inputs.artifact }} && \
-          mvn clean package resources:resources -DWARSAW_API_KEY='${{ secrets.WARSAW_API_KEY }}' -DGCLOUD_PROJECT_ID='${{ secrets.GCLOUD_PROJECT_ID }}' -DGCLOUD_DEPLOY_VERSION='202305v1' -DGCLOUD_PRIVATE_KEY_ID='${{ secrets.GCLOUD_PRIVATE_KEY_ID }}' -DGCLOUD_PRIVATE_KEY='${{ secrets.GCLOUD_PRIVATE_KEY }}' -DGCLOUD_ACCOUNT_ID='${{ secrets.GCLOUD_ACCOUNT_ID }}' -DGCLOUD_ACCOUNT_EMAIL='${{ secrets.GCLOUD_ACCOUNT_EMAIL }}' appengine:deploy
