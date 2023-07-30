@@ -1,0 +1,47 @@
+{
+  "type": "record",
+  "namespace": "pl.wrona.iot.warsaw.avro",
+  "name": "WarsawTimetable",
+  "fields": [
+    {
+      "name": "stop_id",
+      "type": "string"
+    },
+    {
+      "name": "stop_number",
+      "type": "string"
+    },
+    {
+      "name": "stop_name",
+      "type": "string"
+    },
+    {
+      "name": "lon",
+      "type": "float"
+    },
+    {
+      "name": "lat",
+      "type": "float"
+    },
+    {
+      "name": "line",
+      "type": "string"
+    },
+    {
+      "name": "direction",
+      "type": "string"
+    },
+    {
+      "name": "brigade",
+      "type": "string"
+    },
+    {
+      "name": "route",
+      "type": "string"
+    },
+    {
+      "name": "time",
+      "type": "string"
+    }
+  ]
+}

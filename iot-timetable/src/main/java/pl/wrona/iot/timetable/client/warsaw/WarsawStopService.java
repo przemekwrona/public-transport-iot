@@ -6,13 +6,9 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import pl.wrona.iot.timetable.entity.TimetableRepository;
-import pl.wrona.iot.timetable.entity.Timetables;
 import pl.wrona.iot.timetable.services.WarsawFinalStopService;
 import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
 
-import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,8 +20,6 @@ public class WarsawStopService {
 
     private final WarsawApiService warsawApiService;
     private final WarsawFinalStopService warsawStopDirectionService;
-    private final TimetableRepository timetableRepository;
-
     @Data
     @Builder
     private static class ClosestDistance {
@@ -110,42 +104,6 @@ public class WarsawStopService {
 
     public boolean hasTimetableOnStop(String stopId, String stopNumber, String line) {
         return !warsawApiService.getTimetable(stopId, stopNumber, line).isEmpty();
-    }
-
-    @Transactional
-    public void saveTimetable(String stopId, String stopNumber, List<WarsawDepartures> timetables) {
-        WarsawStop warsawStop = getWarsawStop(stopId, stopNumber);
-
-        timetableRepository.saveAll(timetables.stream()
-                .map(timetable -> Timetables.builder()
-                        .stopId(warsawStop.getGroup())
-                        .stopNumber(warsawStop.getSlupek())
-                        .stopName(warsawStop.getName())
-                        .lon(warsawStop.getLon())
-                        .lat(warsawStop.getLat())
-                        .line(timetable.getLine())
-                        .brigade(timetable.getBrigade())
-                        .direction(timetable.getDirection())
-                        .timetableDepartureDate(timetable.getTime())
-                        .build())
-                .collect(Collectors.toList()));
-    }
-
-    public Timetables previousVisitedStop(String line, String brigade, LocalDateTime date) {
-        return timetableRepository.findTopByLineAndBrigadeAndDepartureDateIsBeforeOrderByTimetableDepartureDateDesc(line, brigade, date);
-    }
-
-    public List<Timetables> nextStops(String line, String brigade, LocalDateTime date) {
-        return timetableRepository.findTop20ByLineAndBrigadeAndTimetableDepartureDateGreaterThanOrderByTimetableDepartureDate(line, brigade, date);
-    }
-
-
-    public List<Timetables> findTimetables(String line, String brigade, String stopId, String stopNumber, LocalDateTime localDateTime) {
-        return timetableRepository.findByLineAndBrigadeAndStopIdAndStopNumberAndTimetableDepartureDateBetween(line, brigade, stopId, stopNumber, localDateTime.toLocalDate().atStartOfDay(), localDateTime.toLocalDate().plusDays(1L).atStartOfDay());
-    }
-
-    public List<Timetables> findTimetables(String line, String brigade, LocalDateTime localDateTime) {
-        return timetableRepository.findByLineAndBrigadeAndTimetableDepartureDateBetween(line, brigade, localDateTime.toLocalDate().atStartOfDay(), localDateTime.toLocalDate().plusDays(1L).atStartOfDay());
     }
 
 }

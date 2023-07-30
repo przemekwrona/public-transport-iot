@@ -8,7 +8,7 @@ import org.springframework.cache.concurrent.ConcurrentMapCacheManager
 import org.springframework.context.annotation.Bean
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ContextConfiguration
-import pl.wrona.iot.timetable.WarsawUmApiConfiguration
+import pl.wrona.iot.timetable.properties.WarsawUmApiProperties
 import pl.wrona.warsaw.transport.api.model.WarsawStops
 import spock.lang.Ignore
 import spock.lang.Specification
@@ -22,7 +22,7 @@ class WarsawStopServiceSpec extends Specification {
   @Autowired
   CacheManager cacheManager;
 
-  def warsawUmApiConfiguration = Mock(WarsawUmApiConfiguration)
+  def warsawUmApiConfiguration = Mock(WarsawUmApiProperties)
 
   def warsawApiClient = Mock(WarsawApiClient)
 
@@ -111,8 +111,8 @@ class WarsawStopServiceSpec extends Specification {
     }
 
     @Bean
-    WarsawUmApiConfiguration warsawUmApiConfiguration() {
-      def warsawUmApiConfiguration = new WarsawUmApiConfiguration()
+    WarsawUmApiProperties warsawUmApiConfiguration() {
+      def warsawUmApiConfiguration = new WarsawUmApiProperties()
       warsawUmApiConfiguration.stopsResourceId = "stopsResourceId"
       warsawUmApiConfiguration.setApikey("apiKey")
       return warsawUmApiConfiguration;

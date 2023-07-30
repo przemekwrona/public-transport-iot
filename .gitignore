@@ -3,3 +3,5 @@
 .idea
 target
 etc/grafana/vendor/plugins
+
+resources/*

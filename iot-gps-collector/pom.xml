@@ -23,6 +23,9 @@
         <apache-hadoop.version>3.3.4</apache-hadoop.version>
         <google-cloud-storage.version>2.11.3</google-cloud-storage.version>
         <google-cloud-connector.version>hadoop3-2.2.7</google-cloud-connector.version>
+
+        <gcloud.project.id>${GCLOUD_PROJECT_ID}</gcloud.project.id>
+        <gcloud.deploy.version>${GCLOUD_DEPLOY_VERSION}</gcloud.deploy.version>
     </properties>
 
     <dependencyManagement>
@@ -111,13 +114,19 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
         <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <resources>
+                        <resource>
+                            <directory>src/main/resources</directory>
+                            <filtering>true</filtering>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -176,8 +185,11 @@
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>appengine-maven-plugin</artifactId>
                 <version>2.4.4</version>
+                <configuration>
+                    <deploy.projectId>${gcloud.project.id}</deploy.projectId>
+                    <deploy.version>${gcloud.deploy.version}</deploy.version>
+                </configuration>
             </plugin>
-
         </plugins>
     </build>
 

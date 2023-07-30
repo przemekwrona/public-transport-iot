@@ -12,6 +12,7 @@ import pl.wrona.iot.timetable.reload.predicate.NightBusPredicate;
 import pl.wrona.iot.timetable.reload.predicate.OtherPredicate;
 import pl.wrona.iot.timetable.reload.predicate.TramPredicate;
 
+import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
 @Component
@@ -25,7 +26,11 @@ public class ClearCacheJob {
     @Timed(value = "iot_apollo_clear_caches_and_load_stops_and_timetables")
     public void clearAllCachesAndLoadStopsAndTimetables() throws InterruptedException {
         cacheService.clearCache();
-        reloadService.reloadAll();
+
+        try {
+            reloadService.reloadAll();
+        } catch (IOException ignore) {
+        }
     }
 
 }

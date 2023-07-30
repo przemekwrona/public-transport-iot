@@ -2,15 +2,12 @@ name: Build and Deploy to GKE
 
 on:
   workflow_dispatch:
-
-env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GAR_LOCATION: us-central1 # TODO: update region of the Artifact Registry
-  GKE_CLUSTER: cluster-1    # TODO: update to cluster name
-  GKE_ZONE: us-central1-c   # TODO: update to cluster zone
-  DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
-  REPOSITORY: samples # TODO: update to Artifact Registry docker repository
-  IMAGE: static-site
+    inputs:
+      artifact:
+        type: choice
+        description: Artifact id
+        options:
+          - iot-gps-collector
 
 jobs:
   setup-build-publish-deploy:
@@ -32,26 +29,4 @@ jobs:
           cache: 'maven'
 
       - name: Build with maven
-        run: mvn clean install resources:resources -DWARSAW_API_KEY=${{ secrets.GCLOUD_PRIVATE_KEY }} -DGCLOUD_PROJECT_ID=${{ secrets.GCLOUD_PROJECT_ID }} -DGCLOUD_PRIVATE_KEY_ID=${{ secrets.GCLOUD_PRIVATE_KEY_ID }} -DGCLOUD_PRIVATE_KEY=${{ secrets.GCLOUD_PRIVATE_KEY }} -DGCLOUD_ACCOUNT_ID=${{ secrets.GCLOUD_ACCOUNT_ID }} -DGCLOUD_ACCOUNT_EMAIL=${{ secrets.GCLOUD_ACCOUNT_EMAIL }}
-
-      - name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v1'
-        with:
-          credentials_json: '${{ secrets.GCLOUD_PRIVATE_KEY }}'
-
-#      mvn package appengine:deploy -Dapp.deploy.projectId=co-mobility -Dapp.deploy.version=v1
-
-      #          workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-#          service_account: '${{ secrets.GCP_CREDENTIALS }}'
-
-#      - id: 'auth'
-#        name: 'Authenticate to Google Cloud'
-#        uses: 'google-github-actions/auth@v0'
-#        with:
-#          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
-
-      # Alternative option - authentication via credentials json
-      # - id: 'auth'
-      #   uses: 'google-github-actions/auth@v0'
-      #   with:
-      #     credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+        run: cd ${{ inputs.artifact }} && mvn clean verify

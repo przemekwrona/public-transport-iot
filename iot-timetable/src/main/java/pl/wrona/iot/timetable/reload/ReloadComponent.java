@@ -10,13 +10,13 @@ import java.util.function.Predicate;
 public class ReloadComponent implements Runnable {
 
     private final ReloadService reloadService;
-    private final CountDownLatch countDownLatch;
-
-    private final Predicate<String> predicate;
 
     @Override
     public void run() {
-        reloadService.reload(predicate);
-        countDownLatch.countDown();
+        try {
+            reloadService.reloadAll();
+        } catch (Exception e) {
+        }
+
     }
 }

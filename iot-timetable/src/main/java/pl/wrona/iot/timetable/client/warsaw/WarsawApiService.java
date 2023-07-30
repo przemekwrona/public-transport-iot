@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import pl.wrona.iot.timetable.WarsawUmApiConfiguration;
+import pl.wrona.iot.timetable.properties.WarsawUmApiProperties;
 import pl.wrona.warsaw.transport.api.model.WarsawStops;
 import pl.wrona.warsaw.transport.api.model.WarsawTimetableValue;
 import pl.wrona.warsaw.transport.api.model.WarsawTimetables;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class WarsawApiService {
 
-    private final WarsawUmApiConfiguration warsawUmApiConfiguration;
+    private final WarsawUmApiProperties warsawUmApiConfiguration;
     private final WarsawApiClient warsawApiClient;
 
     @Timed(value = "warsaw_api_get_stops")
