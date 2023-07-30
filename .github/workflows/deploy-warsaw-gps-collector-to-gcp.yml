@@ -8,6 +8,7 @@ on:
         description: Artifact id
         options:
           - iot-gps-collector
+          - iot-timetable
 
 jobs:
   setup-build-publish-deploy:
