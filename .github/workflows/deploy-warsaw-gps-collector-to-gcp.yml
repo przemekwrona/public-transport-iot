@@ -11,23 +11,22 @@ on:
           - iot-timetable
 
 jobs:
-  setup-build-publish-deploy:
-    name: Build artifact ${{ inputs.artifact }}
+  build:
     runs-on: ubuntu-latest
-    environment: production
-
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-
+    name: Build Artifact ${{ inputs.artifact }}
     steps:
       - uses: actions/checkout@v3
-
-      - uses: actions/setup-java@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
           java-version: '17'
+          distribution: 'temurin'
           cache: 'maven'
+      - run: cd ${{ inputs.artifact }} && mvn clean verify
+      - run: mkdir staging && cp target/*.jar staging
 
-      - name: Build with maven
-        run: cd ${{ inputs.artifact }} && mvn clean verify
+      - uses: actions/upload-artifact@v3
+          with:
+            name: Package
+            path: staging
+
