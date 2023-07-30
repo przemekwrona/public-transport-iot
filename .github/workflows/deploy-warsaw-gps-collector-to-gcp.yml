@@ -23,7 +23,7 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
       - run: cd ${{ inputs.artifact }} && mvn clean verify
-      - run: mkdir staging && cp target/*.jar staging
+      - run: mkdir staging && cp ${{ inputs.artifact }}/target/*.jar staging
 
       - uses: actions/upload-artifact@v3
         with:
