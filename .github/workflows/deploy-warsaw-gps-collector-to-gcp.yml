@@ -24,8 +24,9 @@ jobs:
           cache: 'maven'
       - run: | 
           cd ${{ inputs.artifact }} 
-          mvn clean verify& mvn clean verify
-      - run: mkdir staging && cp ${{ inputs.artifact }}/target/*.jar staging
+          mvn clean verify
+          mkdir staging
+          cp target/*.jar staging
 
       - uses: actions/upload-artifact@v3
         with:
