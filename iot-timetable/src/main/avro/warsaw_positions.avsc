@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "namespace": "pl.wrona.iot.warsaw.avro",
+  "name": "WarsawPositions",
+  "fields": [
+    {
+      "name": "line",
+      "type": "string"
+    },
+    {
+      "name": "lon",
+      "type": "float"
+    },
+    {
+      "name": "lat",
+      "type": "float"
+    },
+    {
+      "name": "brigade",
+      "type": "string"
+    },
+    {
+      "name": "time",
+      "type": "string"
+    }
+  ]
+}

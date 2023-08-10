@@ -8,8 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Setter
 @Configuration
-@ConfigurationProperties(prefix = "iot.timetables")
-public class IotTimetablesProperties {
+@ConfigurationProperties(prefix = "iot.positions")
+public class IotPositionsProperties {
 
     private String dirPath;
+    private Integer refreshFrequency;
+
 }
