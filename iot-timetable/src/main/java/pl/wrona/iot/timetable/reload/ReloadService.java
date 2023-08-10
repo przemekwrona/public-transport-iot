@@ -3,19 +3,15 @@ package pl.wrona.iot.timetable.reload;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.parquet.avro.AvroParquetWriter;
-import org.apache.parquet.hadoop.ParquetWriter;
-import org.apache.parquet.hadoop.metadata.CompressionCodecName;
-import org.apache.parquet.hadoop.util.HadoopOutputFile;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pl.wrona.iot.timetable.client.warsaw.WarsawApiService;
 import pl.wrona.iot.timetable.client.warsaw.WarsawDepartures;
 import pl.wrona.iot.timetable.client.warsaw.WarsawLineOnStop;
 import pl.wrona.iot.timetable.client.warsaw.WarsawStop;
 import pl.wrona.iot.timetable.client.warsaw.WarsawStopService;
+import pl.wrona.iot.timetable.properties.IotTimetablesProperties;
+import pl.wrona.iot.timetable.sink.ParquetSink;
 import pl.wrona.iot.warsaw.avro.WarsawTimetable;
 
 import java.io.IOException;
@@ -34,37 +30,25 @@ public class ReloadService {
     private final WarsawStopService warsawStopService;
     private final WarsawApiService warsawApiService;
 
-    @Value("${iot.timetables.dir.path}")
-    private String timetableDirectory;
+    private final IotTimetablesProperties iotTimetablesProperties;
 
     public void reloadAll() throws IOException {
         long startTime = System.nanoTime();
 
-        List<WarsawStop> warsawStops = warsawStopService.getStops().stream()
-                .limit(10)
-                .collect(Collectors.toList());
+        List<WarsawStop> warsawStops = warsawStopService.getStops();
 
-        String path = String.format("%s/%s.timetable.parquet", timetableDirectory, LocalDate.now());
-        HadoopOutputFile hadoopPath = HadoopOutputFile.fromPath(new Path(path), new Configuration());
-
-        try (ParquetWriter<Object> writer = AvroParquetWriter.builder(hadoopPath)
-                .withSchema(WarsawTimetable.getClassSchema())
-                .withCompressionCodec(CompressionCodecName.SNAPPY)
-                .build()) {
-
+        LocalDate now = LocalDate.now();
+        String path = String.format("%s/%s/%s.timetable.parquet", iotTimetablesProperties.getDirPath(), now, now);
+        try (ParquetSink<WarsawTimetable> sink = new ParquetSink<>(new Path(path), WarsawTimetable.getClassSchema())) {
             for (WarsawStop warsawStop : warsawStops) {
                 process(warsawStop).forEach(timetable -> {
                     try {
-                        writer.write(timetable);
+                        sink.write(timetable);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 });
             }
-
-        } catch (java.io.IOException e) {
-            System.out.printf("Error writing parquet file %s%n", e.getMessage());
-            e.printStackTrace();
         }
 
         long endTime = System.nanoTime();

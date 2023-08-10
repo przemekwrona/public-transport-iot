@@ -9,12 +9,15 @@ import pl.wrona.iot.timetable.properties.WarsawUmApiProperties;
 import pl.wrona.warsaw.transport.api.model.WarsawStops;
 import pl.wrona.warsaw.transport.api.model.WarsawTimetableValue;
 import pl.wrona.warsaw.transport.api.model.WarsawTimetables;
+import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
+import pl.wrona.warsaw.transport.api.model.WarsawVehicles;
 
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
@@ -66,6 +69,25 @@ public class WarsawApiService {
                 .orElse(new LinkedList<>()).stream()
                 .map(timetable -> WarsawDepartures.of(timetable, line))
                 .collect(Collectors.toList());
+    }
+
+    public List<WarsawVehicle> getPositions(String vehicleType) {
+        return Optional.ofNullable(warsawApiClient.getVehicles(warsawUmApiConfiguration.getApikey(), warsawUmApiConfiguration.getResourceId(), vehicleType))
+                .map(ResponseEntity::getBody)
+                .map(WarsawVehicles::getResult)
+                .orElse(List.of());
+    }
+
+    public List<WarsawVehicle> getBusPositions() {
+        return getPositions("1");
+    }
+
+    public List<WarsawVehicle> getTramPositions() {
+        return getPositions("2");
+    }
+
+    public List<WarsawVehicle> getPositions() {
+        return Stream.concat(getBusPositions().stream(), getTramPositions().stream()).collect(Collectors.toList());
     }
 
 }
