@@ -11,7 +11,6 @@ import pl.wrona.iot.warsaw.avro.WarsawPositions;
 import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,7 +48,7 @@ public class WarsawPositionService {
     }
 
     private ParquetSink<WarsawPositions> openParquetSink(LocalDateTime now) throws IOException {
-        String fileName = PathUtils.getPath("{date}.gps.parquet", now, 1L);
+        String fileName = PathUtils.getPath("{date}.warsaw.gps.parquet", now, 1L);
         String gpsDirectory = String.format("%s/%s/%s", iotPositionsProperties.getDirPath(), now, fileName);
         return new ParquetSink<>(new Path(gpsDirectory), WarsawPositions.getClassSchema());
     }
