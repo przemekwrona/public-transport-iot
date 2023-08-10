@@ -38,7 +38,7 @@ public class ReloadService {
         List<WarsawStop> warsawStops = warsawStopService.getStops();
 
         LocalDate now = LocalDate.now();
-        String path = String.format("%s/%s/%s.timetable.parquet", iotTimetablesProperties.getDirPath(), now, now);
+        String path = String.format("%s/%s/%s.warsaw.timetable.parquet", iotTimetablesProperties.getDirPath(), now, now);
         try (ParquetSink<WarsawTimetable> sink = new ParquetSink<>(new Path(path), WarsawTimetable.getClassSchema())) {
             for (WarsawStop warsawStop : warsawStops) {
                 process(warsawStop).forEach(timetable -> {
