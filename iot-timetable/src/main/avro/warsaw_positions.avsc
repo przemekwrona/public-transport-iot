@@ -8,16 +8,16 @@
       "type": "string"
     },
     {
-      "name": "lon",
-      "type": "float"
+      "name": "brigade",
+      "type": "string"
     },
     {
       "name": "lat",
       "type": "float"
     },
     {
-      "name": "brigade",
-      "type": "string"
+      "name": "lon",
+      "type": "float"
     },
     {
       "name": "time",

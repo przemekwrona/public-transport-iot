@@ -16,19 +16,19 @@
       "type": "string"
     },
     {
-      "name": "lon",
-      "type": "float"
-    },
-    {
       "name": "lat",
       "type": "float"
     },
     {
-      "name": "line",
+      "name": "lon",
+      "type": "float"
+    },
+    {
+      "name": "time",
       "type": "string"
     },
     {
-      "name": "direction",
+      "name": "line",
       "type": "string"
     },
     {
@@ -36,11 +36,11 @@
       "type": "string"
     },
     {
-      "name": "route",
+      "name": "direction",
       "type": "string"
     },
     {
-      "name": "time",
+      "name": "route",
       "type": "string"
     }
   ]
