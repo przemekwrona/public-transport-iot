@@ -31,6 +31,8 @@
     <validation-api.version>2.0.1.Final</validation-api.version>
     <swagger-annotations.version>1.6.2</swagger-annotations.version>
     <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
+    <hadoop.version>3.3.6</hadoop.version>
+
     <spock.version>2.0-groovy-3.0</spock.version>
   </properties>
   <dependencies>
@@ -135,8 +137,18 @@
     </dependency>
     <dependency>
       <groupId>org.apache.hadoop</groupId>
-      <artifactId>hadoop-core</artifactId>
-      <version>1.2.1</version>
+      <artifactId>hadoop-mapreduce-client-core</artifactId>
+      <version>${hadoop.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-common</artifactId>
+      <version>${hadoop.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-mapreduce-client-jobclient</artifactId>
+      <version>${hadoop.version}</version>
     </dependency>
 
     <dependency>

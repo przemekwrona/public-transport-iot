@@ -66,6 +66,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FinalStops'
+  /positions:
+    get:
+      summary: Get Warsaw Vehicle positions
+      operationId: getPositions
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Positions'
+  /shutdown:
+    post:
+      summary: Close app context
+      operationId: closeApp
+      responses:
+        200:
+          description: OK
 components:
   schemas:
     Timetable:
@@ -136,4 +154,43 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/FinalStop'
+    Position:
+      type: object
+      properties:
+        line:
+          type: string
+        brigade:
+          type: string
+        vehicleNumber:
+          type: string
+        lon:
+          type: number
+          format: float
+        lat:
+          type: number
+          format: float
+        date:
+          type: string
+          format: date-time
+        distance:
+          type: integer
+          format: int32
+        time:
+          type: integer
+          format: int64
+        velocity:
+          type: integer
+          format: int32
+        azimuth:
+          type: number
+          format: int
+
+    Positions:
+      type: object
+      properties:
+        positions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Position'
+
 

@@ -1,4 +1,4 @@
-package pl.wrona.iot.timetable;
+package pl.wrona.iot.timetable.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import io.micrometer.core.aop.TimedAspect;

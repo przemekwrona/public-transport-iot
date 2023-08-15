@@ -41,4 +41,8 @@ public class ParquetSink<T> implements Closeable {
     public void close() throws IOException {
         writer.close();
     }
+
+    public Path getPath() {
+        return path;
+    }
 }
