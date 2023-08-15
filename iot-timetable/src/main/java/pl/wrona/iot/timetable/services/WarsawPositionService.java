@@ -1,66 +1,74 @@
 package pl.wrona.iot.timetable.services;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.apache.hadoop.fs.Path;
+import org.apache.lucene.util.SloppyMath;
 import org.springframework.stereotype.Service;
+import pl.wrona.iot.apollo.api.model.Position;
+import pl.wrona.iot.apollo.api.model.Positions;
 import pl.wrona.iot.timetable.client.warsaw.WarsawApiService;
-import pl.wrona.iot.timetable.properties.IotPositionsProperties;
-import pl.wrona.iot.timetable.sink.ParquetSink;
-import pl.wrona.iot.timetable.sink.PathUtils;
-import pl.wrona.iot.warsaw.avro.WarsawPositions;
 import pl.wrona.warsaw.transport.api.model.WarsawVehicle;
 
-import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
-
-import static java.util.Objects.isNull;
 
 @Service
 @RequiredArgsConstructor
 public class WarsawPositionService {
+    public static final DateTimeFormatter WARSAW_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     private final WarsawApiService warsawApiService;
-    private final IotPositionsProperties iotPositionsProperties;
-    private ParquetSink<WarsawPositions> warsawPositionsParquetSink;
-    private LocalDateTime lastCreatedSink;
 
-    public void parquetPositions() throws IOException {
-        LocalDateTime now = LocalDateTime.now();
-        List<WarsawPositions> vehicles = warsawApiService.getPositions().stream()
-                .map(this::buildWarsawPositions)
+    private List<WarsawVehicle> vehicles;
+
+    private Map<String, List<WarsawVehicle>> previousCollectedVehicles;
+    private Map<String, List<WarsawVehicle>> currentCollectedVehicles;
+
+
+    public List<WarsawVehicle> getPositions() {
+        this.vehicles = warsawApiService.getPositions();
+        this.previousCollectedVehicles = this.currentCollectedVehicles;
+        this.currentCollectedVehicles = vehicles.stream()
+                .collect(Collectors.groupingBy(WarsawVehicle::getVehicleNumber));
+
+        return vehicles;
+    }
+
+    public Positions warsawPositions() {
+        List<Position> positions = this.vehicles.stream()
+                .map(v -> {
+                    WarsawVehicle prev = previousCollectedVehicles.get(v.getVehicleNumber()).get(0);
+                    WarsawVehicle curr = currentCollectedVehicles.get(v.getVehicleNumber()).get(0);
+
+                    LocalDateTime pTime = LocalDateTime.parse(prev.getTime(), WARSAW_FORMATTER);
+                    LocalDateTime cTime = LocalDateTime.parse(curr.getTime(), WARSAW_FORMATTER);
+
+                    double meters = SloppyMath.haversinMeters(prev.getLat(), prev.getLon(), curr.getLat(), curr.getLon());
+                    long seconds = Duration.between(pTime, cTime).getSeconds();
+
+                    double velocity = (meters / ((double) seconds)) * 3600 / 1000;
+
+                    return new Position()
+                            .line(curr.getLines())
+                            .brigade(curr.getBrigade())
+                            .vehicleNumber(v.getVehicleNumber())
+                            .date(OffsetDateTime.MAX)
+                            .lon(curr.getLon())
+                            .lat(curr.getLat())
+                            .distance(Double.valueOf(meters).intValue())
+                            .time(seconds)
+                            .velocity(Double.valueOf(velocity).intValue())
+                            .azimuth(BigDecimal.ZERO);
+                })
                 .collect(Collectors.toList());
 
-        if (isNull(warsawPositionsParquetSink)) {
-            this.warsawPositionsParquetSink = openParquetSink(now);
-            this.lastCreatedSink = now;
-        }
-
-        if (Math.abs(now.getHour() - lastCreatedSink.getHour()) < iotPositionsProperties.getRefreshFrequency()) {
-            warsawPositionsParquetSink.write(vehicles);
-        } else {
-            warsawPositionsParquetSink.close();
-            this.warsawPositionsParquetSink = this.openParquetSink(now);
-            this.lastCreatedSink = now;
-            this.warsawPositionsParquetSink.write(vehicles);
-        }
+        return new Positions()
+                .positions(positions);
     }
-
-    private ParquetSink<WarsawPositions> openParquetSink(LocalDateTime now) throws IOException {
-        String fileName = PathUtils.getPath("{date}.warsaw.gps.parquet", now, 1L);
-        String gpsDirectory = String.format("%s/%s/%s", iotPositionsProperties.getDirPath(), now, fileName);
-        return new ParquetSink<>(new Path(gpsDirectory), WarsawPositions.getClassSchema());
-    }
-
-    private WarsawPositions buildWarsawPositions(WarsawVehicle v) {
-        WarsawPositions position = new WarsawPositions();
-        position.setLine(v.getLines());
-        position.setLon(v.getLon());
-        position.setLat(v.getLat());
-        position.setBrigade(v.getBrigade());
-        position.setTime(v.getTime());
-        return position;
-    }
-
 }
