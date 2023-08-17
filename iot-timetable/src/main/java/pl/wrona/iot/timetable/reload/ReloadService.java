@@ -69,9 +69,10 @@ public class ReloadService {
         avro.setStopName(warsawStop.getName());
         avro.setLat(warsawStop.getLat());
         avro.setLon(warsawStop.getLon());
+        avro.setStopDirection(warsawStop.getDirection());
         avro.setLine(timetable.getLine());
-        avro.setDirection(timetable.getDirection());
         avro.setBrigade(timetable.getBrigade());
+        avro.setLineDirection(timetable.getDirection());
         avro.setRoute(timetable.getRoute());
         avro.setTime(timetable.getTime().format(DateTimeFormatter.ISO_DATE_TIME));
         return avro;
