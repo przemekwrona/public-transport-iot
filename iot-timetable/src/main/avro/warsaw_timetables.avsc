@@ -24,7 +24,7 @@
       "type": "float"
     },
     {
-      "name": "time",
+      "name": "stop_direction",
       "type": "string"
     },
     {
@@ -36,11 +36,15 @@
       "type": "string"
     },
     {
-      "name": "direction",
+      "name": "line_direction",
       "type": "string"
     },
     {
       "name": "route",
+      "type": "string"
+    },
+    {
+      "name": "time",
       "type": "string"
     }
   ]
