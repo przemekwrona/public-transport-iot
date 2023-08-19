@@ -3,7 +3,12 @@ package pl.wrona.iot.timetable.reload;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
+import org.apache.parquet.avro.AvroParquetReader;
+import org.apache.parquet.hadoop.ParquetReader;
+import org.apache.parquet.hadoop.util.HadoopInputFile;
+import org.onebusaway.gtfs.serialization.GtfsWriter;
 import org.springframework.stereotype.Service;
 import pl.wrona.iot.timetable.client.warsaw.WarsawApiService;
 import pl.wrona.iot.timetable.client.warsaw.WarsawDepartures;
@@ -14,14 +19,15 @@ import pl.wrona.iot.timetable.properties.IotTimetablesProperties;
 import pl.wrona.iot.timetable.sink.ParquetSink;
 import pl.wrona.iot.warsaw.avro.WarsawTimetable;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
+import static java.util.Objects.nonNull;
 
 @Slf4j
 @Service
@@ -56,10 +62,7 @@ public class ReloadService {
     }
 
     private List<WarsawTimetable> process(WarsawStop warsawStop) {
-        return reload(warsawStop).stream()
-                .flatMap(pair -> pair.getRight().stream())
-                .map(timetable -> build(warsawStop, timetable))
-                .collect(Collectors.toList());
+        return reload(warsawStop).stream().flatMap(pair -> pair.getRight().stream()).map(timetable -> build(warsawStop, timetable)).collect(Collectors.toList());
     }
 
     private WarsawTimetable build(WarsawStop warsawStop, WarsawDepartures timetable) {
@@ -79,18 +82,31 @@ public class ReloadService {
     }
 
     private List<Pair<WarsawLineOnStop, List<WarsawDepartures>>> reload(WarsawStop warsawStop) {
-        return Optional.of(warsawStop)
-                .map(stop -> warsawStopService.getLinesOnStop(stop.getGroup(), stop.getSlupek()))
-                .map(linesOnStop -> linesOnStop.getLines().stream()
-                        .map(stop -> WarsawLineOnStop.builder()
-                                .stopId(linesOnStop.getStopId())
-                                .stopNumber(linesOnStop.getStopNumber())
-                                .lines(List.of(stop))
-                                .build())
-                        .collect(Collectors.toList()))
-                .stream()
-                .flatMap(Collection::stream)
-                .map(stop -> Pair.of(stop, warsawApiService.getTimetable(stop.getStopId(), stop.getStopNumber(), stop.getLines().get(0))))
-                .collect(Collectors.toList());
+        return Optional.of(warsawStop).map(stop -> warsawStopService.getLinesOnStop(stop.getGroup(), stop.getSlupek())).map(linesOnStop -> linesOnStop.getLines().stream().map(stop -> WarsawLineOnStop.builder().stopId(linesOnStop.getStopId()).stopNumber(linesOnStop.getStopNumber()).lines(List.of(stop)).build()).collect(Collectors.toList())).stream().flatMap(Collection::stream).map(stop -> Pair.of(stop, warsawApiService.getTimetable(stop.getStopId(), stop.getStopNumber(), stop.getLines().get(0)))).collect(Collectors.toList());
+    }
+
+    public void gtfs(LocalDate date) {
+        java.nio.file.Path path = java.nio.file.Path.of(iotTimetablesProperties.getDirPath(), String.format("%s/%s.warsaw.timetable.parquet", date, date));
+        try (ParquetReader<WarsawTimetable> reader = AvroParquetReader.<WarsawTimetable>builder(HadoopInputFile.fromPath(new Path(path.toUri()), new Configuration())).build()) {
+
+            List<WarsawTimetable> timetables = new ArrayList<>();
+
+            WarsawTimetable record = reader.read();
+            while (nonNull(record)) {
+                timetables.add(record);
+                record = reader.read();
+            }
+
+            GtfsWriter writer = new GtfsWriter();
+            java.nio.file.Path gtfsPath = java.nio.file.Path.of(iotTimetablesProperties.getDirPath(), date.toString(), String.format("%s.warsaw.gtfs", date));
+            writer.setOutputLocation(new File(gtfsPath.toAbsolutePath().toString()));
+
+            try (final GtfsGenerator gtfsGenerator = new GtfsGenerator(writer, date)) {
+                gtfsGenerator.accept(timetables);
+            }
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 }

@@ -20,6 +20,9 @@
     <swagger-annotations.version>1.6.2</swagger-annotations.version>
     <springfox.version>2.9.2</springfox.version>
     <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
+
+    <junit.version>5.7.2</junit.version>
+    <mockito.version>3.12.4</mockito.version>
     <spock.version>2.0-groovy-3.0</spock.version>
     <h2.version>2.1.210</h2.version>
     <java.version>11</java.version>
@@ -69,6 +72,19 @@
         <artifactId>jackson-databind-nullable</artifactId>
         <version>${jackson-databind-nullable.version}</version>
       </dependency>
+
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${mockito.version}</version>
+        <scope>test</scope>
+      </dependency>
       <dependency>
         <groupId>org.spockframework</groupId>
         <artifactId>spock-core</artifactId>
@@ -84,9 +100,21 @@
     </dependencies>
   </dependencyManagement>
 
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+    <repository>
+      <id>public.onebusaway.org</id>
+      <url>https://repo.camsys-apps.com/releases/</url>
+    </repository>
+  </repositories>
+
   <modules>
     <module>iot-gps-collector</module>
     <module>iot-hermes</module>
     <module>iot-timetable</module>
+    <module>iot-warsaw-timetable-formatter</module>
   </modules>
 </project>
