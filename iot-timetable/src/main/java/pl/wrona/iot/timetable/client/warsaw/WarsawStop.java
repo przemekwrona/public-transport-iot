@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import org.apache.lucene.util.SloppyMath;
+import pl.wrona.iot.warsaw.avro.WarsawTimetable;
 import pl.wrona.warsaw.transport.api.model.WarsawStopValue;
 
 @Data
@@ -47,6 +48,19 @@ public class WarsawStop {
                 .findFirst()
                 .map(WarsawStopValue::getValue)
                 .orElse("");
+    }
+
+    public static WarsawStop of(WarsawTimetable warsawTimetable) {
+        return WarsawStop.builder()
+                .group(warsawTimetable.getStopId().toString())
+                .slupek(warsawTimetable.getStopNumber().toString())
+                .name(warsawTimetable.getStopName().toString())
+                .streetId(null)
+                .lat(warsawTimetable.getLat())
+                .lon(warsawTimetable.getLon())
+                .direction(warsawTimetable.getStopDirection().toString())
+                .validateFromDate(null)
+                .build();
     }
 
 }
