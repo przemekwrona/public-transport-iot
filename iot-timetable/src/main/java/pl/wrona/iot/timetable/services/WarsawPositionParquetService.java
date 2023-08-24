@@ -113,6 +113,15 @@ public class WarsawPositionParquetService {
                     });
         } catch (IOException exception) {
         }
+
+        try {
+            Files.walk(directory)
+                    .filter(path -> !path.equals(mergedFilePath))
+                    .map(java.nio.file.Path::toFile)
+                    .forEach(File::delete);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
     private static Configuration defaultConfiguration() {
