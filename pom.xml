@@ -97,7 +97,6 @@
 
   <modules>
     <module>iot-gps-collector</module>
-    <module>iot-hermes</module>
     <module>iot-timetable</module>
   </modules>
 </project>
