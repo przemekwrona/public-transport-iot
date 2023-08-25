@@ -19,7 +19,7 @@ class WarsawStopTest {
 
     private static Stream<Arguments> provideDistanceToStop() {
         return Stream.of(
-                Arguments.of(52.23465f, 21.01522f, 52.23069f, 21.01585f, 442));
+                Arguments.of(52.23465f, 21.01522f, 52.23069f, 21.01585f, 442L));
     }
 
     @ParameterizedTest
@@ -36,7 +36,7 @@ class WarsawStopTest {
                 .build();
 
         // expect
-        assertThat(warsawStop.distance(warsawStop)).isEqualTo(distance);
+        assertThat(vehicleStop.distance(warsawStop)).isEqualTo(distance);
     }
 
 }

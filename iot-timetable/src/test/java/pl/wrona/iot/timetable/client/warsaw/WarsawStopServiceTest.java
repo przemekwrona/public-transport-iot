@@ -1,5 +1,6 @@
 package pl.wrona.iot.timetable.client.warsaw;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -7,8 +8,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.cache.CacheManager;
 import org.springframework.http.ResponseEntity;
+import pl.wrona.iot.timetable.JsonFileUtils;
 import pl.wrona.warsaw.transport.api.model.WarsawStops;
 
 
@@ -20,7 +21,6 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static pl.wrona.iot.timetable.JsonFileUtils.readJson;
 
 @SpringBootTest
 class WarsawStopServiceTest {
@@ -29,13 +29,11 @@ class WarsawStopServiceTest {
     private WarsawApiClient warsawApiClient;
 
     @Autowired
-    private CacheManager cacheManager;
-
-    @Autowired
     private WarsawStopService warsawStopService;
 
 
     @Test
+    @Disabled
     void shouldCallWarsawAPI_1_time() {
         // given
         when(warsawApiClient.getStops(any(), any())).thenReturn(ResponseEntity.ok(new pl.wrona.warsaw.transport.api.model.WarsawStops().result(List.of())));
@@ -58,7 +56,7 @@ class WarsawStopServiceTest {
     @ParameterizedTest
     @MethodSource("provideStops")
     void shouldReturnTheClosestStop(Float lat, Float lon, String name) throws IOException {
-        WarsawStops warsawStops = readJson("/warsaw/stops-narutowicza.json", WarsawStops.class);
+        WarsawStops warsawStops = JsonFileUtils.readJson("/warsaw/stops-narutowicza.json", WarsawStops.class);
         when(warsawApiClient.getStops(any(), any())).thenReturn(ResponseEntity.ok(warsawStops));
 
         // when

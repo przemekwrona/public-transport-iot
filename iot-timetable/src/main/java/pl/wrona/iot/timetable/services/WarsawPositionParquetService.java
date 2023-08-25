@@ -8,7 +8,6 @@ import org.apache.hadoop.fs.Path;
 import org.apache.parquet.avro.AvroParquetReader;
 import org.apache.parquet.hadoop.ParquetReader;
 import org.apache.parquet.hadoop.util.HadoopInputFile;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.wrona.iot.timetable.properties.IotPositionsProperties;
 import pl.wrona.iot.timetable.sink.ParquetSink;
