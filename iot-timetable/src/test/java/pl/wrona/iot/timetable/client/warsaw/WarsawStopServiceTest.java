@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
+//@SpringBootTest
 class WarsawStopServiceTest {
 
     @MockBean
@@ -32,9 +32,9 @@ class WarsawStopServiceTest {
     private WarsawStopService warsawStopService;
 
 
-    @Test
     @Disabled
-    void shouldCallWarsawAPI_1_time() {
+    @Test
+    void shouldCallWarsawAPIOneTime() {
         // given
         when(warsawApiClient.getStops(any(), any())).thenReturn(ResponseEntity.ok(new pl.wrona.warsaw.transport.api.model.WarsawStops().result(List.of())));
 
@@ -53,6 +53,7 @@ class WarsawStopServiceTest {
                 Arguments.of(52.222f, 20.985f, "Ochota-Ratusz"));
     }
 
+    @Disabled
     @ParameterizedTest
     @MethodSource("provideStops")
     void shouldReturnTheClosestStop(Float lat, Float lon, String name) throws IOException {

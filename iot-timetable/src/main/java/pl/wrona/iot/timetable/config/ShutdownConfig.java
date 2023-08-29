@@ -4,11 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.wrona.iot.timetable.services.WarsawPositionParquetService;
 
-@Configuration
+//@Configuration
 public class ShutdownConfig {
 
-    @Bean
-    public TerminationBean getTerminateBean(final WarsawPositionParquetService warsawPositionParquetService) {
-        return new TerminationBean(warsawPositionParquetService);
-    }
+//    @Bean
+//    public TerminationBean getTerminateBean(final WarsawPositionParquetService warsawPositionParquetService) {
+//        return new TerminationBean(warsawPositionParquetService);
+//    }
 }

@@ -40,6 +40,23 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+      <version>1.3.2</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger.core.v3</groupId>
+      <artifactId>swagger-annotations</artifactId>
+    </dependency>
 <!--    <dependency>-->
 <!--      <groupId>org.springframework.boot</groupId>-->
 <!--      <artifactId>spring-boot-starter-data-jpa</artifactId>-->
@@ -220,7 +237,7 @@
       <plugin>
         <groupId>org.openapitools</groupId>
         <artifactId>openapi-generator-maven-plugin</artifactId>
-        <version>5.3.0</version>
+        <version>7.0.0</version>
         <executions>
           <execution>
             <id>warsaw-api</id>
@@ -235,6 +252,7 @@
               <generateSupportingFiles>true</generateSupportingFiles>
               <configOptions>
                 <sourceFolder>src/gen/java</sourceFolder>
+                <useSpringBoot3>true</useSpringBoot3>
                 <serializableModel>true</serializableModel>
                 <snapshotVersion>true</snapshotVersion>
                 <apiPackage>pl.wrona.warsaw.transport.api</apiPackage>
@@ -262,6 +280,7 @@
               <generateSupportingFiles>true</generateSupportingFiles>
               <configOptions>
                 <sourceFolder>src/gen/java</sourceFolder>
+                <useSpringBoot3>true</useSpringBoot3>
                 <serializableModel>true</serializableModel>
                 <snapshotVersion>true</snapshotVersion>
                 <apiPackage>pl.wrona.iot.apollo.api</apiPackage>

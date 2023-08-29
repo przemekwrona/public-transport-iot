@@ -48,6 +48,18 @@
             <version>${spring-cloud.version}</version>
         </dependency>
         <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>${validation-api.version}</version>
@@ -106,6 +118,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
@@ -150,7 +167,7 @@
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>5.3.0</version>
+                <version>7.0.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -164,6 +181,7 @@
                             <generateSupportingFiles>true</generateSupportingFiles>
                             <configOptions>
                                 <sourceFolder>src/gen/java</sourceFolder>
+                                <useSpringBoot3>true</useSpringBoot3>
                                 <serializableModel>true</serializableModel>
                                 <snapshotVersion>true</snapshotVersion>
                                 <apiPackage>pl.wrona.warsaw.transport.api</apiPackage>
