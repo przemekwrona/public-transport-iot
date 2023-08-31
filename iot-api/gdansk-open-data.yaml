@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  title: Warsaw Public Transport API
+  description: Warsaw Public Transport API
+  version: 1.0.0
+servers:
+  - url: 'https://ckan.multimediagdansk.pl'
+paths:
+  /dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/9c3d6fed-5394-4ef1-b2c6-c8716999149c/download/stoptimesspan.json:
+    get:
+      tags:
+        - stop-time
+      summary: Returns list of Vehicles with theirs positions
+      operationId: getStopTimeSpan
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StopTimesSpans'
+components:
+  schemas:
+    StopTimeSpan:
+      type: object
+      properties:
+        agencyId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+    StopTimesSpans:
+      type: object
+      properties:
+        lastUpdate:
+          type: string
+        stopTimesSpans:
+          type: array
+          items:
+            $ref: '#/components/schemas/StopTimeSpan'

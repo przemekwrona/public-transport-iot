@@ -19,7 +19,7 @@
     <validation-api.version>2.0.1.Final</validation-api.version>
     <swagger-annotations.version>1.6.2</swagger-annotations.version>
     <springfox.version>2.9.2</springfox.version>
-    <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
+    <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
 
     <junit.version>5.7.2</junit.version>
     <mockito.version>3.12.4</mockito.version>
@@ -153,5 +153,6 @@
     <module>iot-gps-collector</module>
     <module>iot-timetable</module>
     <module>iot-warsaw-timetable-formatter</module>
+    <module>iot-gtfs-collector</module>
   </modules>
 </project>
