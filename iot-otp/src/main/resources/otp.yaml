@@ -1,0 +1,296 @@
+openapi: 3.0.0
+info:
+  title: OTP API
+  description: Open Trip Planner API
+  version: 1.0.0
+servers:
+  - url: 'https://ckan.multimediagdansk.pl'
+paths:
+  /otp/routers/default/plan:
+    get:
+      tags:
+        - plan
+      summary: Return trip plan
+      operationId: getTripPlan
+      parameters:
+        - in: query
+          name: fromPlace
+          schema:
+            type: string
+        - in: query
+          name: toPlace
+          schema:
+            type: string
+        - in: query
+          name: time
+          schema:
+            type: string
+        - in: query
+          name: date
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripPlan'
+components:
+  schemas:
+    RequestParameters:
+      type: object
+      properties:
+        date:
+          type: string
+        mode:
+          type: string
+        arriveBy:
+          type: string
+        wheelchair:
+          type: boolean
+        debugItineraryFilter:
+          type: boolean
+        showIntermediateStops:
+          type: boolean
+        fromPlace:
+          type: string
+        baseLayer:
+          type: string
+        toPlace:
+          type: string
+        time:
+          type: string
+        locale:
+          type: string
+    FromToPlan:
+      type: object
+      properties:
+        name:
+          type: string
+        lon:
+          type: string
+        lat:
+          type: string
+        vertexType:
+          type: string
+    Fare:
+      type: object
+      properties:
+        fare:
+          type: object
+        details:
+          type: object
+    FromToLeg:
+      type: object
+      properties:
+        name:
+          type: string
+        stopId:
+          type: string
+        lon:
+          type: number
+          format: double
+        lat:
+          type: number
+          format: double
+        arrival:
+          type: integer
+          format: int64
+        departure:
+          type: integer
+          format: int64
+        vertexType:
+          type: string
+    IntermediateStops:
+      type: object
+      properties:
+        name:
+          type: string
+        stopId:
+          type: string
+        lon:
+          type: number
+          format: double
+        lat:
+          type: number
+          format: double
+        arrival:
+          type: integer
+          format: int64
+        departure:
+          type: integer
+          format: int64
+        stopIndex:
+          type: integer
+        stopSequence:
+          type: integer
+        vertexType:
+          type: string
+    LegGeometry:
+      type: object
+      properties:
+        points:
+          type: string
+        length:
+          type: integer
+    Step:
+      type: object
+      properties:
+        distance:
+          type: number
+          format: double
+        relativeDirection:
+          type: string
+        streetName:
+          type: string
+        absoluteDirection:
+          type: string
+        stayOn:
+          type: boolean
+        area:
+          type: boolean
+        bogusName:
+          type: boolean
+        lon:
+          type: number
+          format: double
+        lat:
+          type: number
+          format: double
+        elevation:
+          type: string
+        walkingBike:
+          type: boolean
+    Leg:
+      type: object
+      properties:
+        startTime:
+          type: integer
+          format: int64
+        endTime:
+          type: integer
+          format: int64
+        departureDelay:
+          type: integer
+        arrivalDelay:
+          type: integer
+        realTime:
+          type: boolean
+        distance:
+          type: number
+          format: double
+        generalizedCost:
+          type: integer
+        pathway:
+          type: boolean
+        mode:
+          type: string
+        transitLeg:
+          type: boolean
+        route:
+          type: string
+        agencyTimeZoneOffset:
+          type: integer
+        interlineWithPreviousLeg:
+          type: boolean
+        from:
+          $ref: '#/components/schemas/FromToLeg'
+        to:
+          $ref: '#/components/schemas/FromToLeg'
+        IntermediateStops:
+          $ref: '#/components/schemas/IntermediateStops'
+        legGeometry:
+          $ref: '#/components/schemas/LegGeometry'
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Step'
+        rentedBike:
+          type: boolean
+        walkingBike:
+          type: boolean
+        duration:
+          type: integer
+    ItineraryPlan:
+      type: object
+      properties:
+        duration:
+          type: integer
+        startTime:
+          type: integer
+          format: int64
+        endTime:
+          type: integer
+          format: int64
+        walkTime:
+          type: integer
+        transitTime:
+          type: integer
+        waitingTime:
+          type: integer
+        walkDistance:
+          type: number
+          format: double
+        walkLimitExceeded:
+          type: boolean
+        generalizedCost:
+          type: integer
+        elevationLost:
+          type: number
+          format: double
+        elevationGained:
+          type: number
+          format: double
+        transfers:
+          type: integer
+        fare:
+          $ref: '#/components/schemas/Fare'
+        legs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Leg'
+
+        tooSloped:
+          type: boolean
+        arrivedAtDestinationWithRentedBicycle:
+          type: boolean
+
+    Plan:
+      type: object
+      properties:
+        date:
+          type: string
+        from:
+          $ref: '#/components/schemas/FromToPlan'
+        to:
+          $ref: '#/components/schemas/FromToPlan'
+        itineraries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItineraryPlan'
+    Metadata:
+      type: object
+    DebugOutput:
+      type: object
+    ElevationMetadata:
+      type: object
+    TripPlan:
+      type: object
+      properties:
+        requestParameters:
+          $ref: '#/components/schemas/RequestParameters'
+        plan:
+          $ref: '#/components/schemas/Plan'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        previousPageCursor:
+          type: string
+        nextPageCursor:
+          type: string
+        debugOutput:
+          $ref: '#/components/schemas/DebugOutput'
+        elevationMetadata:
+          $ref: '#/components/schemas/ElevationMetadata'
+
+
