@@ -1,0 +1,220 @@
+iot:
+  warsaw:
+    metro:
+      agency:
+        id: METRO_WAWA
+        name: Metro Warszawskie
+      routes:
+        - id: M1
+          long-name: Kabaty - Młociny
+        - id: M2
+          long-name: Bemowo - Bródno
+      trips:
+        - route-id: M1
+          stops:
+          - id: A1
+            stop-sequence: 1
+            time: 0
+          - id: A2
+            stop-sequence: 2
+            time: 2
+          - id: A3
+            stop-sequence: 3
+            time: 4
+          - id: A4
+            stop-sequence: 4
+            time: 6
+          - id: A5
+            stop-sequence: 5
+            time: 8
+          - id: A6
+            stop-sequence: 6
+            time: 10
+          - id: A7
+            stop-sequence: 7
+            time: 12
+          - id: A8
+            stop-sequence: 8
+            time: 13
+          - id: A9
+            stop-sequence: 9
+            time: 15
+          - id: A10
+            stop-sequence: 10
+            time: 17
+          - id: A11
+            stop-sequence: 11
+            time: 18
+          - id: A13
+            stop-sequence: 12
+            time: 21
+          - id: A14
+            stop-sequence: 13
+            time: 22
+          - id: A15
+            stop-sequence: 14
+            time: 24
+          - id: A17
+            stop-sequence: 15
+            time: 27
+          - id: A18
+            stop-sequence: 16
+            time: 30
+          - id: A19
+            stop-sequence: 17
+            time: 32
+          - id: A20
+            stop-sequence: 18
+            time: 33
+          - id: A21
+            stop-sequence: 19
+            time: 35
+          - id: A22
+            stop-sequence: 20
+            time: 37
+          - id: A23
+            stop-sequence: 21
+            time: 39
+          monday-friday:
+            trip-id: M1/TP-MLO/M1
+            frequencies:
+              - start-time: 05:02
+                end-time: 05:35
+                timing: 360
+
+        - route-id: M2
+          stops:
+            - id: C4
+              stop-sequence: 1
+              time: 0
+            - id: C5
+              stop-sequence: 2
+              time: 2
+            - id: C6
+              stop-sequence: 3
+              time: 4
+            - id: C7
+              stop-sequence: 4
+              time: 6
+            - id: C8
+              stop-sequence: 5
+              time: 8
+            - id: C9
+              stop-sequence: 6
+              time: 9
+            - id: C10
+              stop-sequence: 7
+              time: 11
+            - id: C11
+              stop-sequence: 8
+              time: 13
+            - id: C12
+              stop-sequence: 9
+              time: 15
+            - id: C13
+              stop-sequence: 10
+              time: 17
+            - id: C14
+              stop-sequence: 11
+              time: 19
+            - id: C15
+              stop-sequence: 12
+              time: 21
+            - id: C16
+              stop-sequence: 13
+              time: 23
+            - id: C17
+              stop-sequence: 14
+              time: 25
+            - id: C18
+              stop-sequence: 15
+              time: 27
+            - id: C19
+              stop-sequence: 16
+              time: 29
+            - id: C20
+              stop-sequence: 17
+              time: 31
+            - id: C21
+              stop-sequence: 18
+              time: 33
+      stops:
+        - id: A1
+          name: Kabaty
+        - id: A2
+          name: Natolin
+        - id: A3
+          name: Imielin
+        - id: A4
+          name: Stokłosy
+        - id: A5
+          name: Ursynów
+        - id: A6
+          name: Służew
+        - id: A7
+          name: Wilanowska
+        - id: A8
+          name: Wierzbno
+        - id: A9
+          name: Racławicka
+        - id: A10
+          name: Pole Mokotowskie
+        - id: A11
+          name: Politechnika
+        - id: A13
+          name: Centrum
+        - id: A14
+          name: Świętokrzyska
+        - id: A15
+          name: Ratusz Arsenał
+        - id: A17
+          name: Dworzec Gdański
+        - id: A18
+          name: Plac Wilsona
+        - id: A19
+          name: Marymont
+        - id: A20
+          name: Słodowiec
+        - id: A21
+          name: Stare Bielany
+        - id: A22
+          name: Wawrzyszew
+        - id: A23
+          name: Młociny
+        - id: C4
+          name: Bemowo
+        - id: C5
+          name: Ulrychów
+        - id: C6
+          name: Księcia Janusza
+        - id: C7
+          name: Młynów
+        - id: C8
+          name: Płocka
+        - id: C9
+          name: Rondo Daszyńskiego
+        - id: C10
+          name: Rondo ONZ
+        - id: C11
+          name: Świętokrzyska
+        - id: C12
+          name: Nowy Świat-Uniwersytet
+        - id: C13
+          name: Centrum Nauki Kopernik
+        - id: C14
+          name: Stadion Narodowy
+        - id: C15
+          name: Dworzec Wileński
+        - id: C16
+          name: Szwedzka
+        - id: C17
+          name: Targówek Mieszkaniowy
+        - id: C18
+          name: Trocka
+        - id: C19
+          name: Zacisze
+        - id: C20
+          name: Kondratowicza
+        - id: C21
+          name: Bródno
+
