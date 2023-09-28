@@ -57,11 +57,11 @@ public class StopTimesService {
                                 Trip trip = new Trip();
                                 trip.setId(tripId);
                                 trip.setServiceId(serviceId);
-                                trip.setRoute(routeService.findRouteByIf(lineNumber.getLine()));
+                                trip.setRoute(routeService.findRouteById(lineNumber.getLine()));
 
                                 stopSequence.set(stopSequence.get() + 1);
                                 StopTime stopTime = new StopTime();
-                                stopTime.setStop(stopService.findStopByIf(stopTimeDetails.getStopId()));
+                                stopTime.setStop(stopService.findStopById(stopTimeDetails.getStopId()));
                                 stopTime.setTrip(trip);
                                 stopTime.setArrivalTime((int) stopTimeDetails.toSeconds());
                                 stopTime.setDepartureTime((int) stopTimeDetails.toSeconds());

@@ -87,7 +87,7 @@ public class StopService {
                 .build();
     }
 
-    public Stop findStopByIf(String stopId) {
+    public Stop findStopById(String stopId) {
         return stops.get(stopId);
     }
 

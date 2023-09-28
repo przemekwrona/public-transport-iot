@@ -15,6 +15,5 @@ public class MetroProperties {
 
     private MetroAgency agency;
     private List<MetroRoute> routes;
-    private List<MetroTrip> trips;
     private List<MetroStop> stops;
 }

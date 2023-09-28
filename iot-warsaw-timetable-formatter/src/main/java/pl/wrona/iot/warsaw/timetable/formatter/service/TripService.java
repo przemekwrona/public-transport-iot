@@ -59,7 +59,7 @@ public class TripService {
                                                                     Trip trip = new Trip();
                                                                     trip.setId(tripId);
                                                                     trip.setServiceId(serviceId);
-                                                                    trip.setRoute(routeService.findRouteByIf(lineNumber.getLine()));
+                                                                    trip.setRoute(routeService.findRouteById(lineNumber.getLine()));
                                                                     return trip;
                                                                 })
                                                                 .collect(Collectors.toList());

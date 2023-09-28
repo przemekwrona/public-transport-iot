@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.wrona.iot.warsaw.timetable.formatter.service.GtfsService;
+import pl.wrona.iot.warsaw.timetable.formatter.GtfsService;
 
 import java.io.File;
 import java.io.IOException;

@@ -4,85 +4,314 @@ iot:
       agency:
         id: METRO_WAWA
         name: Metro Warszawskie
+        url: https://metro.waw.pl
+        timezone: Europe/Warsaw
       routes:
-        - id: M1
+        - id: M1 Młociny
           long-name: Kabaty - Młociny
+          stops:
+            - id: A1
+              stop-sequence: 1
+              time: 0
+            - id: A2
+              stop-sequence: 2
+              time: 2
+            - id: A3
+              stop-sequence: 3
+              time: 4
+            - id: A4
+              stop-sequence: 4
+              time: 6
+            - id: A5
+              stop-sequence: 5
+              time: 8
+            - id: A6
+              stop-sequence: 6
+              time: 10
+            - id: A7
+              stop-sequence: 7
+              time: 12
+            - id: A8
+              stop-sequence: 8
+              time: 13
+            - id: A9
+              stop-sequence: 9
+              time: 15
+            - id: A10
+              stop-sequence: 10
+              time: 17
+            - id: A11
+              stop-sequence: 11
+              time: 18
+            - id: A13
+              stop-sequence: 12
+              time: 21
+            - id: A14
+              stop-sequence: 13
+              time: 22
+            - id: A15
+              stop-sequence: 14
+              time: 24
+            - id: A17
+              stop-sequence: 15
+              time: 27
+            - id: A18
+              stop-sequence: 16
+              time: 30
+            - id: A19
+              stop-sequence: 17
+              time: 32
+            - id: A20
+              stop-sequence: 18
+              time: 33
+            - id: A21
+              stop-sequence: 19
+              time: 35
+            - id: A22
+              stop-sequence: 20
+              time: 37
+            - id: A23
+              stop-sequence: 21
+              time: 39
+          trips:
+            - trip-id: M1/TP-MLO/M1
+              description: Linia M1 od poniedziałku do czwartku
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "05:33"
+                  timing: 360
+                - start-time: "05:33"
+                  end-time: "05:48"
+                  timing: 180
+                - start-time: "05:48"
+                  end-time: "08:46"
+                  timing: 120
+                - start-time: "08:46"
+                  end-time: "13:25"
+                  timing: 180
+                - start-time: "13:25"
+                  end-time: "19:20"
+                  timing: 120
+                - start-time: "19:20"
+                  end-time: "20:54"
+                  timing: 300
+                - start-time: "20:54"
+                  end-time: "22:05"
+                  timing: 360
+                - start-time: "22:05"
+                  end-time: "00:12"
+                  timing: 540
+            - trip-id: M1/TP-MLO/M5
+              description: Linia M1 rozkład piątkowy
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "05:33"
+                  timing: 360
+                - start-time: "05:33"
+                  end-time: "05:48"
+                  timing: 180
+                - start-time: "05:48"
+                  end-time: "08:46"
+                  timing: 120
+                - start-time: "08:46"
+                  end-time: "13:25"
+                  timing: 180
+                - start-time: "13:25"
+                  end-time: "19:20"
+                  timing: 120
+                - start-time: "19:20"
+                  end-time: "20:54"
+                  timing: 300
+                - start-time: "20:54"
+                  end-time: "22:05"
+                  timing: 360
+                - start-time: "22:05"
+                  end-time: "00:12"
+                  timing: 540
+            - trip-id: M1/TP-MLO/M6
+              description: Linia M1 rozkład sobotni
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "06:39"
+                  timing: 420
+                - start-time: "06:39"
+                  end-time: "19:53"
+                  timing: 300
+                - start-time: "19:53"
+                  end-time: "23:01"
+                  timing: 360
+                - start-time: "23:01"
+                  end-time: "00:12"
+                  timing: 540
+            - trip-id: M1/TP-MLO/M6
+              description: Linia M1 rozkład niedzielny
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "08:33"
+                  timing: 420
+                - start-time: "08:33"
+                  end-time: "20:28"
+                  timing: 360
+                - start-time: "20:28"
+                  end-time: "23:24"
+                  timing: 420
+                - start-time: "23:24"
+                  end-time: "00:12"
+                  timing: 540
+        - id: M1 Kabaty
+          long-name: Młociny - Kabaty
+          stops:
+            - id: A23
+              stop-sequence: 1
+              time: 0
+            - id: A22
+              stop-sequence: 2
+              time: 37
+            - id: A21
+              stop-sequence: 3
+              time: 35
+            - id: A20
+              stop-sequence: 4
+              time: 33
+            - id: A19
+              stop-sequence: 5
+              time: 32
+            - id: A18
+              stop-sequence: 6
+              time: 30
+            - id: A17
+              stop-sequence: 7
+              time: 27
+            - id: A15
+              stop-sequence: 8
+              time: 24
+            - id: A14
+              stop-sequence: 9
+              time: 22
+            - id: A13
+              stop-sequence: 10
+              time: 21
+            - id: A11
+              stop-sequence: 11
+              time: 18
+            - id: A10
+              stop-sequence: 12
+              time: 17
+            - id: A9
+              stop-sequence: 13
+              time: 15
+            - id: A8
+              stop-sequence: 14
+              time: 13
+            - id: A7
+              stop-sequence: 15
+              time: 12
+            - id: A6
+              stop-sequence: 16
+              time: 10
+            - id: A5
+              stop-sequence: 17
+              time: 8
+            - id: A4
+              stop-sequence: 18
+              time: 6
+            - id: A3
+              stop-sequence: 19
+              time: 4
+            - id: A2
+              stop-sequence: 20
+              time: 2
+            - id: A1
+              stop-sequence: 21
+              time: 0
+          trips:
+            - trip-id: M1/TP-MLO/M1
+              description: Linia M1 od poniedziałku do czwartku
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "05:33"
+                  timing: 360
+                - start-time: "05:33"
+                  end-time: "05:48"
+                  timing: 180
+                - start-time: "05:48"
+                  end-time: "08:46"
+                  timing: 120
+                - start-time: "08:46"
+                  end-time: "13:25"
+                  timing: 180
+                - start-time: "13:25"
+                  end-time: "19:20"
+                  timing: 120
+                - start-time: "19:20"
+                  end-time: "20:54"
+                  timing: 300
+                - start-time: "20:54"
+                  end-time: "22:05"
+                  timing: 360
+                - start-time: "22:05"
+                  end-time: "00:12"
+                  timing: 540
+            - trip-id: M1/TP-MLO/M5
+              description: Linia M1 rozkład piątkowy
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "05:33"
+                  timing: 360
+                - start-time: "05:33"
+                  end-time: "05:48"
+                  timing: 180
+                - start-time: "05:48"
+                  end-time: "08:46"
+                  timing: 120
+                - start-time: "08:46"
+                  end-time: "13:25"
+                  timing: 180
+                - start-time: "13:25"
+                  end-time: "19:20"
+                  timing: 120
+                - start-time: "19:20"
+                  end-time: "20:54"
+                  timing: 300
+                - start-time: "20:54"
+                  end-time: "22:05"
+                  timing: 360
+                - start-time: "22:05"
+                  end-time: "00:12"
+                  timing: 540
+            - trip-id: M1/TP-MLO/M6
+              description: Linia M1 rozkład sobotni
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "06:39"
+                  timing: 420
+                - start-time: "06:39"
+                  end-time: "19:53"
+                  timing: 300
+                - start-time: "19:53"
+                  end-time: "23:01"
+                  timing: 360
+                - start-time: "23:01"
+                  end-time: "00:12"
+                  timing: 540
+            - trip-id: M1/TP-MLO/M6
+              description: Linia M1 rozkład niedzielny
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "08:33"
+                  timing: 420
+                - start-time: "08:33"
+                  end-time: "20:28"
+                  timing: 360
+                - start-time: "20:28"
+                  end-time: "23:24"
+                  timing: 420
+                - start-time: "23:24"
+                  end-time: "00:12"
+                  timing: 540
+
         - id: M2
           long-name: Bemowo - Bródno
-      trips:
-        - route-id: M1
-          stops:
-          - id: A1
-            stop-sequence: 1
-            time: 0
-          - id: A2
-            stop-sequence: 2
-            time: 2
-          - id: A3
-            stop-sequence: 3
-            time: 4
-          - id: A4
-            stop-sequence: 4
-            time: 6
-          - id: A5
-            stop-sequence: 5
-            time: 8
-          - id: A6
-            stop-sequence: 6
-            time: 10
-          - id: A7
-            stop-sequence: 7
-            time: 12
-          - id: A8
-            stop-sequence: 8
-            time: 13
-          - id: A9
-            stop-sequence: 9
-            time: 15
-          - id: A10
-            stop-sequence: 10
-            time: 17
-          - id: A11
-            stop-sequence: 11
-            time: 18
-          - id: A13
-            stop-sequence: 12
-            time: 21
-          - id: A14
-            stop-sequence: 13
-            time: 22
-          - id: A15
-            stop-sequence: 14
-            time: 24
-          - id: A17
-            stop-sequence: 15
-            time: 27
-          - id: A18
-            stop-sequence: 16
-            time: 30
-          - id: A19
-            stop-sequence: 17
-            time: 32
-          - id: A20
-            stop-sequence: 18
-            time: 33
-          - id: A21
-            stop-sequence: 19
-            time: 35
-          - id: A22
-            stop-sequence: 20
-            time: 37
-          - id: A23
-            stop-sequence: 21
-            time: 39
-          monday-friday:
-            trip-id: M1/TP-MLO/M1
-            frequencies:
-              - start-time: 05:02
-                end-time: 05:35
-                timing: 360
-
-        - route-id: M2
           stops:
             - id: C4
               stop-sequence: 1
@@ -138,6 +367,13 @@ iot:
             - id: C21
               stop-sequence: 18
               time: 33
+          trips:
+            - trip-id: M2/TP-MLO/M1
+              description: Linia M2 od poniedziałku do czwartku
+              frequencies:
+                - start-time: 05:02
+                  end-time: 05:35
+                  timing: 360
       stops:
         - id: A1
           name: Kabaty

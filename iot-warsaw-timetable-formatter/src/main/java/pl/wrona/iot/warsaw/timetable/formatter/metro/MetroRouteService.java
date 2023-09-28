@@ -21,7 +21,6 @@ public class MetroRouteService {
         return metroProperties.getRoutes().stream()
                 .map(this::buildRoute)
                 .toList();
-
     }
 
     public Route findRouteById(String id) {

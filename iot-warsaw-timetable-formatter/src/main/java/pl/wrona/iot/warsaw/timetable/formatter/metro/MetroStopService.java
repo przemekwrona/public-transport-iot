@@ -21,7 +21,7 @@ public class MetroStopService {
                 .toList();
     }
 
-    public Stop findById(String id) {
+    public Stop findStopById(String id) {
         return metroProperties.getStops().stream()
                 .filter(stop -> id.equals(stop.getId()))
                 .findFirst()

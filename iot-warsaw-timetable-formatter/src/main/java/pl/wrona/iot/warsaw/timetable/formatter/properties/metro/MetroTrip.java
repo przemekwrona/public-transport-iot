@@ -7,9 +7,7 @@ import java.util.List;
 @Data
 public class MetroTrip {
 
-    private String routeId;
-    private List<MetroTripStop> stops;
-    private MetroFrequencies mondayFriday;
-    private MetroFrequencies saturday;
-    private MetroFrequencies sunday;
+    private String tripId;
+    private String description;
+    private List<MetroFrequency> frequencies;
 }
