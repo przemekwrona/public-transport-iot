@@ -52,7 +52,7 @@ public class RouteService {
         return route;
     }
 
-    public Route findRouteByIf(String routeId) {
+    public Route findRouteById(String routeId) {
         return this.routes.get(routeId);
     }
 

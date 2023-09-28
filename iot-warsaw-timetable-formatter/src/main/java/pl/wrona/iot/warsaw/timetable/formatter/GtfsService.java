@@ -1,14 +1,17 @@
-package pl.wrona.iot.warsaw.timetable.formatter.service;
+package pl.wrona.iot.warsaw.timetable.formatter;
 
 import lombok.AllArgsConstructor;
 import org.onebusaway.gtfs.serialization.GtfsWriter;
 import org.springframework.stereotype.Service;
+import pl.wrona.iot.warsaw.timetable.formatter.metro.*;
+import pl.wrona.iot.warsaw.timetable.formatter.service.*;
 import pl.wrona.iot.warsaw.timetable.formatter.tree.WarsawDeliveredTimetableService;
 import pl.wrona.iot.warsaw.timetable.formatter.tree.model.WarsawTree;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -23,6 +26,13 @@ public class GtfsService {
     private final TripService tripService;
     private final StopTimesService stopTimesService;
 
+    private final MetroAgencyService metroAgencyService;
+    private final MetroStopService metroStopService;
+    private final MetroRouteService metroRouteService;
+    private final MetroTripService metroTripService;
+    private final MetroFrequencyService metroFrequencyService;
+    private final MetroStopTimeService metroStopTimeService;
+
     public void gtfs(File source, File destination) throws IOException {
         WarsawTree warsawTree = warsawDeliveredTimetableService.load(source);
 
@@ -35,7 +45,14 @@ public class GtfsService {
         GtfsWriter writer = new GtfsWriter();
         writer.setOutputLocation(destination);
 
-        writer.handleEntity(agencyService.getAgency());
+        Optional.of(metroAgencyService.getAgency()).ifPresent(writer::handleEntity);
+        metroStopService.getAll().forEach(writer::handleEntity);
+        metroRouteService.getAll().forEach(writer::handleEntity);
+        metroTripService.getAll().forEach(writer::handleEntity);
+        metroFrequencyService.getAll().forEach(writer::handleEntity);
+        metroStopTimeService.getAll().forEach(writer::handleEntity);
+
+        Optional.of(agencyService.getAgency()).ifPresent(writer::handleEntity);
         calendarService.getAll().forEach(writer::handleEntity);
         stopService.getAll().forEach(writer::handleEntity);
         routeService.getAll().forEach(writer::handleEntity);
