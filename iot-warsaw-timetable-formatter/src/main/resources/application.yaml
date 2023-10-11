@@ -309,8 +309,7 @@ iot:
                 - start-time: "23:24"
                   end-time: "00:12"
                   timing: 540
-
-        - id: M2
+        - id: M2 Bródno
           long-name: Bemowo - Bródno
           stops:
             - id: C4
@@ -368,11 +367,231 @@ iot:
               stop-sequence: 18
               time: 33
           trips:
-            - trip-id: M2/TP-MLO/M1
+            - trip-id: M2/TP-BEM/DP
               description: Linia M2 od poniedziałku do czwartku
               frequencies:
-                - start-time: 05:02
-                  end-time: 05:35
+                - start-time: "05:00"
+                  end-time: "06:02"
+                  timing: 360
+                - start-time: "06:02"
+                  end-time: "07:00"
+                  timing: 360
+                - start-time: "07:00"
+                  end-time: "08:52"
+                  timing: 360
+                - start-time: "08:52"
+                  end-time: "15:04"
+                  timing: 360
+                - start-time: "15:04"
+                  end-time: "18:41"
+                  timing: 360
+                - start-time: "18:41"
+                  end-time: "20:27"
+                  timing: 360
+                - start-time: "20:27"
+                  end-time: "00:08"
+                  timing: 360
+            - trip-id: M2/TP-BEM/D5
+              description: Linia M2 od poniedziałku do czwartku
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "06:02"
+                  timing: 360
+                - start-time: "06:02"
+                  end-time: "07:00"
+                  timing: 360
+                - start-time: "07:00"
+                  end-time: "08:52"
+                  timing: 360
+                - start-time: "08:52"
+                  end-time: "15:04"
+                  timing: 360
+                - start-time: "15:04"
+                  end-time: "18:41"
+                  timing: 360
+                - start-time: "18:41"
+                  end-time: "20:27"
+                  timing: 360
+                - start-time: "20:27"
+                  end-time: "00:08"
+                  timing: 360
+            - trip-id: M2/TP-BEM/D6
+              description: Linia M2 od poniedziałku do czwartku
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "06:02"
+                  timing: 360
+                - start-time: "06:02"
+                  end-time: "07:00"
+                  timing: 360
+                - start-time: "07:00"
+                  end-time: "08:52"
+                  timing: 360
+                - start-time: "08:52"
+                  end-time: "15:04"
+                  timing: 360
+                - start-time: "15:04"
+                  end-time: "18:41"
+                  timing: 360
+                - start-time: "18:41"
+                  end-time: "20:27"
+                  timing: 360
+                - start-time: "20:27"
+                  end-time: "00:08"
+                  timing: 360
+            - trip-id: M2/TP-BEM/D7
+              description: Linia M2 od poniedziałku do czwartku
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "09:22"
+                  timing: 360
+                - start-time: "09:22"
+                  end-time: "21:23"
+                  timing: 360
+                - start-time: "21:23"
+                  end-time: "00:08"
+                  timing: 360
+        - id: M2 Bemowo
+          long-name: Bródno - Bemowo
+          stops:
+            - id: C4
+              stop-sequence: 1
+              time: 0
+            - id: C5
+              stop-sequence: 2
+              time: 2
+            - id: C6
+              stop-sequence: 3
+              time: 4
+            - id: C7
+              stop-sequence: 4
+              time: 6
+            - id: C8
+              stop-sequence: 5
+              time: 8
+            - id: C9
+              stop-sequence: 6
+              time: 9
+            - id: C10
+              stop-sequence: 7
+              time: 11
+            - id: C11
+              stop-sequence: 8
+              time: 13
+            - id: C12
+              stop-sequence: 9
+              time: 15
+            - id: C13
+              stop-sequence: 10
+              time: 17
+            - id: C14
+              stop-sequence: 11
+              time: 19
+            - id: C15
+              stop-sequence: 12
+              time: 21
+            - id: C16
+              stop-sequence: 13
+              time: 23
+            - id: C17
+              stop-sequence: 14
+              time: 25
+            - id: C18
+              stop-sequence: 15
+              time: 27
+            - id: C19
+              stop-sequence: 16
+              time: 29
+            - id: C20
+              stop-sequence: 17
+              time: 31
+            - id: C21
+              stop-sequence: 18
+              time: 33
+          trips:
+            - trip-id: M2/TP-BEM/DP
+              description: Linia M2 od poniedziałku do czwartku
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "06:02"
+                  timing: 360
+                - start-time: "06:02"
+                  end-time: "07:00"
+                  timing: 360
+                - start-time: "07:00"
+                  end-time: "08:52"
+                  timing: 360
+                - start-time: "08:52"
+                  end-time: "15:04"
+                  timing: 360
+                - start-time: "15:04"
+                  end-time: "18:41"
+                  timing: 360
+                - start-time: "18:41"
+                  end-time: "20:27"
+                  timing: 360
+                - start-time: "20:27"
+                  end-time: "00:08"
+                  timing: 360
+            - trip-id: M2/TP-BEM/D5
+              description: Linia M2 od poniedziałku do czwartku
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "06:02"
+                  timing: 360
+                - start-time: "06:02"
+                  end-time: 07:00
+                  timing: 360
+                - start-time: "07:00"
+                  end-time: "08:52"
+                  timing: 360
+                - start-time: "08:52"
+                  end-time: "15:04"
+                  timing: 360
+                - start-time: "15:04"
+                  end-time: "18:41"
+                  timing: 360
+                - start-time: "18:41"
+                  end-time: "20:27"
+                  timing: 360
+                - start-time: "20:27"
+                  end-time: "00:08"
+                  timing: 360
+            - trip-id: M2/TP-BEM/D6
+              description: Linia M2 od poniedziałku do czwartku
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "06:02"
+                  timing: 360
+                - start-time: "06:02"
+                  end-time: "07:00"
+                  timing: 360
+                - start-time: "07:00"
+                  end-time: "08:52"
+                  timing: 360
+                - start-time: "08:52"
+                  end-time: "15:04"
+                  timing: 360
+                - start-time: "15:04"
+                  end-time: "18:41"
+                  timing: 360
+                - start-time: "18:41"
+                  end-time: "20:27"
+                  timing: 360
+                - start-time: "20:27"
+                  end-time: "00:08"
+                  timing: 360
+            - trip-id: M2/TP-BEM/D7
+              description: Linia M2 od poniedziałku do czwartku
+              frequencies:
+                - start-time: "05:00"
+                  end-time: "09:22"
+                  timing: 360
+                - start-time: "09:22"
+                  end-time: "21:23"
+                  timing: 360
+                - start-time: "21:23"
+                  end-time: "00:08"
                   timing: 360
       stops:
         - id: A1
