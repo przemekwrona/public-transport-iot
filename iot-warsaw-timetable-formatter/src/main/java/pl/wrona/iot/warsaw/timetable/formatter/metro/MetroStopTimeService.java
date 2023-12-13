@@ -34,6 +34,7 @@ public class MetroStopTimeService {
                                                 })
                                                 .toList())
                                 .flatMap(Collection::stream)
+                                .findFirst().stream()
                                 .toList())
                         .flatMap(Collection::stream)
                         .toList())

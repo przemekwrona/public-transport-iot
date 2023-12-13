@@ -8,6 +8,7 @@ import java.util.List;
 public class MetroTrip {
 
     private String tripId;
+    private String serviceId;
     private String description;
     private List<MetroFrequency> frequencies;
 }
