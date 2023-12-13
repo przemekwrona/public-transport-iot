@@ -75,6 +75,7 @@ iot:
               time: 39
           trips:
             - trip-id: M1/TP-MLO/M1
+              service-id: M1/M1
               description: Linia M1 od poniedziałku do czwartku
               frequencies:
                 - start-time: "05:00"
@@ -102,6 +103,7 @@ iot:
                   end-time: "00:12"
                   timing: 540
             - trip-id: M1/TP-MLO/M5
+              service-id: M1/M5
               description: Linia M1 rozkład piątkowy
               frequencies:
                 - start-time: "05:00"
@@ -129,6 +131,7 @@ iot:
                   end-time: "00:12"
                   timing: 540
             - trip-id: M1/TP-MLO/M6
+              service-id: M1/M6
               description: Linia M1 rozkład sobotni
               frequencies:
                 - start-time: "05:00"
@@ -143,7 +146,8 @@ iot:
                 - start-time: "23:01"
                   end-time: "00:12"
                   timing: 540
-            - trip-id: M1/TP-MLO/M6
+            - trip-id: M1/TP-MLO/M7
+              service-id: M1/M7
               description: Linia M1 rozkład niedzielny
               frequencies:
                 - start-time: "05:00"
@@ -225,7 +229,8 @@ iot:
               stop-sequence: 21
               time: 0
           trips:
-            - trip-id: M1/TP-MLO/M1
+            - trip-id: M1/TP-KAB/M1
+              service-id: M1/M1
               description: Linia M1 od poniedziałku do czwartku
               frequencies:
                 - start-time: "05:00"
@@ -252,7 +257,8 @@ iot:
                 - start-time: "22:05"
                   end-time: "00:12"
                   timing: 540
-            - trip-id: M1/TP-MLO/M5
+            - trip-id: M1/TP-KAB/M5
+              service-id: M1/M5
               description: Linia M1 rozkład piątkowy
               frequencies:
                 - start-time: "05:00"
@@ -279,7 +285,8 @@ iot:
                 - start-time: "22:05"
                   end-time: "00:12"
                   timing: 540
-            - trip-id: M1/TP-MLO/M6
+            - trip-id: M1/TP-KAB/M6
+              service-id: M1/M6
               description: Linia M1 rozkład sobotni
               frequencies:
                 - start-time: "05:00"
@@ -294,7 +301,8 @@ iot:
                 - start-time: "23:01"
                   end-time: "00:12"
                   timing: 540
-            - trip-id: M1/TP-MLO/M6
+            - trip-id: M1/TP-KAB/M7
+              service-id: M1/M7
               description: Linia M1 rozkład niedzielny
               frequencies:
                 - start-time: "05:00"
@@ -367,86 +375,90 @@ iot:
               stop-sequence: 18
               time: 33
           trips:
-            - trip-id: M2/TP-BEM/DP
+            - trip-id: M2/TP-BRO/M1
+              service-id: M2/M1
               description: Linia M2 od poniedziałku do czwartku
               frequencies:
                 - start-time: "05:00"
                   end-time: "06:02"
                   timing: 360
                 - start-time: "06:02"
-                  end-time: "07:00"
+                  end-time: "06:59"
                   timing: 360
                 - start-time: "07:00"
-                  end-time: "08:52"
+                  end-time: "08:51"
                   timing: 360
                 - start-time: "08:52"
-                  end-time: "15:04"
+                  end-time: "15:03"
                   timing: 360
                 - start-time: "15:04"
-                  end-time: "18:41"
+                  end-time: "18:40"
                   timing: 360
                 - start-time: "18:41"
-                  end-time: "20:27"
+                  end-time: "20:26"
                   timing: 360
                 - start-time: "20:27"
                   end-time: "00:08"
                   timing: 360
-            - trip-id: M2/TP-BEM/D5
+            - trip-id: M2/TP-BRO/M5
+              service-id: M2/M5
               description: Linia M2 od poniedziałku do czwartku
               frequencies:
                 - start-time: "05:00"
-                  end-time: "06:02"
+                  end-time: "06:01"
                   timing: 360
                 - start-time: "06:02"
-                  end-time: "07:00"
+                  end-time: "06:59"
                   timing: 360
                 - start-time: "07:00"
-                  end-time: "08:52"
+                  end-time: "08:51"
                   timing: 360
                 - start-time: "08:52"
-                  end-time: "15:04"
+                  end-time: "15:03"
                   timing: 360
                 - start-time: "15:04"
-                  end-time: "18:41"
+                  end-time: "18:40"
                   timing: 360
                 - start-time: "18:41"
-                  end-time: "20:27"
+                  end-time: "20:26"
                   timing: 360
                 - start-time: "20:27"
                   end-time: "00:08"
                   timing: 360
-            - trip-id: M2/TP-BEM/D6
+            - trip-id: M2/TP-BRO/M6
+              service-id: M2/M6
               description: Linia M2 od poniedziałku do czwartku
               frequencies:
                 - start-time: "05:00"
-                  end-time: "06:02"
+                  end-time: "06:01"
                   timing: 360
                 - start-time: "06:02"
-                  end-time: "07:00"
+                  end-time: "06:59"
                   timing: 360
                 - start-time: "07:00"
-                  end-time: "08:52"
+                  end-time: "08:51"
                   timing: 360
                 - start-time: "08:52"
-                  end-time: "15:04"
+                  end-time: "15:03"
                   timing: 360
                 - start-time: "15:04"
-                  end-time: "18:41"
+                  end-time: "18:40"
                   timing: 360
                 - start-time: "18:41"
-                  end-time: "20:27"
+                  end-time: "20:26"
                   timing: 360
                 - start-time: "20:27"
                   end-time: "00:08"
                   timing: 360
-            - trip-id: M2/TP-BEM/D7
+            - trip-id: M2/TP-BRO/M7
+              service-id: M1/M7
               description: Linia M2 od poniedziałku do czwartku
               frequencies:
                 - start-time: "05:00"
-                  end-time: "09:22"
+                  end-time: "09:21"
                   timing: 360
                 - start-time: "09:22"
-                  end-time: "21:23"
+                  end-time: "21:22"
                   timing: 360
                 - start-time: "21:23"
                   end-time: "00:08"
@@ -509,86 +521,90 @@ iot:
               stop-sequence: 18
               time: 33
           trips:
-            - trip-id: M2/TP-BEM/DP
+            - trip-id: M2/TP-BEM/M1
+              service-id: M2/M1
               description: Linia M2 od poniedziałku do czwartku
               frequencies:
                 - start-time: "05:00"
-                  end-time: "06:02"
+                  end-time: "06:01"
                   timing: 360
                 - start-time: "06:02"
-                  end-time: "07:00"
+                  end-time: "06:59"
                   timing: 360
                 - start-time: "07:00"
-                  end-time: "08:52"
+                  end-time: "08:51"
                   timing: 360
                 - start-time: "08:52"
-                  end-time: "15:04"
+                  end-time: "15:03"
                   timing: 360
                 - start-time: "15:04"
-                  end-time: "18:41"
+                  end-time: "18:40"
                   timing: 360
                 - start-time: "18:41"
-                  end-time: "20:27"
+                  end-time: "20:26"
                   timing: 360
                 - start-time: "20:27"
                   end-time: "00:08"
                   timing: 360
-            - trip-id: M2/TP-BEM/D5
+            - trip-id: M2/TP-BEM/M5
+              service-id: M2/M5
               description: Linia M2 od poniedziałku do czwartku
               frequencies:
                 - start-time: "05:00"
-                  end-time: "06:02"
+                  end-time: "06:01"
                   timing: 360
                 - start-time: "06:02"
-                  end-time: 07:00
+                  end-time: "06:59"
                   timing: 360
                 - start-time: "07:00"
-                  end-time: "08:52"
+                  end-time: "08:51"
                   timing: 360
                 - start-time: "08:52"
-                  end-time: "15:04"
+                  end-time: "15:03"
                   timing: 360
                 - start-time: "15:04"
-                  end-time: "18:41"
+                  end-time: "18:40"
                   timing: 360
                 - start-time: "18:41"
-                  end-time: "20:27"
+                  end-time: "20:26"
                   timing: 360
                 - start-time: "20:27"
                   end-time: "00:08"
                   timing: 360
-            - trip-id: M2/TP-BEM/D6
+            - trip-id: M2/TP-BEM/M6
+              service-id: M2/M6
               description: Linia M2 od poniedziałku do czwartku
               frequencies:
                 - start-time: "05:00"
-                  end-time: "06:02"
+                  end-time: "06:01"
                   timing: 360
                 - start-time: "06:02"
-                  end-time: "07:00"
+                  end-time: "06:59"
                   timing: 360
                 - start-time: "07:00"
-                  end-time: "08:52"
+                  end-time: "08:51"
                   timing: 360
                 - start-time: "08:52"
-                  end-time: "15:04"
+                  end-time: "15:03"
                   timing: 360
                 - start-time: "15:04"
-                  end-time: "18:41"
+                  end-time: "18:40"
                   timing: 360
                 - start-time: "18:41"
-                  end-time: "20:27"
+                  end-time: "20:26"
                   timing: 360
                 - start-time: "20:27"
                   end-time: "00:08"
                   timing: 360
-            - trip-id: M2/TP-BEM/D7
+            - trip-id: M2/TP-BEM/M7
+              service-id: M2/M7
               description: Linia M2 od poniedziałku do czwartku
               frequencies:
                 - start-time: "05:00"
-                  end-time: "09:22"
+                  end-time: "09:21"
                   timing: 360
                 - start-time: "09:22"
-                  end-time: "21:23"
+                  end-time: "21:22"
                   timing: 360
                 - start-time: "21:23"
                   end-time: "00:08"
@@ -596,80 +612,157 @@ iot:
       stops:
         - id: A1
           name: Kabaty
+          lat: 52.131293727665735
+          lon: 21.0657434123942
         - id: A2
           name: Natolin
+          lat: 52.14034483494231
+          lon: 21.057587163784536
         - id: A3
           name: Imielin
+          lat: 52.14972386138088
+          lon: 21.04535338225308
         - id: A4
           name: Stokłosy
+          lat: 52.15615000456784
+          lon: 21.034576382687767
         - id: A5
           name: Ursynów
+          lat: 52.16192850519003
+          lon: 21.02760501781563
         - id: A6
           name: Służew
+          lat: 52.17273607335455
+          lon: 21.026267618417766
         - id: A7
           name: Wilanowska
+          lat: 52.18153643044209
+          lon: 21.02280709517601
         - id: A8
           name: Wierzbno
+          lat: 52.18994686539718
+          lon: 21.016883265006317
         - id: A9
           name: Racławicka
+          lat: 52.199597707803555
+          lon: 21.012180386493533
         - id: A10
           name: Pole Mokotowskie
+          lat: 52.2095168992744
+          lon: 21.00729630014152
         - id: A11
           name: Politechnika
+          lat: 52.217651908617555
+          lon: 21.014519595702012
         - id: A13
           name: Centrum
+          lat: 52.23049654518426
+          lon: 21.010846690523575
         - id: A14
           name: Świętokrzyska
+          lat: 52.23525656679536
+          lon: 21.008480429770092
         - id: A15
           name: Ratusz Arsenał
+          lat: 52.24492037827076
+          lon: 21.00103451984673
         - id: A17
           name: Dworzec Gdański
+          lat: 52.25798893345884
+          lon: 20.994630268501933
         - id: A18
           name: Plac Wilsona
+          lat: 52.268741317683414
+          lon: 20.98504806737598
         - id: A19
           name: Marymont
+          lat: 52.271804047396415
+          lon: 20.97102488152102
         - id: A20
           name: Słodowiec
+          lat: 52.27685201895963
+          lon: 20.96008049874273
         - id: A21
           name: Stare Bielany
+          lat: 52.28186550592247
+          lon: 20.949259344099627
         - id: A22
           name: Wawrzyszew
+          lat: 52.28672737463757
+          lon: 20.938741422318987
         - id: A23
           name: Młociny
+          lat: 52.290407606379254
+          lon: 20.93063673926175
         - id: C4
           name: Bemowo
+          lat: 52.23927990554896
+          lon: 20.914977947500184
         - id: C5
           name: Ulrychów
+          lat: 52.24044870928236
+          lon: 20.929981318773503
         - id: C6
           name: Księcia Janusza
+          lat: 52.23928988997105
+          lon: 20.942535954014772
         - id: C7
           name: Młynów
+          lat: 52.23762631348258
+          lon: 20.960587277860363
         - id: C8
           name: Płocka
+          lat: 52.232974479021834
+          lon: 20.965954123346453
         - id: C9
           name: Rondo Daszyńskiego
+          lat: 52.230242534051705
+          lon: 20.98382412669256
         - id: C10
           name: Rondo ONZ
+          lat: 52.23306660604505
+          lon: 20.998152050026338
         - id: C11
           name: Świętokrzyska
+          lat: 52.235252421249506
+          lon: 21.00843247145655
         - id: C12
           name: Nowy Świat-Uniwersytet
+          lat: 52.236795914018465
+          lon: 21.01712647555827
         - id: C13
           name: Centrum Nauki Kopernik
+          lat: 52.23965439327276
+          lon: 21.03105119321737
         - id: C14
           name: Stadion Narodowy
+          lat: 52.24698807135749
+          lon: 21.04327422201145
         - id: C15
           name: Dworzec Wileński
+          lat: 52.25418558640019
+          lon: 21.035194230534557
         - id: C16
           name: Szwedzka
+          lat: 52.262920209279095
+          lon: 21.04400090559785
         - id: C17
           name: Targówek Mieszkaniowy
+          lat: 52.269543709438274
+          lon: 21.05141968707317
         - id: C18
           name: Trocka
+          lat: 52.275361577621936
+          lon: 21.055448241841674
         - id: C19
           name: Zacisze
+          lat: 52.28426264442449
+          lon: 21.0619639471148
         - id: C20
           name: Kondratowicza
+          lat: 52.29208071895836
+          lon: 21.05018681984149
         - id: C21
           name: Bródno
-
+          lat: 52.293558079961315
+          lon: 21.029063764138687

@@ -36,6 +36,8 @@ public class MetroStopService {
         Stop stop = new Stop();
         stop.setId(id);
         stop.setName(metroStop.getName());
+        stop.setLat(metroStop.getLat());
+        stop.setLon(metroStop.getLon());
 
         return stop;
     }

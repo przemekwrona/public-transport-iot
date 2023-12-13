@@ -11,6 +11,7 @@ import pl.wrona.iot.warsaw.timetable.formatter.GtfsService;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,7 +35,8 @@ class GtfsServiceTest {
     void shouldBuildGTFSFromWarsawTimetableFormat() throws IOException {
         //given
         File source = new File(String.format("%s/%s", dir.getPath(), "RA230827.TXT"));
-        File destination = new File(String.format("%s/%s", dir.getPath(), "warsaw.gtfs"));
+//        File destination = new File(String.format("%s/%s", dir.getPath(), "warsaw.gtfs"));
+        File destination = new File(String.format("/home/pwrona/workspace/public-transport-iot/iot-gtfs-collector/warsaw-%s.gtfs", LocalDateTime.now()));
 
         //when
         gtfsService.gtfs(source, destination);

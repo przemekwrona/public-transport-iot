@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.onebusaway.gtfs.serialization.GtfsWriter;
 import org.springframework.stereotype.Service;
 import pl.wrona.iot.warsaw.timetable.formatter.metro.*;
+import pl.wrona.iot.warsaw.timetable.formatter.properties.metro.MetroCalendarService;
 import pl.wrona.iot.warsaw.timetable.formatter.service.*;
 import pl.wrona.iot.warsaw.timetable.formatter.tree.WarsawDeliveredTimetableService;
 import pl.wrona.iot.warsaw.timetable.formatter.tree.model.WarsawTree;
@@ -32,6 +33,7 @@ public class GtfsService {
     private final MetroTripService metroTripService;
     private final MetroFrequencyService metroFrequencyService;
     private final MetroStopTimeService metroStopTimeService;
+    private final MetroCalendarService metroCalendarService;
 
     public void gtfs(File source, File destination) throws IOException {
         WarsawTree warsawTree = warsawDeliveredTimetableService.load(source);
@@ -51,6 +53,7 @@ public class GtfsService {
         metroTripService.getAll().forEach(writer::handleEntity);
         metroFrequencyService.getAll().forEach(writer::handleEntity);
         metroStopTimeService.getAll().forEach(writer::handleEntity);
+        metroCalendarService.getAll(warsawTree).forEach(writer::handleEntity);
 
         Optional.of(agencyService.getAgency()).ifPresent(writer::handleEntity);
         calendarService.getAll().forEach(writer::handleEntity);

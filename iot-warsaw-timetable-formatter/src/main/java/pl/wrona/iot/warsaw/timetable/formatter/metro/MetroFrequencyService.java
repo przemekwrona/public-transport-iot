@@ -24,8 +24,9 @@ public class MetroFrequencyService {
                                     Frequency frequency = new Frequency();
                                     frequency.setTrip(metroTripService.findTripById(metroTrip.getTripId()));
                                     frequency.setStartTime(metroFrequency.getStartTime().toSecondOfDay());
-                                    frequency.setEndTime(metroFrequency.getEndTime().toSecondOfDay());
-                                    frequency.setExactTimes(metroFrequency.getTiming());
+                                    frequency.setEndTime(metroFrequency.getEndTimeSecondOfDay());
+                                    frequency.setExactTimes(1);
+                                    frequency.setHeadwaySecs(metroFrequency.getTiming());
                                     return frequency;
                                 })
                                 .toList())
