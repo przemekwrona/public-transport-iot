@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.wrona.iot.gtfs.collector.gdansk.GdanskService;
+import pl.wrona.iot.gtfs.collector.properties.PropertyService;
 import pl.wrona.iot.gtfs.collector.warszawa.WarszawaService;
 
 @Component
@@ -13,9 +14,12 @@ public class CommandLine implements CommandLineRunner {
     private final GdanskService gdanskService;
     private final WarszawaService warszawaService;
 
+    private final PropertyService propertyService;
+
     @Override
     public void run(String... args) throws Exception {
-        warszawaService.getTimetableFromFTP();
+        propertyService.downloadGtfs();
+//        warszawaService.getTimetableFromFTP();
 //        gdanskService.getLastUpdate();
     }
 }
