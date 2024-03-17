@@ -6,6 +6,7 @@ import lombok.Data;
 public class FeedProperties {
 
     private FeedType type;
+    private String agency;
     private String url;
     private String directory;
     private String fileName;

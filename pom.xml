@@ -25,6 +25,7 @@
     <mockito.version>3.12.4</mockito.version>
     <spock.version>2.0-groovy-3.0</spock.version>
     <h2.version>2.1.210</h2.version>
+    <testcontainers.version>1.19.7</testcontainers.version>
 
     <java.version>17</java.version>
     <maven.compiler.source>17</maven.compiler.source>
@@ -37,6 +38,36 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-openfeign</artifactId>
         <version>${spring-cloud.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+        <version>3.2.3</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+        <version>3.2.3</version>
+      </dependency>
+      <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.7.3</version>
+      </dependency>
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.33</version>
+      </dependency>
+      <dependency>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-core</artifactId>
+        <version>4.26.0</version>
+      </dependency>
+      <dependency>
+        <groupId>pl.project13.maven</groupId>
+        <artifactId>git-commit-id-plugin</artifactId>
+        <version>4.9.10</version>
       </dependency>
       <dependency>
         <groupId>org.liquibase</groupId>
@@ -131,6 +162,20 @@
         <version>3.0.1</version>
         <scope>test</scope>
       </dependency>
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>${testcontainers.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>${testcontainers.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+
     </dependencies>
   </dependencyManagement>
 

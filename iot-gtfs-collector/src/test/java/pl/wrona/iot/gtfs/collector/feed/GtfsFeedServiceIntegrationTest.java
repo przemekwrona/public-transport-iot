@@ -18,6 +18,7 @@ import pl.wrona.iot.gtfs.collector.properties.FeedProperties;
 import pl.wrona.iot.gtfs.collector.properties.FeedType;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -50,14 +51,21 @@ class GtfsFeedServiceIntegrationTest {
         //given
         FeedProperties properties = new FeedProperties();
         properties.setType(FeedType.URL);
+        properties.setAgency("WARSAW");
         properties.setDirectory(path.toString());
-        properties.setFileName("warsaw-${sd}-plus-${d}-days.zip");
+        properties.setFileName("warsaw-${sd}-plus-${d}-days.gtfs.zip");
         properties.setUrl("http://localhost:8081/gtfs/warsaw.zip");
 
         //when
-        gtfsFeedService.getGtfs(properties);
+        GtfsFeed feed = gtfsFeedService.getGtfs(properties);
 
-        assertThat(Boolean.TRUE).isTrue();
+        assertThat(feed).isNotNull();
+        assertThat(feed.agencyCode()).isEqualTo("WARSAW");
+        assertThat(feed.agencyName()).isEqualTo("Warszawski Transport Publiczny");
+        assertThat(feed.directory()).isEqualTo(path.toString());
+        assertThat(feed.fileName()).isEqualTo("warsaw-2024-03-14-plus-47-days.gtfs.zip");
+        assertThat(feed.startDate()).isEqualTo(LocalDate.of(2024,3,14));
+        assertThat(feed.endDate()).isEqualTo(LocalDate.of(2024,4,30));
     }
 
 }
