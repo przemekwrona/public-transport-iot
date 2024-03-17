@@ -1,6 +1,7 @@
 package pl.wrona.iot.gtfs.collector.feed;
 
 import lombok.AllArgsConstructor;
+import org.apache.commons.io.FileUtils;
 import org.onebusaway.gtfs.model.Agency;
 import org.onebusaway.gtfs.model.ServiceCalendarDate;
 import org.onebusaway.gtfs.serialization.GtfsReader;
@@ -8,6 +9,7 @@ import org.onebusaway.gtfs.serialization.comparators.ServiceCalendarDateComparat
 import org.springframework.stereotype.Service;
 import pl.wrona.iot.gtfs.collector.properties.FeedProperties;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -23,17 +25,23 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-class GtfsFeedService {
+public class GtfsFeedService {
 
-    public void getGtfs(FeedProperties feedProperties) {
+    public GtfsFeed getGtfs(FeedProperties feedProperties) {
+        File destinationDirectory = new File(feedProperties.getDirectory());
+        if (!destinationDirectory.exists()) {
+            destinationDirectory.mkdirs();
+        }
         try (InputStream in = new URL(feedProperties.getUrl()).openStream()) {
-            Path filePath = Path.of(feedProperties.getDirectory(), "%s.zip".formatted(UUID.randomUUID()));
+            Path filePath = Path.of(feedProperties.getDirectory(), "%s.gtfs.zip".formatted(UUID.randomUUID()));
             Files.copy(in, filePath, StandardCopyOption.REPLACE_EXISTING);
 
             GtfsReader gtfsReader = new GtfsReader();
             gtfsReader.setInputLocation(filePath.toFile());
             gtfsReader.readEntities(Agency.class);
             gtfsReader.readEntities(ServiceCalendarDate.class);
+
+            Agency agency = gtfsReader.getAgencies().get(0);
 
             LocalDate minDate = gtfsReader.getEntityStore()
                     .getAllEntitiesForType(ServiceCalendarDate.class).stream()
@@ -58,12 +66,11 @@ class GtfsFeedService {
 
             filePath.toFile().renameTo(Path.of(feedProperties.getDirectory(), fileName).toFile());
 
-
+            return new GtfsFeed(feedProperties.getAgency(), agency.getName(), feedProperties.getDirectory(), fileName, minDate, maxDate);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 }

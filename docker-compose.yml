@@ -1,99 +1,118 @@
 version: "3.9"
 services:
-  hermes:
-    build:
-      context: ./iot-hermes
-      dockerfile: Dockerfile
-    container_name: hermes
+  db_1:
+    image: postgres:14-alpine
     restart: always
     ports:
-      - "8080:8080"
+      - '5433:5432'
     environment:
-      - PROFILE=pi
-      - IOT_TIMETABLE_SERVICE_PATH=http://iot-timetable:8181
-    depends_on:
-      - postgres
-      - influxdb
-      - iot-timetable
-  iot-timetable:
-    build:
-      context: ./iot-timetable
-    container_name: iot-timetable
-    restart: always
-    ports:
-      - "8181:8181"
-    volumes:
-      - ./iot-timetable/logs:/apps/iot-timetable/logs
-    environment:
-      - PROFILE=pi
-    depends_on:
-      - iot_timetable_db
-  iot_timetable_db:
-    image: 'timescale/timescaledb:latest-pg14'
-    restart: unless-stopped
-    container_name: iot_timetable_db
-    ports:
-      - "5433:5432"
-    environment:
-      - POSTGRES_USER=user
       - POSTGRES_PASSWORD=welcome1
-      - POSTGRES_DB=timetable_db
-  postgres:
-    image: 'postgres'
-    restart: unless-stopped
-    container_name: postgres
-    ports:
-      - "5432:5432"
-    environment:
       - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=welcome1
-      - POSTGRES_DB=public_transport_db
-  influxdb:
-    image: influxdb:latest
-    container_name: influxdb
-    restart: unless-stopped
-    ports:
-      - "8086:8086"
-    environment:
-      - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=user
-      - DOCKER_INFLUXDB_INIT_PASSWORD=password
-      - DOCKER_INFLUXDB_INIT_ORG=public-transport
-      - DOCKER_INFLUXDB_INIT_BUCKET=vehicles-bucket
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=Y3oa11jMBJKnxTuXVNWXcpFZDryOb88F4re4LFMer3cucUixrBP0pl0W27ePhMG0hsKbHgkfVjs2VhLKJmh2ew==
-      - DOCKER_INFLUXDB_INIT_RETENTION=3h
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./etc/grafana/vendor/plugins:/var/lib/grafana/plugins:ro
-      - ./etc/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
-      - ./etc/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
-      - ./etc/grafana/dashboards:/var/lib/grafana/dashboards:ro
-    depends_on:
-      - influxdb
-      - postgres
-      - prometheus
-  prometheus:
-    image: ubuntu/prometheus:latest
-    container_name: prometheus
-    restart: unless-stopped
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      - ./etc/prometheus/rules:/etc/prometheus/rules:ro
-    depends_on:
-      - hermes
-      - iot-timetable
-      - node_exporter
-  node_exporter:
-    image: prom/node-exporter:latest
-    container_name: node_exporter
-    restart: unless-stopped
+      - POSTGRES_DB=transport_db
+#  gtfs-collector:
+#    build:
+#      context: ./iot-gtfs-collector
+#      dockerfile: Dockerfile
+#    container_name: gtfs-collector
+#    restart: always
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - postgres
+#  hermes:
+#    build:
+#      context: ./iot-hermes
+#      dockerfile: Dockerfile
+#    container_name: hermes
+#    restart: always
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - PROFILE=pi
+#      - IOT_TIMETABLE_SERVICE_PATH=http://iot-timetable:8181
+#    depends_on:
+#      - postgres
+#      - influxdb
+#      - iot-timetable
+#  iot-timetable:
+#    build:
+#      context: ./iot-timetable
+#    container_name: iot-timetable
+#    restart: always
+#    ports:
+#      - "8181:8181"
+#    volumes:
+#      - ./iot-timetable/logs:/apps/iot-timetable/logs
+#    environment:
+#      - PROFILE=pi
+#    depends_on:
+#      - iot_timetable_db
+#  iot_timetable_db:
+#    image: 'timescale/timescaledb:latest-pg14'
+#    restart: unless-stopped
+#    container_name: iot_timetable_db
+#    ports:
+#      - "5433:5432"
+#    environment:
+#      - POSTGRES_USER=user
+#      - POSTGRES_PASSWORD=welcome1
+#      - POSTGRES_DB=timetable_db
+#  postgres:
+#    image: 'postgres'
+#    restart: unless-stopped
+#    container_name: postgres
+#    ports:
+#      - "5432:5432"
+#    environment:
+#      - POSTGRES_USER=user
+#      - POSTGRES_PASSWORD=welcome1
+#      - POSTGRES_DB=public_transport_db
+#  influxdb:
+#    image: influxdb:latest
+#    container_name: influxdb
+#    restart: unless-stopped
+#    ports:
+#      - "8086:8086"
+#    environment:
+#      - DOCKER_INFLUXDB_INIT_MODE=setup
+#      - DOCKER_INFLUXDB_INIT_USERNAME=user
+#      - DOCKER_INFLUXDB_INIT_PASSWORD=password
+#      - DOCKER_INFLUXDB_INIT_ORG=public-transport
+#      - DOCKER_INFLUXDB_INIT_BUCKET=vehicles-bucket
+#      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=Y3oa11jMBJKnxTuXVNWXcpFZDryOb88F4re4LFMer3cucUixrBP0pl0W27ePhMG0hsKbHgkfVjs2VhLKJmh2ew==
+#      - DOCKER_INFLUXDB_INIT_RETENTION=3h
+#  grafana:
+#    image: grafana/grafana:latest
+#    container_name: grafana
+#    restart: unless-stopped
+#    ports:
+#      - "3000:3000"
+#    volumes:
+#      - ./etc/grafana/vendor/plugins:/var/lib/grafana/plugins:ro
+#      - ./etc/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+#      - ./etc/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+#      - ./etc/grafana/dashboards:/var/lib/grafana/dashboards:ro
+#    depends_on:
+#      - influxdb
+#      - postgres
+#      - prometheus
+#  prometheus:
+#    image: ubuntu/prometheus:latest
+#    container_name: prometheus
+#    restart: unless-stopped
+#    ports:
+#      - "9090:9090"
+#    volumes:
+#      - ./etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+#      - ./etc/prometheus/rules:/etc/prometheus/rules:ro
+#    depends_on:
+#      - hermes
+#      - iot-timetable
+#      - node_exporter
+#  node_exporter:
+#    image: prom/node-exporter:latest
+#    container_name: node_exporter
+#    restart: unless-stopped
     #  promtail:
     #    image: grafana/promtail
     #    ports:

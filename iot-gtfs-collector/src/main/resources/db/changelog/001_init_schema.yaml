@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-gtfs-metadata
+      author: pwrona
+      changes:
+        - createTable:
+            tableName: GTFS_METADATA
+            columns:
+              - column:
+                  name: AGENCY_CODE
+                  type: varchar(15)
+              - column:
+                  name: AGENCY_NAME
+                  type: varchar(255)
+              - column:
+                  name: DIRECTORY
+                  type: varchar(255)
+              - column:
+                  name: FILE_NAME
+                  type: varchar(255)
+              - column:
+                  name: START_DATE
+                  type: date
+              - column:
+                  name: END_DATE
+                  type: date
