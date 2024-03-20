@@ -22,14 +22,21 @@ jobs:
           java-version: 17
           cache: 'maven'
 
+      - name: Chane directory to ${{ inputs.artifact }}
+        run: cd ${{ inputs.artifact }}
+
       - name: Build with Maven
-        run: |
-          ls
-          pwd
-          cd ${{ inputs.artifact }}
-          mvn package --file pom.xml -DskipTests
-          cd target
-          ls
+        run: mvn package -DskipTests
+
+      - name: Read Snapshot version
+        id: snapshot
+        uses: christian-draeger/read-properties@1.1.1
+        with:
+          path: 'target/maven-archiver/pom.properties'
+          properties: 'artifactId groupId version'
+
+      - name: Print snapshot version
+        run: echo ${{ steps.snapshot.outputs.version }}
 
 #      - name: Nexus Repo Publish
 #        uses: sonatype-nexus-community/nexus-repo-github-action@master
