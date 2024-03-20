@@ -43,4 +43,4 @@ jobs:
           repository: igeolab-release
           coordinates: groupId=${{ steps.snapshot.outputs.groupId }} artifactId=${{ steps.snapshot.outputs.artifactId }} version=${{ steps.snapshot.outputs.version }}
           assets: extension=jar
-          filename: ${{ inputs.artifact }}/target/*.jar
+          filename: ${{ inputs.artifact }}/target/${{ steps.snapshot.outputs.artifactId }}-${{ steps.snapshot.outputs.version }}.jar
