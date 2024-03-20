@@ -1,4 +1,4 @@
-name: Build Artifact
+name: Deploy Snapshot Artifact
 
 on:
   workflow_dispatch:
@@ -13,18 +13,50 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build Artifact ${{ inputs.artifact }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v1
+        -
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v1
         with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'maven'
-      - run: | 
-          cd ${{ inputs.artifact }}
+          java-version: 17
+
+      - name: Build with Maven
+        run: |
+          ls
           pwd
-          mvn clean verify
-          mkdir staging
-          cp  ${{ inputs.artifact }}/target/*.jar staging
+          cd ${{ input.artifact }}
+          mvn package --file pom.xml
+          cd target
+          ls
+
+#      - name: Nexus Repo Publish
+#        uses: sonatype-nexus-community/nexus-repo-github-action@master
+#        with:
+#          serverUrl: http://163c6cdd.ngrok.io
+#          username: admin
+#          password: ${{ secrets.password }}
+#          format: maven2
+#          repository: maven-releases
+#          coordinates: groupId=com.example artifactId=app version=1.0.0
+#          assets: extension=jar
+#          filename: ./target/app-1.0.0.jar
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#    name: Build Artifact ${{ inputs.artifact }}
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Set up JDK 17
+#        uses: actions/setup-java@v3
+#        with:
+#          java-version: '17'
+#          distribution: 'temurin'
+#          cache: 'maven'
+#      - run: |
+#          cd ${{ inputs.artifact }}
+#          pwd
+#          mvn clean verify
+#          mkdir staging
+#          cp  ${{ inputs.artifact }}/target/*.jar staging
