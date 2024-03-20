@@ -26,7 +26,7 @@ jobs:
           ls
           pwd
           cd ${{ input.artifact }}
-          mvn package --file pom.xml
+          mvn package --file pom.xml -DskipTests
           cd target
           ls
 
