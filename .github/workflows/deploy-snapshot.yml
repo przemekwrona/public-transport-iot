@@ -40,9 +40,9 @@ jobs:
         with:
           serverUrl: http://207.154.230.80/
           username: github
-          password: ${{ secrets.password }}
+          password: ${{ secrets.NEXUS_PASSWORD }}
           format: maven2
-          repository: maven-releases
+          repository: igeolab-snapshot
           coordinates: groupId=${{ inputs.groupId }} artifactId=${{ inputs.artifactId }} version=${{ inputs.version }}
           assets: extension=jar
           filename: ${{ inputs.artifact }}/target/*.jar
