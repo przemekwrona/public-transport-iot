@@ -33,9 +33,6 @@ jobs:
           path: ${{ inputs.artifact }}/target/maven-archiver/pom.properties
           properties: 'artifactId groupId version'
 
-      - name: Print snapshot version
-        run: echo ${{ steps.snapshot.outputs.version }}
-
       - name: Nexus Repo Publish
         uses: sonatype-nexus-community/nexus-repo-github-action@master
         with:
@@ -44,6 +41,6 @@ jobs:
           password: ${{ secrets.NEXUS_PASSWORD }}
           format: maven2
           repository: igeolab-snapshot
-          coordinates: groupId=${{ inputs.groupId }} artifactId=${{ inputs.artifactId }} version=${{ inputs.version }}
+          coordinates: groupId=${{ steps.snapshot.outputs.groupId }} artifactId=${{ steps.snapshot.outputs.artifactId }} version=${{ steps.snapshot.outputs.version }}
           assets: extension=jar
           filename: ${{ inputs.artifact }}/target/*.jar
