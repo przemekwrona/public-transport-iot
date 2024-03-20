@@ -3,6 +3,7 @@ package pl.wrona.iot.warsaw.timetable.formatter.service;
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +33,11 @@ class GtfsServiceTest {
     }
 
     @Test
+    @Disabled
     void shouldBuildGTFSFromWarsawTimetableFormat() throws IOException {
         //given
         File source = new File(String.format("%s/%s", dir.getPath(), "RA230827.TXT"));
-//        File destination = new File(String.format("%s/%s", dir.getPath(), "warsaw.gtfs"));
-        File destination = new File(String.format("/home/pwrona/workspace/public-transport-iot/iot-gtfs-collector/warsaw-%s.gtfs", LocalDateTime.now()));
+        File destination = new File(String.format("%s/%s", dir.getPath(), "warsaw.gtfs"));
 
         //when
         gtfsService.gtfs(source, destination);

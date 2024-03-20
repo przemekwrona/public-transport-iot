@@ -26,7 +26,6 @@ public class StopService {
 
     private Map<String, Stop> stops;
 
-
     public void process(WarsawTree tree) {
         WarsawTree.Node warsawStops = tree.getNode().getNode(STOP_SECTION);
 
@@ -48,7 +47,9 @@ public class StopService {
                                 stop.setLon(subStopInfo.getX());
                                 stop.setLat(subStopInfo.getY());
                                 return stop;
-                            }).collect(Collectors.toList());
+                            })
+                            .filter(stop -> stop.getLon() != 0.0 && stop.getLat() != 0.0)
+                            .collect(Collectors.toList());
                 })
                 .flatMap(Collection::stream)
                 .collect(Collectors.toMap(stop -> stop.getId().getId(), Function.identity()));
