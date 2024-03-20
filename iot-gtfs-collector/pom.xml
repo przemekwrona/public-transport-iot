@@ -10,7 +10,7 @@
 
     <groupId>pl.wrona</groupId>
     <artifactId>iot-gtfs-collector</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <name>iot-gtfs-collector</name>
     <description>iot-gtfs-collector</description>
