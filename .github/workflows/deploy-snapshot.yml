@@ -22,11 +22,8 @@ jobs:
           java-version: 17
           cache: 'maven'
 
-      - name: Chane directory to ${{ inputs.artifact }}
-        run: cd ${{ inputs.artifact }}
-
       - name: Build with Maven
-        run: mvn package -DskipTests
+        run:  mvn package --file ${{ inputs.artifact }}/pom.xml -DskipTests
 
       - name: Read Snapshot version
         id: snapshot
