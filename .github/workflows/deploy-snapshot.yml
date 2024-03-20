@@ -40,7 +40,7 @@ jobs:
           username: admin
           password: ${{ secrets.NEXUS_PASSWORD }}
           format: maven2
-          repository: igeolab-snapshot
+          repository: igeolab-release
           coordinates: groupId=${{ steps.snapshot.outputs.groupId }} artifactId=${{ steps.snapshot.outputs.artifactId }} version=${{ steps.snapshot.outputs.version }}
           assets: extension=jar
           filename: ${{ inputs.artifact }}/target/*.jar
