@@ -21,9 +21,7 @@ import java.util.stream.Collectors;
 public class CalendarService {
 
     public static final String CALENDAR_SECTION = "*KD";
-
     private Map<String, ServiceCalendarDate> calendarDates;
-
     public void process(WarsawTree tree) {
         WarsawTree.Node warsawLines = tree.getNode().getNode(CALENDAR_SECTION);
 

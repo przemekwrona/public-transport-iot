@@ -5,7 +5,7 @@
     <parent>
         <groupId>pl.wrona</groupId>
         <artifactId>public-transport-iot</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
 
     <groupId>pl.wrona</groupId>
@@ -32,11 +32,11 @@
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>pl.wrona</groupId>
-            <artifactId>iot-warsaw-timetable-formatter</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>pl.wrona</groupId>-->
+        <!--            <artifactId>iot-warsaw-timetable-formatter</artifactId>-->
+        <!--            <version>0.0.1</version>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -132,6 +132,11 @@
 
     </dependencies>
 
+    <scm>
+        <developerConnection>scm:git:https://github.com/przemekwrona/public-transport-iot.git</developerConnection>
+        <tag>v0.0.3</tag>
+    </scm>
+
     <build>
         <plugins>
             <plugin>
@@ -218,6 +223,15 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                </configuration>
             </plugin>
 
         </plugins>

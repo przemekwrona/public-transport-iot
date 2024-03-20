@@ -1,0 +1,73 @@
+openapi: 3.0.0
+info:
+  title: Warsaw Public Transport API
+  description: Warsaw Public Transport API
+  version: 1.0.0
+servers:
+  - url: 'https://ckan.multimediagdansk.pl'
+paths:
+  /metadata/{agency}:
+    get:
+      tags:
+        - metadata
+      summary: Returns list of Vehicles with theirs positions
+      operationId: getMetadata
+      parameters:
+        - in: path
+          name: agency
+          schema:
+            type: string
+          required: true
+          description: Agency id
+        - in: query
+          name: date
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Metadata'
+  /gtfs/{agency}:
+    get:
+      tags:
+        - gtfs
+      summary: Return GTFS File
+      operationId: getGtfs
+      parameters:
+        - in: path
+          name: agency
+          schema:
+            type: string
+          required: true
+          description: Agency id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+components:
+  schemas:
+    Metadata:
+      type: object
+      properties:
+        directory:
+          type: string
+        fileName:
+          type: string
+        agencyCode:
+          type: string
+        agencyName:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date

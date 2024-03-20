@@ -1,18 +1,29 @@
 package pl.wrona.iot.warsaw.timetable.formatter;
 
 import lombok.AllArgsConstructor;
+import org.onebusaway.gtfs.model.Frequency;
 import org.onebusaway.gtfs.serialization.GtfsWriter;
+import org.onebusaway.gtfs_merge.GtfsMerger;
 import org.springframework.stereotype.Service;
 import pl.wrona.iot.warsaw.timetable.formatter.metro.*;
 import pl.wrona.iot.warsaw.timetable.formatter.properties.metro.MetroCalendarService;
 import pl.wrona.iot.warsaw.timetable.formatter.service.*;
+import pl.wrona.iot.warsaw.timetable.formatter.service.AgencyService;
+import pl.wrona.iot.warsaw.timetable.formatter.service.CalendarService;
+import pl.wrona.iot.warsaw.timetable.formatter.service.FrequencyService;
+import pl.wrona.iot.warsaw.timetable.formatter.service.RouteService;
+import pl.wrona.iot.warsaw.timetable.formatter.service.StopService;
+import pl.wrona.iot.warsaw.timetable.formatter.service.StopTimesService;
+import pl.wrona.iot.warsaw.timetable.formatter.service.TripService;
 import pl.wrona.iot.warsaw.timetable.formatter.tree.WarsawDeliveredTimetableService;
 import pl.wrona.iot.warsaw.timetable.formatter.tree.model.WarsawTree;
+import pl.wrona.iot.warsaw.timetable.formatter.utils.ZipUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -35,7 +46,7 @@ public class GtfsService {
     private final MetroStopTimeService metroStopTimeService;
     private final MetroCalendarService metroCalendarService;
 
-    public void gtfs(File source, File destination) throws IOException {
+    public File gtfs(File source, File destination) throws IOException {
         WarsawTree warsawTree = warsawDeliveredTimetableService.load(source);
 
         calendarService.process(warsawTree);
@@ -64,5 +75,14 @@ public class GtfsService {
         stopTimesService.getAllStopTime().forEach(writer::handleEntity);
 
         writer.close();
+
+        return ZipUtils.zip(destination);
+    }
+
+    public File merge(List<File> files, File outputFile) throws IOException {
+        GtfsMerger merger = new GtfsMerger();
+        merger.run(files, outputFile);
+
+        return outputFile;
     }
 }
