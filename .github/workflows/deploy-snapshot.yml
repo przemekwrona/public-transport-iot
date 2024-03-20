@@ -37,7 +37,7 @@ jobs:
         uses: sonatype-nexus-community/nexus-repo-github-action@master
         with:
           serverUrl: http://207.154.230.80
-          username: github
+          username: admin
           password: ${{ secrets.NEXUS_PASSWORD }}
           format: maven2
           repository: igeolab-snapshot
