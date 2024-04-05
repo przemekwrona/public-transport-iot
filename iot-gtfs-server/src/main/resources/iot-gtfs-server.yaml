@@ -1,0 +1,243 @@
+openapi: 3.0.0
+info:
+  title: Warsaw Public Transport API
+  description: Warsaw Public Transport API
+  version: 1.0.0
+servers:
+  - url: 'https://ckan.multimediagdansk.pl'
+paths:
+  /agencies:
+    get:
+      tags:
+        - agency
+      summary: Returns list of All Agencies
+      operationId: getAgencies
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agencies'
+
+  /routes:
+    get:
+      tags:
+        - route
+      summary: Returns list of All Routes
+      operationId: getRoutes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Routes'
+
+  /trips:
+    get:
+      tags:
+        - trips
+      summary: Returns list of All Trips
+      operationId: getTrips
+      parameters:
+        - in: query
+          name: line
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trips'
+
+  /stop-time:
+    get:
+      tags:
+        - stop-time
+      summary: Returns list of All Stop Times
+      operationId: getStopTrips
+      parameters:
+        - in: query
+          name: stop
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trips'
+
+  /agency/{agencyCode}/stops:
+    get:
+      tags:
+        - stops
+      summary: Returns list of stops
+      operationId: getStops
+      parameters:
+        - in: path
+          name: agencyCode
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stops'
+
+  /timetables/stops/{stopId}:
+    get:
+      tags:
+        - timetable
+      summary: Returns list of Stop Times for stops
+      operationId: getTimetableByStopId
+      parameters:
+        - in: path
+          name: stopId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Timetables'
+
+components:
+  schemas:
+    Agency:
+      type: object
+      properties:
+        agencyId:
+          type: string
+        agencyName:
+          type: string
+
+    Agencies:
+      type: object
+      properties:
+        agencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agency'
+
+    Route:
+      type: object
+      properties:
+        routeId:
+          type: string
+        agencyId:
+          type: string
+        routeShortName:
+          type: string
+        routeLongName:
+          type: string
+        routeDesc:
+          type: string
+        routeType:
+          type: integer
+        routeUrl:
+          type: string
+        routeColor:
+          type: string
+
+    Routes:
+      type: object
+      properties:
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Route'
+
+    Trip:
+      type: object
+      properties:
+        routeId:
+          type: string
+        serviceId:
+          type: string
+        tripId:
+          type: string
+        tripHeadSign:
+          type: string
+        tripShortName:
+          type: string
+        directionId:
+          type: string
+        blockId:
+          type: string
+        shapeId:
+          type: string
+
+    Trips:
+      type: object
+      properties:
+        trips:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trip'
+
+    Stop:
+      type: object
+      properties:
+        stopId:
+          type: string
+        stopCode:
+          type: string
+        stopName:
+          type: string
+        stopDesc:
+          type: string
+        stopLat:
+          type: number
+          format: double
+        stopLon:
+          type: number
+          format: double
+
+    Stops:
+      type: object
+      properties:
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/Stop'
+
+    Timetable:
+      type: object
+      properties:
+        line:
+          type: string
+        direction:
+          type: string
+        stopSequence:
+          type: integer
+        arrivalTime:
+          type: string
+          format: date-time
+        departureTime:
+          type: string
+          format: date-time
+
+    Timetables:
+      type: object
+      properties:
+        stopId:
+          type: string
+        stopName:
+          type: string
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/Timetable'
