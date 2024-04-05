@@ -1,0 +1,234 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-agency
+      author: pwrona
+      changes:
+        - createTable:
+            tableName: AGENCY
+            columns:
+              - column:
+                  name: AGENCY_ID
+                  type: varchar(15)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: AGENCY_NAME
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: AGENCY_URL
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: AGENCY_TIMEZONE
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: AGENCY_LANG
+                  type: varchar(4)
+              - column:
+                  name: AGENCY_PHONE
+                  type: varchar(15)
+
+  - changeSet:
+      id: create-calendar-date
+      author: pwrona
+      changes:
+        - createTable:
+            tableName: CALENDAR_DATE
+            columns:
+              - column:
+                  name: SERVICE_ID
+                  type: varchar(15)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: DATE
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: EXCEPTION_TYPE
+                  type: int
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: create-routes
+      author: pwrona
+      changes:
+        - createTable:
+            tableName: ROUTES
+            columns:
+              - column:
+                  name: ROUTE_ID
+                  type: varchar(15)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: AGENCY_ID
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_ROUTE_AGENCY
+                    references: AGENCY(AGENCY_ID)
+              - column:
+                  name: ROUTE_SHORT_NAME
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ROUTE_LONG_NAME
+                  type: varchar(255)
+              - column:
+                  name: ROUTE_DESC
+                  type: varchar(4)
+              - column:
+                  name: ROUTE_TYPE
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ROUTE_URL
+                  type: varchar(64)
+              - column:
+                  name: ROUTE_COLOR
+                  type: varchar(8)
+              - column:
+                  name: ROUTE_TEXT_COLOR
+                  type: varchar(8)
+  - changeSet:
+      id: create-trips
+      author: pwrona
+      changes:
+        - createTable:
+            tableName: TRIPS
+            columns:
+              - column:
+                  name: ROUTE_ID
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_TRIP_ROUTES
+                    references: ROUTES(ROUTE_ID)
+              - column:
+                  name: SERVICE_ID
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+                    foreignKeyName: FK_TRIP_SERVICE
+                    references: CALENDAR_DATE(SERVICE_ID)
+              - column:
+                  name: TRIP_ID
+                  type: varchar(30)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: TRIP_HEADSIGN
+                  type: varchar(50)
+              - column:
+                  name: TRIP_SHORT_NAME
+                  type: varchar(15)
+              - column:
+                  name: DIRECTION_ID
+                  type: varchar(15)
+              - column:
+                  name: BLOCK_ID
+                  type: varchar(15)
+              - column:
+                  name: SHAPE_ID
+                  type: varchar(30)
+  - changeSet:
+      id: create-stops
+      author: pwrona
+      changes:
+        - createTable:
+            tableName: STOPS
+            columns:
+              - column:
+                  name: STOP_ID
+                  type: varchar(15)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: STOP_CODE
+                  type: varchar(15)
+              - column:
+                  name: STOP_NAME
+                  type: varchar(60)
+              - column:
+                  name: STOP_DESC
+                  type: varchar(30)
+              - column:
+                  name: STOP_LAT
+                  type: double
+              - column:
+                  name: STOP_LON
+                  type: double
+              - column:
+                  name: ZONE_ID
+                  type: varchar(4)
+              - column:
+                  name: STOP_URL
+                  type: varchar(50)
+              - column:
+                  name: LOCATION_TYPE
+                  type: int
+              - column:
+                  name: PARENT_STATION
+                  type: varchar(15)
+
+        - createTable:
+            tableName: STOP_TIMES
+            columns:
+              - column:
+                  name: STOP_ID
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_STOP_TIME
+                    foreignKeyName: FK_STOP_TIME_STOPS
+                    references: STOPS(STOP_ID)
+              - column:
+                  name: TRIP_ID
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_STOP_TIME
+                    foreignKeyName: FK_STOP_TIME_TRIPS
+                    references: TRIPS(TRIP_ID)
+              - column:
+                  name: ARRIVAL_TIME
+                  type: int
+              - column:
+                  name: DEPARTURE_TIME
+                  type: int
+              - column:
+                  name: STOP_SEQUENCE
+                  type: int
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_STOP_TIME
+              - column:
+                  name: STOP_HEADSIGN
+                  type: varchar(15)
+              - column:
+                  name: PICK_UP_TYPE
+                  type: int
+              - column:
+                  name: DROP_OFF_TYPE
+                  type: int
+              - column:
+                  name: SHAPE_DIST_TRAVELED
+                  type: double
