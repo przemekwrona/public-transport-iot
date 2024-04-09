@@ -23,17 +23,17 @@ public class IotGtfsCollectorCommandLine implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         LocalDate now = LocalDate.now();
-        collectorProperties.getFeeds().stream()
-                .filter(property -> {
-                    Metadata metadata = gtfsMetadataService.getLatestGTFS_Metadata(property.getAgency());
-
-                    if (Objects.isNull(metadata)) {
-                        return true;
-                    }
-                    long days = ChronoUnit.DAYS.between(now, metadata.getEndDate());
-                    return days <= 7;
-                })
-                .map(gtfsFeedService::getGtfs)
-                .forEach(gtfsMetadataService::saveMetadata);
+//        collectorProperties.getFeeds().stream()
+//                .filter(property -> {
+//                    Metadata metadata = gtfsMetadataService.getLatestGTFS_Metadata(property.getAgency());
+//
+//                    if (Objects.isNull(metadata)) {
+//                        return true;
+//                    }
+//                    long days = ChronoUnit.DAYS.between(now, metadata.getEndDate());
+//                    return days <= 7;
+//                })
+//                .map(gtfsFeedService::getGtfs)
+//                .forEach(gtfsMetadataService::saveMetadata);
     }
 }

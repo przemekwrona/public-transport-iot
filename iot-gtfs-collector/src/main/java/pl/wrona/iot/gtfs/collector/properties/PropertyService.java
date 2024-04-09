@@ -16,11 +16,11 @@ public class PropertyService {
     private final CollectorProperties collectorProperties;
 
     public void downloadGtfs() {
-        collectorProperties.getFeeds().stream()
-                .map(PropertyService::getFeed)
+//        collectorProperties.getFeeds().stream()
+//                .map(PropertyService::getFeed)
 //                .map(Thread::new)
                 //NOTE GTFS are not downloaded sequentially
-                .forEach(Runnable::run);
+//                .forEach(Runnable::run);
     }
 
     private static Runnable getFeed(FeedProperties feedProperties) {

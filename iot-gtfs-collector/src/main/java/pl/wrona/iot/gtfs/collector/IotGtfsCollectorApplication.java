@@ -9,10 +9,10 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableFeignClients
 @EnableConfigurationProperties
-@ComponentScan(basePackages = {
-        "pl.wrona.iot.gtfs.collector",
-        "pl.wrona.iot.warsaw.timetable.formatter"
-})
+//@ComponentScan(basePackages = {
+//        "pl.wrona.iot.gtfs.collector"
+//        "pl.wrona.iot.warsaw.timetable.formatter"
+//})
 public class IotGtfsCollectorApplication {
 
     public static void main(String[] args) {
