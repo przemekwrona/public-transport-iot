@@ -11,5 +11,6 @@ import java.util.List;
 @ConfigurationProperties("gtfs.collector")
 public class CollectorProperties {
 
-    private List<FeedProperties> feeds;
+    private FeedProperties warsaw;
+    private FeedProperties cyprus;
 }

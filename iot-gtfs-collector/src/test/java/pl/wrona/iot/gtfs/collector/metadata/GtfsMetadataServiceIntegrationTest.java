@@ -31,16 +31,16 @@ class GtfsMetadataServiceIntegrationTest {
     private IotGtfsCollectorCommandLine iotGtfsCollectorCommandLine;
 
     @Container
-    static PostgreSQLContainer<?> mysql = new PostgreSQLContainer<>("postgres:14-alpine");
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14-alpine");
 
     @Autowired
     private GtfsMetadataService gtfsMetadataService;
 
     @DynamicPropertySource
     static void mysqlProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", mysql::getJdbcUrl);
-        registry.add("spring.datasource.username", mysql::getUsername);
-        registry.add("spring.datasource.password", mysql::getPassword);
+        registry.add("spring.datasource.url", postgres::getJdbcUrl);
+        registry.add("spring.datasource.username", postgres::getUsername);
+        registry.add("spring.datasource.password", postgres::getPassword);
     }
 
     private static Stream<Arguments> provideMetadataInOutOfScope() {

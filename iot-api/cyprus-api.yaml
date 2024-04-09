@@ -1,0 +1,291 @@
+openapi: 3.0.0
+info:
+  title: Warsaw Public Transport API
+  description: Warsaw Public Transport API
+  version: 1.0.0
+servers:
+  - url: 'www.publictransport.com.cy'
+paths:
+  /api/services/app/Gtfs/GetRoutesDistinct:
+    get:
+      tags:
+        - routes
+      operationId: getRoutes
+      parameters:
+        - in: query
+          name: agencyId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutesResponse'
+
+  /api/services/app/Gtfs/GetRouteFull:
+    get:
+      tags:
+        - routes
+      operationId: getRouteFull
+      parameters:
+        - in: query
+          name: agencyId
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: routeId
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: dayRange
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteFullResult'
+
+
+components:
+  schemas:
+    Routes:
+      type: object
+      properties:
+        routeId:
+          type: integer
+        agencyId:
+          type: integer
+        shortName:
+          type: string
+        longName:
+          type: string
+        sortOrder:
+          type: number
+        description:
+          type: string
+        routeType:
+          type: string
+        routeColor:
+          type: string
+        textColor:
+          type: string
+        gtfsGroupId:
+          type: number
+        gtfsGroupFk:
+          type: string
+        id:
+          type: number
+
+    Agency:
+      type: object
+      properties:
+        agencyId:
+          type: number
+        agencyName:
+          type: string
+        agencyUrl:
+          type: string
+        agencyTimezone:
+          type: string
+        agencyLang:
+          type: string
+        isActive:
+          type: boolean
+        id:
+          type: number
+
+    Group:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        groupId:
+          type: number
+        gtfsAgencyId:
+          type: number
+        gtfsAgencyFk:
+          $ref: '#/components/schemas/Agency'
+
+    RoutesResult:
+      type: object
+      properties:
+        langLocale:
+          type: string
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Routes'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+
+    RoutesResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/RoutesResult'
+        targetUrl:
+          type: string
+        success:
+          type: boolean
+        error:
+          type: string
+        unAuthorizedRequest:
+          type: boolean
+        __abp:
+          type: boolean
+
+    SelectedRoute:
+      type: object
+      properties:
+        routeId:
+          type: integer
+        agencyId:
+          type: integer
+        shortName:
+          type: string
+        longName:
+          type: string
+        sortOrder:
+          type: integer
+        description:
+          type: string
+        routeType:
+          type: integer
+        routeColor:
+          type: string
+        textColor:
+          type: string
+        gtfsGroupId:
+          type: integer
+        gtfsGroupFk:
+          type: string
+        id:
+          type: integer
+
+    CalendarDate:
+      type: object
+      properties:
+        id:
+          type: integer
+        dayNo:
+          type: integer
+        calDay:
+          type: string
+
+    TripStop:
+      type: object
+      properties:
+        arrival:
+          type: string
+        departure:
+          type: string
+        stopId:
+          type: integer
+        sequence:
+          type: integer
+        stopCode:
+          type: integer
+        stopName:
+          type: integer
+        latitude:
+          type: number
+        longitude:
+          type: number
+
+    RouteStopTime:
+      type: object
+      properties:
+        sequence:
+          type: integer
+        stopName:
+          type: string
+        arrivals:
+          type: array
+          items:
+            type: string
+
+    RouteShape:
+      type: object
+      properties:
+        shapeId:
+          type: integer
+        latitude:
+          type: number
+        longitude:
+          type: number
+        sequence:
+          type: integer
+        id:
+          type: integer
+
+    RouteFullResult:
+      type: object
+      properties:
+        langLocale:
+          type: string
+        tripId:
+          type: integer
+        tripCount:
+          type: integer
+        serviceId:
+          type: integer
+        tripHeadSign:
+          type: string
+        calendarDay:
+          type: string
+        isHoliday:
+          type: boolean
+        holiDate:
+          type: string
+        selectedRoute:
+          $ref: '#/components/schemas/SelectedRoute'
+        selectedRoutes:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedRoute'
+        calendarDays:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalendarDate'
+        tripStops:
+          type: array
+          items:
+            $ref: '#/components/schemas/TripStop'
+        routeStopTimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/RouteStopTime'
+        routeShapes:
+          type: array
+          items:
+            $ref: '#/components/schemas/RouteShape'
+        targetUrl:
+          type: string
+        success:
+          type: boolean
+        error:
+          type: string
+        unAuthorizedRequest:
+          type: boolean
+        __abp:
+          type: boolean
+
+
+    RouteFullResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/RouteFullResult'
