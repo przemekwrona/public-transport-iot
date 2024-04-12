@@ -3,9 +3,9 @@ package pl.wrona.iot.gtfs.collector.cyprus;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import pl.igeolab.gtfs.collector.cyprus.api.model.RouteFullResult;
-import pl.igeolab.gtfs.collector.cyprus.api.model.Routes;
-import pl.igeolab.gtfs.collector.cyprus.api.model.RoutesResponse;
+import pl.igeolab.gtfs.collector.cyprus.api.model.*;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -20,12 +20,20 @@ class CyprusService {
     private final CyprusClient cyprusClient;
 
     public void generateGtfs() {
-        RoutesResponse response = cyprusClient.getRoutes(AGENCY_LARNACA).getBody();
-        log.info("Response {}", response);
+        for (Integer agencyId : List.of(AGENCY_LARNACA)) {
 
-//        for (Routes routes : response.getResult().getRoutes()) {
-//            RouteFullResult routesResponse = cyprusClient.getRouteFull(AGENCY_LARNACA, routes.getRouteId(), MONDAY_THURSDAY).getBody();
-//            System.out.println("11");
-//        }
+            RoutesResponse response = cyprusClient.getRoutes(agencyId).getBody();
+
+            for (Routes routes : response.getResult().getRoutes()) {
+                RouteFullResponse routesResponse = cyprusClient.getRouteFull(routes.getAgencyId(), routes.getRouteId(), MONDAY_THURSDAY).getBody();
+
+                for (SelectedRoute selectedRoute : routesResponse.getResult().getSelectedRoutes()) {
+                    RouteCalendarStoptimesResponse mondayThursday = cyprusClient.getRouteCalendarStoptimes(selectedRoute.getRouteId(), MONDAY_THURSDAY).getBody();
+                    RouteCalendarStoptimesResponse friday = cyprusClient.getRouteCalendarStoptimes(selectedRoute.getRouteId(), FRIDAY).getBody();
+                    RouteCalendarStoptimesResponse saturday = cyprusClient.getRouteCalendarStoptimes(selectedRoute.getRouteId(), SATURDAY).getBody();
+                    RouteCalendarStoptimesResponse sunday = cyprusClient.getRouteCalendarStoptimes(selectedRoute.getRouteId(), SUNDAY).getBody();
+                }
+            }
+        }
     }
 }

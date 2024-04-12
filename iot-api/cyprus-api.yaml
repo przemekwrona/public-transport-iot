@@ -52,8 +52,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RouteFullResult'
+                $ref: '#/components/schemas/RouteFullResponse'
 
+  /api/services/app/Gtfs/GetRouteCalendarStoptimes:
+    get:
+      tags:
+        - routes
+      operationId: getRouteCalendarStoptimes
+      parameters:
+        - in: query
+          name: routeId
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: dayRange
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteCalendarStoptimesResponse'
 
 components:
   schemas:
@@ -199,7 +222,7 @@ components:
         stopCode:
           type: integer
         stopName:
-          type: integer
+          type: string
         latitude:
           type: number
         longitude:
@@ -283,9 +306,36 @@ components:
         __abp:
           type: boolean
 
-
     RouteFullResponse:
       type: object
       properties:
         result:
           $ref: '#/components/schemas/RouteFullResult'
+
+    RouteCalendarStoptimesResult:
+      type: object
+      properties:
+        tripCount:
+          type: integer
+        calendarDay:
+          type: string
+        routeStopTimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/RouteStopTime'
+        targetUrl:
+          type: string
+        success:
+          type: boolean
+        error:
+          type: string
+        unAuthorizedRequest:
+          type: boolean
+        __abp:
+          type: boolean
+
+    RouteCalendarStoptimesResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/RouteCalendarStoptimesResult'

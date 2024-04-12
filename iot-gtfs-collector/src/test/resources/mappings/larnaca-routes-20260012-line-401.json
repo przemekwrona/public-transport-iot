@@ -1,0 +1,3412 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/api/services/app/Gtfs/GetRouteFull",
+    "queryParameters": {
+      "agencyId": {
+        "equalTo": "10"
+      },
+      "routeId": {
+        "equalTo": "20260012"
+      },
+      "dayRange": {
+        "equalTo": "0"
+      }
+    },
+    "headers": {
+      "Accept": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "result": {
+        "langLocale": null,
+        "tripId": 11735991,
+        "tripCount": 4,
+        "serviceId": 16618,
+        "tripHeadSign": "MARI",
+        "calendarDay": "Thursday",
+        "isHoliday": false,
+        "holiDate": null,
+        "selectedRoute": {
+          "routeId": 20260012,
+          "agencyId": 10,
+          "shortName": "401",
+          "sortOrder": 401,
+          "longName": "Kofinou Station - Choirokoitia - Tochni - Kalavasos - Zygi - Vasiliko - Mari",
+          "description": null,
+          "routeType": 3,
+          "routeColor": "4ACFFF",
+          "textColor": "000000",
+          "gtfsGroupId": 7,
+          "gtfsGroupFk": null,
+          "id": 279
+        },
+        "selectedRoutes": [
+          {
+            "routeId": 20260011,
+            "agencyId": 10,
+            "shortName": "401",
+            "sortOrder": 401,
+            "longName": "Mari - Vasiliko - Zygi - Kalavasos - Tochni - Choirokoitia - Kofinou Station",
+            "description": null,
+            "routeType": 3,
+            "routeColor": "4ACFFF",
+            "textColor": "000000",
+            "gtfsGroupId": 7,
+            "gtfsGroupFk": null,
+            "id": 278
+          },
+          {
+            "routeId": 20260012,
+            "agencyId": 10,
+            "shortName": "401",
+            "sortOrder": 401,
+            "longName": "Kofinou Station - Choirokoitia - Tochni - Kalavasos - Zygi - Vasiliko - Mari",
+            "description": null,
+            "routeType": 3,
+            "routeColor": "4ACFFF",
+            "textColor": "000000",
+            "gtfsGroupId": 7,
+            "gtfsGroupFk": null,
+            "id": 279
+          }
+        ],
+        "calendarDays": [
+          {
+            "id": 20240414,
+            "dayNo": 0,
+            "calDay": "Sunday"
+          },
+          {
+            "id": 20240415,
+            "dayNo": 1,
+            "calDay": "Monday"
+          },
+          {
+            "id": 20240416,
+            "dayNo": 2,
+            "calDay": "Tuesday"
+          },
+          {
+            "id": 20240410,
+            "dayNo": 3,
+            "calDay": "Wednesday"
+          },
+          {
+            "id": 20240411,
+            "dayNo": 4,
+            "calDay": "Thursday"
+          },
+          {
+            "id": 20240412,
+            "dayNo": 5,
+            "calDay": "Friday"
+          },
+          {
+            "id": 20240413,
+            "dayNo": 6,
+            "calDay": "Saturday"
+          }
+        ],
+        "tripStops": [
+          {
+            "arrival": "06:30:00",
+            "departure": "06:30:00",
+            "stopId": 6038,
+            "sequence": 0,
+            "stopCode": 20170,
+            "stopName": "Kofinou Station",
+            "latitude": 34.826273309476,
+            "longitude": 33.3899202268482
+          },
+          {
+            "arrival": "06:32:00",
+            "departure": "06:32:00",
+            "stopId": 7031,
+            "sequence": 1,
+            "stopCode": 21717,
+            "stopName": "Lefkosia - Lemesos Old Road - 3rd Stop",
+            "latitude": 34.8213148744709,
+            "longitude": 33.3751784816719
+          },
+          {
+            "arrival": "06:33:00",
+            "departure": "06:33:00",
+            "stopId": 6042,
+            "sequence": 2,
+            "stopCode": 20177,
+            "stopName": "Lefkosia - Lemesos Old Road - 1st Stop",
+            "latitude": 34.8165197362086,
+            "longitude": 33.3685415072339
+          },
+          {
+            "arrival": "06:37:00",
+            "departure": "06:37:00",
+            "stopId": 6008,
+            "sequence": 3,
+            "stopCode": 20126,
+            "stopName": "Agias Paraskevis - 1st Stop",
+            "latitude": 34.8022153607091,
+            "longitude": 33.3510406702215
+          },
+          {
+            "arrival": "06:38:00",
+            "departure": "06:38:00",
+            "stopId": 5987,
+            "sequence": 4,
+            "stopCode": 20043,
+            "stopName": "Choirokoitia Neolithic Settlement 1",
+            "latitude": 34.7966923495642,
+            "longitude": 33.3462073268595
+          },
+          {
+            "arrival": "06:39:00",
+            "departure": "06:39:00",
+            "stopId": 5996,
+            "sequence": 6,
+            "stopCode": 20080,
+            "stopName": "Agiou Fanouriou - 3rd Stop",
+            "latitude": 34.7945026361725,
+            "longitude": 33.3424596430151
+          },
+          {
+            "arrival": "06:39:00",
+            "departure": "06:39:00",
+            "stopId": 6944,
+            "sequence": 5,
+            "stopCode": 22163,
+            "stopName": "Agios Fanourios Church",
+            "latitude": 34.7952207771555,
+            "longitude": 33.3436213483527
+          },
+          {
+            "arrival": "06:40:00",
+            "departure": "06:40:00",
+            "stopId": 6290,
+            "sequence": 7,
+            "stopCode": 20677,
+            "stopName": "Agiou Fanouriou - 5th Stop",
+            "latitude": 34.7924800067922,
+            "longitude": 33.3369529313488
+          },
+          {
+            "arrival": "06:42:00",
+            "departure": "06:42:00",
+            "stopId": 5990,
+            "sequence": 8,
+            "stopCode": 20046,
+            "stopName": "1st Stop Tochni",
+            "latitude": 34.7869869222561,
+            "longitude": 33.3275195237647
+          },
+          {
+            "arrival": "06:43:00",
+            "departure": "06:43:00",
+            "stopId": 6001,
+            "sequence": 10,
+            "stopCode": 20111,
+            "stopName": "5th Stop Tochni",
+            "latitude": 34.7813535782801,
+            "longitude": 33.3231253979055
+          },
+          {
+            "arrival": "06:43:00",
+            "departure": "06:43:00",
+            "stopId": 5997,
+            "sequence": 9,
+            "stopCode": 20081,
+            "stopName": "3rd Stop Tochni",
+            "latitude": 34.7814215898222,
+            "longitude": 33.3246776747193
+          },
+          {
+            "arrival": "06:44:00",
+            "departure": "06:44:00",
+            "stopId": 6005,
+            "sequence": 11,
+            "stopCode": 20119,
+            "stopName": "7th Stop Tochni",
+            "latitude": 34.7772772632563,
+            "longitude": 33.323240654419
+          },
+          {
+            "arrival": "06:45:00",
+            "departure": "06:45:00",
+            "stopId": 6010,
+            "sequence": 12,
+            "stopCode": 20128,
+            "stopName": "9th Stop Tochni",
+            "latitude": 34.7696072214961,
+            "longitude": 33.3217135968255
+          },
+          {
+            "arrival": "06:46:00",
+            "departure": "06:46:00",
+            "stopId": 6014,
+            "sequence": 13,
+            "stopCode": 20134,
+            "stopName": "11th Stop Tochni",
+            "latitude": 34.7649180461099,
+            "longitude": 33.3216954026902
+          },
+          {
+            "arrival": "06:49:00",
+            "departure": "06:49:00",
+            "stopId": 6016,
+            "sequence": 14,
+            "stopCode": 20137,
+            "stopName": "Archiep. Makariou C´ Ave. - 1st Stop",
+            "latitude": 34.7563069739877,
+            "longitude": 33.3109432514255
+          },
+          {
+            "arrival": "06:52:00",
+            "departure": "06:52:00",
+            "stopId": 6007,
+            "sequence": 15,
+            "stopCode": 20121,
+            "stopName": "Archiep. Makariou C´ Ave. - 3rd Stop",
+            "latitude": 34.7655142398489,
+            "longitude": 33.3001048436041
+          },
+          {
+            "arrival": "06:53:00",
+            "departure": "06:53:00",
+            "stopId": 6011,
+            "sequence": 18,
+            "stopCode": 20129,
+            "stopName": "Archiep. Makariou C´ Ave. - 4th Stop",
+            "latitude": 34.7655952102849,
+            "longitude": 33.3001816297289
+          },
+          {
+            "arrival": "06:53:00",
+            "departure": "06:53:00",
+            "stopId": 6006,
+            "sequence": 17,
+            "stopCode": 20120,
+            "stopName": "Archiep. Makariou C´ Ave. - 6th Stop",
+            "latitude": 34.7669590298752,
+            "longitude": 33.2993123463111
+          },
+          {
+            "arrival": "06:53:00",
+            "departure": "06:53:00",
+            "stopId": 5991,
+            "sequence": 16,
+            "stopCode": 20048,
+            "stopName": "Archiep. Makariou C´ Ave. - 5th Stop",
+            "latitude": 34.7687765334266,
+            "longitude": 33.2972972273874
+          },
+          {
+            "arrival": "06:56:00",
+            "departure": "06:56:00",
+            "stopId": 6019,
+            "sequence": 19,
+            "stopCode": 20141,
+            "stopName": "Archiep. Makariou C´ Ave. - 2nd Stop",
+            "latitude": 34.7563787525731,
+            "longitude": 33.3110855632231
+          },
+          {
+            "arrival": "06:58:00",
+            "departure": "06:58:00",
+            "stopId": 6951,
+            "sequence": 21,
+            "stopCode": 22171,
+            "stopName": "Kalavasos - Mari Road - 1st Stop",
+            "latitude": 34.7512572304482,
+            "longitude": 33.3143768412003
+          },
+          {
+            "arrival": "06:58:00",
+            "departure": "06:58:00",
+            "stopId": 6767,
+            "sequence": 20,
+            "stopCode": 21847,
+            "stopName": "Zygi - Kalavasos Road - 1st Stop",
+            "latitude": 34.7542612821691,
+            "longitude": 33.3174147503713
+          },
+          {
+            "arrival": "07:03:00",
+            "departure": "07:03:00",
+            "stopId": 6143,
+            "sequence": 24,
+            "stopCode": 20330,
+            "stopName": "5th Stop Mari",
+            "latitude": 34.7384803190574,
+            "longitude": 33.2995591812689
+          },
+          {
+            "arrival": "07:03:00",
+            "departure": "07:03:00",
+            "stopId": 6142,
+            "sequence": 23,
+            "stopCode": 20329,
+            "stopName": "3rd Stop Mari",
+            "latitude": 34.7414755123343,
+            "longitude": 33.2990346960282
+          },
+          {
+            "arrival": "07:03:00",
+            "departure": "07:03:00",
+            "stopId": 6140,
+            "sequence": 22,
+            "stopCode": 20327,
+            "stopName": "1st Stop Mari",
+            "latitude": 34.7425956895237,
+            "longitude": 33.2982303153996
+          },
+          {
+            "arrival": "07:08:00",
+            "departure": "07:08:00",
+            "stopId": 6159,
+            "sequence": 25,
+            "stopCode": 20346,
+            "stopName": "Vasiliko Cement Works - 2nd Stop",
+            "latitude": 34.7213339992647,
+            "longitude": 33.3152355701513
+          },
+          {
+            "arrival": "07:09:00",
+            "departure": "07:09:00",
+            "stopId": 6953,
+            "sequence": 26,
+            "stopCode": 22173,
+            "stopName": "Vasiliko - Zygi Road - 2nd Stop",
+            "latitude": 34.7258363537642,
+            "longitude": 33.3211944136839
+          },
+          {
+            "arrival": "07:11:00",
+            "departure": "07:11:00",
+            "stopId": 6955,
+            "sequence": 27,
+            "stopCode": 22175,
+            "stopName": "Grigori Afxentiou - Andrea Dimitriou 2",
+            "latitude": 34.7275064046818,
+            "longitude": 33.3306488851858
+          },
+          {
+            "arrival": "07:12:00",
+            "departure": "07:12:00",
+            "stopId": 6761,
+            "sequence": 28,
+            "stopCode": 21841,
+            "stopName": "Zygi Elementary School",
+            "latitude": 34.728936246342,
+            "longitude": 33.3354059718492
+          },
+          {
+            "arrival": "07:12:00",
+            "departure": "07:12:00",
+            "stopId": 6152,
+            "sequence": 29,
+            "stopCode": 20339,
+            "stopName": "Konstantinoupoleos - Agiou Kyriakou 2",
+            "latitude": 34.7309371499078,
+            "longitude": 33.335785437035
+          },
+          {
+            "arrival": "07:17:00",
+            "departure": "07:17:00",
+            "stopId": 6137,
+            "sequence": 30,
+            "stopCode": 20324,
+            "stopName": "Oktagono 2",
+            "latitude": 34.7507300203995,
+            "longitude": 33.3159918348286
+          }
+        ],
+        "routeStopTimes": [
+          {
+            "sequence": 0,
+            "stopName": "Kofinou Station",
+            "arrivals": [
+              "06:30",
+              "08:30",
+              "14:35",
+              "17:35"
+            ]
+          },
+          {
+            "sequence": 1,
+            "stopName": "Lefkosia - Lemesos Old Road - 3rd Stop",
+            "arrivals": [
+              "06:32",
+              "08:32",
+              "14:37",
+              "17:37"
+            ]
+          },
+          {
+            "sequence": 2,
+            "stopName": "Lefkosia - Lemesos Old Road - 1st Stop",
+            "arrivals": [
+              "06:33",
+              "08:33",
+              "14:38",
+              "17:38"
+            ]
+          },
+          {
+            "sequence": 3,
+            "stopName": "Agias Paraskevis - 1st Stop",
+            "arrivals": [
+              "06:37",
+              "08:37",
+              "14:42",
+              "17:41"
+            ]
+          },
+          {
+            "sequence": 4,
+            "stopName": "Choirokoitia Neolithic Settlement 1",
+            "arrivals": [
+              "06:38",
+              "08:38",
+              "14:44",
+              "17:43"
+            ]
+          },
+          {
+            "sequence": 5,
+            "stopName": "Agios Fanourios Church",
+            "arrivals": [
+              "06:39",
+              "08:38",
+              "14:44",
+              "17:43"
+            ]
+          },
+          {
+            "sequence": 6,
+            "stopName": "Agiou Fanouriou - 3rd Stop",
+            "arrivals": [
+              "06:39",
+              "08:39",
+              "14:44",
+              "17:43"
+            ]
+          },
+          {
+            "sequence": 7,
+            "stopName": "Agiou Fanouriou - 5th Stop",
+            "arrivals": [
+              "06:40",
+              "08:40",
+              "14:45",
+              "17:44"
+            ]
+          },
+          {
+            "sequence": 8,
+            "stopName": "1st Stop Tochni",
+            "arrivals": [
+              "06:42",
+              "08:41",
+              "14:47",
+              "17:46"
+            ]
+          },
+          {
+            "sequence": 9,
+            "stopName": "3rd Stop Tochni",
+            "arrivals": [
+              "06:43",
+              "08:42",
+              "14:48",
+              "17:47"
+            ]
+          },
+          {
+            "sequence": 10,
+            "stopName": "5th Stop Tochni",
+            "arrivals": [
+              "06:43",
+              "08:43",
+              "14:49",
+              "17:47"
+            ]
+          },
+          {
+            "sequence": 11,
+            "stopName": "7th Stop Tochni",
+            "arrivals": [
+              "06:44",
+              "08:43",
+              "14:50",
+              "17:48"
+            ]
+          },
+          {
+            "sequence": 12,
+            "stopName": "9th Stop Tochni",
+            "arrivals": [
+              "06:45",
+              "08:45",
+              "14:51",
+              "17:49"
+            ]
+          },
+          {
+            "sequence": 13,
+            "stopName": "11th Stop Tochni",
+            "arrivals": [
+              "06:46",
+              "08:45",
+              "14:52",
+              "17:50"
+            ]
+          },
+          {
+            "sequence": 14,
+            "stopName": "Archiep. Makariou C´ Ave. - 1st Stop",
+            "arrivals": [
+              "06:49",
+              "08:49",
+              "14:55",
+              "17:53"
+            ]
+          },
+          {
+            "sequence": 15,
+            "stopName": "Archiep. Makariou C´ Ave. - 3rd Stop",
+            "arrivals": [
+              "06:52",
+              "08:51",
+              "14:58",
+              "17:55"
+            ]
+          },
+          {
+            "sequence": 16,
+            "stopName": "Archiep. Makariou C´ Ave. - 5th Stop",
+            "arrivals": [
+              "06:53",
+              "08:52",
+              "14:59",
+              "17:56"
+            ]
+          },
+          {
+            "sequence": 17,
+            "stopName": "Archiep. Makariou C´ Ave. - 6th Stop",
+            "arrivals": [
+              "06:53",
+              "08:52",
+              "14:59",
+              "17:57"
+            ]
+          },
+          {
+            "sequence": 18,
+            "stopName": "Archiep. Makariou C´ Ave. - 4th Stop",
+            "arrivals": [
+              "06:53",
+              "08:52",
+              "14:59",
+              "17:57"
+            ]
+          },
+          {
+            "sequence": 19,
+            "stopName": "Archiep. Makariou C´ Ave. - 2nd Stop",
+            "arrivals": [
+              "06:56",
+              "08:55",
+              "15:02",
+              "17:59"
+            ]
+          },
+          {
+            "sequence": 20,
+            "stopName": "Zygi - Kalavasos Road - 1st Stop",
+            "arrivals": [
+              "06:58",
+              "08:56",
+              "15:04",
+              "18:01"
+            ]
+          },
+          {
+            "sequence": 21,
+            "stopName": "Kalavasos - Mari Road - 1st Stop",
+            "arrivals": [
+              "06:58",
+              "08:57",
+              "15:05",
+              "18:01"
+            ]
+          },
+          {
+            "sequence": 22,
+            "stopName": "1st Stop Mari",
+            "arrivals": [
+              "07:03",
+              "09:01",
+              "15:09",
+              "18:06"
+            ]
+          },
+          {
+            "sequence": 23,
+            "stopName": "3rd Stop Mari",
+            "arrivals": [
+              "07:03",
+              "09:01",
+              "15:09",
+              "18:06"
+            ]
+          },
+          {
+            "sequence": 24,
+            "stopName": "5th Stop Mari",
+            "arrivals": [
+              "07:03",
+              "09:02",
+              "15:10",
+              "18:06"
+            ]
+          },
+          {
+            "sequence": 25,
+            "stopName": "Vasiliko Cement Works - 2nd Stop",
+            "arrivals": [
+              "07:08",
+              "09:06",
+              "15:14",
+              "18:10"
+            ]
+          },
+          {
+            "sequence": 26,
+            "stopName": "Vasiliko - Zygi Road - 2nd Stop",
+            "arrivals": [
+              "07:09",
+              "09:08",
+              "15:16",
+              "18:12"
+            ]
+          },
+          {
+            "sequence": 27,
+            "stopName": "Grigori Afxentiou - Andrea Dimitriou 2",
+            "arrivals": [
+              "07:11",
+              "09:09",
+              "15:17",
+              "18:13"
+            ]
+          },
+          {
+            "sequence": 28,
+            "stopName": "Zygi Elementary School",
+            "arrivals": [
+              "07:12",
+              "09:10",
+              "15:18",
+              "18:14"
+            ]
+          },
+          {
+            "sequence": 29,
+            "stopName": "Konstantinoupoleos - Agiou Kyriakou 2",
+            "arrivals": [
+              "07:12",
+              "09:10",
+              "15:19",
+              "18:14"
+            ]
+          },
+          {
+            "sequence": 30,
+            "stopName": "Oktagono 2",
+            "arrivals": [
+              "07:17",
+              "09:15",
+              "15:24",
+              "18:19"
+            ]
+          }
+        ],
+        "routeShapes": [
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8268027802957,
+            "longitude": 33.3907210229085,
+            "sequence": 0,
+            "id": 63272
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8257246786002,
+            "longitude": 33.389469286346,
+            "sequence": 1,
+            "id": 63273
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8256348186941,
+            "longitude": 33.3893704440915,
+            "sequence": 2,
+            "id": 63274
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8253208152668,
+            "longitude": 33.388865936562,
+            "sequence": 3,
+            "id": 63275
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8251417928363,
+            "longitude": 33.3884495497219,
+            "sequence": 4,
+            "id": 63276
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.824989960944,
+            "longitude": 33.3879895506665,
+            "sequence": 5,
+            "id": 63277
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8249104065744,
+            "longitude": 33.3874861503435,
+            "sequence": 6,
+            "id": 63278
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8248499628663,
+            "longitude": 33.3866438439804,
+            "sequence": 7,
+            "id": 63279
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8248593973065,
+            "longitude": 33.3865126636465,
+            "sequence": 8,
+            "id": 63280
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.824879168044,
+            "longitude": 33.3859659874381,
+            "sequence": 9,
+            "id": 63281
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8248884630321,
+            "longitude": 33.3858785478179,
+            "sequence": 10,
+            "id": 63282
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.825100227681,
+            "longitude": 33.384501674966,
+            "sequence": 11,
+            "id": 63283
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8250924881895,
+            "longitude": 33.3840970291781,
+            "sequence": 12,
+            "id": 63284
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8250307802946,
+            "longitude": 33.3836483916007,
+            "sequence": 13,
+            "id": 63285
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8246486009575,
+            "longitude": 33.3818750939087,
+            "sequence": 14,
+            "id": 63286
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8243079934441,
+            "longitude": 33.3812174039171,
+            "sequence": 15,
+            "id": 63287
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8238147344419,
+            "longitude": 33.3803512477666,
+            "sequence": 16,
+            "id": 63288
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8234559470403,
+            "longitude": 33.3797372279858,
+            "sequence": 17,
+            "id": 63289
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8225948987991,
+            "longitude": 33.3782461063111,
+            "sequence": 18,
+            "id": 63290
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8225141830684,
+            "longitude": 33.3781035815139,
+            "sequence": 19,
+            "id": 63291
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8222002680951,
+            "longitude": 33.3775553959751,
+            "sequence": 20,
+            "id": 63292
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8220661924663,
+            "longitude": 33.3771720590624,
+            "sequence": 21,
+            "id": 63293
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8218695347238,
+            "longitude": 33.376613478762,
+            "sequence": 22,
+            "id": 63294
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8217623733767,
+            "longitude": 33.3762740071313,
+            "sequence": 23,
+            "id": 63295
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8215925951683,
+            "longitude": 33.3757702277629,
+            "sequence": 24,
+            "id": 63296
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8214496650228,
+            "longitude": 33.375332181755,
+            "sequence": 25,
+            "id": 63297
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8213513490674,
+            "longitude": 33.3750474281313,
+            "sequence": 26,
+            "id": 63298
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.821018880154,
+            "longitude": 33.3746632008894,
+            "sequence": 27,
+            "id": 63299
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8205960330005,
+            "longitude": 33.374344176812,
+            "sequence": 28,
+            "id": 63300
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8202988586185,
+            "longitude": 33.3742116151694,
+            "sequence": 29,
+            "id": 63301
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8195059223304,
+            "longitude": 33.3740112053622,
+            "sequence": 30,
+            "id": 63302
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8192717357333,
+            "longitude": 33.3739226698239,
+            "sequence": 31,
+            "id": 63303
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8189924950632,
+            "longitude": 33.3738229966621,
+            "sequence": 32,
+            "id": 63304
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8185608629003,
+            "longitude": 33.3734274033327,
+            "sequence": 33,
+            "id": 63305
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8183186978814,
+            "longitude": 33.3729998646704,
+            "sequence": 34,
+            "id": 63306
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8171822872494,
+            "longitude": 33.3701080714308,
+            "sequence": 35,
+            "id": 63307
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8168691654831,
+            "longitude": 33.3692865970953,
+            "sequence": 36,
+            "id": 63308
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8166722722078,
+            "longitude": 33.3687936752745,
+            "sequence": 37,
+            "id": 63309
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8166454184502,
+            "longitude": 33.3687279498628,
+            "sequence": 38,
+            "id": 63310
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8165201335461,
+            "longitude": 33.3684102977081,
+            "sequence": 39,
+            "id": 63311
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8164037660968,
+            "longitude": 33.3681254889531,
+            "sequence": 40,
+            "id": 63312
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8158308374136,
+            "longitude": 33.3667342991922,
+            "sequence": 41,
+            "id": 63313
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8155443177033,
+            "longitude": 33.3660551124955,
+            "sequence": 42,
+            "id": 63314
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8147737982255,
+            "longitude": 33.3643897297338,
+            "sequence": 43,
+            "id": 63315
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8145675403268,
+            "longitude": 33.364006131007,
+            "sequence": 44,
+            "id": 63316
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8143073066729,
+            "longitude": 33.3635785611208,
+            "sequence": 45,
+            "id": 63317
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8140015268777,
+            "longitude": 33.3633038693039,
+            "sequence": 46,
+            "id": 63318
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.813803695888,
+            "longitude": 33.3631171243388,
+            "sequence": 47,
+            "id": 63319
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8134435489261,
+            "longitude": 33.362929668542,
+            "sequence": 48,
+            "id": 63320
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8130291660329,
+            "longitude": 33.362785711965,
+            "sequence": 49,
+            "id": 63321
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8120381490443,
+            "longitude": 33.3624752252616,
+            "sequence": 50,
+            "id": 63322
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.811623700376,
+            "longitude": 33.3623531404388,
+            "sequence": 51,
+            "id": 63323
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8113535322125,
+            "longitude": 33.3622316882313,
+            "sequence": 52,
+            "id": 63324
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8109663961133,
+            "longitude": 33.3620222567974,
+            "sequence": 53,
+            "id": 63325
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.808700848149,
+            "longitude": 33.3596945011851,
+            "sequence": 54,
+            "id": 63326
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8075601660779,
+            "longitude": 33.358147978707,
+            "sequence": 55,
+            "id": 63327
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8062759195817,
+            "longitude": 33.356349423226,
+            "sequence": 56,
+            "id": 63328
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8050653140817,
+            "longitude": 33.354026466105,
+            "sequence": 57,
+            "id": 63329
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8046340601895,
+            "longitude": 33.3534779865831,
+            "sequence": 58,
+            "id": 63330
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.803465517295,
+            "longitude": 33.3521829562563,
+            "sequence": 59,
+            "id": 63331
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8028002718853,
+            "longitude": 33.3514695162425,
+            "sequence": 60,
+            "id": 63332
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8024134002255,
+            "longitude": 33.3511617663979,
+            "sequence": 61,
+            "id": 63333
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8017385642463,
+            "longitude": 33.3506450850499,
+            "sequence": 62,
+            "id": 63334
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.80129755351,
+            "longitude": 33.3503480462604,
+            "sequence": 63,
+            "id": 63335
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.8007843700025,
+            "longitude": 33.3500616377666,
+            "sequence": 64,
+            "id": 63336
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7995142751822,
+            "longitude": 33.3495752592084,
+            "sequence": 65,
+            "id": 63337
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7991810331423,
+            "longitude": 33.3494317366129,
+            "sequence": 66,
+            "id": 63338
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7986679412993,
+            "longitude": 33.3491125458354,
+            "sequence": 67,
+            "id": 63339
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.79846989956,
+            "longitude": 33.3489914600976,
+            "sequence": 68,
+            "id": 63340
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7983530785236,
+            "longitude": 33.3488488533229,
+            "sequence": 69,
+            "id": 63341
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7981912634025,
+            "longitude": 33.3486732619138,
+            "sequence": 70,
+            "id": 63342
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7977714067673,
+            "longitude": 33.3472831547565,
+            "sequence": 71,
+            "id": 63343
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7975477437227,
+            "longitude": 33.3466591055236,
+            "sequence": 72,
+            "id": 63344
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7973051405605,
+            "longitude": 33.3463520011612,
+            "sequence": 73,
+            "id": 63345
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7970621946556,
+            "longitude": 33.346165146026,
+            "sequence": 74,
+            "id": 63346
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7969359796498,
+            "longitude": 33.3461536867889,
+            "sequence": 75,
+            "id": 63347
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7965573967812,
+            "longitude": 33.3460974462613,
+            "sequence": 76,
+            "id": 63348
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7961244908001,
+            "longitude": 33.3461175004315,
+            "sequence": 77,
+            "id": 63349
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7959356810184,
+            "longitude": 33.3459199432209,
+            "sequence": 78,
+            "id": 63350
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7957561058166,
+            "longitude": 33.3456459046654,
+            "sequence": 79,
+            "id": 63351
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7956215868718,
+            "longitude": 33.3453829867033,
+            "sequence": 80,
+            "id": 63352
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7952445840183,
+            "longitude": 33.3447692520135,
+            "sequence": 81,
+            "id": 63353
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.79486729979,
+            "longitude": 33.3442539045712,
+            "sequence": 82,
+            "id": 63354
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7950125082299,
+            "longitude": 33.3439265647634,
+            "sequence": 83,
+            "id": 63355
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7952754996933,
+            "longitude": 33.3434029457899,
+            "sequence": 84,
+            "id": 63356
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.795366816016,
+            "longitude": 33.3429988592019,
+            "sequence": 85,
+            "id": 63357
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7949703503223,
+            "longitude": 33.3428879029759,
+            "sequence": 86,
+            "id": 63358
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7946824956439,
+            "longitude": 33.3426352890854,
+            "sequence": 87,
+            "id": 63359
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7944849085196,
+            "longitude": 33.3423502559627,
+            "sequence": 88,
+            "id": 63360
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.79427879454,
+            "longitude": 33.3418902874095,
+            "sequence": 89,
+            "id": 63361
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7939826255772,
+            "longitude": 33.3413862246912,
+            "sequence": 90,
+            "id": 63362
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7937042447206,
+            "longitude": 33.340969688968,
+            "sequence": 91,
+            "id": 63363
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7935792837513,
+            "longitude": 33.3405100617892,
+            "sequence": 92,
+            "id": 63364
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7935713053473,
+            "longitude": 33.3401383662908,
+            "sequence": 93,
+            "id": 63365
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7936182243829,
+            "longitude": 33.3394826832223,
+            "sequence": 94,
+            "id": 63366
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7935288408579,
+            "longitude": 33.3391981043684,
+            "sequence": 95,
+            "id": 63367
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7931782508562,
+            "longitude": 33.338803145338,
+            "sequence": 96,
+            "id": 63368
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7929897938158,
+            "longitude": 33.3384744391173,
+            "sequence": 97,
+            "id": 63369
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7928022161333,
+            "longitude": 33.3378287344776,
+            "sequence": 98,
+            "id": 63370
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.792695399599,
+            "longitude": 33.3373254663352,
+            "sequence": 99,
+            "id": 63371
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7923006832037,
+            "longitude": 33.3365805448576,
+            "sequence": 100,
+            "id": 63372
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.791843050108,
+            "longitude": 33.3357588581919,
+            "sequence": 101,
+            "id": 63373
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7913039220781,
+            "longitude": 33.3350570916435,
+            "sequence": 102,
+            "id": 63374
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7906486114262,
+            "longitude": 33.3339722847702,
+            "sequence": 103,
+            "id": 63375
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7902355995521,
+            "longitude": 33.3333147706246,
+            "sequence": 104,
+            "id": 63376
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7901468292749,
+            "longitude": 33.3328006655353,
+            "sequence": 105,
+            "id": 63377
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7899595492534,
+            "longitude": 33.332034758413,
+            "sequence": 106,
+            "id": 63378
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7895467053092,
+            "longitude": 33.3313116756817,
+            "sequence": 107,
+            "id": 63379
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7887298441878,
+            "longitude": 33.3299311507078,
+            "sequence": 108,
+            "id": 63380
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7882630592561,
+            "longitude": 33.329142291489,
+            "sequence": 109,
+            "id": 63381
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.787787281002,
+            "longitude": 33.3283424750193,
+            "sequence": 110,
+            "id": 63382
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7875542666972,
+            "longitude": 33.3278059586906,
+            "sequence": 111,
+            "id": 63383
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7873384031625,
+            "longitude": 33.3275974262767,
+            "sequence": 112,
+            "id": 63384
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.786653888033,
+            "longitude": 33.3272886699542,
+            "sequence": 113,
+            "id": 63385
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7859431702114,
+            "longitude": 33.326662837986,
+            "sequence": 114,
+            "id": 63386
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7855925971854,
+            "longitude": 33.3262461079109,
+            "sequence": 115,
+            "id": 63387
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7850434888748,
+            "longitude": 33.3258832513298,
+            "sequence": 116,
+            "id": 63388
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7842959918511,
+            "longitude": 33.3255196202012,
+            "sequence": 117,
+            "id": 63389
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7838636137671,
+            "longitude": 33.3253430419102,
+            "sequence": 118,
+            "id": 63390
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.783169666069,
+            "longitude": 33.3251872988256,
+            "sequence": 119,
+            "id": 63391
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7826377141537,
+            "longitude": 33.3251524218208,
+            "sequence": 120,
+            "id": 63392
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7821235930636,
+            "longitude": 33.3251941235088,
+            "sequence": 121,
+            "id": 63393
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7819072285761,
+            "longitude": 33.3251714149894,
+            "sequence": 122,
+            "id": 63394
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7817452908599,
+            "longitude": 33.3250286934298,
+            "sequence": 123,
+            "id": 63395
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7813409849055,
+            "longitude": 33.324469695593,
+            "sequence": 124,
+            "id": 63396
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7810540798905,
+            "longitude": 33.3238455844299,
+            "sequence": 125,
+            "id": 63397
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7811176102068,
+            "longitude": 33.3236928180285,
+            "sequence": 126,
+            "id": 63398
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7814426513842,
+            "longitude": 33.3235410723891,
+            "sequence": 127,
+            "id": 63399
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7819847828312,
+            "longitude": 33.3231387888824,
+            "sequence": 128,
+            "id": 63400
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7817235908667,
+            "longitude": 33.3230175436841,
+            "sequence": 129,
+            "id": 63401
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7814078580642,
+            "longitude": 33.3230600316077,
+            "sequence": 130,
+            "id": 63402
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7804333164018,
+            "longitude": 33.3232966821523,
+            "sequence": 131,
+            "id": 63403
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7799463646856,
+            "longitude": 33.3232947825027,
+            "sequence": 132,
+            "id": 63404
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7792240544411,
+            "longitude": 33.3236307752381,
+            "sequence": 133,
+            "id": 63405
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7784127004896,
+            "longitude": 33.3235401728583,
+            "sequence": 134,
+            "id": 63406
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7776284863442,
+            "longitude": 33.3234168907548,
+            "sequence": 135,
+            "id": 63407
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7771963076998,
+            "longitude": 33.3231638349753,
+            "sequence": 136,
+            "id": 63408
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7766384612312,
+            "longitude": 33.3226917116772,
+            "sequence": 137,
+            "id": 63409
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7761523198997,
+            "longitude": 33.3223838079884,
+            "sequence": 138,
+            "id": 63410
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7757744182278,
+            "longitude": 33.3220653996072,
+            "sequence": 139,
+            "id": 63411
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.77555874642,
+            "longitude": 33.3217804105345,
+            "sequence": 140,
+            "id": 63412
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7752344293194,
+            "longitude": 33.3216589342115,
+            "sequence": 141,
+            "id": 63413
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7747566968374,
+            "longitude": 33.3215805788593,
+            "sequence": 142,
+            "id": 63414
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7742062169097,
+            "longitude": 33.3217314451564,
+            "sequence": 143,
+            "id": 63415
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7736379614886,
+            "longitude": 33.3217838827517,
+            "sequence": 144,
+            "id": 63416
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7729795874089,
+            "longitude": 33.3218141126844,
+            "sequence": 145,
+            "id": 63417
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7721315250266,
+            "longitude": 33.3219638185131,
+            "sequence": 146,
+            "id": 63418
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7716805275285,
+            "longitude": 33.3220057804223,
+            "sequence": 147,
+            "id": 63419
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7708062499901,
+            "longitude": 33.3218384606316,
+            "sequence": 148,
+            "id": 63420
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7701300714052,
+            "longitude": 33.3217811947869,
+            "sequence": 149,
+            "id": 63421
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7694273016843,
+            "longitude": 33.3215489774739,
+            "sequence": 150,
+            "id": 63422
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7683821493092,
+            "longitude": 33.3212061578196,
+            "sequence": 151,
+            "id": 63423
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7674080130492,
+            "longitude": 33.321289806432,
+            "sequence": 152,
+            "id": 63424
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7667316607913,
+            "longitude": 33.3212981133018,
+            "sequence": 153,
+            "id": 63425
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7653698230478,
+            "longitude": 33.3213584015534,
+            "sequence": 154,
+            "id": 63426
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7646835295028,
+            "longitude": 33.3217163477766,
+            "sequence": 155,
+            "id": 63427
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7634469558696,
+            "longitude": 33.3221486418813,
+            "sequence": 156,
+            "id": 63428
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7628332640184,
+            "longitude": 33.322332020387,
+            "sequence": 157,
+            "id": 63429
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7626074176799,
+            "longitude": 33.322484123051,
+            "sequence": 158,
+            "id": 63430
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7619584650291,
+            "longitude": 33.3223614014393,
+            "sequence": 159,
+            "id": 63431
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7605796603337,
+            "longitude": 33.3220173076732,
+            "sequence": 160,
+            "id": 63432
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7598498946045,
+            "longitude": 33.3217631573899,
+            "sequence": 161,
+            "id": 63433
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7588058650573,
+            "longitude": 33.3209942394814,
+            "sequence": 162,
+            "id": 63434
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7582115056792,
+            "longitude": 33.3206859943764,
+            "sequence": 163,
+            "id": 63435
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7575815346238,
+            "longitude": 33.3202027918757,
+            "sequence": 164,
+            "id": 63436
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7574021863981,
+            "longitude": 33.3198196721898,
+            "sequence": 165,
+            "id": 63437
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7570346117519,
+            "longitude": 33.3189987713994,
+            "sequence": 166,
+            "id": 63438
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7567203948853,
+            "longitude": 33.3184621690957,
+            "sequence": 167,
+            "id": 63439
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7569827353785,
+            "longitude": 33.3181463095749,
+            "sequence": 168,
+            "id": 63440
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.757109867136,
+            "longitude": 33.317808077045,
+            "sequence": 169,
+            "id": 63441
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7571377466832,
+            "longitude": 33.3174913165084,
+            "sequence": 170,
+            "id": 63442
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7571389991951,
+            "longitude": 33.3170105570197,
+            "sequence": 171,
+            "id": 63443
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.756977647783,
+            "longitude": 33.3166384413861,
+            "sequence": 172,
+            "id": 63444
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7567709514575,
+            "longitude": 33.3163644920161,
+            "sequence": 173,
+            "id": 63445
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7565187973885,
+            "longitude": 33.3162324137189,
+            "sequence": 174,
+            "id": 63446
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7562484660051,
+            "longitude": 33.3161548986794,
+            "sequence": 175,
+            "id": 63447
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.755887333734,
+            "longitude": 33.316317416674,
+            "sequence": 176,
+            "id": 63448
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7557336927531,
+            "longitude": 33.3164479460908,
+            "sequence": 177,
+            "id": 63449
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7554643260289,
+            "longitude": 33.3159989425967,
+            "sequence": 178,
+            "id": 63450
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7549696574576,
+            "longitude": 33.3154944540777,
+            "sequence": 179,
+            "id": 63451
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7546287391689,
+            "longitude": 33.3148157373191,
+            "sequence": 180,
+            "id": 63452
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7542795318497,
+            "longitude": 33.3138529165218,
+            "sequence": 181,
+            "id": 63453
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7540105489723,
+            "longitude": 33.3132509660696,
+            "sequence": 182,
+            "id": 63454
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7544353626357,
+            "longitude": 33.312870156544,
+            "sequence": 183,
+            "id": 63455
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7550139520077,
+            "longitude": 33.3123041773183,
+            "sequence": 184,
+            "id": 63456
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7556285814492,
+            "longitude": 33.3117492519273,
+            "sequence": 185,
+            "id": 63457
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7562613274467,
+            "longitude": 33.3111616072634,
+            "sequence": 186,
+            "id": 63458
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7566051985498,
+            "longitude": 33.3106930623487,
+            "sequence": 187,
+            "id": 63459
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7572652984554,
+            "longitude": 33.3099853137321,
+            "sequence": 188,
+            "id": 63460
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7577180433308,
+            "longitude": 33.3092549276034,
+            "sequence": 189,
+            "id": 63461
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7582617629558,
+            "longitude": 33.3082080001583,
+            "sequence": 190,
+            "id": 63462
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7584793753252,
+            "longitude": 33.3077389632477,
+            "sequence": 191,
+            "id": 63463
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7596730418824,
+            "longitude": 33.3064212496991,
+            "sequence": 192,
+            "id": 63464
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7602971285616,
+            "longitude": 33.3056805275969,
+            "sequence": 193,
+            "id": 63465
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7604331338583,
+            "longitude": 33.3053860026073,
+            "sequence": 194,
+            "id": 63466
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.760879181012,
+            "longitude": 33.3037158204591,
+            "sequence": 195,
+            "id": 63467
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7610783597147,
+            "longitude": 33.3033996673289,
+            "sequence": 196,
+            "id": 63468
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7613583701812,
+            "longitude": 33.3032149323548,
+            "sequence": 197,
+            "id": 63469
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7623867108921,
+            "longitude": 33.3030875663977,
+            "sequence": 198,
+            "id": 63470
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7628923799712,
+            "longitude": 33.3028162339458,
+            "sequence": 199,
+            "id": 63471
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7633174051042,
+            "longitude": 33.302336985656,
+            "sequence": 200,
+            "id": 63472
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7638509382786,
+            "longitude": 33.3017379265916,
+            "sequence": 201,
+            "id": 63473
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7645197335005,
+            "longitude": 33.3011393510513,
+            "sequence": 202,
+            "id": 63474
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7651612029861,
+            "longitude": 33.3006499420833,
+            "sequence": 203,
+            "id": 63475
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7654416405124,
+            "longitude": 33.3002903493869,
+            "sequence": 204,
+            "id": 63476
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7660742772056,
+            "longitude": 33.2997244030007,
+            "sequence": 205,
+            "id": 63477
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7668777902997,
+            "longitude": 33.299344836296,
+            "sequence": 206,
+            "id": 63478
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7676089192993,
+            "longitude": 33.2990633519096,
+            "sequence": 207,
+            "id": 63479
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7683321017983,
+            "longitude": 33.2983447162607,
+            "sequence": 208,
+            "id": 63480
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7687220270822,
+            "longitude": 33.2974609518533,
+            "sequence": 209,
+            "id": 63481
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7690832940647,
+            "longitude": 33.2972327591415,
+            "sequence": 210,
+            "id": 63482
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7687220270822,
+            "longitude": 33.2974609518533,
+            "sequence": 211,
+            "id": 63483
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7683321017983,
+            "longitude": 33.2983447162607,
+            "sequence": 212,
+            "id": 63484
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7676089192993,
+            "longitude": 33.2990633519096,
+            "sequence": 213,
+            "id": 63485
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7668777902997,
+            "longitude": 33.299344836296,
+            "sequence": 214,
+            "id": 63486
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7660742772056,
+            "longitude": 33.2997244030007,
+            "sequence": 215,
+            "id": 63487
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7654416405124,
+            "longitude": 33.3002903493869,
+            "sequence": 216,
+            "id": 63488
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7651612029861,
+            "longitude": 33.3006499420833,
+            "sequence": 217,
+            "id": 63489
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7645197335005,
+            "longitude": 33.3011393510513,
+            "sequence": 218,
+            "id": 63490
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7638509382786,
+            "longitude": 33.3017379265916,
+            "sequence": 219,
+            "id": 63491
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7633174051042,
+            "longitude": 33.302336985656,
+            "sequence": 220,
+            "id": 63492
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7628923799712,
+            "longitude": 33.3028162339458,
+            "sequence": 221,
+            "id": 63493
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7623867108921,
+            "longitude": 33.3030875663977,
+            "sequence": 222,
+            "id": 63494
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7613583701812,
+            "longitude": 33.3032149323548,
+            "sequence": 223,
+            "id": 63495
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7610783597147,
+            "longitude": 33.3033996673289,
+            "sequence": 224,
+            "id": 63496
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.760879181012,
+            "longitude": 33.3037158204591,
+            "sequence": 225,
+            "id": 63497
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7604331338583,
+            "longitude": 33.3053860026073,
+            "sequence": 226,
+            "id": 63498
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7602971285616,
+            "longitude": 33.3056805275969,
+            "sequence": 227,
+            "id": 63499
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7596730418824,
+            "longitude": 33.3064212496991,
+            "sequence": 228,
+            "id": 63500
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7584793753252,
+            "longitude": 33.3077389632477,
+            "sequence": 229,
+            "id": 63501
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7582617629558,
+            "longitude": 33.3082080001583,
+            "sequence": 230,
+            "id": 63502
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7577180433308,
+            "longitude": 33.3092549276034,
+            "sequence": 231,
+            "id": 63503
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7572652984554,
+            "longitude": 33.3099853137321,
+            "sequence": 232,
+            "id": 63504
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7566051985498,
+            "longitude": 33.3106930623487,
+            "sequence": 233,
+            "id": 63505
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7562613274467,
+            "longitude": 33.3111616072634,
+            "sequence": 234,
+            "id": 63506
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7556285814492,
+            "longitude": 33.3117492519273,
+            "sequence": 235,
+            "id": 63507
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7550139520077,
+            "longitude": 33.3123041773183,
+            "sequence": 236,
+            "id": 63508
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7544353626357,
+            "longitude": 33.312870156544,
+            "sequence": 237,
+            "id": 63509
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7540105489723,
+            "longitude": 33.3132509660696,
+            "sequence": 238,
+            "id": 63510
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7542795318497,
+            "longitude": 33.3138529165218,
+            "sequence": 239,
+            "id": 63511
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7546287391689,
+            "longitude": 33.3148157373191,
+            "sequence": 240,
+            "id": 63512
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7549696574576,
+            "longitude": 33.3154944540777,
+            "sequence": 241,
+            "id": 63513
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7554643260289,
+            "longitude": 33.3159989425967,
+            "sequence": 242,
+            "id": 63514
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7558970039167,
+            "longitude": 33.3160661487021,
+            "sequence": 243,
+            "id": 63515
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7562484660051,
+            "longitude": 33.3161548986794,
+            "sequence": 244,
+            "id": 63516
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7565187973885,
+            "longitude": 33.3162324137189,
+            "sequence": 245,
+            "id": 63517
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7567709514575,
+            "longitude": 33.3163644920161,
+            "sequence": 246,
+            "id": 63518
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.756977647783,
+            "longitude": 33.3166384413861,
+            "sequence": 247,
+            "id": 63519
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7571389991951,
+            "longitude": 33.3170105570197,
+            "sequence": 248,
+            "id": 63520
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7571377466832,
+            "longitude": 33.3174913165084,
+            "sequence": 249,
+            "id": 63521
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7569839049572,
+            "longitude": 33.3176983300088,
+            "sequence": 250,
+            "id": 63522
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7566763916914,
+            "longitude": 33.3180467969624,
+            "sequence": 251,
+            "id": 63523
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7563694200479,
+            "longitude": 33.3181876625912,
+            "sequence": 252,
+            "id": 63524
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7557020272064,
+            "longitude": 33.3182178812952,
+            "sequence": 253,
+            "id": 63525
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7551339428229,
+            "longitude": 33.3182047757766,
+            "sequence": 254,
+            "id": 63526
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7547737784422,
+            "longitude": 33.3179957973371,
+            "sequence": 255,
+            "id": 63527
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7545221107558,
+            "longitude": 33.3176779752077,
+            "sequence": 256,
+            "id": 63528
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7541444795538,
+            "longitude": 33.3172504124382,
+            "sequence": 257,
+            "id": 63529
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7533172414526,
+            "longitude": 33.3163294683372,
+            "sequence": 258,
+            "id": 63530
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7520672683992,
+            "longitude": 33.3149808294685,
+            "sequence": 259,
+            "id": 63531
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7519319185158,
+            "longitude": 33.3150130929047,
+            "sequence": 260,
+            "id": 63532
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7518328936574,
+            "longitude": 33.3149471623162,
+            "sequence": 261,
+            "id": 63533
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7518153667537,
+            "longitude": 33.3147504320866,
+            "sequence": 262,
+            "id": 63534
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7510595182041,
+            "longitude": 33.3141138761249,
+            "sequence": 263,
+            "id": 63535
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7504747770229,
+            "longitude": 33.3135653829957,
+            "sequence": 264,
+            "id": 63536
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7502232379333,
+            "longitude": 33.3131929635608,
+            "sequence": 265,
+            "id": 63537
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7494146475871,
+            "longitude": 33.3120208885724,
+            "sequence": 266,
+            "id": 63538
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.748462487511,
+            "longitude": 33.3105642402301,
+            "sequence": 267,
+            "id": 63539
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7481931540968,
+            "longitude": 33.3100934448448,
+            "sequence": 268,
+            "id": 63540
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.747853175795,
+            "longitude": 33.3090324258883,
+            "sequence": 269,
+            "id": 63541
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7474918054698,
+            "longitude": 33.3057207461933,
+            "sequence": 270,
+            "id": 63542
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7473678580665,
+            "longitude": 33.3048025745167,
+            "sequence": 271,
+            "id": 63543
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7473238352333,
+            "longitude": 33.3043763310583,
+            "sequence": 272,
+            "id": 63544
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7472092763708,
+            "longitude": 33.3033052453307,
+            "sequence": 273,
+            "id": 63545
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7471068371594,
+            "longitude": 33.3009778149491,
+            "sequence": 274,
+            "id": 63546
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.747011224762,
+            "longitude": 33.2995244254071,
+            "sequence": 275,
+            "id": 63547
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7468683643204,
+            "longitude": 33.2989448786279,
+            "sequence": 276,
+            "id": 63548
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7463145309982,
+            "longitude": 33.2967906499663,
+            "sequence": 277,
+            "id": 63549
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7460285690123,
+            "longitude": 33.295718976642,
+            "sequence": 278,
+            "id": 63550
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7456792357324,
+            "longitude": 33.2947454102932,
+            "sequence": 279,
+            "id": 63551
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7453110945953,
+            "longitude": 33.2940886079765,
+            "sequence": 280,
+            "id": 63552
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7446369794003,
+            "longitude": 33.2931685337911,
+            "sequence": 281,
+            "id": 63553
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7444558623198,
+            "longitude": 33.2934847131102,
+            "sequence": 282,
+            "id": 63554
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.744472632978,
+            "longitude": 33.2940091628857,
+            "sequence": 283,
+            "id": 63555
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.744616230195,
+            "longitude": 33.294293716971,
+            "sequence": 284,
+            "id": 63556
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.744696015484,
+            "longitude": 33.2948620911071,
+            "sequence": 285,
+            "id": 63557
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7444781609828,
+            "longitude": 33.295451256297,
+            "sequence": 286,
+            "id": 63558
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7439528249782,
+            "longitude": 33.2963998376352,
+            "sequence": 287,
+            "id": 63559
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7435913455127,
+            "longitude": 33.2967153623907,
+            "sequence": 288,
+            "id": 63560
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7430131739053,
+            "longitude": 33.2971393549012,
+            "sequence": 289,
+            "id": 63561
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7427960824496,
+            "longitude": 33.2974116920939,
+            "sequence": 290,
+            "id": 63562
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7426596154895,
+            "longitude": 33.2979028082895,
+            "sequence": 291,
+            "id": 63563
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7424240053626,
+            "longitude": 33.2983717173302,
+            "sequence": 292,
+            "id": 63564
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7421797241057,
+            "longitude": 33.2986985740122,
+            "sequence": 293,
+            "id": 63565
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7418997465566,
+            "longitude": 33.2988723577042,
+            "sequence": 294,
+            "id": 63566
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7415477075954,
+            "longitude": 33.2990131073289,
+            "sequence": 295,
+            "id": 63567
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.741141750037,
+            "longitude": 33.2990771908924,
+            "sequence": 296,
+            "id": 63568
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7409431727699,
+            "longitude": 33.2991529456468,
+            "sequence": 297,
+            "id": 63569
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7408894420932,
+            "longitude": 33.2989998113868,
+            "sequence": 298,
+            "id": 63570
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7406820885418,
+            "longitude": 33.2989772157709,
+            "sequence": 299,
+            "id": 63571
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7405376980092,
+            "longitude": 33.299020392756,
+            "sequence": 300,
+            "id": 63572
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7402852827441,
+            "longitude": 33.2989867106067,
+            "sequence": 301,
+            "id": 63573
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7396805063397,
+            "longitude": 33.2992248637064,
+            "sequence": 302,
+            "id": 63574
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7391569962038,
+            "longitude": 33.2994196101753,
+            "sequence": 303,
+            "id": 63575
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7386607537821,
+            "longitude": 33.2995270603666,
+            "sequence": 304,
+            "id": 63576
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.738191725572,
+            "longitude": 33.2995690637011,
+            "sequence": 305,
+            "id": 63577
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7380205771788,
+            "longitude": 33.2994919783572,
+            "sequence": 306,
+            "id": 63578
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7374168472214,
+            "longitude": 33.2993040942256,
+            "sequence": 307,
+            "id": 63579
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7369481947383,
+            "longitude": 33.2991931662737,
+            "sequence": 308,
+            "id": 63580
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7367950814814,
+            "longitude": 33.2991161478676,
+            "sequence": 309,
+            "id": 63581
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7366695574713,
+            "longitude": 33.2988207536906,
+            "sequence": 310,
+            "id": 63582
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7361459672937,
+            "longitude": 33.2990482666123,
+            "sequence": 311,
+            "id": 63583
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7349811254529,
+            "longitude": 33.2996776362035,
+            "sequence": 312,
+            "id": 63584
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7337707337102,
+            "longitude": 33.300492521107,
+            "sequence": 313,
+            "id": 63585
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7327584018009,
+            "longitude": 33.301439180267,
+            "sequence": 314,
+            "id": 63586
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7323784133765,
+            "longitude": 33.3019402680832,
+            "sequence": 315,
+            "id": 63587
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7314921008478,
+            "longitude": 33.3029747382575,
+            "sequence": 316,
+            "id": 63588
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7307594077172,
+            "longitude": 33.3038786729593,
+            "sequence": 317,
+            "id": 63589
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7299633652077,
+            "longitude": 33.3048697422892,
+            "sequence": 318,
+            "id": 63590
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.728959413373,
+            "longitude": 33.3060566363702,
+            "sequence": 319,
+            "id": 63591
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.727856530516,
+            "longitude": 33.3071339096364,
+            "sequence": 320,
+            "id": 63592
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7265276146335,
+            "longitude": 33.3084396865359,
+            "sequence": 321,
+            "id": 63593
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7255153316521,
+            "longitude": 33.3093424776352,
+            "sequence": 322,
+            "id": 63594
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7249453272336,
+            "longitude": 33.3100830657062,
+            "sequence": 323,
+            "id": 63595
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7248448524754,
+            "longitude": 33.3105851123193,
+            "sequence": 324,
+            "id": 63596
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.724877742582,
+            "longitude": 33.3118303680219,
+            "sequence": 325,
+            "id": 63597
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7248666813779,
+            "longitude": 33.3126276481665,
+            "sequence": 326,
+            "id": 63598
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7246583764975,
+            "longitude": 33.3129763739794,
+            "sequence": 327,
+            "id": 63599
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7243420827257,
+            "longitude": 33.3132373134472,
+            "sequence": 328,
+            "id": 63600
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7233302991931,
+            "longitude": 33.3139325060297,
+            "sequence": 329,
+            "id": 63601
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7226709920037,
+            "longitude": 33.3143232031491,
+            "sequence": 330,
+            "id": 63602
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7217951736371,
+            "longitude": 33.3147458391102,
+            "sequence": 331,
+            "id": 63603
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7206559163583,
+            "longitude": 33.3159101394473,
+            "sequence": 332,
+            "id": 63604
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7201213181848,
+            "longitude": 33.3168910491499,
+            "sequence": 333,
+            "id": 63605
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7198584965523,
+            "longitude": 33.3173924379271,
+            "sequence": 334,
+            "id": 63606
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7198744238353,
+            "longitude": 33.3182006939467,
+            "sequence": 335,
+            "id": 63607
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7201789127116,
+            "longitude": 33.3190100585434,
+            "sequence": 336,
+            "id": 63608
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7203130624123,
+            "longitude": 33.3194365167024,
+            "sequence": 337,
+            "id": 63609
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7208167935711,
+            "longitude": 33.3199190079292,
+            "sequence": 338,
+            "id": 63610
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7215380673506,
+            "longitude": 33.3199763950524,
+            "sequence": 339,
+            "id": 63611
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7232247238693,
+            "longitude": 33.3198518293771,
+            "sequence": 340,
+            "id": 63612
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7247477414169,
+            "longitude": 33.3202290499261,
+            "sequence": 341,
+            "id": 63613
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.725441157005,
+            "longitude": 33.3205921593329,
+            "sequence": 342,
+            "id": 63614
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7255849227924,
+            "longitude": 33.320789315863,
+            "sequence": 343,
+            "id": 63615
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7259437018777,
+            "longitude": 33.321522499486,
+            "sequence": 344,
+            "id": 63616
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7263626192547,
+            "longitude": 33.323380930801,
+            "sequence": 345,
+            "id": 63617
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7268978630014,
+            "longitude": 33.325567510695,
+            "sequence": 346,
+            "id": 63618
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7271118616423,
+            "longitude": 33.3264749176323,
+            "sequence": 347,
+            "id": 63619
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7272666545216,
+            "longitude": 33.3292716925163,
+            "sequence": 348,
+            "id": 63620
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7274068542004,
+            "longitude": 33.330779559281,
+            "sequence": 349,
+            "id": 63621
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7275025721531,
+            "longitude": 33.3320578794227,
+            "sequence": 350,
+            "id": 63622
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7275794339709,
+            "longitude": 33.3336310359738,
+            "sequence": 351,
+            "id": 63623
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7276055891946,
+            "longitude": 33.3339588180686,
+            "sequence": 352,
+            "id": 63624
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7275849450459,
+            "longitude": 33.3349089980978,
+            "sequence": 353,
+            "id": 63625
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7286387828703,
+            "longitude": 33.3353610794479,
+            "sequence": 354,
+            "id": 63626
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7297556522459,
+            "longitude": 33.3358461958592,
+            "sequence": 355,
+            "id": 63627
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7306481924436,
+            "longitude": 33.3359262669556,
+            "sequence": 356,
+            "id": 63628
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7322729709606,
+            "longitude": 33.3353539125549,
+            "sequence": 357,
+            "id": 63629
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7326609418644,
+            "longitude": 33.3352790171086,
+            "sequence": 358,
+            "id": 63630
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7332932614571,
+            "longitude": 33.3348883314613,
+            "sequence": 359,
+            "id": 63631
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7340705223734,
+            "longitude": 33.3342579087346,
+            "sequence": 360,
+            "id": 63632
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7352720896334,
+            "longitude": 33.3334544023282,
+            "sequence": 361,
+            "id": 63633
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7365187398926,
+            "longitude": 33.3326510534512,
+            "sequence": 362,
+            "id": 63634
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7376122032178,
+            "longitude": 33.3318033726081,
+            "sequence": 363,
+            "id": 63635
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7390219024488,
+            "longitude": 33.3307275250049,
+            "sequence": 364,
+            "id": 63636
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7394919778175,
+            "longitude": 33.3303033569568,
+            "sequence": 365,
+            "id": 63637
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7400802868958,
+            "longitude": 33.3295082309112,
+            "sequence": 366,
+            "id": 63638
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7420724129439,
+            "longitude": 33.32645728788,
+            "sequence": 367,
+            "id": 63639
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7426607261657,
+            "longitude": 33.3256511853557,
+            "sequence": 368,
+            "id": 63640
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7431139436969,
+            "longitude": 33.3247789949308,
+            "sequence": 369,
+            "id": 63641
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7434041683057,
+            "longitude": 33.3241574257344,
+            "sequence": 370,
+            "id": 63642
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7441376188705,
+            "longitude": 33.3230241171153,
+            "sequence": 371,
+            "id": 63643
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7451782372405,
+            "longitude": 33.3216734823106,
+            "sequence": 372,
+            "id": 63644
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.746137049161,
+            "longitude": 33.3205628481115,
+            "sequence": 373,
+            "id": 63645
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7472223276398,
+            "longitude": 33.3193652739521,
+            "sequence": 374,
+            "id": 63646
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7481084630188,
+            "longitude": 33.3184509619393,
+            "sequence": 375,
+            "id": 63647
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7486420471363,
+            "longitude": 33.3178630414412,
+            "sequence": 376,
+            "id": 63648
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7494377669478,
+            "longitude": 33.3170357559885,
+            "sequence": 377,
+            "id": 63649
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.7500974781051,
+            "longitude": 33.3164920002147,
+            "sequence": 378,
+            "id": 63650
+          },
+          {
+            "shapeId": 20260012,
+            "latitude": 34.751109272842,
+            "longitude": 33.3157966173181,
+            "sequence": 379,
+            "id": 63651
+          }
+        ]
+      },
+      "targetUrl": null,
+      "success": true,
+      "error": null,
+      "unAuthorizedRequest": false,
+      "__abp": true
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
