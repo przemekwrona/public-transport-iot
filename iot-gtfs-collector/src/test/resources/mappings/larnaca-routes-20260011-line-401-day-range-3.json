@@ -1,0 +1,317 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/api/services/app/Gtfs/GetRouteCalendarStoptimes",
+    "queryParameters": {
+      "routeId": {
+        "equalTo": "20260011"
+      },
+      "dayRange": {
+        "equalTo": "3"
+      }
+    },
+    "headers": {
+      "Accept": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "result": {
+        "tripCount": 3,
+        "calendarDay": "Sunday",
+        "routeStopTimes": [
+          {
+            "sequence": 0,
+            "stopName": "Kalavasos - Mari Road - 1st Stop",
+            "arrivals": [
+              "07:30",
+              "09:45",
+              "14:30"
+            ]
+          },
+          {
+            "sequence": 1,
+            "stopName": "1st Stop Mari",
+            "arrivals": [
+              "07:34",
+              "09:49",
+              "14:34"
+            ]
+          },
+          {
+            "sequence": 2,
+            "stopName": "3rd Stop Mari",
+            "arrivals": [
+              "07:34",
+              "09:49",
+              "14:34"
+            ]
+          },
+          {
+            "sequence": 3,
+            "stopName": "5th Stop Mari",
+            "arrivals": [
+              "07:35",
+              "09:49",
+              "14:35"
+            ]
+          },
+          {
+            "sequence": 4,
+            "stopName": "Vasiliko Cement Works - 2nd Stop",
+            "arrivals": [
+              "07:39",
+              "09:53",
+              "14:39"
+            ]
+          },
+          {
+            "sequence": 5,
+            "stopName": "Vasiliko - Zygi Road - 2nd Stop",
+            "arrivals": [
+              "07:40",
+              "09:55",
+              "14:40"
+            ]
+          },
+          {
+            "sequence": 6,
+            "stopName": "Grigori Afxentiou - Andrea Dimitriou 2",
+            "arrivals": [
+              "07:42",
+              "09:56",
+              "14:42"
+            ]
+          },
+          {
+            "sequence": 7,
+            "stopName": "Zygi Elementary School",
+            "arrivals": [
+              "07:43",
+              "09:57",
+              "14:43"
+            ]
+          },
+          {
+            "sequence": 8,
+            "stopName": "Konstantinoupoleos - Agiou Kyriakou 2",
+            "arrivals": [
+              "07:43",
+              "09:57",
+              "14:43"
+            ]
+          },
+          {
+            "sequence": 9,
+            "stopName": "Oktagono 2",
+            "arrivals": [
+              "07:48",
+              "10:02",
+              "14:48"
+            ]
+          },
+          {
+            "sequence": 10,
+            "stopName": "Zygi - Kalavasos Road - 2nd Stop",
+            "arrivals": [
+              "07:49",
+              "10:03",
+              "14:49"
+            ]
+          },
+          {
+            "sequence": 11,
+            "stopName": "Archiep. Makariou C´ Ave. - 1st Stop",
+            "arrivals": [
+              "07:51",
+              "10:05",
+              "14:51"
+            ]
+          },
+          {
+            "sequence": 12,
+            "stopName": "Archiep. Makariou C´ Ave. - 3rd Stop",
+            "arrivals": [
+              "07:53",
+              "10:07",
+              "14:53"
+            ]
+          },
+          {
+            "sequence": 13,
+            "stopName": "Archiep. Makariou C´ Ave. - 5th Stop",
+            "arrivals": [
+              "07:54",
+              "10:08",
+              "14:54"
+            ]
+          },
+          {
+            "sequence": 14,
+            "stopName": "Archiep. Makariou C´ Ave. - 6th Stop",
+            "arrivals": [
+              "07:54",
+              "10:08",
+              "14:54"
+            ]
+          },
+          {
+            "sequence": 15,
+            "stopName": "Archiep. Makariou C´ Ave. - 4th Stop",
+            "arrivals": [
+              "07:54",
+              "10:08",
+              "14:54"
+            ]
+          },
+          {
+            "sequence": 16,
+            "stopName": "Archiep. Makariou C´ Ave. - 2nd Stop",
+            "arrivals": [
+              "07:57",
+              "10:10",
+              "14:57"
+            ]
+          },
+          {
+            "sequence": 17,
+            "stopName": "10th Stop Tochni",
+            "arrivals": [
+              "08:00",
+              "10:14",
+              "15:00"
+            ]
+          },
+          {
+            "sequence": 18,
+            "stopName": "8th Stop Tochni",
+            "arrivals": [
+              "08:02",
+              "10:16",
+              "15:02"
+            ]
+          },
+          {
+            "sequence": 19,
+            "stopName": "Agion Kon/nou kai Elenis",
+            "arrivals": [
+              "08:02",
+              "10:16",
+              "15:02"
+            ]
+          },
+          {
+            "sequence": 20,
+            "stopName": "6th Stop Tochni",
+            "arrivals": [
+              "08:03",
+              "10:16",
+              "15:03"
+            ]
+          },
+          {
+            "sequence": 21,
+            "stopName": "4th Stop Tochni",
+            "arrivals": [
+              "08:03",
+              "10:17",
+              "15:03"
+            ]
+          },
+          {
+            "sequence": 22,
+            "stopName": "2nd Stop Tochni",
+            "arrivals": [
+              "08:04",
+              "10:18",
+              "15:04"
+            ]
+          },
+          {
+            "sequence": 23,
+            "stopName": "Agiou Fanouriou - 6th Stop",
+            "arrivals": [
+              "08:06",
+              "10:19",
+              "15:06"
+            ]
+          },
+          {
+            "sequence": 24,
+            "stopName": "Agiou Fanouriou - 4th Stop",
+            "arrivals": [
+              "08:07",
+              "10:20",
+              "15:07"
+            ]
+          },
+          {
+            "sequence": 25,
+            "stopName": "Choirokoitia Neolithic Settlement 2",
+            "arrivals": [
+              "08:08",
+              "10:21",
+              "15:08"
+            ]
+          },
+          {
+            "sequence": 26,
+            "stopName": "Agias Paraskevis - 2nd Stop",
+            "arrivals": [
+              "08:09",
+              "10:22",
+              "15:09"
+            ]
+          },
+          {
+            "sequence": 27,
+            "stopName": "Lefkosia - Lemesos Old Road - 2nd Stop",
+            "arrivals": [
+              "08:13",
+              "10:26",
+              "15:13"
+            ]
+          },
+          {
+            "sequence": 28,
+            "stopName": "Lefkosia - Lemesos Old Road - 4th Stop",
+            "arrivals": [
+              "08:14",
+              "10:27",
+              "15:14"
+            ]
+          },
+          {
+            "sequence": 29,
+            "stopName": "Archiep. Makariou C´ Ave. - Grigori Afxentiou 2",
+            "arrivals": [
+              "08:16",
+              "10:29",
+              "15:16"
+            ]
+          },
+          {
+            "sequence": 30,
+            "stopName": "Kofinou Station",
+            "arrivals": [
+              "08:17",
+              "10:30",
+              "15:17"
+            ]
+          }
+        ]
+      },
+      "targetUrl": null,
+      "success": true,
+      "error": null,
+      "unAuthorizedRequest": false,
+      "__abp": true
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

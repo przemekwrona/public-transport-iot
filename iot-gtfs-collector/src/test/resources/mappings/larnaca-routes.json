@@ -1,0 +1,155 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/api/services/app/Gtfs/GetRoutesDistinct",
+    "queryParameters": {
+      "agencyId": {
+        "equalTo": "10"
+      }
+    },
+    "headers": {
+      "Accept": {
+        "matches": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "result": {
+        "langLocale": null,
+        "routes": [
+          {
+            "routeId": 20260011,
+            "agencyId": 10,
+            "shortName": "401",
+            "sortOrder": 401,
+            "longName": "Mari - Vasiliko - Zygi - Kalavasos - Tochni - Choirokoitia - Kofinou Station",
+            "description": null,
+            "routeType": 3,
+            "routeColor": "4ACFFF",
+            "textColor": "000000",
+            "gtfsGroupId": 7,
+            "gtfsGroupFk": null,
+            "id": 278
+          }
+        ],
+        "groups": [
+          {
+            "name": "Urban Routes",
+            "groupId": 800,
+            "gtfsAgencyId": 2,
+            "gtfsAgencyFk": {
+              "agencyId": 10,
+              "agencyName": "Larnaca / Λάρνακα",
+              "agencyUrl": "https://publictransport.com.cy",
+              "agencyTimezone": "Asia/Nicosia",
+              "agencyLang": "en",
+              "isActive": true,
+              "id": 2
+            },
+            "id": 8
+          },
+          {
+            "name": "Rural Routes",
+            "groupId": 700,
+            "gtfsAgencyId": 2,
+            "gtfsAgencyFk": {
+              "agencyId": 10,
+              "agencyName": "Larnaca / Λάρνακα",
+              "agencyUrl": "https://publictransport.com.cy",
+              "agencyTimezone": "Asia/Nicosia",
+              "agencyLang": "en",
+              "isActive": true,
+              "id": 2
+            },
+            "id": 7
+          },
+          {
+            "name": "Routes (L)",
+            "groupId": 1300,
+            "gtfsAgencyId": 2,
+            "gtfsAgencyFk": {
+              "agencyId": 10,
+              "agencyName": "Larnaca / Λάρνακα",
+              "agencyUrl": "https://publictransport.com.cy",
+              "agencyTimezone": "Asia/Nicosia",
+              "agencyLang": "en",
+              "isActive": true,
+              "id": 2
+            },
+            "id": 13
+          },
+          {
+            "name": "Null Routes",
+            "groupId": 1000,
+            "gtfsAgencyId": 2,
+            "gtfsAgencyFk": {
+              "agencyId": 10,
+              "agencyName": "Larnaca / Λάρνακα",
+              "agencyUrl": "https://publictransport.com.cy",
+              "agencyTimezone": "Asia/Nicosia",
+              "agencyLang": "en",
+              "isActive": true,
+              "id": 2
+            },
+            "id": 10
+          },
+          {
+            "name": "Night Routes",
+            "groupId": 500,
+            "gtfsAgencyId": 2,
+            "gtfsAgencyFk": {
+              "agencyId": 10,
+              "agencyName": "Larnaca / Λάρνακα",
+              "agencyUrl": "https://publictransport.com.cy",
+              "agencyTimezone": "Asia/Nicosia",
+              "agencyLang": "en",
+              "isActive": true,
+              "id": 2
+            },
+            "id": 5
+          },
+          {
+            "name": "Assisting Routes",
+            "groupId": 600,
+            "gtfsAgencyId": 2,
+            "gtfsAgencyFk": {
+              "agencyId": 10,
+              "agencyName": "Larnaca / Λάρνακα",
+              "agencyUrl": "https://publictransport.com.cy",
+              "agencyTimezone": "Asia/Nicosia",
+              "agencyLang": "en",
+              "isActive": true,
+              "id": 2
+            },
+            "id": 6
+          },
+          {
+            "name": "Airport Routes",
+            "groupId": 900,
+            "gtfsAgencyId": 2,
+            "gtfsAgencyFk": {
+              "agencyId": 10,
+              "agencyName": "Larnaca / Λάρνακα",
+              "agencyUrl": "https://publictransport.com.cy",
+              "agencyTimezone": "Asia/Nicosia",
+              "agencyLang": "en",
+              "isActive": true,
+              "id": 2
+            },
+            "id": 9
+          }
+        ]
+      },
+      "targetUrl": null,
+      "success": true,
+      "error": null,
+      "unAuthorizedRequest": false,
+      "__abp": true
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
