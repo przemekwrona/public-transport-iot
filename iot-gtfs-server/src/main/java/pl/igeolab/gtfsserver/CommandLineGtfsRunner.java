@@ -29,12 +29,7 @@ public class CommandLineGtfsRunner implements CommandLineRunner {
 
             log.info("File {} exists: {} is file {}", gtfsServerParams.getGtfsPath(), gtfsServerParams.getGtfsPath().toFile().exists(), gtfsServerParams.getGtfsPath().toFile().isFile());
             if (file.isDirectory()) {
-
-                file.list(FilenameFilter)
-
             }
-
-
 
             Path p = gtfsServerParams.getGtfsPath();
             ZipFile zipFile = new ZipFile(p.toFile());
