@@ -1,4 +1,4 @@
-name: Deploy Docker Artifact ${{ inputs.artifact }}
+name: Deploy Docker Artifact
 
 on:
   workflow_dispatch:
