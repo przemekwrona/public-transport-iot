@@ -35,6 +35,9 @@ jobs:
       - name: Build docker ${{ inputs.artifact }}
         run: cd ${{ inputs.artifact }} && docker build -t igeolab/${{ inputs.artifact }} .
 
+      - name: List images
+        run: docker ps -a
+
       - name: Log in to DigitalOcean Container Registry with short-lived credentials
         run: doctl registry login --expiry-seconds 1200
 
