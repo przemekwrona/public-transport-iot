@@ -1,4 +1,4 @@
-name: Deploy Docker
+name: Deploy Docker Artifact
 
 on:
   workflow_dispatch:
@@ -14,22 +14,38 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Artifact ${{ inputs.artifact }}
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: 'maven'
-      - run: | 
-          cd ${{ inputs.artifact }}
-          pwd
-          mvn clean verify
-          mkdir staging
-          cp  ${{ inputs.artifact }}/target/*.jar staging
 
-      - name: DigitalOcean App Platform deployment
-        uses: digitalocean/app_action@v1.1.5
+      - name: Install ${{ inputs.artifact }}
+        run: cd ${{ inputs.artifact }} && mvn clean install
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
         with:
-          app_name: ${{ inputs.artifact }}
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Build docker ${{ inputs.artifact }}
+        run: cd ${{ inputs.artifact }} && docker build -t igeolab/${{ inputs.artifact }}:latest .
+
+      - name: List images
+        run: docker images
+
+      - name: Tag Image
+        run: docker tag igeolab/${{ inputs.artifact }}:latest registry.digitalocean.com/igeolab/igeolab/${{ inputs.artifact }}:latest
+
+      - name: List images
+        run: docker images
+
+      - name: Log in to DigitalOcean Container Registry with short-lived credentials
+        run: doctl registry login --expiry-seconds 1200
+
+      - name: Deploy docker image
+        run: docker push registry.digitalocean.com/igeolab/igeolab/${{ inputs.artifact }}:latest
