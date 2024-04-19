@@ -1,4 +1,4 @@
-name: Build Artifact
+name: Build Maven
 
 on:
   workflow_dispatch:
@@ -7,6 +7,7 @@ on:
         type: choice
         description: Artifact ID
         options:
+          - iot-gtfs-server
           - iot-gtfs-collector
           - iot-gps-collector
 
@@ -15,16 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Artifact ${{ inputs.artifact }}
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: 'maven'
-      - run: | 
-          cd ${{ inputs.artifact }}
-          pwd
-          mvn clean verify
-          mkdir staging
-          cp  ${{ inputs.artifact }}/target/*.jar staging
+
+      - name: Install ${{ inputs.artifact }}
+        run: cd ${{ inputs.artifact }} && mvn clean install
