@@ -1,4 +1,4 @@
-name: Build Artifact
+name: Deploy Snapshot Artifact
 
 on:
   workflow_dispatch:
@@ -13,18 +13,34 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build Artifact ${{ inputs.artifact }}
+    environment: production
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v1
+
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v1
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: 17
           cache: 'maven'
-      - run: | 
-          cd ${{ inputs.artifact }}
-          pwd
-          mvn clean verify
-          mkdir staging
-          cp  ${{ inputs.artifact }}/target/*.jar staging
+
+      - name: Build with Maven
+        run:  mvn package --file ${{ inputs.artifact }}/pom.xml -DskipTests
+
+      - name: Read Snapshot version
+        id: snapshot
+        uses: christian-draeger/read-properties@1.1.1
+        with:
+          path: ${{ inputs.artifact }}/target/maven-archiver/pom.properties
+          properties: 'artifactId groupId version'
+
+      - name: Nexus Repo Publish
+        uses: sonatype-nexus-community/nexus-repo-github-action@master
+        with:
+          serverUrl: http://207.154.230.80
+          username: admin
+          password: ${{ secrets.NEXUS_PASSWORD }}
+          format: maven2
+          repository: igeolab-release
+          coordinates: groupId=${{ steps.snapshot.outputs.groupId }} artifactId=${{ steps.snapshot.outputs.artifactId }} version=${{ steps.snapshot.outputs.version }}
+          assets: extension=jar
+          filename: ${{ inputs.artifact }}/target/${{ steps.snapshot.outputs.artifactId }}-${{ steps.snapshot.outputs.version }}.jar
