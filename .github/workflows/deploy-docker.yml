@@ -9,6 +9,9 @@ on:
         options:
           - iot-gtfs-server
 
+env:
+  REGISTRY: registry.digitalocean.com/igeolab
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,11 +38,8 @@ jobs:
       - name: Build docker ${{ inputs.artifact }}
         run: cd ${{ inputs.artifact }} && docker build -t igeolab/${{ inputs.artifact }}:latest .
 
-      - name: List images
-        run: docker images
-
       - name: Tag Image
-        run: docker tag igeolab/${{ inputs.artifact }}:latest registry.digitalocean.com/igeolab/igeolab/${{ inputs.artifact }}:latest
+        run: docker tag igeolab/${{ inputs.artifact }}:latest ${{env.REGISTRY}}/igeolab/${{ inputs.artifact }}:latest
 
       - name: List images
         run: docker images
@@ -48,4 +48,4 @@ jobs:
         run: doctl registry login --expiry-seconds 1200
 
       - name: Deploy docker image
-        run: docker push registry.digitalocean.com/igeolab/igeolab/${{ inputs.artifact }}:latest
+        run: docker push ${{env.REGISTRY}}/igeolab/${{ inputs.artifact }}:latest
