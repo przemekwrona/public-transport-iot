@@ -1,4 +1,4 @@
-name: Deploy Docker
+name: Deploy Docker Artifact ${{ inputs.artifact }}
 
 on:
   workflow_dispatch:
@@ -27,10 +27,8 @@ jobs:
       - name: Install ${{ inputs.artifact }}
         run:  cd ${{ inputs.artifact }} && mvn clean install
 
-
-
-#      - name: DigitalOcean App Platform deployment
-#        uses: digitalocean/app_action@v1.1.5
-#        with:
-#          app_name: ${{ inputs.artifact }}
-#          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: DigitalOcean App Platform deployment
+        uses: digitalocean/app_action@v1.1.5
+        with:
+          app_name: ${{ inputs.artifact }}
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
