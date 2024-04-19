@@ -27,11 +27,16 @@ jobs:
       - name: Install ${{ inputs.artifact }}
         run: cd ${{ inputs.artifact }} && mvn clean install
 
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
       - name: Build docker ${{ inputs.artifact }}
         run: cd ${{ inputs.artifact }} && docker build -t igeolab/${{ inputs.artifact }} .
 
-      - name: DigitalOcean App Platform deployment
-        uses: digitalocean/app_action@v1.1.5
-        with:
-          app_name: ${{ inputs.artifact }}
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Log in to DigitalOcean Container Registry with short-lived credentials
+        run: doctl registry login --expiry-seconds 1200
+
+      - name: Deploy docker image
+        run: docker push registry.digitalocean.com/igeolab/igeolab/${{ inputs.artifact }}
