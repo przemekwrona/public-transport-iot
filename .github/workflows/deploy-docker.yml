@@ -33,7 +33,7 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Build docker ${{ inputs.artifact }}
-        run: cd ${{ inputs.artifact }} && docker build -t igeolab/${{ inputs.artifact }} .
+        run: cd ${{ inputs.artifact }} && docker build -t igeolab/${{ inputs.artifact }}:latest .
 
       - name: List images
         run: docker images
@@ -42,4 +42,4 @@ jobs:
         run: doctl registry login --expiry-seconds 1200
 
       - name: Deploy docker image
-        run: docker push registry.digitalocean.com/igeolab/igeolab/${{ inputs.artifact }}
+        run: docker push registry.digitalocean.com/igeolab/igeolab/${{ inputs.artifact }}:latest
