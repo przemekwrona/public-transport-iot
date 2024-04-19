@@ -28,7 +28,7 @@ jobs:
         run: cd ${{ inputs.artifact }} && mvn clean install
 
       - name: Build docker ${{ inputs.artifact }}
-        run: docker build -t igeolab/${{ inputs.artifact }} .
+        run: cd ${{ inputs.artifact }} && docker build -t igeolab/${{ inputs.artifact }} .
 
       - name: DigitalOcean App Platform deployment
         uses: digitalocean/app_action@v1.1.5
