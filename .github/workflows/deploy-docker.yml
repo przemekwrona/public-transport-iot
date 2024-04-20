@@ -1,4 +1,4 @@
-name: Deploy Docker Artifact
+name: Deploy Docker
 
 on:
   workflow_dispatch:
@@ -41,11 +41,11 @@ jobs:
       - name: Tag Image
         run: docker tag igeolab/${{ inputs.artifact }}:latest ${{env.REGISTRY}}/igeolab/${{ inputs.artifact }}:latest
 
-      - name: List images
-        run: docker images
-
       - name: Log in to DigitalOcean Container Registry with short-lived credentials
         run: doctl registry login --expiry-seconds 1200
 
       - name: Deploy docker image
         run: docker push ${{env.REGISTRY}}/igeolab/${{ inputs.artifact }}:latest
+
+#      - name: Run Garbage Collection
+#        run: doctl registry garbage-collection start --include-untagged-manifests ${{env.REGISTRY}} --force
