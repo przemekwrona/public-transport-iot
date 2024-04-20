@@ -47,5 +47,5 @@ jobs:
       - name: Deploy docker image
         run: docker push ${{env.REGISTRY}}/igeolab/${{ inputs.artifact }}:latest
 
-      - name: Run Garbage Collection
-        run: doctl registry garbage-collection start --include-untagged-manifests ${{env.REGISTRY}} --force
+#      - name: Run Garbage Collection
+#        run: doctl registry garbage-collection start --include-untagged-manifests ${{env.REGISTRY}} --force
