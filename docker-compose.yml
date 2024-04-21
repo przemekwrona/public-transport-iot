@@ -1,14 +1,30 @@
 version: "3.9"
 services:
-  db_1:
+  gtfs_server_db:
     image: postgres:14-alpine
     restart: always
     ports:
-      - '5433:5432'
+      - '5432:5432'
     environment:
       - POSTGRES_PASSWORD=welcome1
       - POSTGRES_USER=user
       - POSTGRES_DB=transport_db
+  gtfs_server:
+    build:
+      context: ./iot-gtfs-server
+      dockerfile: Dockerfile
+    container_name: gtfs-server-warsaw
+    restart: 'always'
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./iot-gtfs-server/src/test/resources/:/gtfs
+    environment:
+      - PROFILE=docker-dev
+      - GTFS_FILE_PATH=/gtfs/warsaw.zip
+    depends_on:
+      - gtfs_server_db
+
 #  gtfs-collector:
 #    build:
 #      context: ./iot-gtfs-collector
