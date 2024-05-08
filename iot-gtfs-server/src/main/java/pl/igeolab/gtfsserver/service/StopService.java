@@ -44,15 +44,17 @@ public class StopService {
         return stopRepository.findById(stopId).orElse(null);
     }
 
-    public org.igeolab.iot.gtfs.server.api.model.Stops getStops() {
-        var stops = stopRepository.findAll().stream()
+    public org.igeolab.iot.gtfs.server.api.model.Stops getStops(Double latitude, Double longitude) {
+        var stops = stopRepository.findAllByNearest(latitude, longitude).stream()
                 .map(stop -> new org.igeolab.iot.gtfs.server.api.model.Stop()
                         .stopId(stop.getStopId())
                         .stopCode(stop.getStopCode())
                         .stopName(stop.getStopName())
                         .stopDesc(stop.getStopDesc())
                         .stopLat(stop.getStopLat())
-                        .stopLon(stop.getStopLon()))
+                        .stopLon(stop.getStopLon())
+                        .locationType(stop.getLocationType())
+                        .parentStation(stop.getParentStation()))
                 .toList();
 
         return new org.igeolab.iot.gtfs.server.api.model.Stops()

@@ -16,11 +16,11 @@ services:
     container_name: gtfs-server-warsaw
     restart: 'always'
     ports:
-      - '8080:8080'
+      - '8082:8080'
     volumes:
       - ./iot-gtfs-server/src/test/resources/:/gtfs
     environment:
-      - PROFILE=docker-dev
+      - PROFILE=local
       - GTFS_FILE_PATH=/gtfs/warsaw.zip
     depends_on:
       - gtfs_server_db

@@ -54,15 +54,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/Trips'
 
-  /stop-time:
+  /agency/{agencyCode}/stops/{stopId}/departures:
     get:
       tags:
         - stop-time
       summary: Returns list of All Stop Times
-      operationId: getStopTrips
+      operationId: getDeparturesByStopId
       parameters:
-        - in: query
-          name: stop
+        - in: path
+          name: agencyCode
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: stopId
           required: true
           schema:
             type: string
@@ -72,7 +77,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Trips'
+                $ref: '#/components/schemas/Departures'
 
   /agency/{agencyCode}/stops:
     get:
@@ -86,6 +91,18 @@ paths:
           required: true
           schema:
             type: string
+        - in: query
+          name: latitude
+          required: true
+          schema:
+            type: number
+            format: double
+        - in: query
+          name: longitude
+          required: true
+          schema:
+            type: number
+            format: double
       responses:
         '200':
           description: OK
@@ -205,6 +222,10 @@ components:
         stopLon:
           type: number
           format: double
+        locationType:
+          type: integer
+        parentStation:
+          type: string
 
     Stops:
       type: object
@@ -241,3 +262,36 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Timetable'
+
+    StopTime:
+      type: object
+      properties:
+        line:
+          type: string
+
+    StopTimes:
+      type: object
+      properties:
+        stopTimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StopTime'
+
+    Departure:
+      type: object
+      properties:
+        line:
+          type: string
+        headsign:
+          type: string
+        date:
+          type: string
+          format: date-time
+
+    Departures:
+      type: object
+      properties:
+        departures:
+          type: array
+          items:
+            $ref: '#/components/schemas/Departure'
