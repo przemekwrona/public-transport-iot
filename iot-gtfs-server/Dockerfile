@@ -1,4 +1,5 @@
-FROM openjdk:17-slim
+FROM openjdk:17-jdk-slim-buster
+#FROM openjdk:17-alpine
 MAINTAINER igeolab.pl
 WORKDIR /app
 

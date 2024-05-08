@@ -26,7 +26,7 @@ public class TimetableService {
     public Timetables getTimetableByStopId(String stopId) {
         Stops stops = stopService.findById(stopId);
 
-        List<Timetable> stopTimes = stopTimeRepository.findStopTimeByStopId(stopId, LocalDate.of(2024, 3, 14)).stream()
+        List<Timetable> stopTimes = stopTimeRepository.findStopTimeByStopId(stopId).stream()
                 .map(stopTime -> new Timetable()
                         .line(stopTime.getTrips().getRoute().getRouteShortName())
                         .direction(stopTime.getTrips().getTripHeadsign())

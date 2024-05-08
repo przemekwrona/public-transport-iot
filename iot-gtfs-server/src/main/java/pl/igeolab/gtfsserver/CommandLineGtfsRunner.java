@@ -25,17 +25,11 @@ public class CommandLineGtfsRunner implements CommandLineRunner {
 
         if (gtfsServerParams.hasPath()) {
             log.info("Run server with GTFS {}", gtfsServerParams.getGtfsPath());
-            File file = gtfsServerParams.getGtfsPath().toFile();
-
-            log.info("File {} exists: {} is file {}", gtfsServerParams.getGtfsPath(), gtfsServerParams.getGtfsPath().toFile().exists(), gtfsServerParams.getGtfsPath().toFile().isFile());
-            if (file.isDirectory()) {
-            }
-
-            Path p = gtfsServerParams.getGtfsPath();
-            ZipFile zipFile = new ZipFile(p.toFile());
+            Path gtfsPath = gtfsServerParams.getGtfsPath();
+            ZipFile zipFile = new ZipFile(gtfsPath.toFile());
 
             zipFile.stream().forEach(entry -> log.info(entry.getName()));
-            this.gtfsLoaderJob.loadGtfs(gtfsServerParams.getGtfsPath());
+            this.gtfsLoaderJob.loadGtfs(gtfsPath);
         }
     }
 }
